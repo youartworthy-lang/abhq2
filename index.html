@@ -273,6 +273,34 @@ tr.row-selected td{background:rgba(201,151,58,.07)!important;}
 .note-icon .note-tip{display:none;position:absolute;right:0;top:18px;width:220px;background:var(--ink);border:1px solid var(--gold);padding:7px 9px;font-size:10px;color:var(--cream2);line-height:1.5;z-index:200;white-space:normal;font-family:'DM Sans',sans-serif;letter-spacing:0;}
 .note-icon:hover .note-tip{display:block;}
 
+/* ─── UNIVERSAL TOOLTIP SYSTEM ─────────────────────────────
+   Usage:  <span class="ttp" data-tip="Your explanation here">LABEL</span>
+   Adds a ⓘ dot + hover bubble. Works on any element.
+   .ttp-below  → bubble appears below (for table headers near top)
+─────────────────────────────────────────────────────────── */
+.ttp{position:relative;cursor:help;display:inline-flex;align-items:center;gap:2px;}
+.ttp::after{content:'ⓘ';font-size:8px;color:var(--mid);opacity:.55;line-height:1;flex-shrink:0;font-family:sans-serif;font-style:normal;}
+.ttp::before{
+  content:attr(data-tip);
+  display:none;
+  position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);
+  min-width:190px;max-width:270px;
+  background:var(--ink);border:1px solid var(--gold);
+  padding:8px 11px;font-size:10px;font-family:'DM Sans',sans-serif;font-weight:400;
+  color:var(--cream2);line-height:1.6;z-index:9998;
+  white-space:normal;letter-spacing:0;text-transform:none;
+  text-align:left;pointer-events:none;
+  box-shadow:0 6px 20px rgba(0,0,0,.6);
+}
+.ttp:hover::before{display:block;}
+/* Arrow pointing down from bubble */
+.ttp-arrow::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--gold);pointer-events:none;}
+/* Tooltip opens BELOW (for table headers at top of page) */
+.ttp.ttp-below::before{top:calc(100% + 7px);bottom:auto;}
+/* Suppress the ⓘ in some cases */
+.ttp.no-dot::after{display:none;}
+
+
 /* ─── PIPELINE — QUICK-FLAG (Work Queue ⭐) ─── */
 .flag-btn{background:none;border:none;cursor:pointer;font-size:13px;line-height:1;padding:0 2px;opacity:.35;transition:opacity .15s;}
 .flag-btn.flagged{opacity:1;}
@@ -290,6 +318,90 @@ tr.row-selected td{background:rgba(201,151,58,.07)!important;}
 .cum-rev-cell{text-align:right;white-space:nowrap;}
 .cum-rev-bar{height:3px;background:var(--ink3);border-radius:2px;margin-top:3px;overflow:hidden;width:100%;}
 .cum-rev-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--green3));border-radius:2px;transition:width .4s;}
+
+/* ═══ BATCH 3 — PROJECTIONS ═══ */
+
+/* Always-visible WHY banner */
+.why-banner{background:linear-gradient(135deg,rgba(201,151,58,.14),rgba(45,122,80,.08));border:2px solid var(--gold);padding:10px 16px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.why-fire{font-size:26px;flex-shrink:0;line-height:1;}
+.why-headline{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:var(--cream);line-height:1.1;}
+.why-headline span{color:var(--gold);}
+.why-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px;}
+.why-pill{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;padding:2px 7px;border:1px solid;cursor:pointer;transition:all .12s;}
+.why-expand-btn{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;padding:2px 8px;background:none;border:1px solid var(--border);color:var(--mid);cursor:pointer;margin-left:auto;flex-shrink:0;align-self:flex-start;}
+
+/* This-month action card */
+.thismonth-card{background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 16px;margin-bottom:14px;}
+.thismonth-header{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:8px;}
+.thismonth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px;}
+.tm-cell{text-align:center;background:var(--ink3);padding:8px 6px;}
+.tm-val{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;}
+.tm-lbl{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:2px;}
+.thismonth-msg{font-size:11px;line-height:1.7;padding:8px 10px;border-left:3px solid var(--teal);background:rgba(78,205,196,.05);}
+.tm-bar-bg{height:6px;background:var(--ink3);border-radius:3px;overflow:hidden;margin-top:8px;}
+.tm-bar-fill{height:100%;border-radius:3px;transition:width .5s;}
+
+/* ═══ BATCH 3 — SEO TAG SETS ═══ */
+.tagset-bar{background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--gold2);padding:8px 12px;margin-bottom:8px;}
+.tagset-bar-header{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--gold2);margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;}
+.tagset-list{display:flex;gap:5px;flex-wrap:wrap;min-height:28px;margin-bottom:7px;}
+.tagset-chip{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:3px 8px;border:1px solid var(--border);cursor:pointer;color:var(--cream2);background:var(--ink3);display:flex;align-items:center;gap:4px;transition:all .12s;}
+.tagset-chip:hover{border-color:var(--gold2);color:var(--gold2);}
+.tagset-chip .ts-del{color:var(--mid);font-size:10px;line-height:1;opacity:.6;}
+.tagset-chip .ts-del:hover{color:var(--rust2);opacity:1;}
+.tagset-actions{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
+.tagset-name-inp{background:var(--ink3);border:1px solid var(--border);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;padding:4px 8px;outline:none;width:130px;}
+.tagset-name-inp:focus{border-color:var(--gold2);}
+.tagset-save-btn{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:var(--gold2);border:none;color:var(--ink);cursor:pointer;}
+.tagset-load-btn{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 8px;background:none;border:1px solid var(--teal);color:var(--teal);cursor:pointer;}
+
+/* ═══ BATCH 3 — CANONICAL DATA BAR ═══ */
+.canonical-bar{background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--green3);padding:7px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+.canonical-lbl{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--green3);white-space:nowrap;}
+.canonical-field{display:flex;align-items:center;gap:4px;}
+.canonical-field-lbl{font-size:9px;color:var(--mid);white-space:nowrap;}
+.canonical-input{background:var(--ink3);border:1px solid var(--border);color:var(--cream);font-family:'DM Mono',monospace;font-size:12px;padding:3px 7px;outline:none;width:80px;text-align:right;}
+.canonical-input:focus{border-color:var(--green3);}
+.canonical-updated{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid);margin-left:auto;white-space:nowrap;}
+
+/* ═══ 90-DAY SPRINT PANEL ═══ */
+.sprint-panel{background:linear-gradient(135deg,rgba(168,72,32,.18),rgba(201,151,58,.10));border:2px solid var(--rust2);padding:12px 16px;margin-bottom:12px;}
+.sprint-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sprint-flame{font-size:28px;line-height:1;}
+.sprint-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--cream);line-height:1.1;}
+.sprint-title span{color:var(--rust2);}
+.sprint-urgency{font-size:10px;color:var(--cream2);line-height:1.6;margin-bottom:10px;padding:8px 12px;background:rgba(0,0,0,.3);border-left:3px solid var(--rust2);}
+.sprint-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px;}
+.sprint-cell{background:rgba(0,0,0,.35);padding:9px 10px;text-align:center;}
+.sprint-val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;}
+.sprint-lbl{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:2px;}
+.sprint-bar-wrap{margin-bottom:10px;}
+.sprint-bar-bg{height:8px;background:var(--ink3);border-radius:4px;overflow:hidden;}
+.sprint-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--rust2),var(--gold));transition:width .6s;}
+.sprint-bar-label{display:flex;justify-content:space-between;font-size:9px;color:var(--mid);margin-top:3px;}
+
+/* ═══ PRIORITY STRATEGY CARDS ═══ */
+.strategy-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;}
+.strat-card{background:var(--ink2);border:1px solid var(--border);padding:11px 13px;position:relative;overflow:hidden;}
+.strat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.strat-card.s1::before{background:var(--rust2);}
+.strat-card.s2::before{background:var(--gold);}
+.strat-card.s3::before{background:var(--teal);}
+.strat-num{font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1;opacity:.15;position:absolute;top:6px;right:10px;}
+.strat-tag{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;margin-bottom:4px;}
+.strat-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--cream);line-height:1.2;margin-bottom:5px;}
+.strat-body{font-size:10px;color:var(--cream2);line-height:1.6;}
+.strat-action{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;margin-top:7px;padding:4px 8px;background:none;border:1px solid;cursor:pointer;display:inline-block;}
+
+/* ═══ DAILY NON-NEGOTIABLE BOX ═══ */
+.nonneg-box{background:var(--ink2);border:2px solid var(--gold);padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.nonneg-icon{font-size:22px;flex-shrink:0;}
+.nonneg-text{flex:1;font-size:11px;color:var(--cream2);line-height:1.6;}
+.nonneg-text strong{color:var(--gold);}
+.nonneg-count{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;flex-shrink:0;text-align:center;}
+.nonneg-count-lbl{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);}
+
+/* ═══ REUSE existing ═══ */
 
 /* ─── PIPELINE ─── */
 .phase-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:10px;overflow-x:auto;}
@@ -886,7 +998,49 @@ table.tbl         { font-size: 13px; }
 
 /* Hide mobile nav on desktop */
 #mobileNav { display: none; }
-</style>
+
+/* ═══════════════════════════════════════════
+   AUTOMATION TAB — Canva Prompts + Mockups
+═══════════════════════════════════════════ */
+.auto-section-hd{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:var(--gold);padding:10px 0 6px;border-bottom:1px solid var(--border);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.auto-progress-bar{height:6px;background:var(--ink3);border-radius:3px;overflow:hidden;margin-top:4px;}
+.auto-progress-fill{height:100%;border-radius:3px;transition:width .4s;}
+.auto-ed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:10px;margin-bottom:18px;}
+.auto-ed-card{background:var(--ink2);border:1px solid var(--border);padding:0;overflow:hidden;}
+.auto-ed-head{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid var(--border);}
+.auto-ed-flag{font-size:20px;flex-shrink:0;}
+.auto-ed-name{flex:1;}
+.auto-ed-name-text{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--cream);line-height:1.1;}
+.auto-ed-shop{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;color:var(--mid);}
+.auto-ed-badge{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:1px;padding:2px 6px;border:1px solid;flex-shrink:0;}
+.auto-ed-body{padding:10px 12px;}
+.auto-row{display:flex;align-items:flex-start;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.auto-row:last-child{border-bottom:none;}
+.auto-row-label{font-size:10px;color:var(--cream2);flex:1;line-height:1.4;}
+.auto-row-label small{color:var(--mid);font-size:9px;}
+.auto-check{width:18px;height:18px;background:var(--ink3);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .15s;}
+.auto-check.done{background:var(--green3);border-color:var(--green3);color:var(--ink);}
+.auto-check.partial{background:rgba(201,151,58,.2);border-color:var(--gold);color:var(--gold);}
+.auto-prompt-area{background:var(--ink3);border:1px solid var(--border);padding:7px 9px;font-family:'DM Mono',monospace;font-size:10px;color:var(--cream2);line-height:1.6;min-height:48px;resize:vertical;width:100%;box-sizing:border-box;outline:none;cursor:text;margin-top:4px;}
+.auto-prompt-area::placeholder{color:var(--mid);font-style:italic;}
+.auto-prompt-copy{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:1px;padding:3px 8px;background:none;border:1px solid var(--border);color:var(--mid);cursor:pointer;transition:all .15s;margin-top:3px;}
+.auto-prompt-copy:hover{border-color:var(--gold);color:var(--gold);}
+.auto-summary-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.auto-sum-cell{background:var(--ink2);border:1px solid var(--border);padding:9px 12px;text-align:center;}
+.auto-sum-val{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;}
+.auto-sum-lbl{font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:2px;}
+.auto-filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center;}
+.auto-tab-btns{display:flex;gap:2px;margin-bottom:14px;}
+.auto-tab-btn{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;padding:6px 16px;border:1px solid var(--border);cursor:pointer;color:var(--mid);background:none;transition:all .15s;}
+.auto-tab-btn.on{color:var(--gold);border-color:var(--gold);background:rgba(201,151,58,.08);}
+.auto-blocker{background:rgba(255,69,0,.08);border:1px solid rgba(255,69,0,.3);padding:8px 12px;margin-bottom:10px;font-size:10px;color:var(--cream2);line-height:1.6;}
+.auto-blocker strong{color:#ff6b35;}
+/* Mockup template card */
+.mock-card{background:var(--ink2);border:1px solid var(--border);padding:12px 14px;}
+.mock-card-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.mock-status-chip{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:1px;padding:2px 7px;border:1px solid;cursor:pointer;transition:all .15s;flex-shrink:0;}
+@media(max-width:767px){.auto-ed-grid{grid-template-columns:1fr;}.auto-summary-bar{grid-template-columns:1fr 1fr;}}
+
 </head>
 <body>
 
@@ -913,6 +1067,9 @@ table.tbl         { font-size: 13px; }
   <button class="mnav-btn" onclick="showView('seo',this);mobileNavSelect(this)">
     <span class="mnav-icon">🔍</span><span class="mnav-lbl">SEO</span>
   </button>
+  <button class="mnav-btn" onclick="showView('automation',this);mobileNavSelect(this)">
+    <span class="mnav-icon">⚙️</span><span class="mnav-lbl">Automate</span>
+  </button>
 </div>
 
 <!-- HEADER -->
@@ -927,6 +1084,7 @@ table.tbl         { font-size: 13px; }
     <button class="ntab" onclick="showView('ideas',this)">💡 Ideas</button>
     <button class="ntab" onclick="showView('toolkit',this)">🧰 Toolkit &amp; Prompts</button>
     <button class="ntab" onclick="showView('seo',this)">🔍 SEO</button>
+    <button class="ntab" onclick="showView('automation',this)">⚙️ Automation</button>
   </nav>
   <div class="hdiv"></div>
   <div class="shop-toggle">
@@ -950,6 +1108,128 @@ table.tbl         { font-size: 13px; }
   <!-- ══════ TODAY VIEW ══════ -->
   <div id="v-today">
 
+    <!-- ══════════════════════════════════════
+         90-DAY SPRINT COMMAND CENTER
+         $250/mo → $5,000/mo by June 7
+    ══════════════════════════════════════ -->
+    <div class="sprint-panel" id="sprintPanel">
+
+      <!-- Header row: title + quick-update inputs -->
+      <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:10px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:4px;color:var(--rust2);margin-bottom:3px;">🔥 90-DAY SPRINT</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--cream);line-height:1.1;">
+            <span id="sprintCurrRevLabel" style="color:var(--rust2);">$250</span>
+            <span style="color:var(--mid);font-size:16px;"> → </span>
+            <span style="color:var(--gold);">$5,000</span>
+            <span style="color:var(--mid);font-size:14px;">/month</span>
+          </div>
+          <div style="font-size:10px;color:var(--cream2);margin-top:3px;">Deadline: <strong style="color:var(--rust2);">June 7, 2026</strong> · <span id="sprintDaysLeftLabel" style="color:var(--gold2);">— days left</span></div>
+        </div>
+        <!-- Quick number update — right side -->
+        <div style="background:rgba(0,0,0,.4);padding:8px 12px;border:1px solid rgba(168,72,32,.4);flex-shrink:0;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:3px;color:var(--mid);margin-bottom:6px;">UPDATE NUMBERS</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">
+            <div>
+              <div style="font-size:8px;color:var(--mid);">Revenue $/mo</div>
+              <input class="canonical-input" type="number" id="canonRevToday" placeholder="250" oninput="canonSync(this,'rdRevenue')" style="width:100%;font-size:13px;padding:4px 6px;">
+            </div>
+            <div>
+              <div style="font-size:8px;color:var(--mid);">Live listings</div>
+              <input class="canonical-input" type="number" id="canonLiveToday" placeholder="32" oninput="canonSync(this,'rdLive')" style="width:100%;font-size:13px;padding:4px 6px;">
+            </div>
+            <div>
+              <div style="font-size:8px;color:var(--mid);">Monthly visits</div>
+              <input class="canonical-input" type="number" id="canonVisitsToday" placeholder="900" oninput="canonSync(this,'rdVisits')" style="width:100%;font-size:13px;padding:4px 6px;">
+            </div>
+            <div>
+              <div style="font-size:8px;color:var(--mid);">Listings/day</div>
+              <input class="canonical-input" type="number" id="canonPaceToday" placeholder="2.0" step="0.1" oninput="canonSync(this,'projDailyTarget')" style="width:100%;font-size:13px;padding:4px 6px;">
+            </div>
+          </div>
+          <div style="font-size:8px;color:var(--mid);margin-top:4px;text-align:right;" id="canonUpdatedToday">Update weekly from Etsy Stats</div>
+        </div>
+      </div>
+
+      <!-- 4 sprint KPIs -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:10px;">
+        <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(168,72,32,.3);">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;" id="sprintDaysLeft" style="color:var(--rust2);">—</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;">Days Left</div>
+        </div>
+        <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(201,151,58,.3);">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--gold2);" id="sprintListingsNeeded">—</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;">Listings to Publish</div>
+        </div>
+        <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(78,205,196,.3);">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--teal);" id="sprintPerDay">—</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;">Per Day Required</div>
+        </div>
+        <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(45,122,80,.3);">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--green3);" id="sprintRevPerListing">—</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;">$ per Listing/mo</div>
+        </div>
+      </div>
+
+      <!-- Progress bar: $250 → $5K -->
+      <div style="margin-bottom:8px;">
+        <div style="height:10px;background:rgba(0,0,0,.5);border-radius:5px;overflow:hidden;">
+          <div id="sprintBar" style="height:100%;border-radius:5px;background:linear-gradient(90deg,var(--rust2),var(--gold));transition:width .6s;width:5%;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--mid);margin-top:3px;">
+          <span id="sprintBarLeft">$250/mo now</span>
+          <span id="sprintBarPct" style="color:var(--gold2);">5% of $5K goal</span>
+          <span>$5,000/mo goal</span>
+        </div>
+      </div>
+
+      <!-- Urgency message — computed dynamically -->
+      <div id="sprintUrgency" style="font-size:11px;color:var(--cream2);line-height:1.75;padding:9px 12px;background:rgba(0,0,0,.4);border-left:3px solid var(--rust2);">Loading…</div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         DAILY NON-NEGOTIABLE
+    ══════════════════════════════════════ -->
+    <div style="background:var(--ink2);border:2px solid var(--gold);display:flex;align-items:center;gap:14px;padding:10px 16px;margin-bottom:10px;flex-wrap:wrap;">
+      <div style="font-size:24px;flex-shrink:0;">⚡</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--gold);margin-bottom:3px;">TODAY'S NON-NEGOTIABLE</div>
+        <div style="font-size:11px;color:var(--cream2);line-height:1.65;" id="nonNegMsg">Publish <strong style="color:var(--gold);">2 listings today.</strong> One listing = ~$7.80/mo passive income forever. Two listings = $15.60/mo added. Miss today and you never get that compounding back.</div>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:var(--green3);" id="nonNegToday">0</div>
+        <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);">Published Today</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;color:var(--mid);">/ <span id="nonNegTarget">2</span> target</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         3 POWER STRATEGIES — HOW TO WIN FAST
+    ══════════════════════════════════════ -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;">
+      <div style="background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--rust2);padding:12px 14px;position:relative;">
+        <div style="position:absolute;top:8px;right:10px;font-family:'Bebas Neue',sans-serif;font-size:40px;opacity:.08;color:var(--rust2);">1</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;color:var(--rust2);margin-bottom:4px;">🎯 HIGHEST IMPACT NOW</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--cream);margin-bottom:6px;">Publish HIGH-SCORE listings first</div>
+        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Score 85+ listings earn 3× more per visitor. Your pipeline has hundreds of them sitting unpublished. Filter → score order → batch 5 at once. <strong style="color:var(--gold2);">Every hour on a low-score listing is stolen from your income.</strong></div>
+        <button onclick="showView('pipeline')" style="margin-top:8px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:none;border:1px solid var(--rust2);color:var(--rust2);cursor:pointer;">→ Go to Pipeline</button>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--gold);padding:12px 14px;position:relative;">
+        <div style="position:absolute;top:8px;right:10px;font-family:'Bebas Neue',sans-serif;font-size:40px;opacity:.08;color:var(--gold);">2</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">⚡ SPEED MULTIPLIER</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--cream);margin-bottom:6px;">Batch the SAME stage for 5 listings</div>
+        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Don't do all 8 stages for 1 listing. Do stage 1 (Research) for 5 listings → stage 2 for all 5. Same template = <strong style="color:var(--gold2);">4× faster per listing.</strong> Context switching kills your output.</div>
+        <button onclick="showView('pipeline')" style="margin-top:8px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:none;border:1px solid var(--gold);color:var(--gold);cursor:pointer;">→ Go to Pipeline + Batch</button>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--teal);padding:12px 14px;position:relative;">
+        <div style="position:absolute;top:8px;right:10px;font-family:'Bebas Neue',sans-serif;font-size:40px;opacity:.08;color:var(--teal);">3</div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;color:var(--teal);margin-bottom:4px;">🔑 FREE TRAFFIC = FREE MONEY</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--cream);margin-bottom:6px;">Nail your SEO tags before every publish</div>
+        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Great tags get found in week 1 and earn forever. Bad tags earn $0 — forever. <strong style="color:var(--teal);">5 extra minutes on tags = potentially years of compound traffic.</strong> Use Tag Builder → save sets by type.</div>
+        <button onclick="showView('seo')" style="margin-top:8px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:none;border:1px solid var(--teal);color:var(--teal);cursor:pointer;">→ Go to SEO Tags</button>
+      </div>
+    </div>
+
     <!-- ① STREAK + WEEKLY SCORECARD — first thing you see -->
     <div class="scorecard" id="scorecardEl">
       <div class="sc-streak">
@@ -959,24 +1239,24 @@ table.tbl         { font-size: 13px; }
       </div>
       <div class="sc-cell">
         <div class="sc-val" id="scToday">0</div>
-        <div class="sc-lbl">Published Today</div>
+        <div class="sc-lbl"><span class="ttp" data-tip="Listings published Live on Etsy today. Updates when you mark Stage 6 done. This is the only output that generates income.">Published Today</span></div>
         <div class="sc-sub" id="scTodayTarget">target: —</div>
         <div class="sc-bar-bg"><div class="sc-bar-fill" id="scTodayBar" style="width:0%"></div></div>
       </div>
       <div class="sc-cell">
         <div class="sc-val" id="scWeek">0</div>
-        <div class="sc-lbl">This Week</div>
+        <div class="sc-lbl"><span class="ttp" data-tip="Total published this Mon–Sun. Weekly target = daily target × 7. Consistency compounds — missing one day costs more than it looks because that revenue never starts.">This Week</span></div>
         <div class="sc-sub" id="scWeekTarget">target: —</div>
         <div class="sc-bar-bg"><div class="sc-bar-fill" id="scWeekBar" style="width:0%;background:var(--teal)"></div></div>
       </div>
       <div class="sc-cell">
         <div class="sc-val" id="scTotal">—</div>
-        <div class="sc-lbl">Total Live</div>
+        <div class="sc-lbl"><span class="ttp" data-tip="Total live listings on Etsy. The most important long-term number in your business. Every listing = permanent passive income. Update weekly in Projections.">Total Live</span></div>
         <div class="sc-sub" id="scTotalNeeded">need: —</div>
       </div>
       <div class="sc-cell">
         <div class="sc-val" id="scRevenue">—</div>
-        <div class="sc-lbl">Est. Monthly Rev</div>
+        <div class="sc-lbl"><span class="ttp" data-tip="Your current monthly Etsy revenue from real data. Sprint gap = distance to $5K goal. Update from Etsy Finances tab each week.">Est. Monthly Rev</span></div>
         <div class="sc-sub" id="scGapLabel">gap: —</div>
       </div>
     </div>
@@ -997,29 +1277,29 @@ table.tbl         { font-size: 13px; }
     <div class="mission">
       <div>
         <div style="font-size:9px;letter-spacing:3px;font-family:'Bebas Neue',sans-serif;color:var(--gold);margin-bottom:3px;">YOUR MISSION</div>
-        <div class="m-goal"><span>$10,000</span>/month profit · Dec 31 2026</div>
+        <div class="m-goal"><span id="missionGoalText">$5,000</span>/month · <span id="missionDeadlineText" style="color:var(--teal);">90-DAY SPRINT</span></div>
         <div style="font-size:10px;color:var(--mid);margin-top:2px;" id="missionNote">Loading…</div>
       </div>
       <div class="m-stats">
         <div class="m-stat">
           <span class="m-val" id="mLiveCount" style="color:var(--green3);">—</span>
-          <span class="m-lbl">Live Listings</span>
+          <span class="m-lbl"><span class="ttp" data-tip="Total live listings on Etsy right now. Every new listing = permanent passive income. Your most important long-term number.">Live Listings</span></span>
         </div>
         <div class="m-stat">
           <span class="m-val" id="mNeeded" style="color:var(--rust2);">—</span>
-          <span class="m-lbl">More Needed</span>
+          <span class="m-lbl"><span class="ttp" data-tip="More listings needed to hit your sprint goal ($5K). Shrinks every time you publish. Watch this go to zero.">More Needed</span></span>
         </div>
         <div class="m-stat">
           <span class="m-val" id="mDaysLeft" style="color:var(--gold2);">—</span>
-          <span class="m-lbl">Days Left 2026</span>
+          <span class="m-lbl"><span class="ttp" data-tip="Sprint days remaining until June 7 → then Dec 31. Every day without publishing is compound income permanently missed.">Days Left</span></span>
         </div>
         <div class="m-stat">
           <span class="m-val" id="mPerDay" style="color:var(--teal);">—</span>
-          <span class="m-lbl">Listings/Day Needed</span>
+          <span class="m-lbl"><span class="ttp" data-tip="Listings/day you must publish to hit your goal. Red = hard pace. Teal = achievable. Set your own target in Projections.">Listings/Day</span></span>
         </div>
         <div class="m-stat">
           <span class="m-val" id="mCurRevenue" style="color:var(--gold);">—</span>
-          <span class="m-lbl">Est. Monthly Revenue</span>
+          <span class="m-lbl"><span class="ttp" data-tip="Current monthly revenue from real data. Update in the sprint panel inputs or in Projections. Check Etsy Finances weekly.">Monthly Rev</span></span>
         </div>
       </div>
     </div>
@@ -1114,12 +1394,12 @@ table.tbl         { font-size: 13px; }
           <div class="gap-grid">
             <div class="gap-field">
               <span class="gap-lbl">Your Monthly Etsy Revenue ($)</span>
-              <input type="number" class="gap-input" id="gapCurrent" placeholder="e.g. 450" oninput="calcGap();saveRealData()">
+              <input type="number" class="gap-input" id="gapCurrent" placeholder="e.g. 250" oninput="calcGap();saveRealData()">
               <span style="font-size:9px;color:var(--mid);">Update from Etsy stats</span>
             </div>
             <div class="gap-field">
               <span class="gap-lbl">Monthly Visits (last 30 days)</span>
-              <input type="number" class="gap-input" id="gapVisits" placeholder="e.g. 1649" oninput="calcGap();saveRealData()">
+              <input type="number" class="gap-input" id="gapVisits" placeholder="e.g. 900" oninput="calcGap();saveRealData()">
               <span style="font-size:9px;color:var(--mid);">From Etsy Shop Stats</span>
             </div>
           </div>
@@ -1211,16 +1491,16 @@ table.tbl         { font-size: 13px; }
     <div style="overflow-x:auto;">
       <table id="mvTbl" style="width:100%;border-collapse:collapse;font-size:11px;">
         <thead><tr style="border-bottom:2px solid var(--gold2);">
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;">RANK</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;">AGE</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;">EDITION</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">FMT</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">SCORE</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:right;">EST $/MO</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--teal);text-align:right;" title="Cumulative monthly revenue if you published all listings up to this rank">CUM $/MO</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">STATUS</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;min-width:65px;">PROGRESS</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">ACTION</th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;"><span class="ttp ttp-below" data-tip="Revenue rank #1 = highest estimated monthly income. Publish in this order for maximum ROI.">RANK</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;"><span class="ttp ttp-below" data-tip="Birthday milestone. 50th = highest search volume. Age demand drives ~40% of Etsy birthday traffic.">AGE</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;"><span class="ttp ttp-below" data-tip="Cultural/country edition. USA Generic = most traffic. Black community = strong diaspora loyalty. Each earns independently.">EDITION</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;"><span class="ttp ttp-below" data-tip="⚡ Instant DL = $12.95, passive income, no fulfilment. ✏️ Custom = $19.95 but you personalise each order. Instant DL = higher ROI per hour.">FMT</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;"><span class="ttp ttp-below" data-tip="ROI Score 0–100. Formula: Age Demand 40% + Edition Market 40% + Format 20%. PRIME ≥85 = publish first. Colour: green=PRIME, gold=HIGH, mid=MED/LOW.">SCORE</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:right;"><span class="ttp ttp-below" data-tip="Estimated monthly revenue for this single listing. Based on your real visits/listing × 3% conversion × avg order × (1 − 7% Etsy fees). Not guaranteed — actual varies.">EST $/MO</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--teal);text-align:right;"><span class="ttp ttp-below" data-tip="Running total monthly revenue if every listing ranked above this one were live. When this bar fills to 100% you've crossed your $10K/month goal.">CUM $/MO</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;"><span class="ttp ttp-below" data-tip="○ Not Started · ▶ In Progress (at least one stage done) · ✓ Live (on Etsy, earning money).">STATUS</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;min-width:65px;"><span class="ttp ttp-below" data-tip="% of 8 production stages done. Hit stage 6 (Live) to start earning. Stages 7–8 (Reel, Pin) are bonus traffic — don't delay going Live for them.">PROGRESS</span></th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;"><span class="ttp ttp-below" data-tip="Open the listing detail panel to update stages, add notes, or start a timed work session.">ACTION</span></th>
         </tr></thead>
         <tbody id="mvBody"></tbody>
       </table>
@@ -1349,18 +1629,26 @@ table.tbl         { font-size: 13px; }
     <div class="twrap">
       <table class="tbl">
         <thead><tr>
-          <th style="width:18px;"><input type="checkbox" class="row-sel-cb" id="selectAllCb" onclick="batchToggleAll(this)" title="Select all visible"></th>
-          <th>⭐</th>
-          <th>ID</th><th>Ph</th><th>Pri</th><th>Score</th><th>Age</th><th>Edition</th><th>Fmt</th>
-          <th>1·Facts<br><small style="font-size:7px;color:#555;">~20m</small></th>
-          <th>2·Canva<br><small style="font-size:7px;color:#555;">~25m</small></th>
-          <th style="color:#9b59b6;">3·Hero<br><small style="font-size:7px;">~15m</small></th>
-          <th>4·Mock<br><small style="font-size:7px;color:#555;">~15m</small></th>
-          <th>5·List<br><small style="font-size:7px;color:#555;">~20m</small></th>
-          <th>6·Live<br><small style="font-size:7px;color:#555;">~10m</small></th>
-          <th>7·Reel<br><small style="font-size:7px;color:#555;">~30m</small></th>
-          <th>8·Pin<br><small style="font-size:7px;color:#555;">~10m</small></th>
-          <th>Time</th><th>%</th><th>📝</th>
+          <th style="width:18px;"><input type="checkbox" class="row-sel-cb" id="selectAllCb" onclick="batchToggleAll(this)" title="Select all visible rows for batch operations"></th>
+          <th><span class="ttp ttp-below" data-tip="Work Queue star. Flag a listing to add it to your focus list. Use the ⭐ filter to see only flagged listings.">⭐</span></th>
+          <th><span class="ttp ttp-below" data-tip="Listing ID. Format: editionId_age_fmt. Used internally — click any row to open the detail panel.">ID</span></th>
+          <th><span class="ttp ttp-below" data-tip="Phase. 1 = Priority 608 listings (highest-demand ages). 2 = Full 3,192 listings. Do Phase 1 first — these drive the most birthday poster revenue.">Ph</span></th>
+          <th><span class="ttp ttp-below" data-tip="Age Priority. P-CRIT = 50th/60th/40th (top search volume). P-HIGH = strong demand. P-MED = solid. P-LOW = Phase 2 territory. Always finish P-CRIT first.">Pri</span></th>
+          <th><span class="ttp ttp-below" data-tip="ROI Score 0–100. Age Demand 40% + Edition Market 40% + Format 20%. PRIME ≥85 = publish first for maximum revenue per hour invested. Green = PRIME. Gold = HIGH.">Score</span></th>
+          <th><span class="ttp ttp-below" data-tip="Birthday milestone age. 50th earns most — highest search volume globally. 60th second. The age drives ~40% of your ranking score.">Age</span></th>
+          <th><span class="ttp ttp-below" data-tip="Cultural/country edition. USA Generic = most traffic. Black community editions = strong diaspora loyalty. Jamaica/Trinidad = niche but loyal buyers.">Edition</span></th>
+          <th><span class="ttp ttp-below" data-tip="⚡ Instant DL = $12.95, buyer downloads immediately — zero fulfilment work. ✏️ Custom = $19.95 but you personalise each order. Instant DL earns more passively per hour.">Fmt</span></th>
+          <th><span class="ttp ttp-below" data-tip="Stage 1 · Research & Facts (~20 min). Gather cultural/historical facts for this edition — events, music, sport for the birth year. Goes into your Canva CSV data.">1·Facts<br><small style="font-size:7px;color:#555;">~20m</small></span></th>
+          <th><span class="ttp ttp-below" data-tip="Stage 2 · Canva Bulk Create (~25 min). Use your saved prompt from the Automation tab to generate the poster via Canva's bulk create feature. One template → batch of posters.">2·Canva<br><small style="font-size:7px;color:#555;">~25m</small></span></th>
+          <th style="color:#9b59b6;"><span class="ttp ttp-below" data-tip="Stage 3 · Hero Image (~15 min). Export the best poster variant as a high-res thumbnail. This is the first image buyers see — it drives 90% of click decisions.">3·Hero<br><small style="font-size:7px;">~15m</small></span></th>
+          <th><span class="ttp ttp-below" data-tip="Stage 4 · Mockup (~15 min). Place hero image in a room/frame scene using your mockup template (Automation tab). Makes the poster look real and giftable. Massively increases conversion.">4·Mock<br><small style="font-size:7px;color:#555;">~15m</small></span></th>
+          <th><span class="ttp ttp-below" data-tip="Stage 5 · Etsy Listing (~20 min). Write title (first 40 chars = SEO gold), description, set tags (use SEO tab), price, upload mockup + hero images. Title quality = traffic forever.">5·List<br><small style="font-size:7px;color:#555;">~20m</small></span></th>
+          <th><span class="ttp ttp-below" data-tip="Stage 6 · Published Live (~10 min). Listing is active on Etsy and earning passive income. This is the ONLY stage that generates revenue — prioritise getting here fast.">6·Live<br><small style="font-size:7px;color:#555;">~10m</small></span></th>
+          <th><span class="ttp ttp-below" data-tip="Stage 7 · IG Reel (~30 min). Short video showcasing the poster. Tags it for the Black community birthday niche. Optional — do AFTER going Live. Never delay Live for this.">7·Reel<br><small style="font-size:7px;color:#555;">~30m</small></span></th>
+          <th><span class="ttp ttp-below" data-tip="Stage 8 · Pinterest Pin (~10 min). Pin the mockup with keyword-rich description. Pinterest traffic compounds over months as pins get re-pinned. Do last.">8·Pin<br><small style="font-size:7px;color:#555;">~10m</small></span></th>
+          <th><span class="ttp ttp-below" data-tip="Total time invested in this listing (minutes). Tracked when you use ▶ Time sessions. Helps identify your fastest listing types to optimise your workflow.">Time</span></th>
+          <th><span class="ttp ttp-below" data-tip="Completion %. 100% = Live. A listing at 87% with only Pin missing still earns money — never delay Stage 6 (Live) waiting to finish Reel or Pin.">%</span></th>
+          <th><span class="ttp ttp-below" data-tip="Notes. Hover over the icon to preview. Click the row to open the detail panel and edit your notes for this listing.">📝</span></th>
         </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -1370,72 +1658,95 @@ table.tbl         { font-size: 13px; }
 
   <!-- ══════ PROJECTIONS VIEW ══════ -->
   <div id="v-projections" style="display:none;">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:12px;">PROFIT PROJECTIONS — BASED ON YOUR REAL NUMBERS</div>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;">PROFIT PROJECTIONS — BASED ON YOUR REAL NUMBERS</div>
 
-    <!-- YOUR WHY - COLLAPSED BY DEFAULT -->
-    <div style="margin-bottom:18px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:4px;color:var(--gold);">YOUR WHY — READ THIS WHEN YOU WANT TO QUIT</div>
-        <button id="motivToggleBtn" onclick="toggleMotivation()" style="background:none;border:1px solid var(--border);color:var(--mid);font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;padding:2px 8px;cursor:pointer;">EXPAND</button>
+    <!-- ① ALWAYS-VISIBLE WHY BANNER -->
+    <div class="why-banner" id="whyBanner">
+      <div class="why-fire" id="whyFire">🔥</div>
+      <div style="flex:1;min-width:0;">
+        <div class="why-headline">From <span style="color:var(--rust2);">$250</span> to <span>$5,000/month</span> in 90 days. Then $10,000 by Dec 31.</div>
+        <div class="why-pills">
+          <span class="why-pill" style="border-color:var(--gold);color:var(--gold);">🕌 Sadaqah from abundance</span>
+          <span class="why-pill" style="border-color:#9b59b6;color:#9b59b6;">💝 Marriage protected</span>
+          <span class="why-pill" style="border-color:var(--gold2);color:var(--gold2);">👨‍👩‍👧‍👦 Kids get your time</span>
+          <span class="why-pill" style="border-color:var(--green3);color:var(--green3);">👨‍👩‍👦🏽 Parents RM500/wk</span>
+          <span class="why-pill" style="border-color:var(--teal);color:var(--teal);">🌍 Work from anywhere</span>
+          <span class="why-pill" style="border-color:var(--rust2);color:var(--rust2);">💳 Debts cleared</span>
+        </div>
       </div>
-      <div id="motivBody" style="display:none;">
-        <div style="background:linear-gradient(135deg,rgba(201,151,58,0.16),rgba(45,122,80,0.10));border:2px solid var(--gold);padding:18px 22px;margin-bottom:12px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:4px;color:var(--gold);margin-bottom:5px;">YOUR DREAM — BY END OF 2026</div>
-          <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--cream);line-height:1.2;margin-bottom:8px;">$10,000 / month profit.<br>Semi-passive. Fully yours.</div>
-          <div style="font-size:12px;color:var(--cream2);line-height:1.85;">Not a fantasy — a <strong style="color:var(--gold2);">mathematical certainty</strong>. Listings × right keywords × consistent daily work. Every listing you publish today earns money <em>forever.</em></div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;">
-          <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🕌</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">SADAQAH &amp; WAKAF</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Give from abundance. Every listing is ibaadah through honest work.</div></div>
-          <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$10K/month removes both time and money barriers at once. You <em>show up</em> more.</div></div>
-          <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--green3);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👦🏽</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--green3);margin-bottom:4px;">YOUR PARENTS — RM500/WK</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">RM2,000/month of honour for those who gave you everything. No stress.</div></div>
-          <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid #9b59b6;padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💝</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:#9b59b6;margin-bottom:4px;">YOUR MARRIAGE</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Financial stress has taken you to the brink. $10K removes the fire that burns everything.</div></div>
-          <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🌍</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:4px;">LOCATION FREEDOM</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Work from KL, Penang, London. No alarm set by someone else. It works while you pray Fajr.</div></div>
-          <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--rust2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💳</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:4px;">DEBTS CLEARED</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Bills paid on time. Car fixed without dread. Baseline dignity you deserve.</div></div>
-        </div>
+      <button class="why-expand-btn" id="whyExpandBtn" onclick="toggleWhyFull()">READ MORE ▾</button>
+    </div>
+    <!-- Full WHY content — hidden by default -->
+    <div id="whyFullBody" style="display:none;margin-bottom:14px;">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🕌</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">SADAQAH &amp; WAKAF</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Give from abundance. Every listing you publish is honest halal work. Ibaadah through consistency.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$10K/month removes both time and money barriers simultaneously. You <em>show up</em> more, fully.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--green3);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👦🏽</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--green3);margin-bottom:4px;">YOUR PARENTS — RM500/WK</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">RM2,000/month of honour, every month, without stress. They gave you everything.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid #9b59b6;padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💝</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:#9b59b6;margin-bottom:4px;">YOUR MARRIAGE</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Financial stress has taken you to the edge. $10K removes the fire. Safety. Calm. Space to love.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🌍</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:4px;">LOCATION FREEDOM</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Work from KL, Penang, London. No alarm from someone else. It earns while you pray Fajr.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--rust2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💳</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:4px;">DEBTS CLEARED</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Bills paid on time. Car fixed without dread. No more quiet panic at the end of the month.</div></div>
+      </div>
+      <div style="margin-top:10px;background:linear-gradient(135deg,rgba(201,151,58,.1),rgba(45,122,80,.07));border:1px solid var(--gold);padding:12px 16px;font-size:11px;color:var(--cream2);line-height:1.85;">
+        Not a fantasy — a <strong style="color:var(--gold);">mathematical certainty</strong>. Listings × right keywords × consistent daily work = compounding revenue forever. Every listing you publish today will be earning money in 5 years. <strong style="color:var(--gold2);">The only variable is how fast you publish.</strong>
       </div>
     </div>
 
-    <!-- ── SECTION 1: ETSY REAL DATA ── -->
+    <!-- ② THIS MONTH ACTION CARD — what do I need to do right now? -->
+    <div class="thismonth-card" id="thisMonthCard">
+      <div class="thismonth-header">📆 THIS MONTH — WHAT YOU NEED TO DO NOW</div>
+      <div class="thismonth-grid" id="thisMonthGrid">
+        <div class="tm-cell"><div class="tm-val" id="tmDone" style="color:var(--green3);">—</div><div class="tm-lbl">Published<br>This Month</div></div>
+        <div class="tm-cell"><div class="tm-val" id="tmTarget" style="color:var(--gold2);">—</div><div class="tm-lbl">Monthly<br>Target</div></div>
+        <div class="tm-cell"><div class="tm-val" id="tmRemain" style="color:var(--rust2);">—</div><div class="tm-lbl">Still Need<br>This Month</div></div>
+        <div class="tm-cell"><div class="tm-val" id="tmPerDay" style="color:var(--teal);">—</div><div class="tm-lbl">Per Day<br>Remaining</div></div>
+      </div>
+      <div class="tm-bar-bg"><div class="tm-bar-fill" id="tmBar" style="width:0%;background:var(--teal);"></div></div>
+      <div class="thismonth-msg" id="thisMonthMsg" style="margin-top:10px;">Loading…</div>
+    </div>
+
+    <!-- ③ CANONICAL DATA INPUT — one place, synced everywhere -->
     <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 16px;margin-bottom:12px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;">📊 SECTION 1 — YOUR REAL ETSY NUMBERS <span style="font-size:8px;color:var(--mid);letter-spacing:1px;">UPDATE WEEKLY</span></div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:4px;">📊 YOUR REAL ETSY NUMBERS — SINGLE SOURCE OF TRUTH <span style="font-size:8px;color:var(--mid);letter-spacing:1px;">UPDATE WEEKLY</span></div>
+      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">These numbers power Today, Money View, and all projections. Update once here — everywhere updates.</div>
       <div class="real-data-grid">
         <div class="rd-field">
-          <span class="rd-lbl">Monthly Revenue ($)</span>
-          <input type="number" class="rd-inp" id="rdRevenue" placeholder="450" oninput="saveRealData()">
+          <span class="rd-lbl"><span class="ttp" data-tip="Your total Etsy revenue last month. Found in Etsy → Finances → Monthly. This drives all projections and your sprint progress bar.">Monthly Revenue ($)</span></span>
+          <input type="number" class="rd-inp" id="rdRevenue" placeholder="250" oninput="saveRealData();renderThisMonth()">
           <span class="rd-note">From Etsy Finances tab</span>
         </div>
         <div class="rd-field">
-          <span class="rd-lbl">Monthly Visits</span>
-          <input type="number" class="rd-inp" id="rdVisits" placeholder="1649" oninput="saveRealData()">
+          <span class="rd-lbl"><span class="ttp" data-tip="Total shop visits in last 30 days. Found in Etsy → Stats. Divided by live listings = visits per listing — the key traffic metric.">Monthly Visits</span></span>
+          <input type="number" class="rd-inp" id="rdVisits" placeholder="900" oninput="saveRealData()">
           <span class="rd-note">Etsy Shop Stats → last 30d</span>
         </div>
         <div class="rd-field">
-          <span class="rd-lbl">Live Listings</span>
-          <input type="number" class="rd-inp" id="rdLive" placeholder="32" oninput="saveRealData()">
+          <span class="rd-lbl"><span class="ttp" data-tip="Your total active listings on Etsy right now. Revenue ÷ Live Listings = your $/listing/mo rate — the engine of all revenue projections.">Live Listings</span></span>
+          <input type="number" class="rd-inp" id="rdLive" placeholder="32" oninput="saveRealData();renderThisMonth()">
           <span class="rd-note">Your actual live count</span>
         </div>
         <div class="rd-field">
-          <span class="rd-lbl">Avg Order Value ($)</span>
+          <span class="rd-lbl"><span class="ttp" data-tip="Average revenue per order. Mix of Instant DL ($12.95) and Custom ($19.95). Weighted average depends on your sales split. Check Etsy Orders for the real mix.">Avg Order Value ($)</span></span>
           <input type="number" class="rd-inp" id="rdAOV" placeholder="12.95" step="0.01" oninput="saveRealData()">
           <span class="rd-note">Mix of $12.95 + $19.95</span>
         </div>
       </div>
+      <div style="margin-top:6px;font-size:9px;color:var(--mid);" id="canonicalUpdated">Last updated: —</div>
     </div>
 
     <!-- ── SECTION 2: PUBLISHING PACE ── -->
     <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 16px;margin-bottom:12px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold2);margin-bottom:4px;">🎯 SECTION 2 — YOUR PUBLISHING PACE TARGET</div>
-      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Set how many listings you commit to publishing per day. The projection will calculate quarterly revenue based on this pace.</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold2);margin-bottom:4px;">🎯 PUBLISHING PACE TARGET</div>
+      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Set how many listings you commit to publishing per day. All projections recalculate instantly.</div>
       <div class="real-data-grid">
         <div class="rd-field">
-          <span class="rd-lbl">Listings Per Day <span style="color:var(--gold2);">★</span></span>
-          <input type="number" class="rd-inp" id="projDailyTarget" placeholder="1.67" step="0.1" min="0.1" max="20" oninput="saveProjData()">
+          <span class="rd-lbl"><span class="ttp" data-tip="The single most important number you control. 2/day × 90 days = 180 new listings = path to $5K. This drives everything — pace cards, sprint countdown, monthly targets.">Listings Per Day <span style="color:var(--gold2);">★</span></span></span>
+          <input type="number" class="rd-inp" id="projDailyTarget" placeholder="2.0" step="0.1" min="0.1" max="20" oninput="saveProjData();renderThisMonth()">
           <span class="rd-note">e.g. 1 = 1 listing/day · 0.5 = every 2 days</span>
         </div>
         <div class="rd-field">
-          <span class="rd-lbl">Total Listings Target</span>
+          <span class="rd-lbl"><span class="ttp" data-tip="When to stop the publishing sprint. 608 = full Phase 1 (all high-demand ages + editions). After that, publishing Phase 2 gives diminishing returns per listing.">Total Listings Target</span></span>
           <input type="number" class="rd-inp" id="projTotalTarget" placeholder="500" oninput="saveProjData()">
-          <span class="rd-note">When to stop publishing (e.g. 500 = full Phase 1)</span>
+          <span class="rd-note">When to stop publishing (e.g. 608 = full Phase 1)</span>
         </div>
         <div class="rd-field" style="grid-column:span 2;">
           <div id="paceCalcResult" style="font-size:11px;color:var(--cream2);line-height:1.8;padding:6px 0;"></div>
@@ -1445,11 +1756,11 @@ table.tbl         { font-size: 13px; }
 
     <!-- ── SECTION 3: SOCIAL MEDIA MARKETING BOOST ── -->
     <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 16px;margin-bottom:14px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:4px;">📱 SECTION 3 — SOCIAL MEDIA TRAFFIC BOOST</div>
-      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Model the extra income from your IG Reels + Pinterest + AI video strategy driving traffic to your Etsy shops. Be conservative — then let the real numbers surprise you.</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:4px;">📱 SOCIAL MEDIA TRAFFIC BOOST</div>
+      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Model the extra income from IG Reels + Pinterest + AI video driving traffic to your Etsy shops. Be conservative.</div>
       <div class="real-data-grid">
         <div class="rd-field">
-          <span class="rd-lbl">IG Reels Per Week</span>
+          <span class="rd-lbl"><span class="ttp" data-tip="Weekly IG Reels posted. Each reel drives additional traffic to your Etsy shops beyond organic search. Model conservatively — 1 reel/week = ~200 bonus visits/month estimate.">IG Reels Per Week</span></span>
           <input type="number" class="rd-inp" id="projIGPosts" placeholder="0" min="0" max="21" oninput="saveProjData()">
           <span class="rd-note">AI-generated Reels for Black community</span>
         </div>
@@ -1469,7 +1780,6 @@ table.tbl         { font-size: 13px; }
           <span class="rd-note">% of social views that visit your Etsy shop</span>
         </div>
       </div>
-      <!-- Social model explanation -->
       <div id="socialModelNote" style="margin-top:8px;padding:8px 10px;background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.2);font-size:10px;color:var(--cream2);line-height:1.7;"></div>
     </div>
 
@@ -1787,6 +2097,19 @@ table.tbl         { font-size: 13px; }
           </div>
           <!-- Tray -->
           <div id="tagTray" style="padding:8px 12px;min-height:40px;display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--border);"></div>
+
+          <!-- ── SAVED TAG SETS ── -->
+          <div class="tagset-bar" id="tagSetBar">
+            <div class="tagset-bar-header">
+              <span>💾 SAVED TAG SETS</span>
+              <span style="font-size:8px;color:var(--mid);font-family:'DM Sans',sans-serif;letter-spacing:0;font-weight:400;">Save your best 13-tag combos by listing type. Load instantly.</span>
+            </div>
+            <div class="tagset-list" id="tagSetList"></div>
+            <div class="tagset-actions">
+              <input class="tagset-name-inp" id="tagSetNameInp" placeholder="Set name e.g. 50th Generic…" maxlength="40">
+              <button class="tagset-save-btn" onclick="saveTagSet()">💾 Save Current Tags</button>
+            </div>
+          </div>
           <!-- Output + buttons -->
           <div style="padding:8px 12px;">
             <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--mid);margin-bottom:4px;">ETSY TAGS — READY TO PASTE</div>
@@ -1985,6 +2308,122 @@ table.tbl         { font-size: 13px; }
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════════════
+     AUTOMATION TAB — Canva Prompts + Mockup Tracker
+══════════════════════════════════════════════════ -->
+<div id="v-automation" class="page" style="display:none;">
+
+  <!-- Tab switcher: Canva Prompts vs Mockup Templates -->
+  <div class="auto-tab-btns">
+    <button class="auto-tab-btn on" id="autoTabCanva" onclick="switchAutoTab('canva')">🎨 Canva Bulk Create Prompts</button>
+    <button class="auto-tab-btn" id="autoTabMockup" onclick="switchAutoTab('mockup')">🖼️ Mockup Templates</button>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       CANVA BULK CREATE PROMPTS
+  ──────────────────────────────────────────── -->
+  <div id="autoCanvaPanel">
+    <div style="background:rgba(201,151,58,.07);border:1px solid rgba(201,151,58,.25);padding:10px 14px;margin-bottom:14px;font-size:10px;color:var(--cream2);line-height:1.7;">
+      <strong style="color:var(--gold);font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:11px;">HOW CANVA BULK CREATE WORKS</strong><br>
+      In Canva: open your poster template → Apps → Bulk Create → Connect a data source (CSV or manual). Each row = one poster variant. Your prompt/CSV goes in here so you know it's ready. When every edition has a ✓ prompt, you can batch-create an entire age milestone in one Canva session.
+    </div>
+
+    <!-- Summary bar — computed from auto state -->
+    <div class="auto-summary-bar">
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoCanvaDone" style="color:var(--green3);">0</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="Editions where you have a saved Canva bulk-create prompt ready to use.">Prompts Ready</span></div>
+      </div>
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoCanvaTotal" style="color:var(--gold2);">0</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="Total editions across both shops. Each needs its own prompt because the cultural facts and visual style differ.">Total Editions</span></div>
+      </div>
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoCanvaPct" style="color:var(--teal);">0%</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="% of editions with a ready prompt. At 100%, you can bulk-create posters for ANY listing in your pipeline without stopping to write a new prompt first.">Automation Ready</span></div>
+      </div>
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoCanvaBlocked" style="color:var(--rust2);">0</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="Editions currently blocking your pipeline — in-progress listings that have no prompt yet. Fix these first.">Blocking Pipeline</span></div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="auto-filter-bar">
+      <span style="font-size:9px;color:var(--mid);letter-spacing:1px;font-family:'Bebas Neue',sans-serif;">FILTER:</span>
+      <button class="fbtn on" id="acfAll" onclick="setAutoCanvaFilter('all',this)">All</button>
+      <button class="fbtn" id="acfMissing" onclick="setAutoCanvaFilter('missing',this)">⚠ Missing Prompt</button>
+      <button class="fbtn" id="acfReady" onclick="setAutoCanvaFilter('ready',this)">✓ Ready</button>
+      <button class="fbtn" id="acfGeneric" onclick="setAutoCanvaFilter('generic',this)">Generic</button>
+      <button class="fbtn" id="acfBlack" onclick="setAutoCanvaFilter('black',this)">Black Community</button>
+      <button class="fbtn" id="acfShopA" onclick="setAutoCanvaFilter('a',this)">Shop A</button>
+      <button class="fbtn" id="acfShopB" onclick="setAutoCanvaFilter('b',this)">Shop B</button>
+    </div>
+
+    <!-- Edition cards grid — rendered by JS -->
+    <div class="auto-ed-grid" id="autoCanvaGrid"></div>
+  </div>
+
+  <!-- ────────────────────────────────────────────
+       MOCKUP TEMPLATES
+  ──────────────────────────────────────────── -->
+  <div id="autoMockupPanel" style="display:none;">
+    <div style="background:rgba(78,205,196,.07);border:1px solid rgba(78,205,196,.25);padding:10px 14px;margin-bottom:14px;font-size:10px;color:var(--cream2);line-height:1.7;">
+      <strong style="color:var(--teal);font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:11px;">MOCKUP STRATEGY</strong><br>
+      <strong style="color:var(--cream);">One base template, edition variations.</strong> Create 1 Canva mockup template (bedroom wall, frame, gift wrap). Add smart image placeholder. Then duplicate and swap the poster image per edition. Track your Canva template link + variant links per edition below. When every edition is ✓ Ready, Stage 4 (Mockup) in your pipeline is fully automated.
+    </div>
+
+    <!-- Summary bar -->
+    <div class="auto-summary-bar">
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoMockDone" style="color:var(--green3);">0</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="Editions where you have a complete mockup template ready — just swap the poster image and export.">Templates Ready</span></div>
+      </div>
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoMockTotal" style="color:var(--gold2);">0</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="Total editions needing a mockup variant. One base + small tweaks per edition (background colour, accent, cultural prop).">Total Editions</span></div>
+      </div>
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoMockPct" style="color:var(--teal);">0%</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="When this hits 100%, Stage 4 Mockup is fully automated for every listing you publish — no setup time, just paste and export.">Stage 4 Automated</span></div>
+      </div>
+      <div class="auto-sum-cell">
+        <div class="auto-sum-val" id="autoMockBase" style="color:var(--gold);">—</div>
+        <div class="auto-sum-lbl"><span class="ttp ttp-below" data-tip="Your base mockup template. All edition variants derive from this. Create this first — then duplicate and customise per edition.">Base Template</span></div>
+      </div>
+    </div>
+
+    <!-- Base template input -->
+    <div style="background:var(--ink2);border:1px solid var(--gold);padding:12px 14px;margin-bottom:14px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--gold);margin-bottom:6px;">BASE MOCKUP TEMPLATE <span class="ttp" data-tip="Create ONE Canva mockup design with an image placeholder in the centre. Use a bedroom wall or frame scene. This becomes the parent template — all edition variants are duplicates of this.">📐</span></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Canva Template URL</div>
+          <input type="text" id="mockBaseUrl" placeholder="https://www.canva.com/design/…" oninput="saveMockBase()" style="width:100%;background:var(--ink3);border:1px solid var(--border);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;padding:6px 8px;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Notes / Scene type</div>
+          <input type="text" id="mockBaseNotes" placeholder="e.g. Bedroom wall, A3, white frame" oninput="saveMockBase()" style="width:100%;background:var(--ink3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:10px;padding:6px 8px;outline:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="auto-filter-bar">
+      <span style="font-size:9px;color:var(--mid);letter-spacing:1px;font-family:'Bebas Neue',sans-serif;">FILTER:</span>
+      <button class="fbtn on" id="amfAll" onclick="setAutoMockFilter('all',this)">All</button>
+      <button class="fbtn" id="amfMissing" onclick="setAutoMockFilter('missing',this)">⚠ No Template</button>
+      <button class="fbtn" id="amfReady" onclick="setAutoMockFilter('ready',this)">✓ Ready</button>
+      <button class="fbtn" id="amfGeneric" onclick="setAutoMockFilter('generic',this)">Generic</button>
+      <button class="fbtn" id="amfBlack" onclick="setAutoMockFilter('black',this)">Black Community</button>
+    </div>
+
+    <!-- Mockup edition grid — rendered by JS -->
+    <div class="auto-ed-grid" id="autoMockGrid"></div>
+  </div>
+
+</div>
+
 <!-- BOTTOM BAR -->
 <div class="bottom-bar">
   <div>
@@ -2083,6 +2522,8 @@ var REAL = {
   convRate: 0.03,    // 3% - your real conversion rate
   etsyFeeRate: 0.07, // ~7% Etsy fees (listing + transaction)
   goalMonthly: 10000,
+  sprintGoal: 5000,
+  sprintDeadline: new Date('2026-06-07'),
   goalDeadline: new Date('2026-12-31')
 };
 
@@ -2102,7 +2543,7 @@ function rCol(s){return s>=85?'var(--green3)':s>=70?'var(--gold2)':s>=50?'var(--
 function rLbl(s){return s>=85?'PRIME':s>=70?'HIGH':s>=50?'MED':'LOW';}
 // Revenue estimate uses YOUR real numbers: visits/listing × conv × price
 function rEst(l, visitsPerListing){
-  var vpl = visitsPerListing || 52; // default 1649/32 ≈ 52
+  var vpl = visitsPerListing || 52; // default ~900/32 ≈ 28 vpl
   var sc = rScore(l)/100;
   var weightedVpl = vpl * Math.pow(sc, 0.7);
   var price = l.format==='Custom' ? REAL.priceCustom : REAL.priceInstant;
@@ -2153,18 +2594,18 @@ var misc = {
   focusMode:'all', focusValue:'', focusShop:'both',
   emailCampaigns:[], dayHistory:[], restLog:[],
   // REAL DATA - update from Etsy weekly
-  rdRevenue: 450,  // ~$450/month current run rate
-  rdVisits: 1649,  // last 30 days from Etsy
+  rdRevenue: 250,  // REAL: $250/month current (updated March 2026)
+  rdVisits: 900,   // ~28 visits/listing × 32 listings (estimate)
   rdLive: 32,      // current live listings
   rdAOV: 12.95,    // average order value
-  // PROJECTION INPUTS
-  projDailyTarget: 1.67,  // listings published per day target
-  projTotalTarget: 608,   // stop publishing at this count (608 = full Phase 1)
-  projIGPosts: 0,         // IG Reels per week
-  projPinPins: 0,         // Pinterest pins per week
-  projViralBonus: 0,      // extra visits/month from viral content (manual estimate)
-  projSocialCTR: 3,       // % of social views that click through to Etsy
-  stageLastTouched: {},   // tracks when each listing was last modified
+  // PROJECTION INPUTS — 3-month sprint to $5K
+  projDailyTarget: 2.0,  // 2 listings/day = 180 listings in 90 days = path to $5K
+  projTotalTarget: 608,   // Phase 1 complete
+  projIGPosts: 0,
+  projPinPins: 0,
+  projViralBonus: 0,
+  projSocialCTR: 3,
+  stageLastTouched: {},
   // STREAK + DAILY HISTORY
   streakCount: 0,
   lastHitDate: '',        // last date target was hit (for streak calc)
@@ -2175,7 +2616,8 @@ var misc = {
   sessionLid: null,       // current session listing id
   sessionSid: null,       // current session stage id
   sessionStart: 0,        // timestamp session started
-  workQueue: {}           // {lid: true} — flagged for focus
+  workQueue: {},          // {lid: true} — flagged for focus
+  seoTagSets: []          // [{name, tags:[]}] — saved SEO tag sets
 };
 
 var timerInterval = null;
@@ -2283,19 +2725,23 @@ function saveMisc(){
 }
 
 function saveRealData(){
-  // Always read all four fields — if field has a value, use it; otherwise keep current misc value
   var rv=document.getElementById('rdRevenue');
   var vi=document.getElementById('rdVisits');
   var li=document.getElementById('rdLive');
   var ao=document.getElementById('rdAOV');
-  if(rv&&rv.value.trim()!==''){misc.rdRevenue=parseFloat(rv.value)||misc.rdRevenue||450;}
-  if(vi&&vi.value.trim()!==''){misc.rdVisits=parseFloat(vi.value)||misc.rdVisits||1649;}
+  if(rv&&rv.value.trim()!==''){misc.rdRevenue=parseFloat(rv.value)||misc.rdRevenue||250;}
+  if(vi&&vi.value.trim()!==''){misc.rdVisits=parseFloat(vi.value)||misc.rdVisits||900;}
   if(li&&li.value.trim()!==''){misc.rdLive=parseFloat(li.value)||misc.rdLive||32;}
   if(ao&&ao.value.trim()!==''){misc.rdAOV=parseFloat(ao.value)||misc.rdAOV||12.95;}
+  misc.rdLastUpdated = Date.now();
   saveMisc();
   updateMissionStrip();
   updateBottomBar();
   renderProjections();
+  renderThisMonth();
+  // Update canonical timestamp label
+  var cu = document.getElementById('canonicalUpdated');
+  if(cu) cu.textContent = 'Last updated: ' + new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
 }
 
 // ════════════════════════════════════════════
@@ -2334,6 +2780,143 @@ function daysUntil(dateStr){
   return Math.ceil((target-now)/86400000);
 }
 
+// ════════════════════════════════════════════
+// REAL METRICS — SPRINT-AWARE (90 days to $5K)
+// ════════════════════════════════════════════
+function daysUntilSprint(){
+  var now=new Date();now.setHours(0,0,0,0);
+  var d=Math.ceil((REAL.sprintDeadline-now)/86400000);
+  return Math.max(0,d);
+}
+
+function calcRealMetrics(){
+  var live=listings.filter(function(l){return l.stages.live;}).length;
+  var realLive=misc.rdLive||live;
+  var revenue=misc.rdRevenue||250;
+  var visits=misc.rdVisits||900;
+  var aov=misc.rdAOV||12.95;
+  var daysLeft=daysUntilGoal();
+  var daysLeftSprint=daysUntilSprint();
+
+  // Revenue per listing per month (from real data)
+  var revPerListing=realLive>0&&revenue>0?revenue/realLive:0;
+
+  // Listings needed for SPRINT goal ($5K) and final goal ($10K)
+  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):357;
+  var listingsNeeded=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):714;
+  var moreFor5k=Math.max(0,listingsFor5k-realLive);
+  var moreNeeded=Math.max(0,listingsNeeded-realLive);
+
+  // Per day for sprint
+  var perDaySprint=daysLeftSprint>0?Math.ceil(moreFor5k/daysLeftSprint):0;
+  var perDay=daysLeft>0?Math.ceil(moreNeeded/daysLeft):0;
+
+  return{live:realLive,revenue:revenue,visits:visits,aov:aov,
+    revPerListing:revPerListing,
+    listingsNeeded:listingsNeeded,listingsFor5k:listingsFor5k,
+    moreNeeded:moreNeeded,moreFor5k:moreFor5k,
+    perDay:perDay,perDaySprint:perDaySprint,
+    daysLeft:daysLeft,daysLeftSprint:daysLeftSprint};
+}
+
+// ── Sprint Command Center render ─────────────────────
+function renderSprintPanel(){
+  var m=calcRealMetrics();
+  var revenue=m.revenue;
+  var pct=Math.min(100,Math.round(revenue/REAL.sprintGoal*100));
+
+  // KPI cells
+  var set=function(id,val,color){
+    var e=document.getElementById(id);
+    if(!e)return;
+    e.textContent=val;
+    if(color)e.style.color=color;
+  };
+
+  set('sprintDaysLeft', m.daysLeftSprint, m.daysLeftSprint<30?'var(--rust2)':m.daysLeftSprint<60?'var(--gold2)':'var(--teal)');
+  set('sprintListingsNeeded', m.moreFor5k, 'var(--gold2)');
+  set('sprintPerDay', m.perDaySprint+'/day', m.perDaySprint>3?'var(--rust2)':m.perDaySprint>2?'var(--gold2)':'var(--teal)');
+  set('sprintRevPerListing', m.revPerListing>0?'$'+m.revPerListing.toFixed(2):'—', 'var(--green3)');
+
+  // Progress bar
+  var bar=document.getElementById('sprintBar');
+  if(bar){
+    bar.style.width=Math.max(2,pct)+'%';
+    bar.style.background=pct>=100?'var(--green3)':pct>=60?'var(--teal)':pct>=30?'var(--gold)':'linear-gradient(90deg,var(--rust2),var(--gold))';
+  }
+  set('sprintBarPct', pct+'% of $5K goal', pct>=50?'var(--teal)':'var(--gold2)');
+  set('sprintBarLeft', '$'+Math.round(revenue).toLocaleString()+'/mo now');
+  set('sprintCurrRevLabel', '$'+Math.round(revenue).toLocaleString());
+  set('sprintDaysLeftLabel', m.daysLeftSprint+' days left');
+
+  // Urgency message
+  var urgency='';
+  if(m.daysLeftSprint<=0){
+    urgency='<strong style="color:var(--teal);">Sprint window has closed.</strong> Now focus on the Dec 31 $10K goal: '+m.moreNeeded+' more listings needed at '+m.perDay+'/day.';
+  } else if(m.revenue>=REAL.sprintGoal){
+    urgency='🎯 <strong style="color:var(--green3);">$5K/mo sprint goal ACHIEVED!</strong> You\'re at $'+Math.round(revenue).toLocaleString()+'/mo. Now aim for <strong style="color:var(--teal);">$10K by Dec 31</strong>: '+m.moreNeeded+' more listings at '+m.perDay+'/day.';
+  } else {
+    var rpl=m.revPerListing;
+    var listingVal=rpl>0?'$'+rpl.toFixed(2):'~$7.80';
+    urgency='You need <strong style="color:var(--gold);">'+m.moreFor5k+' more listings</strong> in <strong style="color:var(--rust2);">'+m.daysLeftSprint+' days</strong> — that\'s <strong style="color:var(--teal);">'+m.perDaySprint+' listings/day.</strong> '
+      +'Each listing earns <strong style="color:var(--gold2);">'+listingVal+'/mo</strong> forever. '
+      +(m.perDaySprint<=2
+        ? 'This is <strong style="color:var(--green3);">very achievable</strong> — 2 listings/day = roughly 3–4 hours of focused work. You have everything you need.'
+        : m.perDaySprint<=3
+          ? '<strong style="color:var(--gold2);">Challenging but doable.</strong> Batch your stages. Use SEO tag sets. Block 4–5 hours daily.'
+          : '<strong style="color:var(--rust2);">Hard pace — but not impossible.</strong> You need to sprint. Batch listings in blocks of 5. Cut everything non-essential.')
+      +' <strong style="color:var(--cream);">Start the timer. Open the pipeline. Publish today.</strong>';
+  }
+  var urg=document.getElementById('sprintUrgency');
+  if(urg)urg.innerHTML=urgency;
+
+  // Non-negotiable box
+  var target=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||2.0));
+  var todayPub=getTodayPublished();
+  var nnMsg=document.getElementById('nonNegMsg');
+  var nnTgt=document.getElementById('nonNegTarget');
+  var nnTdy=document.getElementById('nonNegToday');
+  if(nnTgt)nnTgt.textContent=target;
+  if(nnTdy){
+    nnTdy.textContent=todayPub;
+    nnTdy.style.color=todayPub>=target?'var(--green3)':todayPub>0?'var(--gold2)':'var(--rust2)';
+  }
+  if(nnMsg){
+    var listVal=rpl>0?'$'+(rpl).toFixed(2):'$7.80';
+    if(todayPub===0){
+      nnMsg.innerHTML='Publish <strong style="color:var(--gold);">'+target+' listing'+(target>1?'s':'')+' today.</strong> Each one earns <strong style="color:var(--gold2);">'+listVal+'/mo</strong> forever. Miss today and that compound income never starts. <strong style="color:var(--teal);">Pick a listing below and press ▶ Time.</strong>';
+    } else if(todayPub<target){
+      var more=target-todayPub;
+      nnMsg.innerHTML='<strong style="color:var(--green3);">'+todayPub+' published.</strong> <strong style="color:var(--gold2);">'+more+' more to hit your target.</strong> You\'re in the game — close it out.';
+    } else {
+      nnMsg.innerHTML='🏆 <strong style="color:var(--green3);">Daily target hit!</strong> '+todayPub+' listings published today. Every extra listing beyond target is bonus compound income. <strong style="color:var(--teal);">Sprint?</strong>';
+    }
+  }
+}
+
+function updateMissionStrip(){
+  var m=calcRealMetrics();
+  var lc=document.getElementById('mLiveCount');
+  var nn=document.getElementById('mNeeded');
+  var dl=document.getElementById('mDaysLeft');
+  var pd=document.getElementById('mPerDay');
+  var cr=document.getElementById('mCurRevenue');
+  var mn=document.getElementById('missionNote');
+  if(lc)lc.textContent=m.live;
+  if(nn)nn.textContent=m.moreFor5k+'→'+m.moreNeeded;
+  if(dl)dl.textContent=m.daysLeftSprint+'d sprint';
+  if(pd)pd.textContent=m.perDaySprint+'/day';
+  if(cr)cr.textContent='$'+Math.round(m.revenue).toLocaleString();
+  if(mn){
+    if(m.revPerListing>0){
+      mn.textContent='$'+m.revPerListing.toFixed(2)+'/listing/mo · Need '+m.listingsFor5k+' for $5K · '+m.listingsNeeded+' for $10K · '+m.perDaySprint+' listings/day for 90-day sprint.';
+    } else {
+      mn.textContent='Enter your real Etsy revenue above to see your exact roadmap.';
+    }
+  }
+  renderSprintPanel();
+}
+
 function daysUntilGoal(){
   var now=new Date();now.setHours(0,0,0,0);
   return Math.ceil((REAL.goalDeadline-now)/86400000);
@@ -2349,56 +2932,7 @@ function fmtSec(s){var m=Math.floor(s/60),sec=s%60;return pad(m,2)+':'+pad(sec,2
 
 function getVisitsPerListing(){
   var live=misc.rdLive||32;
-  return live>0?(misc.rdVisits||1649)/live:52;
-}
-
-// ════════════════════════════════════════════
-// REAL METRICS CALCULATIONS
-// ════════════════════════════════════════════
-function calcRealMetrics(){
-  var live=listings.filter(function(l){return l.stages.live;}).length;
-  var realLive=misc.rdLive||live;
-  var revenue=misc.rdRevenue||450;
-  var visits=misc.rdVisits||1649;
-  var aov=misc.rdAOV||12.95;
-  var conv=REAL.convRate;
-  var daysLeft=daysUntilGoal();
-
-  // Revenue per listing per month (from real data)
-  var revPerListing=realLive>0?revenue/realLive:0;
-
-  // Listings needed for $10K/mo
-  var listingsNeeded=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):500;
-  var moreNeeded=Math.max(0,listingsNeeded-realLive);
-
-  // Listings per day needed
-  var perDay=daysLeft>0?Math.ceil(moreNeeded/daysLeft):0;
-
-  return{live:realLive,revenue:revenue,visits:visits,aov:aov,
-    revPerListing:revPerListing,listingsNeeded:listingsNeeded,
-    moreNeeded:moreNeeded,perDay:perDay,daysLeft:daysLeft};
-}
-
-function updateMissionStrip(){
-  var m=calcRealMetrics();
-  var lc=document.getElementById('mLiveCount');
-  var nn=document.getElementById('mNeeded');
-  var dl=document.getElementById('mDaysLeft');
-  var pd=document.getElementById('mPerDay');
-  var cr=document.getElementById('mCurRevenue');
-  var mn=document.getElementById('missionNote');
-  if(lc)lc.textContent=m.live;
-  if(nn)nn.textContent=m.moreNeeded;
-  if(dl)dl.textContent=m.daysLeft;
-  if(pd)pd.textContent=m.perDay+'/day';
-  if(cr)cr.textContent='$'+Math.round(m.revenue).toLocaleString();
-  if(mn){
-    if(m.revPerListing>0){
-      mn.textContent='At $'+m.revPerListing.toFixed(2)+'/listing/mo — you need '+m.listingsNeeded+' live listings for $10K · Publish '+m.perDay+' per day to hit Dec 31 2026.';
-    } else {
-      mn.textContent='Enter your real Etsy revenue below to see your exact roadmap.';
-    }
-  }
+  return live>0?(misc.rdVisits||900)/live:28;
 }
 
 function updateBottomBar(){
@@ -2409,7 +2943,7 @@ function updateBottomBar(){
   var bd=document.getElementById('bbDate');
   if(bb)bb.textContent=m.live+' live';
   if(br)br.textContent='$'+Math.round(m.revenue).toLocaleString()+'/mo';
-  if(bn)bn.textContent=m.moreNeeded+' listings to $10K';
+  if(bn)bn.textContent=m.moreFor5k+' to $5K sprint';
   if(bd)bd.textContent=todayStr();
 }
 
@@ -2771,30 +3305,40 @@ function calcGap(){
   var visitEl=document.getElementById('gapVisits');
   var el=document.getElementById('gapResult');
   if(!el)return;
-  var curr=parseFloat((currEl&&currEl.value)||misc.rdRevenue)||450;
-  var visits=parseFloat((visitEl&&visitEl.value)||misc.rdVisits)||1649;
+  var curr=parseFloat((currEl&&currEl.value)||misc.rdRevenue)||250;
+  var visits=parseFloat((visitEl&&visitEl.value)||misc.rdVisits)||900;
   var live=misc.rdLive||32;
-  var conv=REAL.convRate;
   var price=misc.rdAOV||12.95;
-  var gap=REAL.goalMonthly-curr;
-  var vpl=live>0?visits/live:52;
-  var revPerListing=vpl*conv*price*(1-REAL.etsyFeeRate);
-  var listingsNeeded=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):500;
-  var moreNeeded=Math.max(0,listingsNeeded-live);
-  var daysLeft=daysUntilGoal();
-  var perDay=daysLeft>0?(moreNeeded/daysLeft).toFixed(1):0;
+  var conv=REAL.convRate;
+  var vpl=live>0?visits/live:28;
+  var revPerListing=live>0&&curr>0?curr/live:(vpl*conv*price*(1-REAL.etsyFeeRate));
+  var gap5k=Math.max(0,REAL.sprintGoal-curr);
+  var gap10k=Math.max(0,REAL.goalMonthly-curr);
+  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):357;
+  var listingsFor10k=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):714;
+  var moreFor5k=Math.max(0,listingsFor5k-live);
+  var moreFor10k=Math.max(0,listingsFor10k-live);
+  var dSprint=daysUntilSprint();
+  var dFinal=daysUntilGoal();
+  var perDaySprint=dSprint>0?(moreFor5k/dSprint).toFixed(1):0;
+  var perDayFinal=dFinal>0?(moreFor10k/dFinal).toFixed(1):0;
 
   function row(lbl,val,cls){
     return'<div class="gap-result-row"><span class="gap-result-lbl">'+lbl+'</span><span class="gap-result-val '+(cls||'')+'">'+val+'</span></div>';
   }
   el.innerHTML=
-    row('Current revenue',  '$'+curr.toLocaleString(), curr>=REAL.goalMonthly?'green':'red')+
-    row('Gap to $10K/mo',   '$'+Math.max(0,gap).toLocaleString(), gap>0?'red':'green')+
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:5px;">🔥 90-DAY SPRINT — $5K by June 7</div>'+
+    row('Current revenue',  '$'+curr.toLocaleString(), curr>=REAL.sprintGoal?'green':'red')+
+    row('Gap to $5K/mo',    '$'+gap5k.toLocaleString(), gap5k>0?'red':'green')+
     row('Rev per listing/mo','$'+revPerListing.toFixed(2),'')+
-    row('Listings needed',  listingsNeeded.toLocaleString(),'')+
-    row('Currently live',   live,'')+
-    row('More to create',   moreNeeded, moreNeeded>0?'red':'green')+
-    row('Per day ('+daysLeft+'d left)', perDay+'/day', parseFloat(perDay)<=2?'green':'red');
+    row('Listings needed for $5K', listingsFor5k.toLocaleString(),'')+
+    row('More to publish',  moreFor5k, moreFor5k>0?'red':'green')+
+    row('Daily pace needed ('+dSprint+'d left)', perDaySprint+'/day', parseFloat(perDaySprint)<=2?'green':parseFloat(perDaySprint)<=3?'gold':'red')+
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin:8px 0 5px;">🎯 FINAL GOAL — $10K by Dec 31</div>'+
+    row('Gap to $10K/mo',   '$'+gap10k.toLocaleString(),'')+
+    row('Listings needed for $10K', listingsFor10k.toLocaleString(),'')+
+    row('More to publish',  moreFor10k, '')+
+    row('Daily pace needed ('+dFinal+'d left)', perDayFinal+'/day', '');
 }
 
 // ════════════════════════════════════════════
@@ -2805,26 +3349,26 @@ function renderConsistencyMsg(){
   var m=calcRealMetrics();
   var inProgress=listings.filter(function(l){return getStatus(l)==='in_progress';}).length;
   var todayPub=getTodayPublished();
-  var dailyTarget=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||1.67));
+  var dailyTarget=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||2.0));
 
   if(inProgress>0&&todayPub===0){
     el.innerHTML='You have <strong style="color:var(--rust2);">'+inProgress+' in-progress</strong> listings. '
       +'<strong style="color:var(--gold2);">Finish one before starting new ones.</strong> Half-done = $0.';
   } else if(todayPub===0){
-    el.innerHTML='<strong style="color:var(--gold2);">Day not started yet.</strong> You need <strong style="color:var(--teal);">'+dailyTarget+' listing'+(dailyTarget!==1?'s':'')+'/day</strong> to hit $10K by Dec 31. '
-      +m.daysLeft+' days left. <strong>Pick a task below and press ▶ Time.</strong>';
+    el.innerHTML='<strong style="color:var(--rust2);">Day not started yet.</strong> You need <strong style="color:var(--teal);">'+dailyTarget+' listing'+(dailyTarget!==1?'s':'')+'/day</strong> to hit $5K by June 7. '
+      +(m.daysLeftSprint||daysUntilGoal())+' days left in sprint. <strong style="color:var(--gold);">Pick a listing below. Press ▶ Time. Start now.</strong>';
   } else if(todayPub<dailyTarget){
     var more=dailyTarget-todayPub;
     el.innerHTML='<strong style="color:var(--green3);">'+todayPub+' published today.</strong> '
-      +'<strong style="color:var(--gold2);">'+more+' more hits your daily target.</strong> Keep going!';
+      +'<strong style="color:var(--gold2);">'+more+' more to hit your target.</strong> You\'re in the game — close it out.';
   } else if(todayPub<dailyTarget*2){
-    el.innerHTML='<strong style="color:var(--green3);">✓ Daily target hit!</strong> '
-      +'You\'ve published <strong style="color:var(--teal);">'+todayPub+' today</strong>. '
-      +'Every extra listing is bonus revenue. Sprint?';
+    el.innerHTML='<strong style="color:var(--green3);">✓ Daily target smashed!</strong> '
+      +'<strong style="color:var(--teal);">'+todayPub+' published today.</strong> '
+      +'Every extra listing = more compound income. Can you do one more?';
   } else {
-    el.innerHTML='🚀 <strong style="color:var(--teal);">Sprint day!</strong> '
+    el.innerHTML='🚀 <strong style="color:var(--teal);">SPRINT DAY!</strong> '
       +'<strong style="color:var(--green3);">'+todayPub+' listings published today.</strong> '
-      +'You\'re making this happen.';
+      +'This is exactly how $5K/month gets built. Incredible work.';
   }
 }
 
@@ -3441,7 +3985,7 @@ function renderPipDailyBanner(){
   var weekPub   = getWeekPublished();
   var inProg    = listings.filter(function(l){ return getStatus(l)==='in_progress'; }).length;
   var totalLive = listings.filter(function(l){ return l.stages.live; }).length;
-  var dailyTgt  = Math.max(1, Math.ceil(parseFloat(misc.projDailyTarget)||1.67));
+  var dailyTgt  = Math.max(1, Math.ceil(parseFloat(misc.projDailyTarget)||2.0));
   var queueSize = misc.workQueue ? Object.keys(misc.workQueue).filter(function(k){ return misc.workQueue[k]; }).length : 0;
 
   var e = function(id){ return document.getElementById(id); };
@@ -3618,15 +4162,84 @@ function toggleMvFormula(){
 }
 
 // ════════════════════════════════════════════
-// PROJECTIONS
+// PROJECTIONS — BATCH 3
 // ════════════════════════════════════════════
-function toggleMotivation(){
-  var body=document.getElementById('motivBody');
-  var btn=document.getElementById('motivToggleBtn');
-  if(!body)return;
-  var show=body.style.display==='none'||body.style.display==='';
-  body.style.display=show?'block':'none';
-  if(btn)btn.textContent=show?'COLLAPSE':'EXPAND';
+
+// ① Always-visible WHY banner expand/collapse
+function toggleWhyFull(){
+  var body = document.getElementById('whyFullBody');
+  var btn  = document.getElementById('whyExpandBtn');
+  var fire = document.getElementById('whyFire');
+  if(!body) return;
+  var open = body.style.display === 'none' || body.style.display === '';
+  body.style.display = open ? 'block' : 'none';
+  if(btn)  btn.textContent  = open ? 'COLLAPSE ▴' : 'READ MORE ▾';
+  if(fire) fire.textContent = open ? '💡' : '🔥';
+}
+
+// ② THIS MONTH ACTION CARD — surgical, specific, motivating
+function renderThisMonth(){
+  var dailyPace  = parseFloat(misc.projDailyTarget) || 1.67;
+  var revenue    = parseFloat(misc.rdRevenue) || 250;
+  var live       = parseFloat(misc.rdLive) || 32;
+
+  var now        = new Date();
+  var daysInMo   = new Date(now.getFullYear(), now.getMonth()+1, 0).getDate();
+  var dayOfMonth = now.getDate();
+  var daysLeft   = daysInMo - dayOfMonth + 1; // include today
+  var daysGone   = dayOfMonth - 1;
+
+  var monthTarget  = Math.round(dailyPace * daysInMo);
+  var publishedMo  = getMonthPublished();
+  var expectedSoFar= Math.round(dailyPace * daysGone);
+  var stillNeeded  = Math.max(0, monthTarget - publishedMo);
+  var rateNeeded   = daysLeft > 0 ? (stillNeeded / daysLeft) : 0;
+  var pct          = Math.min(100, Math.round(publishedMo / Math.max(1,monthTarget) * 100));
+  var onTrack      = publishedMo >= expectedSoFar;
+
+  // Projected month-end live count and revenue
+  var projLiveEOM  = live + publishedMo + Math.round(rateNeeded * (daysLeft-1));
+  var revPerListing= revenue > 0 && live > 0 ? revenue/live : 14.06;
+  var projRevEOM   = Math.round(projLiveEOM * revPerListing);
+
+  // Fill cells
+  var set = function(id,val){ var e=document.getElementById(id); if(e) e.textContent=val; };
+  var setStyle = function(id,prop,val){ var e=document.getElementById(id); if(e) e.style[prop]=val; };
+
+  set('tmDone',    publishedMo);
+  set('tmTarget',  monthTarget);
+  set('tmRemain',  stillNeeded);
+  set('tmPerDay',  rateNeeded.toFixed(1));
+
+  // Color-code urgency
+  var urgColor = rateNeeded <= dailyPace ? 'var(--teal)' : rateNeeded <= dailyPace*1.5 ? 'var(--gold2)' : 'var(--rust2)';
+  setStyle('tmRemain','color', stillNeeded===0 ? 'var(--green3)' : urgColor);
+  setStyle('tmPerDay','color', urgColor);
+  setStyle('tmDone','color', publishedMo >= expectedSoFar ? 'var(--green3)' : 'var(--gold2)');
+
+  // Progress bar
+  var bar = document.getElementById('tmBar');
+  if(bar){
+    bar.style.width = pct+'%';
+    bar.style.background = pct>=100?'var(--green3)':pct>=70?'var(--teal)':pct>=40?'var(--gold2)':'var(--rust2)';
+  }
+
+  // Motivating message
+  var msg = '';
+  if(stillNeeded === 0){
+    msg = '<strong style="color:var(--green3);">🎉 Month target smashed!</strong> You\'ve published <strong style="color:var(--teal);">'+publishedMo+' listings</strong> this month. Every extra listing beyond target is compounding revenue forever. Keep going — you\'re ahead of the curve.';
+  } else if(onTrack){
+    msg = '<strong style="color:var(--green3);">✓ On track.</strong> You\'ve published <strong>'+publishedMo+'</strong> of your <strong>'+monthTarget+'</strong> target. '
+      +'You need <strong style="color:var(--teal);">'+rateNeeded.toFixed(1)+' listings/day</strong> for the remaining '+daysLeft+' days. '
+      +'At this pace → <strong style="color:var(--gold2);">$'+projRevEOM.toLocaleString()+'/mo</strong> by end of '+now.toLocaleDateString('en',{month:'long'})+'.';
+  } else {
+    var deficit = expectedSoFar - publishedMo;
+    msg = '<strong style="color:var(--rust2);">⚠ '+deficit+' listings behind.</strong> You needed '+expectedSoFar+' by today, have '+publishedMo+'. '
+      +'To still hit your month target: <strong style="color:var(--gold2);">'+rateNeeded.toFixed(1)+' listings/day</strong> for '+daysLeft+' days left. '
+      +'<strong>Block time today</strong> — even 1 session now closes half the gap. Don\'t let a bad week become a bad month.';
+  }
+  var msgEl = document.getElementById('thisMonthMsg');
+  if(msgEl) msgEl.innerHTML = msg;
 }
 
 // ── Save projection-specific inputs to misc ──────────────────────────
@@ -3637,7 +4250,7 @@ function saveProjData(){
     var el=document.getElementById(id);
     if(el&&el.value.trim()!==''){misc[fields[id]]=parseFloat(el.value)||0;}
   });
-  saveMisc();renderProjections();
+  saveMisc();renderProjections();renderThisMonth();
 }
 
 function syncProjInputs(){
@@ -3648,11 +4261,11 @@ function syncProjInputs(){
 }
 
 function renderProjections(){
-  var revenue   =parseFloat(misc.rdRevenue)||450;
-  var visits    =parseFloat(misc.rdVisits)||1649;
+  var revenue   =parseFloat(misc.rdRevenue)||250;
+  var visits    =parseFloat(misc.rdVisits)||900;
   var live      =parseFloat(misc.rdLive)||32;
   var aov       =parseFloat(misc.rdAOV)||12.95;
-  var dailyPace =parseFloat(misc.projDailyTarget)||1.67;
+  var dailyPace =parseFloat(misc.projDailyTarget)||2.0;
   var totalTgt  =parseFloat(misc.projTotalTarget)||608;
   var igPerWk   =parseFloat(misc.projIGPosts)||0;
   var pinPerWk  =parseFloat(misc.projPinPins)||0;
@@ -4389,7 +5002,7 @@ function logFullRest(){
 // ════════════════════════════════════════════
 // VIEW SWITCHING
 // ════════════════════════════════════════════
-var VIEWS=['today','money','pipeline','projections','ideas','toolkit','seo'];
+var VIEWS=['today','money','pipeline','projections','ideas','toolkit','seo','automation'];
 
 function mobileNavSelect(btn){
   document.querySelectorAll('#mobileNav .mnav-btn').forEach(function(b){b.classList.remove('on');});
@@ -4413,9 +5026,11 @@ function showView(name,tabEl){
 
   if(name==='money')mvApply();
   if(name==='pipeline'){renderLegend();applyFilters();}
-  if(name==='projections')renderProjections();
+  if(name==='projections'){renderProjections();renderThisMonth();}
+  if(name==='seo'){renderTagSets();}
   if(name==='ideas'){renderIdeaStats();renderIdeas();}
   if(name==='toolkit'){renderToolkit();}
+  if(name==='automation'){renderAutomation();}
   if(name==='seo'){if(!window._seoReady){window._seoReady=true;seoInit();}else{seoRender();}}
 }
 
@@ -4907,6 +5522,122 @@ var seoMode = 'tag';        // 'tag' | 'title'
 var ETSY_TAG_MAX = 13;
 var ETSY_TITLE_MAX = 140;
 
+// ════════════════════════════════════════════
+// SEO — SAVED TAG SETS
+// Key: misc.seoTagSets = [{name, tags:[string]}]
+// ════════════════════════════════════════════
+function renderTagSets(){
+  var list = document.getElementById('tagSetList');
+  if(!list) return;
+  var sets = misc.seoTagSets || [];
+  if(!sets.length){
+    list.innerHTML = '<span style="font-size:9px;color:var(--mid);font-family:\'DM Sans\',sans-serif;">No sets saved yet — build a great tag combo and click Save.</span>';
+    return;
+  }
+  list.innerHTML = sets.map(function(ts,i){
+    return '<span class="tagset-chip">'
+      +'<span class="tagset-load-btn" onclick="loadTagSet('+i+')" style="cursor:pointer;font-family:\'Bebas Neue\',sans-serif;font-size:9px;letter-spacing:1px;color:var(--teal);background:none;border:none;padding:0;">⬇ '+ts.name+'</span>'
+      +' <span style="font-size:8px;color:var(--mid);">('+ts.tags.length+')</span>'
+      +' <span class="ts-del" onclick="deleteTagSet('+i+')" title="Delete" style="cursor:pointer;margin-left:2px;">✕</span>'
+      +'</span>';
+  }).join('');
+}
+
+function saveTagSet(){
+  var nameEl = document.getElementById('tagSetNameInp');
+  var name = nameEl ? nameEl.value.trim() : '';
+  if(!name){ showToast('Enter a name for this tag set first'); return; }
+  if(!seoTags.length){ showToast('Add tags to the tray first'); return; }
+  if(!misc.seoTagSets) misc.seoTagSets = [];
+  // Replace existing set with same name
+  var existing = misc.seoTagSets.findIndex(function(s){ return s.name.toLowerCase()===name.toLowerCase(); });
+  var tagSet = { name: name, tags: seoTags.map(function(t){ return t.kw; }), savedAt: Date.now() };
+  if(existing >= 0){
+    misc.seoTagSets[existing] = tagSet;
+    showToast('✓ Tag set "'+name+'" updated ('+tagSet.tags.length+' tags)');
+  } else {
+    misc.seoTagSets.push(tagSet);
+    showToast('💾 Tag set "'+name+'" saved ('+tagSet.tags.length+' tags)');
+  }
+  saveMisc();
+  renderTagSets();
+  if(nameEl) nameEl.value = '';
+}
+
+function loadTagSet(i){
+  var sets = misc.seoTagSets || [];
+  var ts = sets[i];
+  if(!ts) return;
+  // Clear current tags and reload from set
+  seoTags = ts.tags.map(function(kw){
+    var found = (window._SEO_KWS||[]).find(function(k){ return k.kw===kw; });
+    return found || {kw:kw, cat:'long_tail', vol:'mid', target:'generic'};
+  }).slice(0, ETSY_TAG_MAX);
+  renderTagTray();
+  showToast('⬇ Loaded "'+ts.name+'" — '+seoTags.length+' tags ready to copy');
+}
+
+function deleteTagSet(i){
+  var sets = misc.seoTagSets || [];
+  var name = sets[i] ? sets[i].name : '?';
+  misc.seoTagSets.splice(i,1);
+  saveMisc();
+  renderTagSets();
+  showToast('Deleted "'+name+'"');
+}
+
+// ════════════════════════════════════════════
+// CANONICAL DATA BAR — sync across views
+// ════════════════════════════════════════════
+function canonSync(el, miscKey){
+  var val = parseFloat(el.value);
+  if(isNaN(val)||val<=0) return;
+  misc[miscKey] = val;
+  misc.rdLastUpdated = Date.now();
+  saveMisc();
+  // Cascade to all mirror inputs
+  _syncCanonInputs();
+  updateMissionStrip(); updateBottomBar(); updateDashboard();
+  renderProjections(); renderThisMonth(); renderScorecard(); renderPaceCards(); renderSprintPanel();
+  // Update timestamp labels
+  var ts = new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  ['canonUpdatedToday'].forEach(function(id){
+    var el2 = document.getElementById(id);
+    if(el2) el2.textContent = 'Updated '+ts;
+  });
+  var cu = document.getElementById('canonicalUpdated');
+  if(cu) cu.textContent = 'Last updated: '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})+' '+ts;
+}
+
+function _syncCanonInputs(){
+  var map = {
+    canonRevToday:   misc.rdRevenue,
+    canonVisitsToday:misc.rdVisits,
+    canonLiveToday:  misc.rdLive,
+    canonPaceToday:  misc.projDailyTarget,
+    rdRevenue:       misc.rdRevenue,
+    rdVisits:        misc.rdVisits,
+    rdLive:          misc.rdLive,
+    rdAOV:           misc.rdAOV,
+    projDailyTarget: misc.projDailyTarget
+  };
+  Object.keys(map).forEach(function(id){
+    var e = document.getElementById(id);
+    if(e && map[id]!==undefined && e.value==='') e.placeholder = String(map[id]);
+    if(e && map[id]!==undefined && e.value!=='') { /* leave user-entered value */ }
+  });
+  // Timestamp
+  if(misc.rdLastUpdated){
+    var ts = new Date(misc.rdLastUpdated).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+    var cu = document.getElementById('canonicalUpdated');
+    if(cu) cu.textContent = 'Last updated: '+ts;
+    ['canonUpdatedToday'].forEach(function(id){
+      var el = document.getElementById(id);
+      if(el) el.textContent = 'Updated '+new Date(misc.rdLastUpdated).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    });
+  }
+}
+
 var SEO_CATS = {
   age:        {label:'🎂 Age Milestones',     color:'#e8c575'},
   occasion:   {label:'🎁 Occasion / Product', color:'#e67e22'},
@@ -5316,7 +6047,7 @@ function recordPublishedToday(count){
 
 function updateStreak(){
   var td=todayStr();
-  var dailyTarget=Math.ceil(parseFloat(misc.projDailyTarget)||1.67);
+  var dailyTarget=Math.ceil(parseFloat(misc.projDailyTarget)||2.0);
   var todayCount=getTodayPublished();
   // Check if today's target is hit
   if(todayCount>=dailyTarget){
@@ -5344,7 +6075,7 @@ function updateStreak(){
 
 function renderScorecard(){
   var m=calcRealMetrics();
-  var dailyTarget=parseFloat(misc.projDailyTarget)||1.67;
+  var dailyTarget=parseFloat(misc.projDailyTarget)||2.0;
   var todayPub=getTodayPublished();
   var weekPub=getWeekPublished();
   var weekTarget=Math.round(dailyTarget*7);
@@ -5390,16 +6121,16 @@ function renderScorecard(){
   var srevlbl=document.getElementById('scGapLabel');
   if(srev){
     srev.textContent='$'+Math.round(m.revenue).toLocaleString();
-    srev.className='sc-val'+(m.revenue>=10000?' green':m.revenue>=5000?' gold':' red');
+    srev.className='sc-val'+(m.revenue>=REAL.sprintGoal?' green':m.revenue>=REAL.sprintGoal*0.5?' gold':' red');
   }
-  if(srevlbl)srevlbl.textContent='gap: $'+Math.max(0,10000-m.revenue).toLocaleString();
+  if(srevlbl)srevlbl.textContent='sprint gap: $'+Math.max(0,REAL.sprintGoal-m.revenue).toLocaleString();
 }
 
 // ════════════════════════════════════════════
 // WEEKLY PACE CARDS
 // ════════════════════════════════════════════
 function renderPaceCards(){
-  var dailyTarget=parseFloat(misc.projDailyTarget)||1.67;
+  var dailyTarget=parseFloat(misc.projDailyTarget)||2.0;
   var now=new Date();
 
   // ── Week card ──
@@ -5669,12 +6400,265 @@ function syncRealDataInputs(){
 }
 
 // ════════════════════════════════════════════
+// AUTOMATION — Canva Bulk Create Prompts + Mockup Templates
+// ════════════════════════════════════════════
+var AUTOMATION_KEY = 'bhq_automation_v1';
+var autoState = {}; // keyed by editionId → {prompt:'', promptReady:false, mockUrl:'', mockNotes:'', mockReady:false}
+var autoCanvaFilter = 'all';
+var autoMockFilter  = 'all';
+var autoActiveTab   = 'canva';
+
+function loadAutomation(){
+  try{ autoState=JSON.parse(localStorage.getItem(AUTOMATION_KEY)||'{}'); }catch(e){ autoState={}; }
+}
+function saveAutomation(){ try{localStorage.setItem(AUTOMATION_KEY,JSON.stringify(autoState));}catch(e){} }
+
+function getAutoEd(edId){
+  if(!autoState[edId]) autoState[edId]={prompt:'',promptReady:false,mockUrl:'',mockNotes:'',mockReady:false};
+  return autoState[edId];
+}
+
+function switchAutoTab(tab){
+  autoActiveTab=tab;
+  document.getElementById('autoCanvaPanel').style.display=tab==='canva'?'':'none';
+  document.getElementById('autoMockupPanel').style.display=tab==='mockup'?'':'none';
+  document.getElementById('autoTabCanva').className='auto-tab-btn'+(tab==='canva'?' on':'');
+  document.getElementById('autoTabMockup').className='auto-tab-btn'+(tab==='mockup'?' on':'');
+  renderAutomation();
+}
+
+function setAutoCanvaFilter(f,btn){
+  autoCanvaFilter=f;
+  document.querySelectorAll('#autoCanvaPanel .fbtn').forEach(function(b){b.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  renderCanvaGrid();
+}
+function setAutoMockFilter(f,btn){
+  autoMockFilter=f;
+  document.querySelectorAll('#autoMockupPanel .auto-filter-bar .fbtn').forEach(function(b){b.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  renderMockGrid();
+}
+
+function renderAutomation(){
+  loadAutomation();
+  if(autoActiveTab==='canva') renderCanvaGrid();
+  else renderMockGrid();
+  updateAutoSummary();
+  // Restore base template fields
+  var ms=autoState['_base']||{};
+  var u=document.getElementById('mockBaseUrl');
+  var n=document.getElementById('mockBaseNotes');
+  if(u&&ms.url)u.value=ms.url;
+  if(n&&ms.notes)n.value=ms.notes;
+}
+
+function saveMockBase(){
+  var u=document.getElementById('mockBaseUrl');
+  var n=document.getElementById('mockBaseNotes');
+  if(!autoState['_base'])autoState['_base']={};
+  autoState['_base'].url=(u&&u.value)||'';
+  autoState['_base'].notes=(n&&n.value)||'';
+  saveAutomation();
+  var baseVal=document.getElementById('autoMockBase');
+  if(baseVal)baseVal.textContent=autoState['_base'].url?'✓ Set':'—';
+}
+
+function updateAutoSummary(){
+  var eds=EDITIONS;
+  var canvaReady=eds.filter(function(e){return getAutoEd(e.id).promptReady;}).length;
+  var mockReady=eds.filter(function(e){return getAutoEd(e.id).mockReady;}).length;
+  var total=eds.length;
+
+  // Canva summary
+  var setEl=function(id,val){var e=document.getElementById(id);if(e)e.textContent=val;};
+  setEl('autoCanvaDone',canvaReady);
+  setEl('autoCanvaTotal',total);
+  setEl('autoCanvaPct',Math.round(canvaReady/total*100)+'%');
+
+  // Blocked = editions where you have in-progress listings but no prompt
+  var inProgressEdIds={};
+  listings.filter(function(l){return getStatus(l)==='in_progress';}).forEach(function(l){inProgressEdIds[l.edId]=true;});
+  var blocked=Object.keys(inProgressEdIds).filter(function(eid){return !getAutoEd(eid).promptReady;}).length;
+  setEl('autoCanvaBlocked',blocked);
+
+  // Mockup summary
+  setEl('autoMockDone',mockReady);
+  setEl('autoMockTotal',total);
+  setEl('autoMockPct',Math.round(mockReady/total*100)+'%');
+  var baseSet=autoState['_base']&&autoState['_base'].url?'✓ Set':'—';
+  setEl('autoMockBase',baseSet);
+}
+
+function renderCanvaGrid(){
+  var el=document.getElementById('autoCanvaGrid');
+  if(!el)return;
+  var f=autoCanvaFilter;
+  var eds=EDITIONS.filter(function(ed){
+    var st=getAutoEd(ed.id);
+    if(f==='missing')return !st.promptReady;
+    if(f==='ready')return st.promptReady;
+    if(f==='generic')return ed.cat==='generic';
+    if(f==='black')return ed.cat==='black';
+    if(f==='a')return ed.shop==='a';
+    if(f==='b')return ed.shop==='b';
+    return true;
+  });
+
+  if(!eds.length){el.innerHTML='<div style="font-size:11px;color:var(--mid);padding:12px 0;">No editions match this filter.</div>';return;}
+
+  // Find editions with blocking in-progress listings
+  var inProgressEdIds={};
+  listings.filter(function(l){return getStatus(l)==='in_progress';}).forEach(function(l){inProgressEdIds[l.edId]=true;});
+
+  el.innerHTML=eds.map(function(ed){
+    var st=getAutoEd(ed.id);
+    var isBlocking=inProgressEdIds[ed.id]&&!st.promptReady;
+    var catColor=ed.cat==='black'?'var(--teal)':'var(--gold)';
+    var shopLabel='Shop '+ed.shop.toUpperCase();
+    var borderColor=isBlocking?'rgba(255,69,0,.6)':st.promptReady?'rgba(45,122,80,.4)':'var(--border)';
+    // Count in-progress listings for this edition
+    var ipCount=listings.filter(function(l){return l.edId===ed.id&&getStatus(l)==='in_progress';}).length;
+    var liveCount=listings.filter(function(l){return l.edId===ed.id&&l.stages&&l.stages.live;}).length;
+    var totalCount=listings.filter(function(l){return l.edId===ed.id;}).length;
+
+    return '<div class="auto-ed-card" style="border-color:'+borderColor+';">'
+      +'<div class="auto-ed-head">'
+        +'<div class="auto-ed-flag">'+ed.flag+'</div>'
+        +'<div class="auto-ed-name">'
+          +'<div class="auto-ed-name-text">'+ed.name+'</div>'
+          +'<div class="auto-ed-shop">'+shopLabel+' · '+(ed.cat==='black'?'🌍 Black Community':'🌐 Generic')+'</div>'
+        +'</div>'
+        +(isBlocking?'<span class="auto-ed-badge" style="color:#ff6b35;border-color:#ff6b35;">⚠ BLOCKING</span>':'')
+        +(st.promptReady?'<span class="auto-ed-badge" style="color:var(--green3);border-color:var(--green3);">✓ READY</span>':'<span class="auto-ed-badge" style="color:var(--mid);border-color:var(--border);">MISSING</span>')
+      +'</div>'
+      +'<div class="auto-ed-body">'
+        // Stats mini-row
+        +'<div style="display:flex;gap:12px;margin-bottom:8px;font-size:9px;color:var(--mid);">'
+          +'<span style="color:var(--green3);">'+liveCount+' live</span>'
+          +'<span style="color:var(--gold2);">'+ipCount+' in progress</span>'
+          +'<span>'+totalCount+' total listings</span>'
+        +'</div>'
+        // Prompt textarea
+        +'<div style="font-size:9px;color:var(--mid);margin-bottom:3px;letter-spacing:1px;font-family:\'Bebas Neue\',sans-serif;">CANVA BULK CREATE PROMPT / CSV COLUMN HEADERS</div>'
+        +'<textarea class="auto-prompt-area" id="acp_'+ed.id+'" placeholder="Paste your Canva bulk create prompt here — e.g. column headers: name, birth_year, headline_fact, sub_fact_1, sub_fact_2, colour_accent…\n\nOr paste the exact prompt you use in Claude/ChatGPT to generate the CSV data rows for this edition." oninput="autoSavePrompt(\''+ed.id+'\')" rows="4">'+escHtml(st.prompt||'')+'</textarea>'
+        +'<div style="display:flex;gap:6px;align-items:center;margin-top:5px;flex-wrap:wrap;">'
+          +'<button class="auto-prompt-copy" onclick="autoCopyPrompt(\''+ed.id+'\')">📋 Copy Prompt</button>'
+          +'<label style="display:flex;align-items:center;gap:5px;font-size:9px;color:var(--mid);cursor:pointer;">'
+            +'<input type="checkbox" id="acr_'+ed.id+'" '+(st.promptReady?'checked':'')+' onchange="autoTogglePromptReady(\''+ed.id+'\')" style="cursor:pointer;accent-color:var(--green3);">'
+            +'<span style="color:'+(st.promptReady?'var(--green3)':'var(--mid)')+';">'+(st.promptReady?'✓ Prompt Ready — Stage 2 automated':'Mark as Ready when tested and working')+'</span>'
+          +'</label>'
+        +'</div>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+function renderMockGrid(){
+  var el=document.getElementById('autoMockGrid');
+  if(!el)return;
+  var f=autoMockFilter;
+  var eds=EDITIONS.filter(function(ed){
+    var st=getAutoEd(ed.id);
+    if(f==='missing')return !st.mockReady;
+    if(f==='ready')return st.mockReady;
+    if(f==='generic')return ed.cat==='generic';
+    if(f==='black')return ed.cat==='black';
+    return true;
+  });
+
+  if(!eds.length){el.innerHTML='<div style="font-size:11px;color:var(--mid);padding:12px 0;">No editions match this filter.</div>';return;}
+
+  el.innerHTML=eds.map(function(ed){
+    var st=getAutoEd(ed.id);
+    var borderColor=st.mockReady?'rgba(45,122,80,.4)':'var(--border)';
+
+    return '<div class="auto-ed-card" style="border-color:'+borderColor+';">'
+      +'<div class="auto-ed-head">'
+        +'<div class="auto-ed-flag">'+ed.flag+'</div>'
+        +'<div class="auto-ed-name">'
+          +'<div class="auto-ed-name-text">'+ed.name+'</div>'
+          +'<div class="auto-ed-shop">Shop '+ed.shop.toUpperCase()+' · '+(ed.cat==='black'?'🌍 Black Community':'🌐 Generic')+'</div>'
+        +'</div>'
+        +(st.mockReady?'<span class="auto-ed-badge" style="color:var(--green3);border-color:var(--green3);">✓ READY</span>':'<span class="auto-ed-badge" style="color:var(--mid);border-color:var(--border);">NEEDED</span>')
+      +'</div>'
+      +'<div class="auto-ed-body">'
+        +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">'
+          +'<div>'
+            +'<div style="font-size:8px;color:var(--mid);margin-bottom:3px;letter-spacing:1px;font-family:\'Bebas Neue\',sans-serif;">CANVA VARIANT URL</div>'
+            +'<input type="text" class="auto-prompt-area" style="min-height:32px;resize:none;font-size:10px;padding:5px 7px;" id="amv_'+ed.id+'" placeholder="canva.com/design/…" value="'+escHtml(st.mockUrl||'')+'" oninput="autoSaveMock(\''+ed.id+'\')">'
+          +'</div>'
+          +'<div>'
+            +'<div style="font-size:8px;color:var(--mid);margin-bottom:3px;letter-spacing:1px;font-family:\'Bebas Neue\',sans-serif;">VARIATION NOTES</div>'
+            +'<input type="text" class="auto-prompt-area" style="min-height:32px;resize:none;font-size:10px;padding:5px 7px;" id="amn_'+ed.id+'" placeholder="e.g. Gold accent, afro frame icon" value="'+escHtml(st.mockNotes||'')+'" oninput="autoSaveMock(\''+ed.id+'\')">'
+          +'</div>'
+        +'</div>'
+        +'<label style="display:flex;align-items:center;gap:5px;font-size:9px;color:var(--mid);cursor:pointer;">'
+          +'<input type="checkbox" id="amr_'+ed.id+'" '+(st.mockReady?'checked':'')+' onchange="autoToggleMockReady(\''+ed.id+'\')" style="cursor:pointer;accent-color:var(--green3);">'
+          +'<span style="color:'+(st.mockReady?'var(--green3)':'var(--mid)')+';">'+(st.mockReady?'✓ Mockup Ready — Stage 4 automated':'Mark as Ready when template is tested')+'</span>'
+        +'</label>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function autoSavePrompt(edId){
+  var ta=document.getElementById('acp_'+edId);
+  if(!ta)return;
+  getAutoEd(edId).prompt=ta.value;
+  saveAutomation();
+}
+function autoTogglePromptReady(edId){
+  var cb=document.getElementById('acr_'+edId);
+  getAutoEd(edId).promptReady=cb?cb.checked:false;
+  saveAutomation();
+  updateAutoSummary();
+  // Update label colour in-place
+  var lbl=cb&&cb.parentElement&&cb.parentElement.querySelector('span');
+  if(lbl){
+    lbl.style.color=getAutoEd(edId).promptReady?'var(--green3)':'var(--mid)';
+    lbl.textContent=getAutoEd(edId).promptReady?'✓ Prompt Ready — Stage 2 automated':'Mark as Ready when tested and working';
+  }
+  var card=cb&&cb.closest('.auto-ed-card');
+  if(card){card.style.borderColor=getAutoEd(edId).promptReady?'rgba(45,122,80,.4)':'var(--border)';}
+}
+function autoSaveMock(edId){
+  var u=document.getElementById('amv_'+edId);
+  var n=document.getElementById('amn_'+edId);
+  var st=getAutoEd(edId);
+  st.mockUrl=(u&&u.value)||'';
+  st.mockNotes=(n&&n.value)||'';
+  saveAutomation();
+}
+function autoToggleMockReady(edId){
+  var cb=document.getElementById('amr_'+edId);
+  getAutoEd(edId).mockReady=cb?cb.checked:false;
+  saveAutomation();
+  updateAutoSummary();
+  var lbl=cb&&cb.parentElement&&cb.parentElement.querySelector('span');
+  if(lbl){
+    lbl.style.color=getAutoEd(edId).mockReady?'var(--green3)':'var(--mid)';
+    lbl.textContent=getAutoEd(edId).mockReady?'✓ Mockup Ready — Stage 4 automated':'Mark as Ready when template is tested';
+  }
+  var card=cb&&cb.closest('.auto-ed-card');
+  if(card){card.style.borderColor=getAutoEd(edId).mockReady?'rgba(45,122,80,.4)':'var(--border)';}
+}
+function autoCopyPrompt(edId){
+  var st=getAutoEd(edId);
+  if(!st.prompt){showToast('No prompt saved yet for this edition.');return;}
+  navigator.clipboard&&navigator.clipboard.writeText(st.prompt).then(function(){showToast('✓ Prompt copied!');}).catch(function(){});
+}
+
+// ════════════════════════════════════════════
 // INIT
 // ════════════════════════════════════════════
 function init(){
   loadState();
   loadIdeas();
   loadToolkit();
+  loadAutomation();
   checkDayReset();
 
   // Restore timer if running
@@ -5717,6 +6701,10 @@ function init(){
   populateFilters();
   renderLegend();
   renderPipDailyBanner();
+  renderThisMonth();
+  renderTagSets();
+  _syncCanonInputs();
+  renderSprintPanel();
   // Initialise phase bar text for Phase 1 (default)
   var phBar=document.getElementById('phaseBar');
   if(phBar)phBar.innerHTML='<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">608 priority listings</span>: highest-demand ages across all editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of birthday gift revenue.';
