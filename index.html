@@ -243,6 +243,54 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 .dbar-fill{height:100%;border-radius:3px;transition:width .5s;}
 .date-input{background:var(--ink3);border:1px solid var(--border);color:var(--cream);font-family:'DM Mono',monospace;font-size:10px;padding:1px 5px;outline:none;cursor:pointer;}
 
+/* ─── PIPELINE — DAILY PROGRESS BANNER ─── */
+.pip-daily-banner{display:flex;align-items:center;gap:0;margin-bottom:10px;background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);overflow:hidden;flex-wrap:wrap;}
+.pip-daily-cell{padding:9px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;}
+.pip-daily-cell:last-child{border-right:none;margin-left:auto;}
+.pip-daily-val{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;}
+.pip-daily-lbl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:2px;}
+.pip-daily-msg{font-size:10px;color:var(--cream2);line-height:1.5;padding:9px 14px;flex:1;}
+
+/* ─── PIPELINE — BATCH CONTROLS ─── */
+.batch-bar{background:linear-gradient(90deg,rgba(201,151,58,.12),rgba(201,151,58,.04));border:1px solid var(--gold);padding:7px 12px;margin-bottom:8px;display:none;align-items:center;gap:8px;flex-wrap:wrap;}
+.batch-bar.active{display:flex;}
+.batch-count{font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--gold);}
+.batch-btn{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;border:1px solid;background:none;cursor:pointer;transition:all .12s;flex-shrink:0;}
+.batch-btn-stage{border-color:var(--green3);color:var(--green3);}
+.batch-btn-stage:hover{background:var(--green3);color:var(--ink);}
+.batch-btn-clear{border-color:var(--border);color:var(--mid);}
+.batch-btn-clear:hover{border-color:var(--rust2);color:var(--rust2);}
+.batch-stage-sel{background:var(--ink3);border:1px solid var(--gold);color:var(--cream);font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 7px;outline:none;cursor:pointer;}
+
+/* ─── PIPELINE — ROW SELECT ─── */
+.row-sel-cb{width:14px;height:14px;appearance:none;-webkit-appearance:none;border:1.5px solid var(--border);border-radius:2px;cursor:pointer;position:relative;transition:all .12s;display:block;flex-shrink:0;}
+.row-sel-cb:checked{background:var(--gold);border-color:var(--gold);}
+.row-sel-cb:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:8px;color:var(--ink);font-weight:700;line-height:1;}
+tr.row-selected td{background:rgba(201,151,58,.07)!important;}
+
+/* ─── PIPELINE — NOTE TOOLTIP ─── */
+.note-icon{cursor:pointer;font-size:13px;position:relative;display:inline-block;}
+.note-icon .note-tip{display:none;position:absolute;right:0;top:18px;width:220px;background:var(--ink);border:1px solid var(--gold);padding:7px 9px;font-size:10px;color:var(--cream2);line-height:1.5;z-index:200;white-space:normal;font-family:'DM Sans',sans-serif;letter-spacing:0;}
+.note-icon:hover .note-tip{display:block;}
+
+/* ─── PIPELINE — QUICK-FLAG (Work Queue ⭐) ─── */
+.flag-btn{background:none;border:none;cursor:pointer;font-size:13px;line-height:1;padding:0 2px;opacity:.35;transition:opacity .15s;}
+.flag-btn.flagged{opacity:1;}
+.flag-btn:hover{opacity:.8;}
+
+/* ─── MONEY VIEW — FORMULA TOGGLE ─── */
+.mv-formula-bar{background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);margin-bottom:10px;overflow:hidden;}
+.mv-formula-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;cursor:pointer;user-select:none;}
+.mv-formula-header:hover{background:rgba(255,255,255,.02);}
+.mv-formula-title{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--gold2);}
+.mv-formula-toggle-btn{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;padding:2px 8px;background:none;border:1px solid var(--border);color:var(--mid);cursor:pointer;}
+.mv-formula-body{padding:0 14px 10px;}
+
+/* ─── MONEY VIEW — CUMULATIVE REVENUE COLUMN ─── */
+.cum-rev-cell{text-align:right;white-space:nowrap;}
+.cum-rev-bar{height:3px;background:var(--ink3);border-radius:2px;margin-top:3px;overflow:hidden;width:100%;}
+.cum-rev-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--green3));border-radius:2px;transition:width .4s;}
+
 /* ─── PIPELINE ─── */
 .phase-tabs{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:10px;overflow-x:auto;}
 .ptab{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;padding:5px 11px;cursor:pointer;color:var(--mid);border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap;flex-shrink:0;}
@@ -1135,23 +1183,28 @@ table.tbl         { font-size: 13px; }
         <button class="btn btn-mid" style="font-size:10px;" onclick="mvReset()">✕ Clear</button>
       </div>
     </div>
-    <!-- HOW EST $/MO IS CALCULATED — clear explanation -->
-    <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:10px 14px;margin-bottom:10px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--gold2);margin-bottom:6px;">📐 HOW EST $/MO IS CALCULATED — READ THIS</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:10px;color:var(--cream2);line-height:1.8;">
-        <div>
-          <strong style="color:var(--gold);">Score (0–100)</strong> = Age Demand ×40% + Edition Market ×40% + Format ×20%<br>
-          <span style="color:var(--mid);">Higher = more buyer demand for this combination.</span><br><br>
-          <strong style="color:var(--gold);">Est $/mo per listing</strong> = Score-weighted visits × 3% conv × price × 93% (after Etsy fees)<br>
-          <span style="color:var(--mid);">Formula: <code style="color:var(--teal);">(visits/listing × score^0.7 × 0.03 × price) × 0.93</code></span>
-        </div>
-        <div>
-          <strong style="color:var(--gold2);">⚠️ Why does Rank #1 show only $2/mo?</strong><br>
-          <span style="color:var(--mid);">Est $/mo uses your <em>current</em> shop average: <strong id="mvExplainVpl" style="color:var(--cream);">~52 visits/listing/mo</strong> from real Etsy data. With 32 live listings and 1,649 visits, that's ~52 visits each. A score-100 listing at 52 visits × 3% conv × $12.95 = ~$20/mo. <strong style="color:var(--gold2);">As you publish more listings and traffic grows, every listing earns more.</strong></span>
-        </div>
+    <!-- HOW EST $/MO IS CALCULATED — collapsible -->
+    <div class="mv-formula-bar" id="mvFormulaBar">
+      <div class="mv-formula-header" onclick="toggleMvFormula()">
+        <span class="mv-formula-title">📐 HOW EST $/MO IS CALCULATED — click to expand</span>
+        <button class="mv-formula-toggle-btn" id="mvFormulaBtn">EXPAND ▾</button>
       </div>
-      <div style="margin-top:7px;padding-top:7px;border-top:1px solid var(--border);font-size:10px;color:var(--mid);">
-        ⭐ <strong style="color:var(--cream2);">PRIME ≥85</strong> · HIGH ≥70 · MED ≥50 · LOW &lt;50 &nbsp;|&nbsp; These are <em>relative rankings</em> — publish PRIME listings first for best ROI. Est $/mo will rise as your shop grows.
+      <div class="mv-formula-body" id="mvFormulaBody" style="display:none;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:10px;color:var(--cream2);line-height:1.8;">
+          <div>
+            <strong style="color:var(--gold);">Score (0–100)</strong> = Age Demand ×40% + Edition Market ×40% + Format ×20%<br>
+            <span style="color:var(--mid);">Higher = more buyer demand for this combination.</span><br><br>
+            <strong style="color:var(--gold);">Est $/mo per listing</strong> = Score-weighted visits × 3% conv × price × 93% (after Etsy fees)<br>
+            <span style="color:var(--mid);">Formula: <code style="color:var(--teal);">(visits/listing × score^0.7 × 0.03 × price) × 0.93</code></span>
+          </div>
+          <div>
+            <strong style="color:var(--gold2);">⚠️ Why does Rank #1 show only $2/mo?</strong><br>
+            <span style="color:var(--mid);">Est $/mo uses your <em>current</em> shop average: <strong id="mvExplainVpl" style="color:var(--cream);">~52 visits/listing/mo</strong> from real Etsy data. <strong style="color:var(--gold2);">As you publish more listings and traffic grows, every listing earns more.</strong></span>
+          </div>
+        </div>
+        <div style="margin-top:7px;padding-top:7px;border-top:1px solid var(--border);font-size:10px;color:var(--mid);">
+          ⭐ <strong style="color:var(--cream2);">PRIME ≥85</strong> · HIGH ≥70 · MED ≥50 · LOW &lt;50 &nbsp;|&nbsp; Publish PRIME first for best ROI. Est $/mo rises as shop grows.
+        </div>
       </div>
     </div>
     <div class="mv-stats" id="mvSum"></div>
@@ -1164,6 +1217,7 @@ table.tbl         { font-size: 13px; }
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">FMT</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">SCORE</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:right;">EST $/MO</th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--teal);text-align:right;" title="Cumulative monthly revenue if you published all listings up to this rank">CUM $/MO</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">STATUS</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;min-width:65px;">PROGRESS</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;">ACTION</th>
@@ -1198,7 +1252,51 @@ table.tbl         { font-size: 13px; }
     <!-- Phase context bar -->
     <div id="phaseBar" style="background:var(--ink2);border:1px solid var(--border);border-bottom:none;padding:5px 12px;font-size:10px;color:var(--mid);display:flex;align-items:center;gap:10px;flex-wrap:wrap;"></div>
 
-    <!-- FILTER BAR — dropdown style -->
+    <!-- ① DAILY PROGRESS BANNER -->
+    <div class="pip-daily-banner" id="pipDailyBanner">
+      <div class="pip-daily-cell">
+        <div class="pip-daily-val" id="pipTodayLive" style="color:var(--green3);">0</div>
+        <div class="pip-daily-lbl">Published Today</div>
+      </div>
+      <div class="pip-daily-cell">
+        <div class="pip-daily-val" id="pipWeekLive" style="color:var(--gold2);">0</div>
+        <div class="pip-daily-lbl">This Week</div>
+      </div>
+      <div class="pip-daily-cell">
+        <div class="pip-daily-val" id="pipInProgress" style="color:var(--rust2);">0</div>
+        <div class="pip-daily-lbl">In Progress</div>
+      </div>
+      <div class="pip-daily-cell">
+        <div class="pip-daily-val" id="pipTotalLive" style="color:var(--teal);">0</div>
+        <div class="pip-daily-lbl">Total Live</div>
+      </div>
+      <div class="pip-daily-msg" id="pipDailyMsg">Loading…</div>
+      <div class="pip-daily-cell" style="border-left:1px solid var(--border);">
+        <button onclick="showQueueFilter()" style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;padding:5px 10px;background:none;border:1px solid var(--border);color:var(--mid);cursor:pointer;white-space:nowrap;" id="queueFilterBtn">⭐ Work Queue</button>
+      </div>
+    </div>
+
+    <!-- ② BATCH OPERATION BAR — appears when rows are selected -->
+    <div class="batch-bar" id="batchBar">
+      <span class="batch-count" id="batchCount">0 selected</span>
+      <span style="font-size:10px;color:var(--mid);">Mark stage done for all:</span>
+      <select class="batch-stage-sel" id="batchStageSelect">
+        <option value="">Pick stage…</option>
+        <option value="facts">1· Research &amp; Facts</option>
+        <option value="canva">2· Canva Design</option>
+        <option value="hero">3· Hero Image</option>
+        <option value="mockup">4· Mockup</option>
+        <option value="listing">5· Etsy Listing</option>
+        <option value="live">6· Published Live</option>
+        <option value="reel">7· IG Reel</option>
+        <option value="pin">8· Pinterest Pin</option>
+      </select>
+      <button class="batch-btn batch-btn-stage" onclick="batchMarkStage()">✓ Apply to Selected</button>
+      <button class="batch-btn batch-btn-stage" onclick="batchSelectAll()" style="border-color:var(--gold);color:var(--gold);">Select All Visible</button>
+      <button class="batch-btn batch-btn-clear" onclick="batchClearAll()">✕ Clear Selection</button>
+    </div>
+
+    <!-- FILTER BAR -->
     <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:8px 12px;margin-bottom:10px;">
       <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
         <span style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);white-space:nowrap;">🔍 FILTER</span>
@@ -1222,6 +1320,14 @@ table.tbl         { font-size: 13px; }
           <option value="completed">✓ Live</option>
         </select>
 
+        <!-- ③ RECENCY FILTER — new -->
+        <select id="fSelRecency" onchange="fState.recency=this.value;pipPage=1;applyFilters()" style="background:var(--ink3);border:1px solid var(--border);color:var(--cream2);font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:1px;padding:4px 7px;cursor:pointer;outline:none;">
+          <option value="all">All Time</option>
+          <option value="today">📅 Updated Today</option>
+          <option value="week">📆 Updated This Week</option>
+          <option value="queued">⭐ Work Queue</option>
+        </select>
+
         <select id="fSelEd" onchange="fState.edId=this.value;pipPage=1;applyFilters()" style="background:var(--ink3);border:1px solid var(--border);color:var(--cream2);font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:1px;padding:4px 7px;cursor:pointer;outline:none;max-width:160px;">
           <option value="">All Editions</option>
         </select>
@@ -1243,6 +1349,8 @@ table.tbl         { font-size: 13px; }
     <div class="twrap">
       <table class="tbl">
         <thead><tr>
+          <th style="width:18px;"><input type="checkbox" class="row-sel-cb" id="selectAllCb" onclick="batchToggleAll(this)" title="Select all visible"></th>
+          <th>⭐</th>
           <th>ID</th><th>Ph</th><th>Pri</th><th>Score</th><th>Age</th><th>Edition</th><th>Fmt</th>
           <th>1·Facts<br><small style="font-size:7px;color:#555;">~20m</small></th>
           <th>2·Canva<br><small style="font-size:7px;color:#555;">~25m</small></th>
@@ -1252,7 +1360,7 @@ table.tbl         { font-size: 13px; }
           <th>6·Live<br><small style="font-size:7px;color:#555;">~10m</small></th>
           <th>7·Reel<br><small style="font-size:7px;color:#555;">~30m</small></th>
           <th>8·Pin<br><small style="font-size:7px;color:#555;">~10m</small></th>
-          <th>Eff</th><th>%</th><th>📝</th>
+          <th>Time</th><th>%</th><th>📝</th>
         </tr></thead>
         <tbody id="tbody"></tbody>
       </table>
@@ -2066,7 +2174,8 @@ var misc = {
   // SESSION MODE
   sessionLid: null,       // current session listing id
   sessionSid: null,       // current session stage id
-  sessionStart: 0         // timestamp session started
+  sessionStart: 0,        // timestamp session started
+  workQueue: {}           // {lid: true} — flagged for focus
 };
 
 var timerInterval = null;
@@ -2747,7 +2856,7 @@ function addEmailCampaign(){
 // ════════════════════════════════════════════
 
 // Active filter state — all independent
-var fState = {cat:'all', fmt:'all', stat:'all', edId:'', ageVal:'', search:''};
+var fState = {cat:'all', fmt:'all', stat:'all', edId:'', ageVal:'', search:'', recency:'all'};
 
 function setPhase(p,el){
   curPhase=p;
@@ -2803,10 +2912,13 @@ function setFilterEd(v){fState.edId=v;var s=document.getElementById('fSelEd');if
 function setFilterAge(v){fState.ageVal=String(v);var s=document.getElementById('fSelAge');if(s)s.value=String(v);pipPage=1;applyFilters();}
 
 function clearFilters(){
-  fState={cat:'all',fmt:'all',stat:'all',edId:'',ageVal:'',search:''};
-  var ids=['fSelCat','fSelFmt','fSelStat','fSelEd','fSelAge','fSearch'];
-  var defs=['all','all','all','','',''];
+  fState={cat:'all',fmt:'all',stat:'all',edId:'',ageVal:'',search:'',recency:'all'};
+  var ids=['fSelCat','fSelFmt','fSelStat','fSelEd','fSelAge','fSearch','fSelRecency'];
+  var defs=['all','all','all','','','','all'];
   ids.forEach(function(id,i){var el=document.getElementById(id);if(el)el.value=defs[i];});
+  // Reset queue filter button style
+  var qb=document.getElementById('queueFilterBtn');
+  if(qb){qb.style.borderColor='';qb.style.color='';}
   pipPage=1;
   applyFilters();
 }
@@ -2818,6 +2930,13 @@ function renderAgeChips(){}
 function applyFilters(){
   var srch = (document.getElementById('fSearch')||{}).value||'';
   fState.search = srch.toLowerCase();
+  var recSel = document.getElementById('fSelRecency');
+  if(recSel) fState.recency = recSel.value||'all';
+
+  // Time boundaries for recency filter
+  var now = Date.now();
+  var todayStart = new Date(); todayStart.setHours(0,0,0,0); var todayTs = todayStart.getTime();
+  var weekStart = new Date(); weekStart.setDate(weekStart.getDate()-(weekStart.getDay()===0?6:weekStart.getDay()-1)); weekStart.setHours(0,0,0,0); var weekTs = weekStart.getTime();
 
   filtered = listings.filter(function(l){
     if(curPhase==='p1' && l.phase!==1) return false;
@@ -2832,6 +2951,14 @@ function applyFilters(){
     if(fState.search){
       var combined=(l.ageLabel+' '+l.edName+' '+l.format+' '+(l.notes||'')).toLowerCase();
       if(combined.indexOf(fState.search)===-1) return false;
+    }
+    // Recency filter
+    if(fState.recency==='today'){
+      if(!l.lastTouched||l.lastTouched<todayTs) return false;
+    } else if(fState.recency==='week'){
+      if(!l.lastTouched||l.lastTouched<weekTs) return false;
+    } else if(fState.recency==='queued'){
+      if(!misc.workQueue||!misc.workQueue[l.id]) return false;
     }
     return true;
   });
@@ -2853,6 +2980,7 @@ function applyFilters(){
   if(ca)ca.textContent='('+phaseCnt('all').toLocaleString()+')';
 
   renderTable();
+  renderPipDailyBanner();
 }
 
 function renderLegend(){
@@ -2871,7 +2999,7 @@ function renderTable(){
   var total=filtered.length;
 
   if(!total){
-    tb.innerHTML='<tr><td colspan="20" style="padding:20px;text-align:center;color:var(--mid);">No listings match these filters.</td></tr>';
+    tb.innerHTML='<tr><td colspan="22" style="padding:20px;text-align:center;color:var(--mid);">No listings match these filters.</td></tr>';
     renderPipPager(0,0);
     return;
   }
@@ -2888,7 +3016,7 @@ function renderTable(){
     var l=slice[i];
     var sc=l._score!==undefined?l._score:rScore(l);
     var s=l.stages;
-    // Fast status + progress without forEach
+    // Fast status + progress
     var done=0;
     if(s.facts)done++;if(s.canva)done++;if(s.hero)done++;if(s.mockup)done++;
     if(s.listing)done++;if(s.live)done++;if(s.reel)done++;if(s.pin)done++;
@@ -2898,23 +3026,38 @@ function renderTable(){
     var rowcls=st==='completed'?'r-done':st==='in_progress'?'r-ip':sc>=85?'r-hot':'';
     var tierCls='tier-'+(sc>=85?'prime':sc>=70?'high':sc>=50?'med':'low');
 
-    // Efficiency (only if any actual times recorded)
-    var effHtml='';
+    // Time invested vs estimate
+    var timeHtml='';
     var at=l.actualTimes;
     if(at){
       var totalEst=0,totalAct=0;
-      // unrolled — no forEach
-      var stArr=STAGES;
-      for(var si=0;si<stArr.length;si++){
-        var aid=at[stArr[si].id];
-        if(aid){totalEst+=stArr[si][l.format==='Instant DL'?'ti':'tc'];totalAct+=aid;}
+      for(var si=0;si<STAGES.length;si++){
+        var aid=at[STAGES[si].id];
+        if(aid){totalEst+=STAGES[si][l.format==='Instant DL'?'ti':'tc'];totalAct+=aid;}
       }
-      if(totalEst>0){var r=totalAct/totalEst;effHtml='<span class="eff-td '+(r<=0.9?'eff-fast':r<=1.2?'eff-ok':'eff-slow')+'">'+(r<=0.9?'⚡':r<=1.2?'OK':'🐢')+'</span>';}
+      if(totalAct>0){
+        var ratio=totalAct/Math.max(1,totalEst);
+        timeHtml='<span style="font-family:DM Mono,monospace;font-size:9px;color:'+(ratio<=0.9?'var(--teal)':ratio<=1.2?'var(--gold)':'var(--rust2)')+'">'+totalAct+'m</span>';
+      }
     }
 
-    // Build row — use array join instead of string concat
+    var isFlagged = misc.workQueue&&misc.workQueue[l.id];
+    var isSel = !!batchSelected[l.id];
+    var noteHtml='';
+    if(l.notes&&l.notes.trim()){
+      var safe=l.notes.replace(/"/g,'&quot;').replace(/</g,'&lt;');
+      var preview=safe.length>80?safe.slice(0,80)+'…':safe;
+      noteHtml='<span class="note-icon" onclick="event.stopPropagation();openDetail(\''+l.id+'\')">📝<span class="note-tip">'+preview+'</span></span>';
+    } else {
+      noteHtml='<span style="font-size:11px;cursor:pointer;opacity:.3;" onclick="event.stopPropagation();openDetail(\''+l.id+'\')">📝</span>';
+    }
+
     var row=[
-      '<tr data-id="'+l.id+'" class="'+rowcls+'" onclick="openDetail(\''+l.id+'\')">',
+      '<tr data-id="'+l.id+'" class="'+rowcls+(isSel?' row-selected':'')+'" onclick="openDetail(\''+l.id+'\')">',
+      // Select checkbox col
+      '<td style="text-align:center;" onclick="event.stopPropagation()"><input type="checkbox" class="row-sel-cb" data-lid="'+l.id+'"'+(isSel?' checked':'')+' onchange="batchToggleRow(\''+l.id+'\',this)"></td>',
+      // Flag col
+      '<td style="text-align:center;" onclick="event.stopPropagation()"><button class="flag-btn'+(isFlagged?' flagged':'')+'" onclick="toggleFlag(\''+l.id+'\',event)" title="'+(isFlagged?'Remove from work queue':'Add to work queue')+'">⭐</button></td>',
       '<td style="color:var(--mid);font-family:DM Mono,monospace;font-size:9px;">'+l.id+'</td>',
       '<td><span class="phase-tag ph-'+l.phase+'">P'+l.phase+'</span></td>',
       '<td><span class="pbadge '+l.agePc+'">'+l.agePri+'</span></td>',
@@ -2924,21 +3067,21 @@ function renderTable(){
       '<td><span class="fmtb '+(l.format==='Instant DL'?'fmt-i':'fmt-c')+'">'+(l.format==='Instant DL'?'⚡DL':'✏️CUS')+'</span></td>'
     ];
 
-    // Stage checkboxes — unrolled
+    // Stage checkboxes
     var iDL=l.format==='Instant DL';
     for(var si=0;si<STAGES.length;si++){
       var stg=STAGES[si];
       var chk=s[stg.id];
-      var act=at?at[stg.id]:0;
+      var actV=at?at[stg.id]:0;
       var est=iDL?stg.ti:stg.tc;
-      var actHtml=act?('<span class="ds-actual '+(act<=est*0.9?'fast':act<=est*1.2?'ok':'slow')+'">'+act+'m</span>'):'';
+      var actHtml=actV?('<span class="ds-actual '+(actV<=est*0.9?'fast':actV<=est*1.2?'ok':'slow')+'">'+actV+'m</span>'):'';
       row.push('<td style="text-align:center;"><input type="checkbox" class="scb"'+(chk?' checked':'')+' onclick="event.stopPropagation();toggleStage(\''+l.id+'\',\''+stg.id+'\',this)">'+actHtml+'</td>');
     }
 
     row.push(
-      '<td>'+effHtml+'</td>',
+      '<td>'+timeHtml+'</td>',
       '<td><div style="display:flex;align-items:center;gap:3px;"><div class="mbar-bg"><div class="mbar-fill" style="width:'+pr+'%;background:'+(pr===100?'var(--green3)':pr>0?'var(--gold)':'var(--ink3)')+'"></div></div><span class="mpct">'+pr+'%</span></div></td>',
-      '<td style="text-align:center;"><span style="cursor:pointer;font-size:13px;" onclick="event.stopPropagation();openDetail(\''+l.id+'\')">📝</span></td>',
+      '<td style="text-align:center;">'+noteHtml+'</td>',
       '</tr>'
     );
     parts[i]=row.join('');
@@ -2995,7 +3138,7 @@ function toggleStage(lid,sid,cb){
   l.lastTouched=Date.now();
   if(cb.checked&&TT.active&&TT.lid===lid&&TT.sid===sid){ttDone();}
   saveListings();
-  renderTodayTasks();updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();
+  renderTodayTasks();updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();renderPipDailyBanner();
   if(cb.checked&&sid==='live'&&!wasLive){recordPublishedToday(1);celebrateLive(l);}
   else if(cb.checked&&l.stages.live){renderScorecard();renderPaceCards();}
 }
@@ -3206,11 +3349,25 @@ function mvDrawRows(vpl){
   var tb=document.getElementById('mvBody');if(!tb)return;
   var CY=new Date().getFullYear();
   var page=mvAll.slice((mvPage-1)*MV_PP,mvPage*MV_PP);
-  if(!page.length){tb.innerHTML='<tr><td colspan="9" style="padding:20px;text-align:center;color:var(--mid);">No listings match.</td></tr>';return;}
+  if(!page.length){tb.innerHTML='<tr><td colspan="10" style="padding:20px;text-align:center;color:var(--mid);">No listings match.</td></tr>';return;}
+
+  // Build cumulative revenue array for this page
+  // We need the global cumulative up to start of this page
+  var pageStart=(mvPage-1)*MV_PP;
+  var cumBefore=0;
+  for(var j=0;j<pageStart;j++){ cumBefore+=rEst(mvAll[j],vpl); }
+
+  // Find max cumulative on page for bar scaling
+  var maxCum=0; var cumRun=cumBefore;
+  for(var k=0;k<page.length;k++){ cumRun+=rEst(page[k],vpl); if(cumRun>maxCum)maxCum=cumRun; }
+  var goal=10000;
+
   var h='';
+  var cumSoFar=cumBefore;
   page.forEach(function(l,i){
-    var rank=(mvPage-1)*MV_PP+i+1;
+    var rank=pageStart+i+1;
     var sc=rScore(l),est=rEst(l,vpl),st=getStatus(l),pr=getProgress(l);
+    cumSoFar+=est;
     var by=CY-l.ageVal;
     var scCol=rCol(sc),lbl=rLbl(sc);
     var stCol=st==='completed'?'var(--green3)':st==='in_progress'?'var(--gold2)':'var(--mid)';
@@ -3220,6 +3377,16 @@ function mvDrawRows(vpl){
     var action=st==='completed'
       ?'<span style="font-size:9px;color:var(--green3);">✓ Live</span>'
       :'<button onclick="event.stopPropagation();openDetail(\''+l.id+'\')" style="font-family:Bebas Neue,sans-serif;font-size:9px;letter-spacing:1px;padding:2px 8px;background:none;border:1px solid var(--gold2);color:var(--gold2);cursor:pointer;">▶ Start</button>';
+
+    // Cumulative rev cell — progress bar toward $10K goal
+    var cumPct=Math.min(100,Math.round(cumSoFar/goal*100));
+    var cumColor=cumSoFar>=goal?'var(--green3)':cumSoFar>=goal*0.5?'var(--teal)':'var(--gold2)';
+    var cumCell='<td class="cum-rev-cell" style="padding:6px 7px;">'
+      +'<span style="font-family:Bebas Neue,sans-serif;font-size:13px;color:'+cumColor+';">$'+Math.round(cumSoFar).toLocaleString()+'</span>'
+      +(cumSoFar>=goal?'<span style="font-size:8px;color:var(--green3);display:block;">✓ $10K</span>':'<span style="font-size:8px;color:var(--mid);display:block;">'+(goal-Math.round(cumSoFar))>0?'$'+(goal-Math.round(cumSoFar)).toLocaleString()+' to go':'')
+      +'<div class="cum-rev-bar"><div class="cum-rev-fill" style="width:'+cumPct+'%;background:'+cumColor+';"></div></div>'
+      +'</td>';
+
     h+='<tr data-mid="'+l.id+'" style="border-bottom:1px solid var(--border);cursor:pointer;'+(rank===1?'background:rgba(201,151,58,.06);':'')+'" onclick="openDetail(\''+l.id+'\')" onmouseover="this.style.background=\'var(--ink3)\'" onmouseout="this.style.background=\''+(rank===1?'rgba(201,151,58,.06)':'')+'\';">'
       +'<td style="padding:6px 7px;white-space:nowrap;font-family:Bebas Neue,sans-serif;font-size:12px;color:var(--mid);">'+medal+rank+'</td>'
       +'<td style="padding:6px 7px;white-space:nowrap;"><span style="font-family:Bebas Neue,sans-serif;font-size:14px;color:var(--cream);">'+l.ageLabel+'</span> <span style="font-size:8px;color:var(--mid);">'+by+'</span></td>'
@@ -3227,6 +3394,7 @@ function mvDrawRows(vpl){
       +'<td style="padding:6px 7px;text-align:center;font-size:13px;">'+(l.format==='Instant DL'?'<span title="Instant DL" style="color:var(--gold2);">⚡</span>':'<span title="Custom" style="color:var(--mid);">✏️</span>')+'</td>'
       +'<td style="padding:6px 7px;text-align:center;"><span style="font-family:Bebas Neue,sans-serif;font-size:18px;color:'+scCol+';">'+sc+'</span><br><span style="font-size:8px;color:'+scCol+';">'+lbl+'</span></td>'
       +'<td style="padding:6px 7px;text-align:right;white-space:nowrap;"><span style="font-family:Bebas Neue,sans-serif;font-size:16px;color:var(--green3);">$'+est+'</span><span style="font-size:8px;color:var(--mid);">/mo</span></td>'
+      +cumCell
       +'<td style="padding:6px 7px;text-align:center;"><span style="font-size:13px;color:'+stCol+';">'+stIcon+'</span><div style="font-size:8px;color:'+stCol+';">'+st.replace('_',' ')+'</div></td>'
       +'<td style="padding:6px 7px;text-align:center;"><div style="width:50px;height:4px;background:var(--ink3);border-radius:2px;margin:0 auto;"><div style="height:4px;border-radius:2px;background:'+stCol+';width:'+pr+'%;"></div></div><div style="font-size:8px;color:var(--mid);margin-top:2px;">'+pr+'%</div></td>'
       +'<td style="padding:6px 7px;text-align:center;">'+action+'</td>'
@@ -3263,6 +3431,190 @@ function mvGo(p){
   mvDrawRows(vpl);mvDrawPager();
   var tbl=document.getElementById('mvTbl');
   if(tbl)tbl.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ════════════════════════════════════════════
+// PIPELINE — DAILY PROGRESS BANNER
+// ════════════════════════════════════════════
+function renderPipDailyBanner(){
+  var todayPub  = getTodayPublished();
+  var weekPub   = getWeekPublished();
+  var inProg    = listings.filter(function(l){ return getStatus(l)==='in_progress'; }).length;
+  var totalLive = listings.filter(function(l){ return l.stages.live; }).length;
+  var dailyTgt  = Math.max(1, Math.ceil(parseFloat(misc.projDailyTarget)||1.67));
+  var queueSize = misc.workQueue ? Object.keys(misc.workQueue).filter(function(k){ return misc.workQueue[k]; }).length : 0;
+
+  var e = function(id){ return document.getElementById(id); };
+  if(e('pipTodayLive'))  { e('pipTodayLive').textContent=todayPub; e('pipTodayLive').style.color=todayPub>=dailyTgt?'var(--green3)':todayPub>0?'var(--gold2)':'var(--rust2)'; }
+  if(e('pipWeekLive'))   { e('pipWeekLive').textContent=weekPub; }
+  if(e('pipInProgress')) { e('pipInProgress').textContent=inProg; e('pipInProgress').style.color=inProg>0?'var(--gold2)':'var(--mid)'; }
+  if(e('pipTotalLive'))  { e('pipTotalLive').textContent=totalLive; }
+
+  var msg='';
+  if(todayPub===0 && inProg===0){
+    msg='<strong style="color:var(--gold2);">Nothing started yet today.</strong> Pick a PRIME listing below and press ▶ Start on it.';
+  } else if(todayPub===0 && inProg>0){
+    msg='<strong style="color:var(--rust2);">'+inProg+' listing'+(inProg>1?'s':'')+' in progress — finish before starting new ones.</strong> Half-done = $0. Find them by filtering <em>In Progress</em>.';
+  } else if(todayPub>0 && todayPub<dailyTgt){
+    msg='<strong style="color:var(--green3);">'+todayPub+' live today.</strong> <strong style="color:var(--gold2);">'+(dailyTgt-todayPub)+' more</strong> hits your daily target of '+dailyTgt+'.';
+  } else if(todayPub>=dailyTgt){
+    msg='<strong style="color:var(--green3);">✓ Daily target hit! ('+todayPub+' published today)</strong> Every extra listing is bonus revenue. Keep the streak going!';
+  }
+  if(queueSize>0) msg+=' <span style="color:var(--teal);">⭐ '+queueSize+' in your work queue.</span>';
+  if(e('pipDailyMsg')) e('pipDailyMsg').innerHTML=msg;
+
+  // Work queue button highlight
+  var qb = document.getElementById('queueFilterBtn');
+  if(qb){
+    qb.style.borderColor = queueSize>0?'var(--gold)':'';
+    qb.style.color = queueSize>0?'var(--gold)':'';
+    qb.textContent = queueSize>0?'⭐ Queue ('+queueSize+')':'⭐ Work Queue';
+  }
+}
+
+// ════════════════════════════════════════════
+// PIPELINE — WORK QUEUE (flag listings for focus)
+// ════════════════════════════════════════════
+function toggleFlag(lid, event){
+  if(event) event.stopPropagation();
+  if(!misc.workQueue) misc.workQueue={};
+  misc.workQueue[lid] = !misc.workQueue[lid];
+  if(!misc.workQueue[lid]) delete misc.workQueue[lid];
+  saveMisc();
+  // Update the flag icon in the table row without full re-render
+  var row = document.querySelector('tr[data-id="'+lid+'"]');
+  if(row){
+    var flagBtn = row.querySelector('.flag-btn');
+    if(flagBtn){
+      var isFlagged = !!(misc.workQueue&&misc.workQueue[lid]);
+      flagBtn.classList.toggle('flagged', isFlagged);
+      flagBtn.title = isFlagged ? 'Remove from work queue' : 'Add to work queue';
+    }
+  }
+  renderPipDailyBanner();
+}
+
+function showQueueFilter(){
+  fState.recency='queued';
+  var sel=document.getElementById('fSelRecency');
+  if(sel) sel.value='queued';
+  pipPage=1;
+  applyFilters();
+}
+
+// ════════════════════════════════════════════
+// PIPELINE — BATCH OPERATIONS
+// ════════════════════════════════════════════
+var batchSelected = {}; // {lid: true}
+
+function batchToggleRow(lid, cb){
+  if(cb.checked){
+    batchSelected[lid]=true;
+  } else {
+    delete batchSelected[lid];
+  }
+  var row = document.querySelector('tr[data-id="'+lid+'"]');
+  if(row) row.classList.toggle('row-selected', !!batchSelected[lid]);
+  renderBatchBar();
+}
+
+function batchToggleAll(masterCb){
+  var slice = filtered.slice((pipPage-1)*PIP_PP, pipPage*PIP_PP);
+  slice.forEach(function(l){
+    if(masterCb.checked){
+      batchSelected[l.id]=true;
+    } else {
+      delete batchSelected[l.id];
+    }
+  });
+  // Update all row checkboxes
+  document.querySelectorAll('.row-sel-cb[data-lid]').forEach(function(cb){
+    cb.checked = !!batchSelected[cb.getAttribute('data-lid')];
+  });
+  // Update row highlight
+  document.querySelectorAll('tr[data-id]').forEach(function(row){
+    row.classList.toggle('row-selected', !!batchSelected[row.getAttribute('data-id')]);
+  });
+  renderBatchBar();
+}
+
+function batchSelectAll(){
+  var slice = filtered.slice((pipPage-1)*PIP_PP, pipPage*PIP_PP);
+  slice.forEach(function(l){ batchSelected[l.id]=true; });
+  document.querySelectorAll('.row-sel-cb[data-lid]').forEach(function(cb){
+    cb.checked = !!batchSelected[cb.getAttribute('data-lid')];
+  });
+  document.querySelectorAll('tr[data-id]').forEach(function(row){
+    row.classList.toggle('row-selected', !!batchSelected[row.getAttribute('data-id')]);
+  });
+  var masterCb=document.getElementById('selectAllCb');
+  if(masterCb) masterCb.checked=true;
+  renderBatchBar();
+}
+
+function batchClearAll(){
+  batchSelected={};
+  document.querySelectorAll('.row-sel-cb').forEach(function(cb){ cb.checked=false; });
+  document.querySelectorAll('tr[data-id]').forEach(function(row){ row.classList.remove('row-selected'); });
+  var masterCb=document.getElementById('selectAllCb');
+  if(masterCb) masterCb.checked=false;
+  renderBatchBar();
+}
+
+function renderBatchBar(){
+  var count = Object.keys(batchSelected).length;
+  var bar = document.getElementById('batchBar');
+  var countEl = document.getElementById('batchCount');
+  if(bar) bar.classList.toggle('active', count>0);
+  if(countEl) countEl.textContent = count+' listing'+(count!==1?'s':'')+' selected';
+}
+
+function batchMarkStage(){
+  var sel = document.getElementById('batchStageSelect');
+  var sid = sel ? sel.value : '';
+  if(!sid){ showToast('Pick a stage first'); return; }
+  var ids = Object.keys(batchSelected);
+  if(!ids.length){ showToast('No listings selected'); return; }
+
+  var stage = STAGES.find(function(s){ return s.id===sid; });
+  var stageName = stage ? stage.name : sid;
+  var newLiveCount = 0;
+
+  ids.forEach(function(lid){
+    var l = listings.find(function(x){ return x.id===lid; });
+    if(!l) return;
+    var wasLive = l.stages.live;
+    l.stages[sid] = true;
+    l.lastTouched = Date.now();
+    if(sid==='live' && !wasLive){ newLiveCount++; }
+  });
+
+  saveListings();
+  if(newLiveCount>0){
+    recordPublishedToday(newLiveCount);
+    showToast('🎉 '+newLiveCount+' listing'+(newLiveCount>1?'s':'')+' published live! Streak updated.');
+    renderScorecard(); renderPaceCards();
+  } else {
+    showToast('✓ "'+stageName+'" marked done for '+ids.length+' listing'+(ids.length>1?'s':''));
+  }
+
+  batchClearAll();
+  saveListings();
+  renderTable();
+  updateDashboard(); updateMissionStrip(); updateBottomBar(); checkStuckListings();
+  renderPipDailyBanner(); renderTodayTasks(); renderConsistencyMsg();
+}
+
+// ════════════════════════════════════════════
+// MONEY VIEW — FORMULA TOGGLE
+// ════════════════════════════════════════════
+function toggleMvFormula(){
+  var body = document.getElementById('mvFormulaBody');
+  var btn  = document.getElementById('mvFormulaBtn');
+  if(!body) return;
+  var open = body.style.display==='none' || body.style.display==='';
+  body.style.display = open ? 'block' : 'none';
+  if(btn) btn.textContent = open ? 'COLLAPSE ▴' : 'EXPAND ▾';
 }
 
 // ════════════════════════════════════════════
@@ -5364,6 +5716,7 @@ function init(){
   restoreSession();
   populateFilters();
   renderLegend();
+  renderPipDailyBanner();
   // Initialise phase bar text for Phase 1 (default)
   var phBar=document.getElementById('phaseBar');
   if(phBar)phBar.innerHTML='<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">608 priority listings</span>: highest-demand ages across all editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of birthday gift revenue.';
