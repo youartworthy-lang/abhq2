@@ -176,6 +176,61 @@ body{background:var(--ink);color:var(--cream);font-family:'DM Sans',sans-serif;m
 .gap-result-val.red{color:var(--rust2);}
 .gap-result-val.green{color:var(--green3);}
 
+/* ─── STREAK + WEEKLY SCORECARD ─── */
+.scorecard{display:grid;grid-template-columns:auto 1fr 1fr 1fr 1fr;gap:0;margin-bottom:14px;background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--gold);overflow:hidden;}
+.sc-streak{background:linear-gradient(135deg,rgba(201,151,58,.18),rgba(201,151,58,.06));padding:14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--border);min-width:90px;}
+.sc-streak-num{font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;color:var(--gold);}
+.sc-streak-lbl{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;color:var(--gold);opacity:.7;text-align:center;margin-top:2px;}
+.sc-streak-fire{font-size:22px;line-height:1;margin-bottom:2px;}
+.sc-cell{padding:12px 14px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center;}
+.sc-cell:last-child{border-right:none;}
+.sc-val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;color:var(--cream);}
+.sc-val.green{color:var(--green3);}
+.sc-val.gold{color:var(--gold2);}
+.sc-val.red{color:var(--rust2);}
+.sc-val.teal{color:var(--teal);}
+.sc-lbl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:3px;}
+.sc-sub{font-size:9px;color:rgba(240,234,216,.35);margin-top:2px;}
+.sc-bar-bg{height:4px;background:var(--ink3);border-radius:2px;margin-top:6px;overflow:hidden;}
+.sc-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .5s;}
+
+/* ─── SESSION MODE ─── */
+.session-banner{background:linear-gradient(135deg,rgba(201,151,58,.12),rgba(45,122,80,.08));border:2px solid var(--gold);padding:10px 14px;margin-bottom:10px;display:none;}
+.session-banner.active{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.session-listing-name{font-family:'Bebas Neue',sans-serif;font-size:13px;color:var(--gold);flex:1;}
+.session-stage{font-size:11px;color:var(--cream2);}
+.session-elapsed{font-family:'DM Mono',monospace;font-size:12px;color:var(--teal);flex-shrink:0;}
+.session-done-btn{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;padding:5px 14px;background:var(--green3);border:none;color:var(--ink);cursor:pointer;font-weight:700;transition:all .15s;flex-shrink:0;}
+.session-done-btn:hover{background:#6fe8a8;}
+.session-abort-btn{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:4px 9px;background:none;border:1px solid var(--border);color:var(--mid);cursor:pointer;}
+
+/* ─── WEEKLY PACE CARD ─── */
+.pace-strip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.pace-card{background:var(--ink2);border:1px solid var(--border);padding:12px 14px;}
+.pace-card.on-track{border-top:3px solid var(--green3);}
+.pace-card.behind{border-top:3px solid var(--rust2);}
+.pace-card.great{border-top:3px solid var(--teal);}
+.pace-card.neutral{border-top:3px solid var(--border);}
+.pace-title{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--mid);margin-bottom:6px;}
+.pace-main{font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:1;}
+.pace-sub{font-size:10px;color:var(--mid);margin-top:3px;line-height:1.5;}
+.pace-progress{height:5px;background:var(--ink3);border-radius:3px;overflow:hidden;margin-top:8px;}
+.pace-progress-fill{height:100%;border-radius:3px;transition:width .5s;}
+
+/* ─── WEEKLY WINS JOURNAL ─── */
+.wins-card{background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--gold2);padding:12px 14px;}
+.wins-entry{display:flex;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:11px;}
+.wins-entry:last-child{border-bottom:none;}
+.wins-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid);flex-shrink:0;padding-top:1px;}
+.wins-icon{flex-shrink:0;}
+.wins-text{flex:1;color:var(--cream2);line-height:1.4;}
+.wins-tag{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:1px;padding:1px 5px;background:rgba(201,151,58,.15);color:var(--gold);flex-shrink:0;}
+.wins-input-row{display:flex;gap:5px;margin-top:8px;}
+.wins-input{flex:1;background:var(--ink3);border:1px solid var(--border);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:11px;padding:5px 8px;outline:none;}
+.wins-input:focus{border-color:var(--gold2);}
+.wins-type-sel{background:var(--ink3);border:1px solid var(--border);color:var(--cream2);font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;padding:5px 6px;outline:none;cursor:pointer;}
+.wins-add-btn{font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;padding:5px 10px;background:var(--gold2);border:none;color:var(--ink);cursor:pointer;flex-shrink:0;}
+
 /* ─── DEADLINES ─── */
 .dstrip{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .dcard{background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--gold);padding:12px 14px;display:flex;gap:12px;align-items:stretch;}
@@ -669,6 +724,15 @@ table.tbl         { font-size: 13px; }
   .mnav-icon { font-size: 18px; line-height: 1; }
   .mnav-lbl  { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
 
+  /* ── Scorecard: compress on mobile ── */
+  .scorecard { grid-template-columns: 1fr 1fr; }
+  .sc-streak { grid-column: span 2; flex-direction: row; gap: 10px; justify-content: flex-start; }
+  .sc-streak-num { font-size: 36px; }
+  /* ── Pace strip: stack ── */
+  .pace-strip { grid-template-columns: 1fr; gap: 8px; }
+  /* ── Session banner: wrap ── */
+  .session-banner.active { flex-direction: column; align-items: flex-start; }
+
   /* ── Stats bottom bar - compact on mobile ── */
   .bottom-bar {
     display: none !important; /* replaced by mobile nav */
@@ -838,7 +902,50 @@ table.tbl         { font-size: 13px; }
   <!-- ══════ TODAY VIEW ══════ -->
   <div id="v-today">
 
-    <!-- MISSION STRIP - real numbers -->
+    <!-- ① STREAK + WEEKLY SCORECARD — first thing you see -->
+    <div class="scorecard" id="scorecardEl">
+      <div class="sc-streak">
+        <div class="sc-streak-fire" id="scFireEmoji">🔥</div>
+        <div class="sc-streak-num" id="scStreakNum">0</div>
+        <div class="sc-streak-lbl">Day Streak</div>
+      </div>
+      <div class="sc-cell">
+        <div class="sc-val" id="scToday">0</div>
+        <div class="sc-lbl">Published Today</div>
+        <div class="sc-sub" id="scTodayTarget">target: —</div>
+        <div class="sc-bar-bg"><div class="sc-bar-fill" id="scTodayBar" style="width:0%"></div></div>
+      </div>
+      <div class="sc-cell">
+        <div class="sc-val" id="scWeek">0</div>
+        <div class="sc-lbl">This Week</div>
+        <div class="sc-sub" id="scWeekTarget">target: —</div>
+        <div class="sc-bar-bg"><div class="sc-bar-fill" id="scWeekBar" style="width:0%;background:var(--teal)"></div></div>
+      </div>
+      <div class="sc-cell">
+        <div class="sc-val" id="scTotal">—</div>
+        <div class="sc-lbl">Total Live</div>
+        <div class="sc-sub" id="scTotalNeeded">need: —</div>
+      </div>
+      <div class="sc-cell">
+        <div class="sc-val" id="scRevenue">—</div>
+        <div class="sc-lbl">Est. Monthly Rev</div>
+        <div class="sc-sub" id="scGapLabel">gap: —</div>
+      </div>
+    </div>
+
+    <!-- ② SESSION BANNER — appears when a session is active -->
+    <div class="session-banner" id="sessionBanner">
+      <div style="font-size:16px;flex-shrink:0;">⚡</div>
+      <div style="flex:1;min-width:0;">
+        <div class="session-listing-name" id="sessionListingName">—</div>
+        <div class="session-stage" id="sessionStageName">—</div>
+      </div>
+      <div class="session-elapsed" id="sessionElapsed">0:00</div>
+      <button class="session-done-btn" onclick="sessionComplete()">✓ Stage Done</button>
+      <button class="session-abort-btn" onclick="sessionAbort()">✕ Cancel</button>
+    </div>
+
+    <!-- MISSION STRIP -->
     <div class="mission">
       <div>
         <div style="font-size:9px;letter-spacing:3px;font-family:'Bebas Neue',sans-serif;color:var(--gold);margin-bottom:3px;">YOUR MISSION</div>
@@ -878,31 +985,29 @@ table.tbl         { font-size: 13px; }
     <!-- DASH -->
     <div class="dash" id="dashEl"></div>
 
-    <!-- DEADLINE STRIP -->
-    <div class="dstrip">
-      <div class="dcard sa" id="dcardA">
-        <div style="display:flex;flex-direction:column;justify-content:center;flex-shrink:0;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--mid);display:block;margin-bottom:2px;">SHOP A · YOUARTWORTHY</span>
-          <span class="cd-num" id="daysA">—</span>
-          <span class="cd-lbl">days to deadline</span>
+    <!-- ③ WEEKLY PACE CARDS — replaces the old deadline cards -->
+    <div class="pace-strip">
+      <div class="pace-card neutral" id="paceThisWeek">
+        <div class="pace-title">📅 THIS WEEK — MON→SUN</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <div class="pace-main" id="paceWeekDone" style="color:var(--gold2);">0</div>
+          <div style="font-size:12px;color:var(--mid);">of</div>
+          <div class="pace-main" id="paceWeekTarget" style="font-size:22px;color:var(--mid);">—</div>
+          <div style="font-size:10px;color:var(--mid);">listings</div>
         </div>
-        <div class="cd-right">
-          <div style="font-size:10px;color:var(--mid);margin-bottom:4px;">Set deadline: <input type="date" class="date-input" id="deadlineA" onchange="saveDeadlines()"></div>
-          <div class="dbar-bg"><div class="dbar-fill" id="dbarA" style="width:0%;background:var(--gold);"></div></div>
-          <div style="font-size:10px;color:var(--mid);" id="dstatA">—</div>
-        </div>
+        <div class="pace-sub" id="paceWeekMsg">Set your daily target in Projections to calculate.</div>
+        <div class="pace-progress"><div class="pace-progress-fill" id="paceWeekBar" style="width:0%;background:var(--gold2);"></div></div>
       </div>
-      <div class="dcard sb" id="dcardB">
-        <div style="display:flex;flex-direction:column;justify-content:center;flex-shrink:0;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--mid);display:block;margin-bottom:2px;">SHOP B · BLACK BRAND</span>
-          <span class="cd-num" id="daysB" style="color:var(--teal);">—</span>
-          <span class="cd-lbl">days to deadline</span>
+      <div class="pace-card neutral" id="paceThisMonth">
+        <div class="pace-title">📆 THIS MONTH — ON TRACK?</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
+          <div class="pace-main" id="paceMonthDone" style="color:var(--teal);">0</div>
+          <div style="font-size:12px;color:var(--mid);">of</div>
+          <div class="pace-main" id="paceMonthTarget" style="font-size:22px;color:var(--mid);">—</div>
+          <div style="font-size:10px;color:var(--mid);">listings</div>
         </div>
-        <div class="cd-right">
-          <div style="font-size:10px;color:var(--mid);margin-bottom:4px;">Set deadline: <input type="date" class="date-input" id="deadlineB" onchange="saveDeadlines()"></div>
-          <div class="dbar-bg"><div class="dbar-fill" id="dbarB" style="width:0%;background:var(--teal);"></div></div>
-          <div style="font-size:10px;color:var(--mid);" id="dstatB">—</div>
-        </div>
+        <div class="pace-sub" id="paceMonthMsg">Loading…</div>
+        <div class="pace-progress"><div class="pace-progress-fill" id="paceMonthBar" style="width:0%;background:var(--teal);"></div></div>
       </div>
     </div>
 
@@ -948,7 +1053,7 @@ table.tbl         { font-size: 13px; }
           <div class="focus-chips" id="focusChips"></div>
         </div>
 
-        <div class="today-tasks-lbl">📌 Do These Next — Highest ROI First</div>
+        <div class="today-tasks-lbl">📌 Do These Next — Highest ROI First <span style="font-size:9px;color:var(--mid);font-family:'DM Mono',monospace;">(click ▶ Time to start a session)</span></div>
         <div id="todayTasks"></div>
       </div>
 
@@ -973,22 +1078,32 @@ table.tbl         { font-size: 13px; }
           <div id="gapResult"><div style="font-size:11px;color:var(--mid);">Enter your real Etsy numbers above to see your path to $10K.</div></div>
         </div>
 
-        <!-- WHAT TO WORK ON NEXT -->
+        <!-- CONSISTENCY ENGINE — now dynamic -->
         <div style="background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--teal);padding:12px 14px;">
           <div class="card-title" style="color:var(--teal);">🏆 Consistency Engine</div>
           <div style="font-size:11px;color:var(--mid);line-height:1.7;margin-bottom:8px;" id="consistencyMsg">Loading...</div>
           <div style="font-size:10px;color:var(--cream2);line-height:1.8;background:var(--ink3);border:1px solid var(--border);padding:8px 10px;">
             <strong style="color:var(--gold);">Anti-Shiny-Object Rule:</strong><br>
             One listing type. One session. No switching.<br>
-            If you're doing USA Generic 50th today — do ALL remaining stages for that listing first, then move to the next. <strong style="color:var(--gold2);">Half-done = zero revenue.</strong>
+            Doing USA Generic 50th today? Do ALL stages for that listing first. <strong style="color:var(--gold2);">Half-done = zero revenue.</strong>
           </div>
         </div>
 
-        <!-- DAILY EMAIL TRACKER -->
-        <div style="background:var(--ink2);border:1px solid var(--border);padding:12px 14px;">
-          <div class="card-title">📧 Email Marketing Log <span class="card-sub">— weekly cadence</span></div>
-          <div id="emailList" style="margin-bottom:7px;"></div>
-          <button class="btn btn-gold" style="font-size:10px;" onclick="addEmailCampaign()">+ Log Campaign</button>
+        <!-- ④ WEEKLY WINS JOURNAL — replaces email log -->
+        <div class="wins-card">
+          <div class="card-title">🏅 Weekly Wins Journal <span class="card-sub">— record what you shipped</span></div>
+          <div id="winsList"></div>
+          <div class="wins-input-row">
+            <select class="wins-type-sel" id="winsType">
+              <option value="listing">📦 Listing</option>
+              <option value="milestone">🏆 Milestone</option>
+              <option value="seo">🔍 SEO</option>
+              <option value="social">📱 Social</option>
+              <option value="other">✨ Other</option>
+            </select>
+            <input class="wins-input" id="winsInput" placeholder="e.g. Published 3 USA 50th listings…" onkeydown="if(event.key==='Enter')addWin()">
+            <button class="wins-add-btn" onclick="addWin()">LOG</button>
+          </div>
         </div>
 
       </div>
@@ -1941,7 +2056,17 @@ var misc = {
   projPinPins: 0,         // Pinterest pins per week
   projViralBonus: 0,      // extra visits/month from viral content (manual estimate)
   projSocialCTR: 3,       // % of social views that click through to Etsy
-  stageLastTouched: {}    // tracks when each listing was last modified
+  stageLastTouched: {},   // tracks when each listing was last modified
+  // STREAK + DAILY HISTORY
+  streakCount: 0,
+  lastHitDate: '',        // last date target was hit (for streak calc)
+  dailyPublished: {},     // {YYYY-MM-DD: count} — listings published per day
+  // WEEKLY WINS JOURNAL
+  winsLog: [],            // [{date, type, text}]
+  // SESSION MODE
+  sessionLid: null,       // current session listing id
+  sessionSid: null,       // current session stage id
+  sessionStart: 0         // timestamp session started
 };
 
 var timerInterval = null;
@@ -2366,7 +2491,7 @@ function renderTodayTasks(){
     var scoreEl='<span style="font-family:Bebas Neue,sans-serif;font-size:9px;color:'+rCol(rScore(l))+';">'+rScore(l)+'</span>';
     var actionBtn=isDone?'':
       '<button class="tt-done-btn" onclick="quickDoneStage(\''+l.id+'\')">✓ Done</button>'+
-      '<button class="tt-start-btn" onclick="openTaskTimer(\''+l.id+'\',\''+(next?next.id:'')+'\')">▶ Time</button>';
+      '<button class="tt-start-btn" onclick="startSession(\''+l.id+'\',\''+(next?next.id:'')+'\')">▶ Time</button>';
     return '<div class="tt-item" onclick="openDetail(\''+l.id+'\')">'
       +cb
       +'<div class="tt-info">'
@@ -2387,12 +2512,21 @@ function quickDoneStage(lid){
   l.stages[next.id]=true;
   l.lastTouched=Date.now();
   saveListings();
+  // If this marks listing as live, celebrate + record
+  if(next.id==='live'){
+    recordPublishedToday(1);
+    celebrateLive(l);
+  } else {
+    showToast('✓ '+next.name+' marked done for '+l.ageLabel+' '+l.edName);
+  }
   renderTodayTasks();
   updateDashboard();
   updateMissionStrip();
   updateBottomBar();
   checkStuckListings();
-  showToast('✓ '+next.name+' marked done for '+l.ageLabel+' '+l.edName);
+  renderScorecard();
+  renderPaceCards();
+  renderConsistencyMsg();
 }
 
 // ════════════════════════════════════════════
@@ -2561,12 +2695,27 @@ function renderConsistencyMsg(){
   var el=document.getElementById('consistencyMsg');if(!el)return;
   var m=calcRealMetrics();
   var inProgress=listings.filter(function(l){return getStatus(l)==='in_progress';}).length;
-  if(inProgress>0){
-    el.innerHTML='You have <strong style="color:var(--rust2);">'+inProgress+' in-progress</strong> listings. <strong style="color:var(--gold2);">Finish before starting new ones.</strong> Half-done listings earn $0.';
-  } else if(m.perDay<=1){
-    el.innerHTML='🏆 Excellent pace! At '+m.perDay+' listing/day you\'ll hit $10K before Dec 31. Keep the streak alive.';
+  var todayPub=getTodayPublished();
+  var dailyTarget=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||1.67));
+
+  if(inProgress>0&&todayPub===0){
+    el.innerHTML='You have <strong style="color:var(--rust2);">'+inProgress+' in-progress</strong> listings. '
+      +'<strong style="color:var(--gold2);">Finish one before starting new ones.</strong> Half-done = $0.';
+  } else if(todayPub===0){
+    el.innerHTML='<strong style="color:var(--gold2);">Day not started yet.</strong> You need <strong style="color:var(--teal);">'+dailyTarget+' listing'+(dailyTarget!==1?'s':'')+'/day</strong> to hit $10K by Dec 31. '
+      +m.daysLeft+' days left. <strong>Pick a task below and press ▶ Time.</strong>';
+  } else if(todayPub<dailyTarget){
+    var more=dailyTarget-todayPub;
+    el.innerHTML='<strong style="color:var(--green3);">'+todayPub+' published today.</strong> '
+      +'<strong style="color:var(--gold2);">'+more+' more hits your daily target.</strong> Keep going!';
+  } else if(todayPub<dailyTarget*2){
+    el.innerHTML='<strong style="color:var(--green3);">✓ Daily target hit!</strong> '
+      +'You\'ve published <strong style="color:var(--teal);">'+todayPub+' today</strong>. '
+      +'Every extra listing is bonus revenue. Sprint?';
   } else {
-    el.innerHTML='You need <strong style="color:var(--gold2);">'+m.perDay+' listings/day</strong> to reach $10K by Dec 31 2026. '+m.daysLeft+' days remaining. <strong>One listing at a time. Start now.</strong>';
+    el.innerHTML='🚀 <strong style="color:var(--teal);">Sprint day!</strong> '
+      +'<strong style="color:var(--green3);">'+todayPub+' listings published today.</strong> '
+      +'You\'re making this happen.';
   }
 }
 
@@ -2841,12 +2990,14 @@ function setPipPP(n){PIP_PP=n;pipPage=1;renderTable();}
 function toggleStage(lid,sid,cb){
   var l=listings.find(function(x){return x.id===lid;});
   if(!l)return;
+  var wasLive=l.stages.live;
   l.stages[sid]=cb.checked;
   l.lastTouched=Date.now();
   if(cb.checked&&TT.active&&TT.lid===lid&&TT.sid===sid){ttDone();}
   saveListings();
   renderTodayTasks();updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();
-  if(cb.checked&&l.stages.live)showToast('🎉 '+l.ageLabel+' '+l.edName+' is now LIVE!');
+  if(cb.checked&&sid==='live'&&!wasLive){recordPublishedToday(1);celebrateLive(l);}
+  else if(cb.checked&&l.stages.live){renderScorecard();renderPaceCards();}
 }
 
 // ════════════════════════════════════════════
@@ -2878,7 +3029,7 @@ function renderDetailStages(l){
       +'<span class="dsname'+(done?' done':'')+'">'+s.name+'</span>'
       +'<span class="dstime">~'+est+'m</span>'
       +(act?'<span class="ds-actual '+actCls+'">'+act+'m</span>':done?'':
-        '<button class="ds-start" onclick="openTaskTimer(\''+l.id+'\',\''+s.id+'\')">▶ Time</button>')
+        '<button class="ds-start" onclick="startSession(\''+l.id+'\',\''+s.id+'\')">▶ Time</button>')
       +'<button class="dstoggle '+(done?'t-done':'t-todo')+'" onclick="toggleStageBtn(\''+l.id+'\',\''+s.id+'\',this)">'+(done?'Undo':'Done')+'</button>'
       +'</div>';
   }).join('');
@@ -2886,12 +3037,14 @@ function renderDetailStages(l){
 
 function toggleStageBtn(lid,sid,btn){
   var l=listings.find(function(x){return x.id===lid;});if(!l)return;
+  var wasLive=l.stages.live;
   l.stages[sid]=!l.stages[sid];
   l.lastTouched=Date.now();
   saveListings();
   renderDetailStages(l);
   renderTodayTasks();renderTable();updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();
-  if(l.stages.live)showToast('🎉 LIVE! '+l.ageLabel+' '+l.edName);
+  if(l.stages[sid]&&sid==='live'&&!wasLive){recordPublishedToday(1);celebrateLive(l);}
+  else if(l.stages.live&&!wasLive){renderScorecard();renderPaceCards();}
 }
 
 function saveNote(){
@@ -4770,7 +4923,384 @@ function seoClearSearch(){
 function renderSEO(){ seoInit(); }
 
 // ════════════════════════════════════════════
-// REAL DATA SYNC
+// STREAK + SCORECARD
+// ════════════════════════════════════════════
+function getTodayPublished(){
+  var td=todayStr();
+  return misc.dailyPublished&&misc.dailyPublished[td]?misc.dailyPublished[td]:0;
+}
+
+function getWeekPublished(){
+  var now=new Date();
+  var day=now.getDay(); // 0=Sun
+  var mon=new Date(now);mon.setDate(now.getDate()-(day===0?6:day-1));mon.setHours(0,0,0,0);
+  var total=0;
+  if(!misc.dailyPublished)return 0;
+  Object.keys(misc.dailyPublished).forEach(function(d){
+    var dt=new Date(d);
+    if(dt>=mon&&dt<=now)total+=misc.dailyPublished[d];
+  });
+  return total;
+}
+
+function getMonthPublished(){
+  var now=new Date();var y=now.getFullYear();var m=now.getMonth();
+  var total=0;
+  if(!misc.dailyPublished)return 0;
+  Object.keys(misc.dailyPublished).forEach(function(d){
+    var dt=new Date(d);
+    if(dt.getFullYear()===y&&dt.getMonth()===m)total+=misc.dailyPublished[d];
+  });
+  return total;
+}
+
+function recordPublishedToday(count){
+  var td=todayStr();
+  if(!misc.dailyPublished)misc.dailyPublished={};
+  misc.dailyPublished[td]=(misc.dailyPublished[td]||0)+count;
+  updateStreak();
+  saveMisc();
+}
+
+function updateStreak(){
+  var td=todayStr();
+  var dailyTarget=Math.ceil(parseFloat(misc.projDailyTarget)||1.67);
+  var todayCount=getTodayPublished();
+  // Check if today's target is hit
+  if(todayCount>=dailyTarget){
+    // Did we already record today?
+    if(misc.lastHitDate===td){
+      // already counted today — no change
+    } else {
+      // Is yesterday the last hit date? If yes, extend streak; if no, start new streak
+      var yesterday=new Date();yesterday.setDate(yesterday.getDate()-1);
+      var yStr=yesterday.toISOString().slice(0,10);
+      if(misc.lastHitDate===yStr){
+        misc.streakCount=(misc.streakCount||0)+1;
+      } else if(misc.lastHitDate===''){
+        misc.streakCount=1;
+      } else {
+        // Gap — check if we missed days
+        var lastHit=new Date(misc.lastHitDate);
+        var diff=Math.floor((new Date()-lastHit)/86400000);
+        misc.streakCount=diff<=1?(misc.streakCount||0)+1:1;
+      }
+      misc.lastHitDate=td;
+    }
+  }
+}
+
+function renderScorecard(){
+  var m=calcRealMetrics();
+  var dailyTarget=parseFloat(misc.projDailyTarget)||1.67;
+  var todayPub=getTodayPublished();
+  var weekPub=getWeekPublished();
+  var weekTarget=Math.round(dailyTarget*7);
+  var streak=misc.streakCount||0;
+
+  // Streak
+  var sn=document.getElementById('scStreakNum');
+  var sf=document.getElementById('scFireEmoji');
+  if(sn)sn.textContent=streak;
+  if(sf)sf.textContent=streak>=7?'🔥':streak>=3?'⚡':streak>=1?'✅':'😴';
+
+  // Today published
+  var st=document.getElementById('scToday');
+  var stlbl=document.getElementById('scTodayTarget');
+  var stbar=document.getElementById('scTodayBar');
+  var todayTargetInt=Math.max(1,Math.ceil(dailyTarget));
+  if(st){
+    st.textContent=todayPub;
+    st.className='sc-val'+(todayPub>=todayTargetInt?' green':todayPub>0?' gold':' red');
+  }
+  if(stlbl)stlbl.textContent='target: '+todayTargetInt+'/day';
+  if(stbar)stbar.style.width=Math.min(100,Math.round(todayPub/todayTargetInt*100))+'%';
+
+  // This week
+  var sw=document.getElementById('scWeek');
+  var swlbl=document.getElementById('scWeekTarget');
+  var swbar=document.getElementById('scWeekBar');
+  if(sw){
+    sw.textContent=weekPub;
+    sw.className='sc-val'+(weekPub>=weekTarget?' teal':weekPub>=weekTarget*0.5?' gold':' red');
+  }
+  if(swlbl)swlbl.textContent='target: '+weekTarget+'/week';
+  if(swbar)swbar.style.width=Math.min(100,Math.round(weekPub/Math.max(1,weekTarget)*100))+'%';
+
+  // Total live
+  var stot=document.getElementById('scTotal');
+  var stotsub=document.getElementById('scTotalNeeded');
+  if(stot){stot.textContent=m.live;stot.className='sc-val'+(m.live>=m.listingsNeeded?' green':' gold');}
+  if(stotsub)stotsub.textContent='need: '+m.listingsNeeded;
+
+  // Revenue
+  var srev=document.getElementById('scRevenue');
+  var srevlbl=document.getElementById('scGapLabel');
+  if(srev){
+    srev.textContent='$'+Math.round(m.revenue).toLocaleString();
+    srev.className='sc-val'+(m.revenue>=10000?' green':m.revenue>=5000?' gold':' red');
+  }
+  if(srevlbl)srevlbl.textContent='gap: $'+Math.max(0,10000-m.revenue).toLocaleString();
+}
+
+// ════════════════════════════════════════════
+// WEEKLY PACE CARDS
+// ════════════════════════════════════════════
+function renderPaceCards(){
+  var dailyTarget=parseFloat(misc.projDailyTarget)||1.67;
+  var now=new Date();
+
+  // ── Week card ──
+  var day=now.getDay();var daysIntoWeek=day===0?6:day-1;
+  var daysLeftWeek=7-daysIntoWeek;
+  var weekDone=getWeekPublished();
+  var weekTarget=Math.round(dailyTarget*7);
+  var weekPct=Math.min(100,Math.round(weekDone/Math.max(1,weekTarget)*100));
+  var weekCard=document.getElementById('paceThisWeek');
+  var weekDoneEl=document.getElementById('paceWeekDone');
+  var weekTgtEl=document.getElementById('paceWeekTarget');
+  var weekMsgEl=document.getElementById('paceWeekMsg');
+  var weekBarEl=document.getElementById('paceWeekBar');
+  if(weekDoneEl)weekDoneEl.textContent=weekDone;
+  if(weekTgtEl)weekTgtEl.textContent=weekTarget;
+  if(weekBarEl)weekBarEl.style.width=weekPct+'%';
+  var weekRemain=Math.max(0,weekTarget-weekDone);
+  var weekMsg='';var weekClass='neutral';
+  if(weekDone>=weekTarget){
+    weekMsg='🎉 Week target hit! Every extra listing is bonus.';weekClass='great';
+    if(weekBarEl)weekBarEl.style.background='var(--teal)';
+  } else if(daysLeftWeek<=2&&weekRemain>daysLeftWeek*Math.ceil(dailyTarget)*1.5){
+    weekMsg='⚠️ Behind — need '+Math.ceil(weekRemain/Math.max(1,daysLeftWeek))+'/day to catch up ('+daysLeftWeek+'d left).';weekClass='behind';
+    if(weekBarEl)weekBarEl.style.background='var(--rust2)';
+  } else {
+    weekMsg='Need '+weekRemain+' more by Sunday · '+daysLeftWeek+' days left.';weekClass='on-track';
+    if(weekBarEl)weekBarEl.style.background='var(--gold2)';
+  }
+  if(weekMsgEl)weekMsgEl.textContent=weekMsg;
+  if(weekCard){weekCard.className='pace-card '+weekClass;}
+
+  // ── Month card ──
+  var monthDone=getMonthPublished();
+  var daysInMonth=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
+  var dayOfMonth=now.getDate();
+  var daysLeftMonth=daysInMonth-dayOfMonth;
+  var monthTarget=Math.round(dailyTarget*daysInMonth);
+  var monthExpected=Math.round(dailyTarget*dayOfMonth);
+  var monthPct=Math.min(100,Math.round(monthDone/Math.max(1,monthTarget)*100));
+  var monthCard=document.getElementById('paceThisMonth');
+  var monthDoneEl=document.getElementById('paceMonthDone');
+  var monthTgtEl=document.getElementById('paceMonthTarget');
+  var monthMsgEl=document.getElementById('paceMonthMsg');
+  var monthBarEl=document.getElementById('paceMonthBar');
+  if(monthDoneEl)monthDoneEl.textContent=monthDone;
+  if(monthTgtEl)monthTgtEl.textContent=monthTarget;
+  if(monthBarEl)monthBarEl.style.width=monthPct+'%';
+  var monthClass='neutral';var monthMsg='';
+  var ahead=monthDone-monthExpected;
+  if(ahead>=0){
+    monthMsg='✅ On track — '+ahead+' listing'+(ahead!==1?'s':'')+' ahead. '+Math.max(0,monthTarget-monthDone)+' more to hit monthly target.';
+    monthClass='on-track';
+  } else {
+    var deficit=Math.abs(ahead);
+    var catchUpPerDay=daysLeftMonth>0?Math.ceil((monthTarget-monthDone)/daysLeftMonth):0;
+    monthMsg='⚠️ '+deficit+' listing'+(deficit!==1?'s':'')+' behind pace. Need '+catchUpPerDay+'/day for rest of month.';
+    monthClass='behind';
+    if(monthBarEl)monthBarEl.style.background='var(--rust2)';
+  }
+  if(monthMsgEl)monthMsgEl.textContent=monthMsg;
+  if(monthCard)monthCard.className='pace-card '+monthClass;
+}
+
+// ════════════════════════════════════════════
+// SESSION MODE
+// ════════════════════════════════════════════
+var sessionInterval=null;
+
+function startSession(lid,sid){
+  if(!lid||!sid)return;
+  var l=listings.find(function(x){return x.id===lid;});
+  if(!l)return;
+  var stage=STAGES.find(function(s){return s.id===sid;});
+  if(!stage)return;
+  misc.sessionLid=lid;misc.sessionSid=sid;misc.sessionStart=Date.now();saveMisc();
+  var banner=document.getElementById('sessionBanner');
+  if(banner)banner.classList.add('active');
+  var nameEl=document.getElementById('sessionListingName');
+  if(nameEl)nameEl.textContent=l.edFlag+' '+l.ageLabel+' '+l.edName+' ('+l.format+')';
+  var stageEl=document.getElementById('sessionStageName');
+  var mins=l.format==='Instant DL'?stage.ti:stage.tc;
+  if(stageEl)stageEl.textContent='Stage: '+stage.name+' · Est. '+mins+'min';
+  // Start timer if not running
+  if(!misc.timerStartTs)timerStart();
+  if(sessionInterval)clearInterval(sessionInterval);
+  sessionInterval=setInterval(updateSessionElapsed,1000);
+  updateSessionElapsed();
+  showToast('▶ Session started: '+stage.name+' for '+l.ageLabel+' '+l.edName);
+}
+
+function updateSessionElapsed(){
+  if(!misc.sessionStart)return;
+  var sec=Math.floor((Date.now()-misc.sessionStart)/1000);
+  var m=Math.floor(sec/60),s=sec%60;
+  var el=document.getElementById('sessionElapsed');
+  if(el)el.textContent=m+':'+(s<10?'0':'')+s;
+}
+
+function sessionComplete(){
+  if(!misc.sessionLid||!misc.sessionSid)return;
+  var l=listings.find(function(x){return x.id===misc.sessionLid;});
+  if(!l){sessionAbort();return;}
+  var sid=misc.sessionSid;
+  // Mark the stage done
+  l.stages[sid]=true;
+  l.lastTouched=Date.now();
+  // Record actual time
+  if(!l.actualTimes)l.actualTimes={};
+  l.actualTimes[sid]=Math.round((Date.now()-misc.sessionStart)/60000);
+  saveListings();
+
+  // Check if listing is now fully live
+  var isNowLive=getStatus(l)==='completed';
+
+  // Record published count if stage was 'live'
+  if(sid==='live'){
+    recordPublishedToday(1);
+    celebrateLive(l);
+  }
+
+  var stage=STAGES.find(function(s){return s.id===sid;});
+  showToast('✓ '+(stage?stage.name:sid)+' done! '+(isNowLive?'🎉 Listing complete!':''));
+
+  // Find next stage for this listing
+  var nextStage=getNextStage(l);
+
+  // End session
+  clearInterval(sessionInterval);sessionInterval=null;
+  misc.sessionLid=null;misc.sessionSid=null;misc.sessionStart=0;saveMisc();
+  var banner=document.getElementById('sessionBanner');
+  if(banner)banner.classList.remove('active');
+
+  // Update all views
+  updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();
+  renderTodayTasks();renderScorecard();renderPaceCards();renderConsistencyMsg();
+
+  // Auto-offer next stage
+  if(nextStage&&!isNowLive){
+    setTimeout(function(){
+      var el=document.getElementById('todayTasks');
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    },300);
+  }
+}
+
+function sessionAbort(){
+  clearInterval(sessionInterval);sessionInterval=null;
+  misc.sessionLid=null;misc.sessionSid=null;misc.sessionStart=0;saveMisc();
+  var banner=document.getElementById('sessionBanner');
+  if(banner)banner.classList.remove('active');
+  showToast('Session cancelled.');
+}
+
+function restoreSession(){
+  if(misc.sessionLid&&misc.sessionSid&&misc.sessionStart){
+    var l=listings.find(function(x){return x.id===misc.sessionLid;});
+    if(l&&!l.stages[misc.sessionSid]){
+      var banner=document.getElementById('sessionBanner');
+      if(banner)banner.classList.add('active');
+      var nameEl=document.getElementById('sessionListingName');
+      if(nameEl)nameEl.textContent=l.edFlag+' '+l.ageLabel+' '+l.edName+' ('+l.format+')';
+      var stage=STAGES.find(function(s){return s.id===misc.sessionSid;});
+      var stageEl=document.getElementById('sessionStageName');
+      if(stageEl&&stage)stageEl.textContent='Stage: '+stage.name+' (resumed)';
+      if(sessionInterval)clearInterval(sessionInterval);
+      sessionInterval=setInterval(updateSessionElapsed,1000);
+      updateSessionElapsed();
+    } else {
+      misc.sessionLid=null;misc.sessionSid=null;misc.sessionStart=0;saveMisc();
+    }
+  }
+}
+
+// ════════════════════════════════════════════
+// CELEBRATION — when listing goes Live
+// ════════════════════════════════════════════
+function celebrateLive(l){
+  playAlarm('done');
+  // Show a big toast
+  var msg='🎉 LIVE! '+l.edFlag+' '+l.ageLabel+' '+l.edName+' is earning money forever.';
+  var t=document.getElementById('toastEl');
+  if(t){
+    t.textContent=msg;
+    t.style.background='var(--green3)';
+    t.style.color='var(--ink)';
+    t.style.fontFamily="'Bebas Neue',sans-serif";
+    t.style.fontSize='13px';
+    t.style.letterSpacing='1px';
+    t.classList.add('on');
+    setTimeout(function(){
+      t.classList.remove('on');
+      t.style.background='';t.style.color='';t.style.fontFamily='';t.style.fontSize='';t.style.letterSpacing='';
+    },4000);
+  }
+  renderScorecard();renderPaceCards();
+}
+
+// ════════════════════════════════════════════
+// WEEKLY WINS JOURNAL
+// ════════════════════════════════════════════
+var WINS_TYPE_META={
+  listing:{icon:'📦',label:'Listing',color:'var(--gold2)'},
+  milestone:{icon:'🏆',label:'Milestone',color:'var(--gold)'},
+  seo:{icon:'🔍',label:'SEO',color:'var(--teal)'},
+  social:{icon:'📱',label:'Social',color:'#e1306c'},
+  other:{icon:'✨',label:'Other',color:'var(--mid)'}
+};
+
+function renderWins(){
+  var el=document.getElementById('winsList');if(!el)return;
+  var log=misc.winsLog||[];
+  // Show last 8 entries, newest first
+  var recent=log.slice(-8).reverse();
+  if(!recent.length){
+    el.innerHTML='<div style="font-size:10px;color:var(--mid);padding:4px 0 6px;">No wins logged yet. Log your first win below! Every listing published counts.</div>';
+    return;
+  }
+  el.innerHTML=recent.map(function(w){
+    var meta=WINS_TYPE_META[w.type]||WINS_TYPE_META.other;
+    return '<div class="wins-entry">'
+      +'<div class="wins-date">'+w.date+'</div>'
+      +'<div class="wins-icon">'+meta.icon+'</div>'
+      +'<div class="wins-text">'+w.text+'</div>'
+      +'<div class="wins-tag" style="color:'+meta.color+';">'+meta.label+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function addWin(){
+  var inp=document.getElementById('winsInput');
+  var sel=document.getElementById('winsType');
+  if(!inp||!inp.value.trim())return;
+  if(!misc.winsLog)misc.winsLog=[];
+  misc.winsLog.push({date:todayStr(),type:(sel?sel.value:'other'),text:inp.value.trim()});
+  // Keep last 100 entries
+  if(misc.winsLog.length>100)misc.winsLog=misc.winsLog.slice(-100);
+  inp.value='';
+  saveMisc();renderWins();
+  showToast('✓ Win logged!');
+}
+
+// ════════════════════════════════════════════
+// REAL DATA SYNC (keep deadlines for backward compat)
+// ════════════════════════════════════════════
+function saveDeadlines(){
+  var eA=document.getElementById('deadlineA');
+  var eB=document.getElementById('deadlineB');
+  if(eA)misc.deadlineA=eA.value;
+  if(eB)misc.deadlineB=eB.value;
+  saveMisc();
+}
+function renderDeadlines(){}  // kept for backward compat — pace cards replace this visually
+
 // ════════════════════════════════════════════
 function syncRealDataInputs(){
   // Only populate the value if the field is currently empty — never overwrite what the user typed
@@ -4827,8 +5357,11 @@ function init(){
   checkStuckListings();
   renderTodayTasks();
   renderFocusChips();
-  renderEmailList();
   renderConsistencyMsg();
+  renderScorecard();
+  renderPaceCards();
+  renderWins();
+  restoreSession();
   populateFilters();
   renderLegend();
   // Initialise phase bar text for Phase 1 (default)
