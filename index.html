@@ -609,9 +609,199 @@ table.tbl         { font-size: 13px; }
 
 /* Toast */
 .toast { font-size: 12px; }
+
+/* ═══════════════════════════════════════════════════
+   MOBILE RESPONSIVE  ≤ 767px
+   ═══════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* ── Page ── */
+  .page { padding: 12px 12px 130px; }
+
+  /* ── Header ── */
+  .hdr {
+    height: auto;
+    min-height: 48px;
+    padding: 8px 12px;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+  /* Hide desktop nav, dividers, shop toggle, timer in header */
+  .hdr .nav,
+  .hdr .hdiv,
+  .hdr .shop-toggle,
+  #hdrTimer { display: none !important; }
+  /* Logo smaller */
+  .logo { font-size: 16px; }
+  .logo sub { font-size: 10px; }
+  /* Header buttons row - hide non-essential */
+  .hbtns .btn { font-size: 11px; padding: 4px 9px; }
+
+  /* ── Mobile bottom nav ── */
+  #mobileNav {
+    display: flex !important;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 300;
+    background: var(--ink2);
+    border-top: 2px solid var(--gold);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  #mobileNav::-webkit-scrollbar { display: none; }
+  .mnav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 7px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--mid);
+    flex-shrink: 0;
+    min-width: 54px;
+    transition: color .15s;
+  }
+  .mnav-btn.on { color: var(--gold); }
+  .mnav-icon { font-size: 18px; line-height: 1; }
+  .mnav-lbl  { font-family: 'Bebas Neue', sans-serif; font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+
+  /* ── Stats bottom bar - compact on mobile ── */
+  .bottom-bar {
+    display: none !important; /* replaced by mobile nav */
+  }
+
+  /* ── Mission strip ── */
+  .mission { flex-direction: column; gap: 10px; padding: 10px 12px; }
+  .m-stats  { gap: 10px; }
+  .m-goal   { font-size: 15px; }
+  .m-val    { font-size: 20px; }
+
+  /* ── Dashboard strip: 3 cols on mobile ── */
+  .dash { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .dn   { font-size: 26px; }
+
+  /* ── Deadline strip: stack ── */
+  .dstrip { grid-template-columns: 1fr; gap: 8px; }
+
+  /* ── Today 2-col → 1-col ── */
+  .today-grid { grid-template-columns: 1fr; gap: 10px; }
+
+  /* ── Timer display ── */
+  .timer-display { font-size: 44px; }
+
+  /* ── Gap grid: 1 col ── */
+  .gap-grid { grid-template-columns: 1fr; }
+
+  /* ── Pipeline filters: wrap tightly ── */
+  .filters { gap: 4px; }
+  .fsearch { width: 100%; }
+  .fsel    { flex: 1; min-width: 100px; }
+
+  /* ── Pipeline table: horizontal scroll ── */
+  .twrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.tbl { min-width: 620px; }
+
+  /* ── Projections: 2×2 ── */
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  .real-data-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── Money view stats: 2 col ── */
+  .mv-stats { grid-template-columns: repeat(2, 1fr); }
+
+  /* ── Ideas: full-width ── */
+  #ideaStats { grid-template-columns: repeat(3, 1fr); }
+
+  /* ── SEO: stack library on top, builders below ── */
+  #v-seo [style*="grid-template-columns:1fr 400px"] {
+    display: block !important;
+  }
+  #v-seo [style*="position:sticky"] {
+    position: static !important;
+    max-height: none !important;
+    margin-top: 14px;
+  }
+  #seoKwBoard {
+    max-height: 45vh !important;
+  }
+  /* SEO how-to: stack ── */
+  #v-seo [style*="grid-template-columns:repeat(3,1fr)"] {
+    display: block !important;
+  }
+  #v-seo [style*="grid-template-columns:repeat(3,1fr)"] > div {
+    margin-bottom: 6px;
+  }
+
+  /* ── Modals: full width ── */
+  .modal-box,
+  .modal-overlay .modal-box { width: 96vw !important; max-width: 96vw !important; padding: 16px 14px; }
+  .modal-box [style*="grid-template-columns:1fr 1fr"] { display: block !important; }
+  .modal-box [style*="grid-template-columns:1fr 1fr"] > div { margin-bottom: 6px; }
+  .modal-box [style*="grid-template-columns:span 2"],
+  .modal-box [style*="grid-column:span 2"] { grid-column: span 1 !important; }
+
+  /* ── Detail slide-panel: full width ── */
+  .dpanel { width: 100% !important; max-width: 100vw; }
+
+  /* ── Toolkit items: stack actions below ── */
+  .tk-item { flex-wrap: wrap; gap: 8px; }
+  .tk-actions { width: 100%; justify-content: flex-start; margin-top: 4px; }
+
+  /* ── Done/Perf modal: 3-col stays ok, keep ── */
+
+  /* ── Toast: wider ── */
+  .toast { width: 88vw; text-align: center; font-size: 12px; }
+
+  /* ── Sticky SEO right panel: un-sticky ── */
+  .seo-right-sticky { position: static !important; max-height: none !important; }
+}
+
+/* Tablet: 768–1023px — softer adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dash { grid-template-columns: repeat(3, 1fr); }
+  .today-grid { grid-template-columns: 1fr; gap: 14px; }
+  .dstrip { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: repeat(2, 1fr); }
+  .real-data-grid { grid-template-columns: repeat(2, 1fr); }
+  #v-seo [style*="grid-template-columns:1fr 400px"] { display: block !important; }
+  #v-seo [style*="position:sticky"] { position: static !important; max-height: none !important; margin-top: 14px; }
+  #seoKwBoard { max-height: 40vh !important; }
+  .page { padding: 16px 18px 72px; }
+}
+
+/* Hide mobile nav on desktop */
+#mobileNav { display: none; }
 </style>
 </head>
 <body>
+
+<!-- MOBILE BOTTOM NAV (shown only on mobile via CSS) -->
+<div id="mobileNav">
+  <button class="mnav-btn on" onclick="showView('today',this);mobileNavSelect(this)">
+    <span class="mnav-icon">⚡</span><span class="mnav-lbl">Today</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('money',this);mobileNavSelect(this)">
+    <span class="mnav-icon">💰</span><span class="mnav-lbl">Money</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('pipeline',this);mobileNavSelect(this)">
+    <span class="mnav-icon">📋</span><span class="mnav-lbl">Pipeline</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('projections',this);mobileNavSelect(this)">
+    <span class="mnav-icon">📈</span><span class="mnav-lbl">Projections</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('ideas',this);mobileNavSelect(this)">
+    <span class="mnav-icon">💡</span><span class="mnav-lbl">Ideas</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('toolkit',this);mobileNavSelect(this)">
+    <span class="mnav-icon">🧰</span><span class="mnav-lbl">Toolkit</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('seo',this);mobileNavSelect(this)">
+    <span class="mnav-icon">🔍</span><span class="mnav-lbl">SEO</span>
+  </button>
+</div>
 
 <!-- HEADER -->
 <div class="hdr">
@@ -3696,14 +3886,25 @@ function logFullRest(){
 // ════════════════════════════════════════════
 var VIEWS=['today','money','pipeline','projections','ideas','toolkit','seo'];
 
+function mobileNavSelect(btn){
+  document.querySelectorAll('#mobileNav .mnav-btn').forEach(function(b){b.classList.remove('on');});
+  if(btn&&btn.classList.contains('mnav-btn'))btn.classList.add('on');
+}
+
 function showView(name,tabEl){
   curView=name;
   VIEWS.forEach(function(v){
     var el=document.getElementById('v-'+v);
     if(el)el.style.display=v===name?'':'none';
   });
+  // Sync desktop tabs
   document.querySelectorAll('.ntab').forEach(function(t){t.classList.remove('on');});
-  if(tabEl)tabEl.classList.add('on');
+  if(tabEl&&tabEl.classList.contains('ntab'))tabEl.classList.add('on');
+  // Sync mobile nav
+  document.querySelectorAll('#mobileNav .mnav-btn').forEach(function(b){
+    var match=b.getAttribute('onclick')||'';
+    b.classList.toggle('on', match.indexOf("'"+name+"'")!==-1);
+  });
 
   if(name==='money')mvApply();
   if(name==='pipeline'){renderLegend();applyFilters();}
