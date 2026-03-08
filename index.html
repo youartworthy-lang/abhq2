@@ -113,15 +113,57 @@ body{background:var(--ink);color:var(--cream);font-family:'Plus Jakarta Sans',sa
 .fsz-btn.on{border-color:var(--gold);color:var(--gold);background:rgba(201,151,58,.12);}
 
 /* ─── HEADER ─── */
-.hdr{background:var(--ink2);border-bottom:3px solid var(--gold);padding:0 14px;position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:8px;height:48px;}
-.logo{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;color:var(--cream);white-space:nowrap;flex-shrink:0;}
+/* ── ROW 1: Nav tab strip — sits at the very top ── */
+.hdr-nav{
+  background:var(--ink);
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:201;
+  display:flex;
+  align-items:stretch;
+  overflow-x:auto;
+  overflow-y:hidden;
+}
+.hdr-nav::-webkit-scrollbar{height:0;}
+.hdr-nav .nav{display:flex;gap:0;flex:1;overflow-x:auto;}
+.hdr-nav .nav::-webkit-scrollbar{height:0;}
+
+.ntab{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:0.5px;
+  padding:10px 16px;
+  border:none;
+  border-bottom:3px solid transparent;
+  cursor:pointer;
+  color:var(--mid);
+  background:none;
+  transition:all .15s;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.ntab:hover{color:var(--cream);border-bottom-color:rgba(201,151,58,0.4);}
+.ntab.on{color:var(--gold);border-bottom-color:var(--gold);background:rgba(201,151,58,0.06);}
+
+/* ── ROW 2: Toolbar — logo, shop, controls ── */
+.hdr{
+  background:var(--ink2);
+  border-bottom:2px solid rgba(201,151,58,0.25);
+  padding:0 14px;
+  position:sticky;
+  top:37px;          /* sits just below the nav strip */
+  z-index:200;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  height:42px;
+}
+.logo{font-family:'DM Serif Display',serif;font-size:19px;font-weight:400;color:var(--cream);white-space:nowrap;flex-shrink:0;}
 .logo span{color:var(--gold);}
-.logo sub{font-size:10px;color:var(--mid);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;vertical-align:middle;}
-.hdiv{width:1px;height:24px;background:var(--border);flex-shrink:0;}
-.nav{display:flex;gap:1px;flex:1;overflow-x:auto;}
-.ntab{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;letter-spacing:2px;padding:6px 13px;border:1px solid transparent;cursor:pointer;color:var(--mid);background:none;transition:all .15s;white-space:nowrap;flex-shrink:0;}
-.ntab:hover{color:var(--gold2);border-color:var(--border);}
-.ntab.on{color:var(--gold);border-color:var(--gold);background:rgba(201,151,58,0.08);}
+.logo sub{font-size:9px;color:var(--mid);font-family:'IBM Plex Mono',monospace;letter-spacing:1px;vertical-align:middle;}
+.hdiv{width:1px;height:20px;background:var(--border);flex-shrink:0;}
 .hbtns{display:flex;gap:5px;margin-left:auto;flex-shrink:0;align-items:center;}
 
 /* Shop filter in header */
@@ -166,13 +208,6 @@ body{background:var(--ink);color:var(--cream);font-family:'Plus Jakarta Sans',sa
 .ft-pct{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--mid);}
 
 /* ─── MISSION STRIP ─── */
-.mission{background:linear-gradient(135deg,rgba(201,151,58,.1),rgba(45,122,80,.06));border:1px solid var(--gold);padding:10px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.m-goal{font-family:'DM Serif Display',serif;font-size:16px;font-weight:900;color:var(--cream);}
-.m-goal span{color:var(--gold);}
-.m-stats{display:flex;gap:14px;flex-wrap:wrap;}
-.m-stat{text-align:center;}
-.m-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;line-height:1;display:block;}
-.m-lbl{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);}
 
 /* ─── DASHBOARD STRIP ─── */
 .dash{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:14px;}
@@ -532,7 +567,19 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0 2px;font-size:12p
 .ds-actual.fast{background:rgba(45,122,80,0.3);color:var(--green3);}
 .ds-actual.ok{background:rgba(201,151,58,0.2);color:var(--gold2);}
 .ds-actual.slow{background:rgba(168,72,32,0.3);color:#ffb09a;}
-.ds-start{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;letter-spacing:1px;padding:2px 6px;border:1px solid var(--green3);color:var(--green3);background:none;cursor:pointer;}
+.ds-start{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:9px;
+  padding:2px 7px;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  background:none;
+  cursor:pointer;
+  transition:all .12s;
+  border-radius:2px;
+  letter-spacing:0.5px;
+}
+.ds-start:hover{background:var(--gold);color:var(--ink);}
 .ds-start:hover{background:var(--green3);color:var(--ink);}
 .dstoggle{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;letter-spacing:2px;padding:2px 6px;border:1px solid;cursor:pointer;background:none;}
 .t-todo{border-color:var(--gold);color:var(--gold);}
@@ -649,10 +696,20 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0 2px;font-size:12p
 .field-ta{width:100%;background:var(--ink3);border:1px solid var(--border);color:var(--cream);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;padding:8px 10px;outline:none;resize:vertical;line-height:1.6;box-sizing:border-box;min-height:60px;margin-bottom:10px;}
 .modal-acts{display:flex;gap:7px;justify-content:flex-end;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
 
-/* TASK TIMER MODAL */
-.tt-display{font-family:'Plus Jakarta Sans',sans-serif;font-size:62px;line-height:1;color:var(--gold2);text-align:center;letter-spacing:4px;margin:6px 0;}
+/* TASK TASK STAGE COUNTDOWN TIMER */
+.tt-display{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:36px;
+  line-height:1;
+  color:var(--gold2);
+  text-align:center;
+  letter-spacing:2px;
+  margin:0;
+}
 .tt-display.over{color:var(--rust2);}
-.tt-est{text-align:center;font-size:10px;color:var(--mid);margin-bottom:10px;}
+.tt-est{text-align:center;font-size:calc(10px * var(--fs));color:var(--mid);margin-bottom:4px;}
+@keyframes ttPulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+.tt-overtime-pulse{animation:ttPulse 1s infinite;}
 .tt-eff{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;letter-spacing:2px;padding:6px 14px;text-align:center;margin:6px 0;display:none;}
 .tt-eff.fast{background:rgba(45,122,80,0.25);color:var(--green3);}
 .tt-eff.ok{background:rgba(201,151,58,0.2);color:var(--gold2);}
@@ -755,9 +812,6 @@ body { font-size: 14px; }
 .modal-sub      { font-size: 12px; }
 
 /* Mission strip */
-.m-goal { font-size: 18px; }
-.m-val  { font-size: 24px; }
-.m-lbl  { font-size: 11px; }
 
 /* Dashboard numbers */
 .dn { font-size: 36px; }
@@ -894,24 +948,21 @@ table.tbl         { font-size: 13px; }
   /* ── Page ── */
   .page { padding: 12px 12px 130px; }
 
-  /* ── Header ── */
+  /* ── Header (two-row) ── */
+  .hdr-nav { position: sticky; top: 0; }
   .hdr {
     height: auto;
-    min-height: 48px;
-    padding: 8px 12px;
-    flex-wrap: nowrap;
+    min-height: 40px;
+    padding: 6px 10px;
+    top: 33px; /* below compact nav strip */
     gap: 6px;
   }
-  /* Hide desktop nav, dividers, shop toggle, timer in header */
-  .hdr .nav,
-  .hdr .hdiv,
-  .hdr .shop-toggle,
   #hdrTimer { display: none !important; }
-  /* Logo smaller */
-  .logo { font-size: 16px; }
-  .logo sub { font-size: 10px; }
-  /* Header buttons row - hide non-essential */
+  .logo { font-size: 15px; }
+  .logo sub { font-size: 9px; }
   .hbtns .btn { font-size: 11px; padding: 4px 9px; }
+  /* Nav tabs: compact on mobile */
+  .ntab { padding: 8px 12px; font-size: 10px; }
 
   /* ── Mobile bottom nav ── */
   #mobileNav {
@@ -960,11 +1011,7 @@ table.tbl         { font-size: 13px; }
   }
 
   /* ── Mission strip ── */
-  .mission { flex-direction: column; gap: 10px; padding: 10px 12px; }
-  .m-stats  { gap: 10px; }
-  .m-goal   { font-size: 15px; }
-  .m-val    { font-size: 20px; }
-
+        
   /* ── Dashboard strip: 3 cols on mobile ── */
   .dash { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .dn   { font-size: 26px; }
@@ -1163,9 +1210,8 @@ table.tbl         { font-size: 13px; }
 </div>
 
 <!-- HEADER -->
-<div class="hdr">
-  <div class="logo">Amir's Birthday <span>HQ</span> <sub>v5</sub></div>
-  <div class="hdiv"></div>
+<!-- ══ ROW 1: NAV TABS — always at the very top ══ -->
+<div class="hdr-nav">
   <nav class="nav">
     <button class="ntab on" onclick="showView('today',this)">⚡ Today</button>
     <button class="ntab" onclick="showView('money',this)">💰 Money View</button>
@@ -1176,11 +1222,16 @@ table.tbl         { font-size: 13px; }
     <button class="ntab" onclick="showView('seo',this)">🔍 SEO</button>
     <button class="ntab" onclick="showView('automation',this)">⚙️ Automate</button>
   </nav>
+</div>
+
+<!-- ══ ROW 2: TOOLBAR — logo, shop, font size, session timer ══ -->
+<div class="hdr">
+  <div class="logo">Amir's Birthday <span>HQ</span> <sub>v5</sub></div>
   <div class="hdiv"></div>
   <div class="shop-toggle">
     <button class="stog sab on" onclick="setGlobalShop('both',this)">Both</button>
     <button class="stog sa" onclick="setGlobalShop('a',this)">A·YouArtWorthy</button>
-    <button class="stog sb" onclick="setGlobalShop('b',this)">B·Black Brand</button>
+    <button class="stog sb" onclick="setGlobalShop('b',this)">B·HomeGriot</button>
   </div>
   <!-- FONT SIZE CONTROL -->
   <div class="hdiv"></div>
@@ -1190,7 +1241,7 @@ table.tbl         { font-size: 13px; }
     <button class="fsz-btn" id="fszL" onclick="setFontScale(1.15)" title="Large" style="font-size:17px;">A</button>
     <button class="fsz-btn" id="fszXL" onclick="setFontScale(1.3)" title="Extra large" style="font-size:19px;">A</button>
   </div>
-  <!-- TIMER in top-right -->
+  <!-- SESSION TIMER -->
   <div class="hdiv"></div>
   <div id="hdrTimer" onclick="showView('today',document.querySelector('.ntab'))" style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:2px 8px;border:1px solid var(--gold);background:rgba(201,151,58,.06);" title="Click to go to Today">
     <span style="font-size:11px;">⏱</span>
@@ -1371,36 +1422,7 @@ table.tbl         { font-size: 13px; }
       <button class="session-abort-btn" onclick="sessionAbort()">✕ Cancel</button>
     </div>
 
-    <!-- MISSION STRIP -->
-    <div class="mission">
-      <div>
-        <div style="font-size:9px;letter-spacing:3px;font-family:Plus Jakarta Sans,sans-serif;color:var(--gold);margin-bottom:3px;">YOUR MISSION</div>
-        <div class="m-goal"><span id="missionGoalText">$30,000</span>/month · <span id="missionDeadlineText" style="color:var(--teal);">298-DAY SPRINT</span></div>
-        <div style="font-size:10px;color:var(--mid);margin-top:2px;" id="missionNote">Loading…</div>
-      </div>
-      <div class="m-stats">
-        <div class="m-stat">
-          <span class="m-val" id="mLiveCount" style="color:var(--green3);">—</span>
-          <span class="m-lbl">Live Listings</span>
-        </div>
-        <div class="m-stat">
-          <span class="m-val" id="mNeeded" style="color:var(--rust2);">—</span>
-          <span class="m-lbl">More Needed</span>
-        </div>
-        <div class="m-stat">
-          <span class="m-val" id="mDaysLeft" style="color:var(--gold2);">—</span>
-          <span class="m-lbl">Days Left 2026</span>
-        </div>
-        <div class="m-stat">
-          <span class="m-val" id="mPerDay" style="color:var(--teal);">—</span>
-          <span class="m-lbl">Listings/Day Needed</span>
-        </div>
-        <div class="m-stat">
-          <span class="m-val" id="mCurRevenue" style="color:var(--gold);">—</span>
-          <span class="m-lbl">Est. Monthly Revenue</span>
-        </div>
-      </div>
-    </div>
+    
 
     <!-- STUCK LISTINGS ALERT -->
     <div id="stuckAlert" style="display:none;" class="alert-card" style="margin-bottom:10px;">
@@ -1479,7 +1501,57 @@ table.tbl         { font-size: 13px; }
           <div class="focus-chips" id="focusChips"></div>
         </div>
 
-        <div class="today-tasks-lbl">📌 Do These Next — Highest ROI First <span style="font-size:9px;color:var(--mid);font-family:IBM Plex Mono,monospace;">(click ▶ Time to start a session)</span></div>
+        <!-- ══ ACTIVE STAGE TIMER — shows when a stage countdown is running ══ -->
+        <div id="todayActiveTimer" style="display:none;margin-bottom:12px;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:2.5px;color:var(--gold);margin-bottom:8px;">⏳ STAGE IN PROGRESS</div>
+          <div style="background:var(--ink2);border:2px solid var(--gold);padding:14px 16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+
+            <!-- Mini countdown ring -->
+            <div style="position:relative;width:72px;height:72px;flex-shrink:0;">
+              <svg viewBox="0 0 72 72" width="72" height="72" style="transform:rotate(-90deg);">
+                <circle cx="36" cy="36" r="30" fill="none" stroke="var(--ink3)" stroke-width="6"/>
+                <circle id="tatRingArc" cx="36" cy="36" r="30" fill="none"
+                  stroke="var(--gold)" stroke-width="6"
+                  stroke-dasharray="188.5" stroke-dashoffset="0"
+                  stroke-linecap="round" style="transition:stroke .5s,stroke-dashoffset .9s linear;"/>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                <div id="tatTime" style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--gold2);line-height:1;letter-spacing:1px;">00:00</div>
+                <div id="tatMode" style="font-size:7px;letter-spacing:1px;color:var(--mid);margin-top:2px;">LEFT</div>
+              </div>
+            </div>
+
+            <!-- Stage info -->
+            <div style="flex:1;min-width:120px;">
+              <div id="tatListingName" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:var(--cream);margin-bottom:3px;">—</div>
+              <div id="tatStageName" style="font-size:10px;color:var(--gold2);margin-bottom:6px;">—</div>
+              <!-- Progress bar -->
+              <div style="height:4px;background:var(--ink3);border-radius:2px;overflow:hidden;margin-bottom:5px;">
+                <div id="tatBar" style="height:100%;background:var(--gold);border-radius:2px;width:100%;transition:width .9s linear;"></div>
+              </div>
+              <div id="tatOvertime" style="font-size:9px;color:var(--rust2);font-weight:700;min-height:14px;letter-spacing:1px;"></div>
+            </div>
+
+            <!-- Quick actions -->
+            <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+              <button onclick="document.getElementById('taskTimerModal').classList.add('on')"
+                style="font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:600;letter-spacing:1px;padding:5px 12px;border:1px solid var(--gold);color:var(--gold);background:none;cursor:pointer;transition:all .12s;"
+                onmouseover="this.style.background='var(--gold)';this.style.color='var(--ink)'"
+                onmouseout="this.style.background='none';this.style.color='var(--gold)'">
+                ⏱ View Timer
+              </button>
+              <button onclick="ttDone();updateTodayActiveTimer()"
+                style="font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:600;letter-spacing:1px;padding:5px 12px;border:1px solid var(--green3);color:var(--green3);background:none;cursor:pointer;transition:all .12s;"
+                onmouseover="this.style.background='var(--green3)';this.style.color='var(--ink)'"
+                onmouseout="this.style.background='none';this.style.color='var(--green3)'">
+                ✓ Stage Done
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="today-tasks-lbl">📌 Do These Next — Highest ROI First <span style="font-size:9px;color:var(--mid);font-family:IBM Plex Mono,monospace;">(click ⏱ on a stage to start countdown)</span></div>
         <div id="todayTasks"></div>
       </div>
 
@@ -1822,7 +1894,7 @@ table.tbl         { font-size: 13px; }
       <span style="font-size:9px;color:var(--mid);white-space:nowrap;">SHOP:</span>
       <button class="proj-scope-btn on" id="pscBoth" onclick="setProjScope('shop','both',this)">Both Shops</button>
       <button class="proj-scope-btn" id="pscA" onclick="setProjScope('shop','a',this)">A · YouArtWorthy</button>
-      <button class="proj-scope-btn" id="pscB" onclick="setProjScope('shop','b',this)">B · Black Brand</button>
+      <button class="proj-scope-btn" id="pscB" onclick="setProjScope('shop','b',this)">B · HomeGriot</button>
     </div>
     <div style="width:1px;height:18px;background:var(--border);flex-shrink:0;"></div>
     <!-- Category filter -->
@@ -2384,18 +2456,43 @@ table.tbl         { font-size: 13px; }
 
 <!-- TASK TIMER MODAL -->
 <div class="modal-overlay" id="taskTimerModal">
-  <div class="modal-box" style="max-width:400px;">
+  <div class="modal-box" style="max-width:380px;text-align:center;">
     <button class="modal-close" onclick="closeTaskTimer()">✕</button>
-    <div class="modal-h" id="ttTitle">Stage Timer</div>
-    <div class="modal-sub" id="ttSubtitle"></div>
-    <div class="tt-display" id="ttDisplay">00:00</div>
-    <div class="tt-est" id="ttEst"></div>
-    <div class="tt-eff" id="ttEff"></div>
-    <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:8px;">
+
+    <!-- Stage name & listing -->
+    <div class="modal-h" id="ttTitle" style="margin-bottom:2px;">Stage Timer</div>
+    <div class="modal-sub" id="ttSubtitle" style="margin-bottom:14px;"></div>
+
+    <!-- COUNTDOWN RING (visual) -->
+    <div id="ttRingWrap" style="position:relative;width:130px;height:130px;margin:0 auto 10px;">
+      <svg viewBox="0 0 120 120" width="130" height="130" style="transform:rotate(-90deg);">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="var(--ink3)" stroke-width="8"/>
+        <circle id="ttRingArc" cx="60" cy="60" r="52" fill="none"
+          stroke="var(--gold)" stroke-width="8"
+          stroke-dasharray="326.7" stroke-dashoffset="0"
+          stroke-linecap="round" style="transition:stroke .5s,stroke-dashoffset .9s linear;"/>
+      </svg>
+      <!-- Countdown number inside ring -->
+      <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <div class="tt-display" id="ttDisplay" style="font-size:36px;margin:0;letter-spacing:2px;">00:00</div>
+        <div id="ttMode" style="font-size:9px;letter-spacing:2px;color:var(--mid);margin-top:2px;">COUNTDOWN</div>
+      </div>
+    </div>
+
+    <!-- Estimated & overtime label -->
+    <div class="tt-est" id="ttEst" style="margin-bottom:4px;"></div>
+    <div id="ttOvertime" style="font-size:10px;color:var(--rust2);font-weight:600;letter-spacing:1px;min-height:16px;"></div>
+
+    <!-- Controls -->
+    <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
       <button class="tbtn tbtn-start" id="ttStart" onclick="ttToggle()">▶ Start</button>
-      <button class="btn btn-green" onclick="ttDone()">✓ Mark Stage Done</button>
+      <button class="tbtn tbtn-reset" onclick="ttReset()">↺ Reset</button>
+      <button class="btn btn-green" onclick="ttDone()">✓ Done</button>
       <button class="btn btn-mid" onclick="closeTaskTimer()">Skip</button>
     </div>
+
+    <!-- Efficiency result (shown after Done) -->
+    <div class="tt-eff" id="ttEff" style="margin-top:12px;display:none;"></div>
   </div>
 </div>
 
@@ -2668,7 +2765,7 @@ var EDITIONS = [
   {id:'a_jam_blk', name:'Jamaica',           flag:'🇯🇲', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
   {id:'a_tri_blk', name:'Trinidad & T.',     flag:'🇹🇹', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
   {id:'a_bar_blk', name:'Barbados',          flag:'🇧🇧', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
-  // ── SHOP B: Black Brand ───────────────────────────────────────────
+  // ── SHOP B: HomeGriot ─────────────────────────────────────────────
   // Black Community — Global (Instant DL only)
   {id:'b_glb_blk', name:'Global Black',      flag:'🌍',  shop:'b', cat:'black',   fmts:['Instant DL']},
   // Black Community — country editions — both formats
@@ -2805,7 +2902,143 @@ var misc = {
 };
 
 var timerInterval = null;
-var TT = {active:false, lid:null, sid:null, sec:0, estMin:0, iv:null};
+// ════════════════════════════════════════════
+// STAGE COUNTDOWN TIMER — separate from main session timer
+// Counts DOWN from estimated minutes to 0, then shows overtime
+// ════════════════════════════════════════════
+var TT = {
+  active:  false,   // is countdown running?
+  lid:     null,    // listing id
+  sid:     null,    // stage id
+  secLeft: 0,       // seconds remaining (counts down)
+  secOver: 0,       // seconds over estimate (counts up past 0)
+  estSec:  0,       // total estimated seconds (e.g. 20min = 1200)
+  iv:      null     // interval handle
+};
+
+// Circumference of SVG ring (r=52, C = 2π×52 ≈ 326.7)
+var TT_CIRC = 2 * Math.PI * 52;
+
+function ttUpdateDisplay(){
+  var displayEl = document.getElementById('ttDisplay');
+  var arcEl     = document.getElementById('ttRingArc');
+  var modeEl    = document.getElementById('ttMode');
+  var overtEl   = document.getElementById('ttOvertime');
+  if(!displayEl) return;
+
+  if(TT.secLeft > 0){
+    // Normal countdown
+    var m = Math.floor(TT.secLeft / 60);
+    var s = TT.secLeft % 60;
+    displayEl.textContent = pad(m,2) + ':' + pad(s,2);
+    displayEl.style.color = TT.secLeft <= 30 ? 'var(--gold2)' : 'var(--gold2)';
+    if(modeEl) modeEl.textContent = 'COUNTDOWN';
+    if(overtEl) overtEl.textContent = '';
+    // Ring arc: full = 0 offset, empty = full offset
+    if(arcEl){
+      var frac = TT.secLeft / TT.estSec;
+      var offset = TT_CIRC * (1 - frac);
+      arcEl.style.strokeDashoffset = offset.toFixed(1);
+      arcEl.style.stroke = frac > 0.3 ? 'var(--gold)' : frac > 0.1 ? 'var(--gold2)' : 'var(--rust2)';
+    }
+  } else {
+    // Overtime — ring pulses red, shows + time
+    var m = Math.floor(TT.secOver / 60);
+    var s = TT.secOver % 60;
+    displayEl.textContent = '00:00';
+    displayEl.style.color = 'var(--rust2)';
+    if(modeEl) modeEl.textContent = "TIME'S UP";
+    if(overtEl) overtEl.textContent = '+' + pad(m,2) + ':' + pad(s,2) + ' over';
+    if(arcEl){
+      arcEl.style.strokeDashoffset = TT_CIRC.toFixed(1); // ring empty
+      arcEl.style.stroke = 'var(--rust2)';
+    }
+  }
+
+  updateTodayActiveTimer();
+}
+// ════════════════════════════════════════════
+// TODAY ACTIVE TIMER WIDGET — syncs with TT
+// Shows the running stage countdown on Today page
+// ════════════════════════════════════════════
+var TAT_CIRC = 2 * Math.PI * 30;  // r=30 mini ring
+
+function updateTodayActiveTimer(){
+  var wrap  = document.getElementById('todayActiveTimer');
+  if(!wrap) return;
+
+  // Hide if no active stage timer
+  if(!TT.lid || !TT.sid || (!TT.active && TT.secLeft === TT.estSec && TT.secOver === 0)){
+    wrap.style.display = 'none';
+    return;
+  }
+
+  // Show the widget
+  wrap.style.display = 'block';
+
+  // Listing + stage labels
+  var l = listings.find(function(x){ return x.id === TT.lid; });
+  var s = STAGES.find(function(x){ return x.id === TT.sid; });
+  var nameEl  = document.getElementById('tatListingName');
+  var stageEl = document.getElementById('tatStageName');
+  if(nameEl && l)  nameEl.textContent  = l.edFlag + ' ' + l.ageLabel + ' ' + l.edName + ' · ' + l.format;
+  if(stageEl && s) stageEl.textContent = s.name + '  ·  Est. ' + (TT.estSec/60|0) + ' min';
+
+  // Time display
+  var timeEl  = document.getElementById('tatTime');
+  var modeEl  = document.getElementById('tatMode');
+  var barEl   = document.getElementById('tatBar');
+  var arcEl   = document.getElementById('tatRingArc');
+  var overEl  = document.getElementById('tatOvertime');
+
+  if(TT.secLeft > 0){
+    var m = TT.secLeft / 60 | 0;
+    var sec = TT.secLeft % 60;
+    if(timeEl)  timeEl.textContent  = pad(m,2) + ':' + pad(sec,2);
+    if(modeEl)  modeEl.textContent  = 'LEFT';
+    if(overEl)  overEl.textContent  = '';
+    if(timeEl)  timeEl.style.color  = TT.secLeft <= 30 ? 'var(--rust2)' : 'var(--gold2)';
+    if(modeEl)  modeEl.style.color  = TT.secLeft <= 30 ? 'var(--rust2)' : 'var(--mid)';
+    // Progress bar & ring (full at start → empty at 0)
+    var frac = TT.estSec > 0 ? TT.secLeft / TT.estSec : 1;
+    if(barEl) barEl.style.width = (frac * 100).toFixed(1) + '%';
+    if(barEl) barEl.style.background = frac > 0.3 ? 'var(--gold)' : frac > 0.1 ? 'var(--gold2)' : 'var(--rust2)';
+    if(arcEl){
+      arcEl.style.strokeDashoffset = (TAT_CIRC * (1 - frac)).toFixed(1);
+      arcEl.style.stroke = frac > 0.3 ? 'var(--gold)' : frac > 0.1 ? 'var(--gold2)' : 'var(--rust2)';
+    }
+  } else {
+    // Overtime
+    var om = TT.secOver / 60 | 0;
+    var os = TT.secOver % 60;
+    if(timeEl)  timeEl.textContent  = '00:00';
+    if(modeEl)  modeEl.textContent  = 'UP!';
+    if(overEl)  overEl.textContent  = '+' + pad(om,2) + ':' + pad(os,2) + ' over';
+    if(timeEl)  timeEl.style.color  = 'var(--rust2)';
+    if(modeEl)  modeEl.style.color  = 'var(--rust2)';
+    if(barEl){ barEl.style.width = '0%'; barEl.style.background = 'var(--rust2)'; }
+    if(arcEl){ arcEl.style.strokeDashoffset = TAT_CIRC.toFixed(1); arcEl.style.stroke = 'var(--rust2)'; }
+  }
+}
+
+
+
+
+
+
+function ttReset(){
+  clearInterval(TT.iv);
+  TT.active  = false;
+  TT.secLeft = TT.estSec;
+  TT.secOver = 0;
+  var startBtn = document.getElementById('ttStart');
+  if(startBtn){ startBtn.textContent = '▶ Start'; startBtn.className = 'tbtn tbtn-start'; }
+  ttUpdateDisplay();
+}
+
+
+
+
 
 // ════════════════════════════════════════════
 // GENERATE LISTINGS
@@ -3078,28 +3311,7 @@ function renderSprintPanel(){
   }
 }
 
-function updateMissionStrip(){
-  var m=calcRealMetrics();
-  var lc=document.getElementById('mLiveCount');
-  var nn=document.getElementById('mNeeded');
-  var dl=document.getElementById('mDaysLeft');
-  var pd=document.getElementById('mPerDay');
-  var cr=document.getElementById('mCurRevenue');
-  var mn=document.getElementById('missionNote');
-  if(lc)lc.textContent=m.live;
-  if(nn)nn.textContent=m.moreFor5k+'→'+m.moreNeeded;
-  if(dl)dl.textContent=m.daysLeftSprint+'d sprint';
-  if(pd)pd.textContent=m.perDaySprint+'/day';
-  if(cr)cr.textContent='$'+Math.round(m.revenue).toLocaleString();
-  if(mn){
-    if(m.revPerListing>0){
-      mn.textContent='$'+m.revPerListing.toFixed(2)+'/listing/mo · Need '+m.listingsNeeded.toLocaleString()+' listings for $30K · '+m.perDaySprint+'/day for 298 days · 3 design variations = the multiplier.';
-    } else {
-      mn.textContent='Enter your real Etsy revenue above to see your exact roadmap.';
-    }
-  }
-  renderSprintPanel();
-}
+function updateMissionStrip(){ renderSprintPanel(); }
 
 function daysUntilGoal(){
   var now=new Date();now.setHours(0,0,0,0);
@@ -3901,7 +4113,7 @@ function renderDetailStages(l){
       +'<span class="dsname'+(done?' done':'')+'">'+s.name+'</span>'
       +'<span class="dstime">~'+est+'m</span>'
       +(act?'<span class="ds-actual '+actCls+'">'+act+'m</span>':done?'':
-        '<button class="ds-start" onclick="startSession(\''+l.id+'\',\''+s.id+'\')">▶ Time</button>')
+        '<button class="ds-start" onclick="openTaskTimer(\''+l.id+'\',\''+s.id+'\')" title="Start countdown timer for this stage">⏱ '+est+'m</button>')
       +'<button class="dstoggle '+(done?'t-done':'t-todo')+'" onclick="toggleStageBtn(\''+l.id+'\',\''+s.id+'\',this)">'+(done?'Undo':'Done')+'</button>'
       +'</div>';
   }).join('');
@@ -3933,70 +4145,115 @@ function closeDetailClick(e){if(e.target===document.getElementById('ov'))closeDe
 // ════════════════════════════════════════════
 // TASK TIMER
 // ════════════════════════════════════════════
-function openTaskTimer(lid,sid){
-  var l=listings.find(function(x){return x.id===lid;});if(!l)return;
-  var s=STAGES.find(function(x){return x.id===sid;});if(!s)return;
-  TT.active=false;TT.lid=lid;TT.sid=sid;TT.sec=0;
-  TT.estMin=getStageTime(s,l.format);
-  clearInterval(TT.iv);
-  document.getElementById('ttTitle').textContent=s.name;
-  document.getElementById('ttSubtitle').textContent=l.edFlag+' '+l.ageLabel+' '+l.edName;
-  document.getElementById('ttDisplay').textContent='00:00';
-  document.getElementById('ttDisplay').className='tt-display';
-  document.getElementById('ttEst').textContent='Estimated: '+TT.estMin+' min';
-  document.getElementById('ttEff').style.display='none';
-  document.getElementById('ttStart').textContent='▶ Start';
+function openTaskTimer(lid, sid){
+  var l = listings.find(function(x){ return x.id === lid; });
+  if(!l) return;
+  var s = STAGES.find(function(x){ return x.id === sid; });
+  if(!s) return;
+
+  // If timer already running for a DIFFERENT stage, stop it first
+  if(TT.active) clearInterval(TT.iv);
+
+  TT.lid    = lid;
+  TT.sid    = sid;
+  var mins  = getStageTime(s, l.format);
+  TT.estSec = mins * 60;
+  TT.secLeft = TT.estSec;
+  TT.secOver = 0;
+  TT.active  = false;
+  TT.iv      = null;
+
+  // Reset modal UI
+  var startBtn = document.getElementById('ttStart');
+  if(startBtn){ startBtn.textContent = '▶ Start'; startBtn.className = 'tbtn tbtn-start'; startBtn.style.display = ''; }
+  document.getElementById('ttTitle').textContent    = s.name;
+  document.getElementById('ttSubtitle').textContent = l.edFlag + ' ' + l.ageLabel + ' ' + l.edName + ' · ' + l.format;
+  document.getElementById('ttEst').textContent      = 'Estimated: ' + mins + ' min';
+  var effEl = document.getElementById('ttEff');
+  if(effEl){ effEl.style.display = 'none'; effEl.textContent = ''; }
+  var arcEl = document.getElementById('ttRingArc');
+  if(arcEl){ arcEl.style.strokeDashoffset = '0'; arcEl.style.stroke = 'var(--gold)'; }
+
+  ttUpdateDisplay();
   document.getElementById('taskTimerModal').classList.add('on');
+  updateTodayActiveTimer();
 }
 
 function ttToggle(){
   if(!TT.active){
-    TT.active=true;
-    document.getElementById('ttStart').textContent='⏸ Pause';
-    TT.iv=setInterval(function(){
-      TT.sec++;
-      var m=Math.floor(TT.sec/60),s=TT.sec%60;
-      var disp=document.getElementById('ttDisplay');
-      if(disp){
-        disp.textContent=pad(m,2)+':'+pad(s,2);
-        disp.className='tt-display'+(TT.sec>TT.estMin*60?' over':'');
+    TT.active = true;
+    var startBtn = document.getElementById('ttStart');
+    if(startBtn){ startBtn.textContent = '⏸ Pause'; startBtn.className = 'tbtn tbtn-pause'; }
+    TT.iv = setInterval(function(){
+      if(TT.secLeft > 0){
+        TT.secLeft--;
+      } else {
+        TT.secOver++;
+        if(TT.secOver === 1){
+          var old = document.title;
+          document.title = '⏰ TIME UP — ' + old;
+          setTimeout(function(){ document.title = old; }, 3000);
+        }
       }
-    },1000);
+      ttUpdateDisplay();
+    }, 1000);
   } else {
-    TT.active=false;
-    document.getElementById('ttStart').textContent='▶ Resume';
+    TT.active = false;
     clearInterval(TT.iv);
+    var startBtn = document.getElementById('ttStart');
+    if(startBtn){ startBtn.textContent = '▶ Resume'; startBtn.className = 'tbtn tbtn-start'; }
+    updateTodayActiveTimer();
   }
 }
 
 function ttDone(){
-  clearInterval(TT.iv);TT.active=false;
-  var l=listings.find(function(x){return x.id===TT.lid;});
+  clearInterval(TT.iv); TT.active = false;
+  var l = listings.find(function(x){ return x.id === TT.lid; });
   if(l){
-    l.stages[TT.sid]=true;
-    l.lastTouched=Date.now();
-    if(!l.actualTimes)l.actualTimes={};
-    l.actualTimes[TT.sid]=Math.round(TT.sec/60)||1;
+    l.stages[TT.sid] = true;
+    l.lastTouched = Date.now();
+    if(!l.actualTimes) l.actualTimes = {};
+    var workedSec = (TT.estSec - TT.secLeft) + TT.secOver;
+    l.actualTimes[TT.sid] = Math.max(1, Math.round(workedSec / 60));
     saveListings();
   }
-  var effEl=document.getElementById('ttEff');
-  if(effEl&&TT.estMin>0){
-    var ratio=TT.sec/(TT.estMin*60);
-    var cls=ratio<=0.9?'fast':ratio<=1.2?'ok':'slow';
-    var msg=ratio<=0.9?'⚡ FAST! '+(Math.round((1-ratio)*100))+'% under estimate':
-            ratio<=1.2?'✓ ON TARGET — nice consistency':
-            '🐢 Went over by '+(Math.round((ratio-1)*100))+'% — note: '+STAGES.find(function(s){return s.id===TT.sid;}).name;
-    effEl.textContent=msg;effEl.className='tt-eff '+cls;effEl.style.display='';
+  // Efficiency result
+  var effEl = document.getElementById('ttEff');
+  if(effEl && TT.estSec > 0){
+    var workedSec2 = (TT.estSec - TT.secLeft) + TT.secOver;
+    var workedMin  = Math.max(1, Math.round(workedSec2 / 60));
+    var estMin     = TT.estSec / 60;
+    var ratio      = workedMin / estMin;
+    var cls = ratio <= 0.9 ? 'fast' : ratio <= 1.2 ? 'ok' : 'slow';
+    var msg = ratio <= 0.9
+      ? '⚡ FAST — ' + Math.round((1 - ratio) * 100) + '% under estimate!'
+      : ratio <= 1.2
+        ? '✓ On target — great consistency'
+        : '🐢 Over by ' + Math.round((ratio - 1) * 100) + '% — note for next time';
+    effEl.textContent = msg;
+    effEl.className   = 'tt-eff ' + cls;
+    effEl.style.display = 'block';
   }
-  renderTodayTasks();renderTable();updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();
-  if(l&&l.stages.live)showToast('🎉 '+l.ageLabel+' '+l.edName+' is LIVE!');
-  else showToast('✓ Stage done!');
-  setTimeout(function(){closeTaskTimer();},1800);
+  var startBtn = document.getElementById('ttStart');
+  if(startBtn) startBtn.style.display = 'none';
+  if(l && activeDetailId === TT.lid) renderDetailStages(l);
+  renderTodayTasks(); renderTable(); updateDashboard(); updateMissionStrip(); updateBottomBar(); checkStuckListings();
+  if(l && l.stages.live){ recordPublishedToday(1); celebrateLive(l); }
+  // Clear TT so Today widget hides
+  TT.lid = null; TT.sid = null;
+  updateTodayActiveTimer();
+  setTimeout(function(){
+    document.getElementById('taskTimerModal').classList.remove('on');
+    var startBtn2 = document.getElementById('ttStart');
+    if(startBtn2){ startBtn2.style.display = ''; startBtn2.textContent = '▶ Start'; startBtn2.className = 'tbtn tbtn-start'; }
+  }, 2000);
 }
 
 function closeTaskTimer(){
-  clearInterval(TT.iv);TT.active=false;
+  // Close modal ONLY — timer keeps running in background.
+  // Today page widget stays live.
   document.getElementById('taskTimerModal').classList.remove('on');
+  updateTodayActiveTimer();
 }
 
 // ════════════════════════════════════════════
