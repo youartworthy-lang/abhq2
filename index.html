@@ -336,7 +336,7 @@ tr.row-selected td{background:rgba(201,151,58,.07)!important;}
 .canonical-input:focus{border-color:var(--green3);}
 .canonical-updated{font-family:'DM Mono',monospace;font-size:9px;color:var(--mid);margin-left:auto;white-space:nowrap;}
 
-/* ═══ 90-DAY SPRINT PANEL ═══ */
+/* ═══ 298-DAY SPRINT PANEL ═══ */
 .sprint-panel{background:linear-gradient(135deg,rgba(168,72,32,.18),rgba(201,151,58,.10));border:2px solid var(--rust2);padding:12px 16px;margin-bottom:12px;}
 .sprint-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .sprint-flame{font-size:28px;line-height:1;}
@@ -994,6 +994,29 @@ table.tbl         { font-size: 13px; }
 .at-cp{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:1px;padding:3px 8px;background:none;border:1px solid rgba(201,151,58,.2);color:#6b5f52;cursor:pointer;transition:all .15s;}
 .at-cp:hover{border-color:#c9973a;color:#c9973a;}
 @media(max-width:767px){.at-grid{grid-template-columns:1fr;}.at-sbar{grid-template-columns:1fr 1fr;}}
+
+/* ── PRODUCT TYPE TABS (Custom / Instant DL) ── */
+.pt-tabs{display:flex;gap:0;margin-bottom:0;border-bottom:1px solid rgba(201,151,58,.2);}
+.pt-tab{font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;padding:6px 14px;border:1px solid transparent;border-bottom:none;cursor:pointer;color:#6b5f52;background:none;margin-bottom:-1px;transition:all .15s;}
+.pt-tab.on{color:#c9973a;border-color:rgba(201,151,58,.35);border-bottom-color:#161310;background:#161310;}
+.pt-tab.on.dl{color:#4ecdc4;border-color:rgba(78,205,196,.35);border-bottom-color:#161310;}
+/* ── VARIATION ROW ── */
+.pv-row{background:#1a1613;border:1px solid rgba(201,151,58,.15);margin-bottom:6px;}
+.pv-head{display:flex;align-items:center;gap:7px;padding:6px 9px;cursor:pointer;user-select:none;}
+.pv-head:hover{background:rgba(255,255,255,.02);}
+.pv-name-inp{background:none;border:none;font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:1px;color:#c8bfaa;outline:none;flex:1;min-width:0;cursor:text;}
+.pv-name-inp::placeholder{color:#6b5f52;}
+.pv-badge-ready{font-family:'Bebas Neue',sans-serif;font-size:7px;letter-spacing:1px;padding:1px 5px;border:1px solid var(--green3);color:var(--green3);flex-shrink:0;}
+.pv-badge-draft{font-family:'Bebas Neue',sans-serif;font-size:7px;letter-spacing:1px;padding:1px 5px;border:1px solid #6b5f52;color:#6b5f52;flex-shrink:0;}
+.pv-body{padding:0 9px 9px;}
+.pv-add-btn{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;padding:4px 10px;background:none;border:1px dashed rgba(201,151,58,.3);color:#6b5f52;cursor:pointer;width:100%;transition:all .15s;margin-top:2px;}
+.pv-add-btn:hover{border-color:#c9973a;color:#c9973a;}
+.pv-del{background:none;border:none;color:#6b5f52;cursor:pointer;font-size:11px;padding:0 2px;flex-shrink:0;line-height:1;}
+.pv-del:hover{color:var(--rust2);}
+/* ── PRODUCT TYPE STATUS DOTS ── */
+.pt-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-left:2px;}
+.pt-dot-ok{background:var(--green3);}
+.pt-dot-no{background:#6b5f52;}
 </style>
 </head>
 <body>
@@ -1064,22 +1087,22 @@ table.tbl         { font-size: 13px; }
   <div id="v-today">
 
     <!-- ══════════════════════════════════════
-         90-DAY SPRINT COMMAND CENTER
-         $250/mo → $5,000/mo by June 7
+         298-DAY SPRINT COMMAND CENTER
+         $250/mo → $30,000/mo by Dec 31 2026
     ══════════════════════════════════════ -->
     <div class="sprint-panel" id="sprintPanel">
 
       <!-- Header row: title + quick-update inputs -->
       <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:10px;flex-wrap:wrap;">
         <div style="flex:1;min-width:200px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:4px;color:var(--rust2);margin-bottom:3px;">🔥 90-DAY SPRINT</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:4px;color:var(--rust2);margin-bottom:3px;">🔥 298-DAY SPRINT TO $30K</div>
           <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--cream);line-height:1.1;">
             <span id="sprintCurrRevLabel" style="color:var(--rust2);">$250</span>
             <span style="color:var(--mid);font-size:16px;"> → </span>
-            <span style="color:var(--gold);">$5,000</span>
+            <span style="color:var(--gold);">$30,000</span>
             <span style="color:var(--mid);font-size:14px;">/month</span>
           </div>
-          <div style="font-size:10px;color:var(--cream2);margin-top:3px;">Deadline: <strong style="color:var(--rust2);">June 7, 2026</strong> · <span id="sprintDaysLeftLabel" style="color:var(--gold2);">— days left</span></div>
+          <div style="font-size:10px;color:var(--cream2);margin-top:3px;">Deadline: <strong style="color:var(--rust2);">December 31, 2026</strong> · <span id="sprintDaysLeftLabel" style="color:var(--gold2);">— days left</span></div>
         </div>
         <!-- Quick number update — right side -->
         <div style="background:rgba(0,0,0,.4);padding:8px 12px;border:1px solid rgba(168,72,32,.4);flex-shrink:0;">
@@ -1099,7 +1122,7 @@ table.tbl         { font-size: 13px; }
             </div>
             <div>
               <div style="font-size:8px;color:var(--mid);">Listings/day</div>
-              <input class="canonical-input" type="number" id="canonPaceToday" placeholder="2.0" step="0.1" oninput="canonSync(this,'projDailyTarget')" style="width:100%;font-size:13px;padding:4px 6px;">
+              <input class="canonical-input" type="number" id="canonPaceToday" placeholder="7.0" step="0.5" oninput="canonSync(this,'projDailyTarget')" style="width:100%;font-size:13px;padding:4px 6px;">
             </div>
           </div>
           <div style="font-size:8px;color:var(--mid);margin-top:4px;text-align:right;" id="canonUpdatedToday">Update weekly from Etsy Stats</div>
@@ -1110,15 +1133,15 @@ table.tbl         { font-size: 13px; }
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:10px;">
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(168,72,32,.3);">
           <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;" id="sprintDaysLeft" style="color:var(--rust2);">—</div>
-          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Days until June 7 2026 sprint deadline. Every day without publishing = revenue permanently missed.">Days Left</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Days until December 31 2026 — your $30K sprint deadline. Every listing compounds forever. Miss today = permanent lost income.">Days Left</div>
         </div>
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(201,151,58,.3);">
           <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--gold2);" id="sprintListingsNeeded">—</div>
-          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="New listings needed beyond your current count to hit $5,000/month by June 7.">Listings to Publish</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="New listings to reach $30,000/month by Dec 31. At $7.81/listing you need ~3,840. 3 design variations per top age/edition/format is the strategy.">Listings to Publish</div>
         </div>
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(78,205,196,.3);">
           <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--teal);" id="sprintPerDay">—</div>
-          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Listings per day to hit $5K by June 7. Teal = achievable. Red = hard pace.">Per Day Required</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Listings/day needed for $30K. Need ~3,840 live. 7/day x 298 days = 2,086 + variations of top ages = full target. Canva Bulk Create makes 10–15/day possible.">Per Day Required</div>
         </div>
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(45,122,80,.3);">
           <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--green3);" id="sprintRevPerListing">—</div>
@@ -1126,15 +1149,15 @@ table.tbl         { font-size: 13px; }
         </div>
       </div>
 
-      <!-- Progress bar: $250 → $5K -->
+      <!-- Progress bar: $250 → $10K -->
       <div style="margin-bottom:8px;">
         <div style="height:10px;background:rgba(0,0,0,.5);border-radius:5px;overflow:hidden;">
           <div id="sprintBar" style="height:100%;border-radius:5px;background:linear-gradient(90deg,var(--rust2),var(--gold));transition:width .6s;width:5%;"></div>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--mid);margin-top:3px;">
           <span id="sprintBarLeft">$250/mo now</span>
-          <span id="sprintBarPct" style="color:var(--gold2);">5% of $5K goal</span>
-          <span>$5,000/mo goal</span>
+          <span id="sprintBarPct" style="color:var(--gold2);">0% of $30K goal</span>
+          <span>$30,000/mo goal</span>
         </div>
       </div>
 
@@ -1232,7 +1255,7 @@ table.tbl         { font-size: 13px; }
     <div class="mission">
       <div>
         <div style="font-size:9px;letter-spacing:3px;font-family:'Bebas Neue',sans-serif;color:var(--gold);margin-bottom:3px;">YOUR MISSION</div>
-        <div class="m-goal"><span id="missionGoalText">$5,000</span>/month · <span id="missionDeadlineText" style="color:var(--teal);">90-DAY SPRINT</span></div>
+        <div class="m-goal"><span id="missionGoalText">$30,000</span>/month · <span id="missionDeadlineText" style="color:var(--teal);">298-DAY SPRINT</span></div>
         <div style="font-size:10px;color:var(--mid);margin-top:2px;" id="missionNote">Loading…</div>
       </div>
       <div class="m-stats">
@@ -1358,7 +1381,7 @@ table.tbl         { font-size: 13px; }
               <span style="font-size:9px;color:var(--mid);">From Etsy Shop Stats</span>
             </div>
           </div>
-          <div id="gapResult"><div style="font-size:11px;color:var(--mid);">Enter your real Etsy numbers above to see your path to $10K.</div></div>
+          <div id="gapResult"><div style="font-size:11px;color:var(--mid);">Enter your real Etsy numbers above to see your exact path to $10,000/month.</div></div>
         </div>
 
         <!-- CONSISTENCY ENGINE — now dynamic -->
@@ -1611,7 +1634,7 @@ table.tbl         { font-size: 13px; }
     <div class="why-banner" id="whyBanner">
       <div class="why-fire" id="whyFire">🔥</div>
       <div style="flex:1;min-width:0;">
-        <div class="why-headline">From <span style="color:var(--rust2);">$250</span> to <span>$5,000/month</span> in 90 days. Then $10,000 by Dec 31.</div>
+        <div class="why-headline">From <span style="color:var(--rust2);">$250</span> to <span style="color:var(--gold);">$30,000/month</span> by Dec 31 2026. 3,840 listings. 3 design variations. AI production. You just publish.</div>
         <div class="why-pills">
           <span class="why-pill" style="border-color:var(--gold);color:var(--gold);">🕌 Sadaqah from abundance</span>
           <span class="why-pill" style="border-color:#9b59b6;color:#9b59b6;">💝 Marriage protected</span>
@@ -1627,7 +1650,7 @@ table.tbl         { font-size: 13px; }
     <div id="whyFullBody" style="display:none;margin-bottom:14px;">
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🕌</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">SADAQAH &amp; WAKAF</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Give from abundance. Every listing you publish is honest halal work. Ibaadah through consistency.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$10K/month removes both time and money barriers simultaneously. You <em>show up</em> more, fully.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$10K/month removes every time and money barrier. School runs, weekend trips, total presence. You <em>show up</em> for them — fully, freely.</div></div>
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--green3);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👦🏽</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--green3);margin-bottom:4px;">YOUR PARENTS — RM500/WK</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">RM2,000/month of honour, every month, without stress. They gave you everything.</div></div>
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid #9b59b6;padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💝</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:#9b59b6;margin-bottom:4px;">YOUR MARRIAGE</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Financial stress has taken you to the edge. $10K removes the fire. Safety. Calm. Space to love.</div></div>
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🌍</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:4px;">LOCATION FREEDOM</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Work from KL, Penang, London. No alarm from someone else. It earns while you pray Fajr.</div></div>
@@ -1653,6 +1676,69 @@ table.tbl         { font-size: 13px; }
 
     <!-- ③ CANONICAL DATA INPUT — one place, synced everywhere -->
     <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 16px;margin-bottom:12px;">
+
+    <!-- ══ $30K ROADMAP — VARIATION STRATEGY ══ -->
+    <div id="roadmap30k" style="background:var(--ink2);border:1px solid rgba(201,151,58,.35);border-left:4px solid var(--gold);padding:16px 18px;margin-bottom:18px;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:var(--gold);margin-bottom:4px;">🗺 YOUR $30K ROADMAP — SOLO OPERATOR + AI PRODUCTION</div>
+      <div style="font-size:10px;color:var(--cream2);line-height:1.7;margin-bottom:14px;">
+        At <strong style="color:var(--gold);">$7.81/listing/mo</strong> you need <strong style="color:var(--rust2);">3,840 live listings</strong> to hit $30K/month by Dec 31 2026.
+        That is achievable because <strong style="color:var(--teal);">Canva Bulk Create + AI fact generation</strong> collapses what takes other sellers hours into minutes per batch.
+        The math works. The only variable is your daily publishing pace.
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px;">
+        <div style="background:#0e0c0a;border:1px solid rgba(201,151,58,.2);border-top:3px solid var(--gold);padding:12px 13px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--gold);">⭐ PHASE 1 — FOUNDATION</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--cream);margin:4px 0 2px;">Mar → Jun 2026</div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:7px;">85 days · 5 listings/day</div>
+          <div style="font-size:10px;color:var(--cream2);line-height:1.65;">1 design per age/edition/format. All 16 ages × 20 editions.<br><strong style="color:var(--gold);">~425 new listings → ~$5,600/mo</strong><br><br><strong style="color:var(--teal);">Focus:</strong> Top 6 ages first: 50th, 60th, 40th, 30th, 70th, 55th.</div>
+        </div>
+        <div style="background:#0e0c0a;border:1px solid rgba(78,205,196,.2);border-top:3px solid var(--teal);padding:12px 13px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--teal);">🔥 PHASE 2 — SCALE WITH VARIATIONS</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--cream);margin:4px 0 2px;">Jun → Sept 2026</div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:7px;">99 days · 8 listings/day</div>
+          <div style="font-size:10px;color:var(--cream2);line-height:1.65;">2nd design variation for top 6 ages. Canva Bulk fully automated.<br><strong style="color:var(--teal);">~1,200 listings → ~$9,375/mo</strong><br><br><strong style="color:var(--gold2);">Enable:</strong> AI generates all CSV fact rows. Publish in batches of 20.</div>
+        </div>
+        <div style="background:#0e0c0a;border:1px solid rgba(45,122,80,.3);border-top:3px solid var(--green3);padding:12px 13px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--green3);">🚀 PHASE 3 — $30K SPRINT</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--cream);margin:4px 0 2px;">Sept → Dec 2026</div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:7px;">114 days · 12–15 listings/day</div>
+          <div style="font-size:10px;color:var(--cream2);line-height:1.65;">3rd variation for all 16 ages. Full AI pipeline.<br><strong style="color:var(--green3);">~3,840 listings → $30,000/mo 🏆</strong><br><br><strong style="color:var(--rust2);">Power move:</strong> 3 × 50th × 20 editions = 120 listings in separate search slots.</div>
+        </div>
+      </div>
+      <div style="background:#0e0c0a;border:1px solid rgba(168,72,32,.4);border-left:3px solid var(--rust2);padding:11px 13px;margin-bottom:12px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--rust2);margin-bottom:6px;">❓ DO YOU NEED DESIGN VARIATIONS — YES. THE MATH.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:6px;font-size:10px;color:var(--cream2);margin-bottom:8px;">
+          <div style="padding:7px 10px;background:rgba(201,151,58,.06);border:1px solid rgba(201,151,58,.15);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold);">1 DESIGN PER COMBO</div>640 listings · <strong style="color:var(--gold2);">~$5K/mo ceiling</strong></div>
+          <div style="padding:7px 10px;background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.15);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--teal);">2 DESIGNS PER COMBO</div>1,280 listings · <strong style="color:var(--teal);">~$10K/mo</strong></div>
+          <div style="padding:7px 10px;background:rgba(45,122,80,.06);border:1px solid rgba(45,122,80,.15);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--green3);">3 DESIGNS × TOP 6 AGES</div>1,920 listings · <strong style="color:var(--green3);">~$15K/mo</strong></div>
+          <div style="padding:7px 10px;background:rgba(201,151,58,.1);border:2px solid var(--gold);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold);">3 DESIGNS × ALL 16 AGES</div>3,840 listings · <strong style="color:var(--gold);">~$30K/mo 🏆</strong></div>
+        </div>
+        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Each variation is a <em>different visual design style</em> (broadsheet vs magazine vs vintage) published as a separate Etsy listing — occupying different search slots. More slots = more traffic = more sales.<br><strong style="color:var(--teal);">Variation priority: 50th → 60th → 40th → 30th → 70th → 55th.</strong> Top 6 ages × 3 designs × 20 editions × 2 formats = <strong style="color:var(--gold);">720 listings → ~$5,622/mo from top ages alone.</strong></div>
+      </div>
+      <div style="background:#0e0c0a;border:1px solid rgba(78,205,196,.2);padding:11px 13px;margin-bottom:12px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:8px;">🤖 AI PRODUCTION WORKFLOW — 10–15 LISTINGS/DAY SOLO</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px;font-size:9px;color:var(--cream2);line-height:1.6;">
+          <div style="border-left:2px solid var(--gold);padding-left:8px;"><strong style="color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 1: AI RESEARCH</strong><br>Claude/ChatGPT → 50 historical facts per age/country in one prompt → CSV. Raw material for infinite variations. Do once per age/edition pair.</div>
+          <div style="border-left:2px solid var(--teal);padding-left:8px;"><strong style="color:var(--teal);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 2: CANVA BULK</strong><br>Upload CSV → Canva Bulk Create renders 20–50 poster designs per session. 1 session = 20–50 unique listings. Your production engine.</div>
+          <div style="border-left:2px solid var(--green3);padding-left:8px;"><strong style="color:var(--green3);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 3: AI LISTINGS</strong><br>Claude writes 50 Etsy titles, descriptions + 13-tag sets in one prompt. Copy into Etsy. No manual writing. SEO-optimised per edition/country.</div>
+          <div style="border-left:2px solid #9b59b6;padding-left:8px;"><strong style="color:#9b59b6;font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 4: AI MOCKUPS</strong><br>Ideogram/Midjourney generates lifestyle mockups at scale. One style prompt = 20+ variations. Batch process entire age/edition once. Reuse per variation.</div>
+          <div style="border-left:2px solid var(--rust2);padding-left:8px;"><strong style="color:var(--rust2);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 5: AI MARKETING</strong><br>One Claude prompt → 30 days of IG captions + Pinterest descriptions. AI video tools turn your designs into Reels automatically. Monthly batch only.</div>
+          <div style="border-left:2px solid var(--gold2);padding-left:8px;"><strong style="color:var(--gold2);font-family:'Bebas Neue',sans-serif;font-size:9px;">THE KEY INSIGHT</strong><br>A competitor doing this manually needs a 5-person team. You have AI at every stage. Your only limit is publishing speed. Faster publish = faster compound = $30K sooner.</div>
+        </div>
+      </div>
+      <div style="background:#0e0c0a;border:1px solid rgba(201,151,58,.2);padding:11px 13px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:8px;">📊 WEEKLY TRACKING — WHAT TO MEASURE AS SOLO OPERATOR</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:8px;font-size:9px;color:var(--cream2);line-height:1.6;">
+          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold2);margin-bottom:2px;">📌 PRODUCTION</div>Listings published this week<br>Canva bulk sessions run<br>AI fact CSVs generated<br>In-pipeline (unfinished count)<br><em style="color:var(--mid);">Target: 35–70/week</em></div>
+          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--teal);margin-bottom:2px;">📈 ETSY METRICS</div>Revenue vs last week (%)<br>Total visits + visits/listing<br>Conversion rate (aim: 3%+)<br>Top 5 listings by revenue<br><em style="color:var(--mid);">Target: +$50–$300/week rev gain</em></div>
+          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--green3);margin-bottom:2px;">🎨 VARIATION PROGRESS</div>Ages with 1 design live<br>Ages with 2 designs live<br>Ages with 3 designs live<br>Next variation priority<br><em style="color:var(--mid);">Target: Top 6 ages × 3 designs first</em></div>
+          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--rust2);margin-bottom:2px;">📱 SOCIAL</div>IG Reels posted (3+/wk)<br>Pinterest pins added (7+/wk)<br>Social → Etsy traffic<br>Best performing angle<br><em style="color:var(--mid);">Compounds ×5 by Q4</em></div>
+          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:#9b59b6;margin-bottom:2px;">🤖 AI EFFICIENCY</div>Time per listing (aim: &lt;10 min)<br>Prompt templates saved<br>This week's bottleneck<br>AI tools in active use<br><em style="color:var(--mid);">Target: &lt;10 mins/listing</em></div>
+          <div style="background:rgba(201,151,58,.08);border:1px solid rgba(201,151,58,.3);padding:7px 9px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold);margin-bottom:2px;">🏆 NORTH STAR</div><strong style="color:var(--gold);">$30,000/month by Dec 31.</strong><br>3,840 listings. 3 design variations.<br>AI at every stage. You at the wheel.<br><strong style="color:var(--rust2);">Every week not published = compound income that never starts.</strong></div>
+        </div>
+      </div>
+    </div>
+
       <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:4px;">📊 YOUR REAL ETSY NUMBERS — SINGLE SOURCE OF TRUTH <span style="font-size:8px;color:var(--mid);letter-spacing:1px;">UPDATE WEEKLY</span></div>
       <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">These numbers power Today, Money View, and all projections. Update once here — everywhere updates.</div>
       <div class="real-data-grid">
@@ -1686,14 +1772,14 @@ table.tbl         { font-size: 13px; }
       <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Set how many listings you commit to publishing per day. All projections recalculate instantly.</div>
       <div class="real-data-grid">
         <div class="rd-field">
-          <span class="rd-lbl" data-tip="The single most important number you control. 2/day x 90 days = path to $5K. Drives all pace cards.">Listings Per Day <span style="color:var(--gold2);">★</span></span>
+          <span class="rd-lbl" data-tip="The most important number. 7/day x 298 days = 2,086 new listings. Add 3 design variations per top age/edition = 3,840 total = $30K/mo by Dec 31.">Listings Per Day <span style="color:var(--gold2);">★</span></span>
           <input type="number" class="rd-inp" id="projDailyTarget" placeholder="2.0" step="0.1" min="0.1" max="20" oninput="saveProjData();renderThisMonth()">
           <span class="rd-note">e.g. 1 = 1 listing/day · 0.5 = every 2 days</span>
         </div>
         <div class="rd-field">
           <span class="rd-lbl" data-tip="When to stop the sprint. 608 = full Phase 1, all high-demand ages and editions.">Total Listings Target</span>
-          <input type="number" class="rd-inp" id="projTotalTarget" placeholder="500" oninput="saveProjData()">
-          <span class="rd-note">When to stop publishing (e.g. 608 = full Phase 1)</span>
+          <input type="number" class="rd-inp" id="projTotalTarget" placeholder="3840" oninput="saveProjData()">
+          <span class="rd-note">3,840 = 3 variations × 16 ages × 20 editions × 2 formats = $30K path</span>
         </div>
         <div class="rd-field" style="grid-column:span 2;">
           <div id="paceCalcResult" style="font-size:11px;color:var(--cream2);line-height:1.8;padding:6px 0;"></div>
@@ -2267,9 +2353,14 @@ table.tbl         { font-size: 13px; }
   <!-- ─── CANVA PROMPTS PANEL ─── -->
   <div id="autoCanvaPanel">
     <div style="background:rgba(201,151,58,.07);border:1px solid rgba(201,151,58,.25);padding:10px 14px;margin-bottom:14px;font-size:10px;color:#c8bfaa;line-height:1.7;">
-      <strong style="color:#c9973a;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;">HOW CANVA BULK CREATE WORKS</strong><br>
-      In Canva: open poster template &#8594; Apps &#8594; Bulk Create &#8594; connect a CSV or manual data source. Each row = one poster variant.
-      Save your prompt/CSV column headers here so Stage&nbsp;2 is fully automated. When every edition is &#10003;&nbsp;Ready, you can batch-create an entire age milestone in one Canva session.
+      <strong style="color:#c9973a;font-family:'Bebas Neue',sans-serif;letter-spacing:2px;">CANVA BULK CREATE — PROMPT LIBRARY</strong><br>
+      Each edition has <strong style="color:#f0ead8;">two product types: Custom Poster and Instant Download.</strong>
+      Each type holds multiple named prompt <em>variations</em> — e.g. &ldquo;50th Standard&rdquo;, &ldquo;50th Premium Facts&rdquo;, &ldquo;US Presidents angle&rdquo;.
+      Save as many variations as you like per type. One click copies any prompt. Mark a variation Ready when it&rsquo;s tested and working in Canva Bulk Create.
+      <div style="display:flex;gap:16px;margin-top:7px;font-size:9px;">
+        <span><span style="color:#c9973a;">&#9632;</span> <strong style="color:#f0ead8;">Custom Poster</strong> — personalised, $19.95, requires buyer input</span>
+        <span><span style="color:#4ecdc4;">&#9632;</span> <strong style="color:#f0ead8;">Instant Download</strong> — evergreen, $12.95, fully passive income</span>
+      </div>
     </div>
     <div class="at-sbar">
       <div class="at-sc"><div class="at-sv" id="autoCanvaDone" style="color:#2d7a50;">0</div><div class="at-sl" data-tip="Editions where your Canva bulk create prompt is saved and marked ready.">Prompts Ready</div></div>
@@ -2279,13 +2370,15 @@ table.tbl         { font-size: 13px; }
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center;">
       <span style="font-size:9px;color:#6b5f52;letter-spacing:1px;font-family:'Bebas Neue',sans-serif;">FILTER:</span>
-      <button class="fbtn on" id="acfAll"   onclick="setAutoCanvaFilter('all',this)">All</button>
-      <button class="fbtn" id="acfMissing"  onclick="setAutoCanvaFilter('missing',this)">Missing</button>
-      <button class="fbtn" id="acfReady"    onclick="setAutoCanvaFilter('ready',this)">Ready</button>
-      <button class="fbtn" id="acfGeneric"  onclick="setAutoCanvaFilter('generic',this)">Generic</button>
-      <button class="fbtn" id="acfBlack"    onclick="setAutoCanvaFilter('black',this)">Black Community</button>
-      <button class="fbtn" id="acfShopA"    onclick="setAutoCanvaFilter('a',this)">Shop A</button>
-      <button class="fbtn" id="acfShopB"    onclick="setAutoCanvaFilter('b',this)">Shop B</button>
+      <button class="fbtn on" id="acfAll"      onclick="setAutoCanvaFilter('all',this)">All</button>
+      <button class="fbtn" id="acfMissing"     onclick="setAutoCanvaFilter('missing',this)">&#x26A0; Any Missing</button>
+      <button class="fbtn" id="acfReady"       onclick="setAutoCanvaFilter('ready',this)">&#x2713; Fully Ready</button>
+      <button class="fbtn" id="acfCustomMiss"  onclick="setAutoCanvaFilter('custom_miss',this)">&#x270F;&#xFE0F; Custom Missing</button>
+      <button class="fbtn" id="acfDlMiss"      onclick="setAutoCanvaFilter('dl_miss',this)">&#x26A1; DL Missing</button>
+      <button class="fbtn" id="acfGeneric"     onclick="setAutoCanvaFilter('generic',this)">Generic</button>
+      <button class="fbtn" id="acfBlack"       onclick="setAutoCanvaFilter('black',this)">Black Community</button>
+      <button class="fbtn" id="acfShopA"       onclick="setAutoCanvaFilter('a',this)">Shop A</button>
+      <button class="fbtn" id="acfShopB"       onclick="setAutoCanvaFilter('b',this)">Shop B</button>
     </div>
     <div class="at-grid" id="autoCanvaGrid"></div>
   </div>
@@ -2343,7 +2436,7 @@ table.tbl         { font-size: 13px; }
   <div style="width:1px;height:30px;background:var(--border);"></div>
   <div>
     <div class="bb-stat" id="bbNeeded" style="color:var(--rust2);">— needed</div>
-    <div class="bb-label">for $10K/mo</div>
+    <div class="bb-label">$30K · Dec 31</div>
   </div>
   <div style="flex:1;"></div>
   <div style="font-size:9px;color:var(--mid);font-family:'DM Mono',monospace;" id="bbDate"></div>
@@ -2426,9 +2519,9 @@ var REAL = {
   priceCustom: 19.95,
   convRate: 0.03,    // 3% - your real conversion rate
   etsyFeeRate: 0.07, // ~7% Etsy fees (listing + transaction)
-  goalMonthly: 10000,
-  sprintGoal: 5000,
-  sprintDeadline: new Date('2026-06-07'),
+  goalMonthly: 30000,
+  sprintGoal: 30000,
+  sprintDeadline: new Date('2026-12-31'),
   goalDeadline: new Date('2026-12-31')
 };
 
@@ -2503,9 +2596,9 @@ var misc = {
   rdVisits: 900,   // ~28 visits/listing × 32 listings (estimate)
   rdLive: 32,      // current live listings
   rdAOV: 12.95,    // average order value
-  // PROJECTION INPUTS — 3-month sprint to $5K
-  projDailyTarget: 2.0,  // 2 listings/day = 180 listings in 90 days = path to $5K
-  projTotalTarget: 608,   // Phase 1 complete
+  // PROJECTION INPUTS — 6-month sprint to $10K
+  projDailyTarget: 7.0,  // 7 listings/day x 298 days = path to $30K
+  projTotalTarget: 3840,  // 3 variations × 16 ages × 20 editions × 2 formats = $30K
   projIGPosts: 0,
   projPinPins: 0,
   projViralBonus: 0,
@@ -2686,7 +2779,7 @@ function daysUntil(dateStr){
 }
 
 // ════════════════════════════════════════════
-// REAL METRICS — SPRINT-AWARE (90 days to $5K)
+// REAL METRICS — SPRINT-AWARE (180 days to $10K)
 // ════════════════════════════════════════════
 function daysUntilSprint(){
   var now=new Date();now.setHours(0,0,0,0);
@@ -2706,9 +2799,9 @@ function calcRealMetrics(){
   // Revenue per listing per month (from real data)
   var revPerListing=realLive>0&&revenue>0?revenue/realLive:0;
 
-  // Listings needed for SPRINT goal ($5K) and final goal ($10K)
-  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):357;
-  var listingsNeeded=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):714;
+  // Listings needed to reach $10K/month goal
+  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):3840;
+  var listingsNeeded=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):3840;
   var moreFor5k=Math.max(0,listingsFor5k-realLive);
   var moreNeeded=Math.max(0,listingsNeeded-realLive);
 
@@ -2728,7 +2821,7 @@ function calcRealMetrics(){
 function renderSprintPanel(){
   var m=calcRealMetrics();
   var revenue=m.revenue;
-  var pct=Math.min(100,Math.round(revenue/REAL.sprintGoal*100));
+  var pct=Math.min(100,Math.min(100,Math.round(revenue/REAL.sprintGoal*100)));
 
   // KPI cells
   var set=function(id,val,color){
@@ -2740,7 +2833,7 @@ function renderSprintPanel(){
 
   set('sprintDaysLeft', m.daysLeftSprint, m.daysLeftSprint<30?'var(--rust2)':m.daysLeftSprint<60?'var(--gold2)':'var(--teal)');
   set('sprintListingsNeeded', m.moreFor5k, 'var(--gold2)');
-  set('sprintPerDay', m.perDaySprint+'/day', m.perDaySprint>3?'var(--rust2)':m.perDaySprint>2?'var(--gold2)':'var(--teal)');
+  set('sprintPerDay', m.perDaySprint+'/day', m.perDaySprint>12?'var(--rust2)':m.perDaySprint>7?'var(--gold2)':'var(--teal)');
   set('sprintRevPerListing', m.revPerListing>0?'$'+m.revPerListing.toFixed(2):'—', 'var(--green3)');
 
   // Progress bar
@@ -2749,7 +2842,7 @@ function renderSprintPanel(){
     bar.style.width=Math.max(2,pct)+'%';
     bar.style.background=pct>=100?'var(--green3)':pct>=60?'var(--teal)':pct>=30?'var(--gold)':'linear-gradient(90deg,var(--rust2),var(--gold))';
   }
-  set('sprintBarPct', pct+'% of $5K goal', pct>=50?'var(--teal)':'var(--gold2)');
+  set('sprintBarPct', pct+'% of $30K goal', pct>=50?'var(--teal)':'var(--gold2)');
   set('sprintBarLeft', '$'+Math.round(revenue).toLocaleString()+'/mo now');
   set('sprintCurrRevLabel', '$'+Math.round(revenue).toLocaleString());
   set('sprintDaysLeftLabel', m.daysLeftSprint+' days left');
@@ -2757,9 +2850,9 @@ function renderSprintPanel(){
   // Urgency message
   var urgency='';
   if(m.daysLeftSprint<=0){
-    urgency='<strong style="color:var(--teal);">Sprint window has closed.</strong> Now focus on the Dec 31 $10K goal: '+m.moreNeeded+' more listings needed at '+m.perDay+'/day.';
+    urgency='<strong style="color:var(--rust2);">Sprint ended.</strong> Dec 31 2026 was your deadline. Everything you built keeps earning. Keep publishing variations.';
   } else if(m.revenue>=REAL.sprintGoal){
-    urgency='🎯 <strong style="color:var(--green3);">$5K/mo sprint goal ACHIEVED!</strong> You\'re at $'+Math.round(revenue).toLocaleString()+'/mo. Now aim for <strong style="color:var(--teal);">$10K by Dec 31</strong>: '+m.moreNeeded+' more listings at '+m.perDay+'/day.';
+    urgency='🏆 <strong style="color:var(--gold);">$30K/MO ACHIEVED!</strong> $'+Math.round(revenue).toLocaleString()+'/mo — full financial freedom. Scale: new editions, international markets, hire VA for uploads.';
   } else {
     var rpl=m.revPerListing;
     var listingVal=rpl>0?'$'+rpl.toFixed(2):'~$7.80';
@@ -2776,7 +2869,7 @@ function renderSprintPanel(){
   if(urg)urg.innerHTML=urgency;
 
   // Non-negotiable box
-  var target=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||2.0));
+  var target=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||7.0));
   var todayPub=getTodayPublished();
   var nnMsg=document.getElementById('nonNegMsg');
   var nnTgt=document.getElementById('nonNegTarget');
@@ -2814,7 +2907,7 @@ function updateMissionStrip(){
   if(cr)cr.textContent='$'+Math.round(m.revenue).toLocaleString();
   if(mn){
     if(m.revPerListing>0){
-      mn.textContent='$'+m.revPerListing.toFixed(2)+'/listing/mo · Need '+m.listingsFor5k+' for $5K · '+m.listingsNeeded+' for $10K · '+m.perDaySprint+' listings/day for 90-day sprint.';
+      mn.textContent='$'+m.revPerListing.toFixed(2)+'/listing/mo · Need '+m.listingsNeeded.toLocaleString()+' listings for $30K · '+m.perDaySprint+'/day for 298 days · 3 design variations = the multiplier.';
     } else {
       mn.textContent='Enter your real Etsy revenue above to see your exact roadmap.';
     }
@@ -2848,7 +2941,7 @@ function updateBottomBar(){
   var bd=document.getElementById('bbDate');
   if(bb)bb.textContent=m.live+' live';
   if(br)br.textContent='$'+Math.round(m.revenue).toLocaleString()+'/mo';
-  if(bn)bn.textContent=m.moreFor5k+' to $5K sprint';
+  if(bn)bn.textContent=m.moreFor5k+' listings to $10K';
   if(bd)bd.textContent=todayStr();
 }
 
@@ -3217,9 +3310,9 @@ function calcGap(){
   var conv=REAL.convRate;
   var vpl=live>0?visits/live:28;
   var revPerListing=live>0&&curr>0?curr/live:(vpl*conv*price*(1-REAL.etsyFeeRate));
-  var gap5k=Math.max(0,REAL.sprintGoal-curr);
+  var gap10k_main=Math.max(0,REAL.sprintGoal-curr);
   var gap10k=Math.max(0,REAL.goalMonthly-curr);
-  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):357;
+  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):3840;
   var listingsFor10k=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):714;
   var moreFor5k=Math.max(0,listingsFor5k-live);
   var moreFor10k=Math.max(0,listingsFor10k-live);
@@ -3232,18 +3325,19 @@ function calcGap(){
     return'<div class="gap-result-row"><span class="gap-result-lbl">'+lbl+'</span><span class="gap-result-val '+(cls||'')+'">'+val+'</span></div>';
   }
   el.innerHTML=
-    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:5px;">🔥 90-DAY SPRINT — $5K by June 7</div>'+
-    row('Current revenue',  '$'+curr.toLocaleString(), curr>=REAL.sprintGoal?'green':'red')+
-    row('Gap to $5K/mo',    '$'+gap5k.toLocaleString(), gap5k>0?'red':'green')+
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:5px;">🔥 298-DAY SPRINT — $30K by December 31 2026</div>'+
+    row('Current revenue',  '$'+curr.toLocaleString(), curr>=REAL.sprintGoal?'green':'rust')+
+    row('Gap to $30K/mo',   '$'+gap10k_main.toLocaleString(), gap10k_main>0?'red':'green')+
     row('Rev per listing/mo','$'+revPerListing.toFixed(2),'')+
-    row('Listings needed for $5K', listingsFor5k.toLocaleString(),'')+
+    row('Listings needed for $30K', listingsFor5k.toLocaleString(),'')+
     row('More to publish',  moreFor5k, moreFor5k>0?'red':'green')+
     row('Daily pace needed ('+dSprint+'d left)', perDaySprint+'/day', parseFloat(perDaySprint)<=2?'green':parseFloat(perDaySprint)<=3?'gold':'red')+
-    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin:8px 0 5px;">🎯 FINAL GOAL — $10K by Dec 31</div>'+
-    row('Gap to $10K/mo',   '$'+gap10k.toLocaleString(),'')+
-    row('Listings needed for $10K', listingsFor10k.toLocaleString(),'')+
-    row('More to publish',  moreFor10k, '')+
-    row('Daily pace needed ('+dFinal+'d left)', perDayFinal+'/day', '');
+    '<div style="font-family:\'Bebas Neue\',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin:8px 0 5px;">🎯 VARIATION STRATEGY — PATH TO $30K</div>'+
+    row('Top 6 ages × 1 design each (720 listings)', '→ ~$5,600/mo','')+
+    row('Top 6 ages × 2 designs (1,440 listings)', '→ ~$11,200/mo','')+
+    row('All 16 ages × 3 designs (3,840 listings)', '→ ~$30,000/mo 🏆','')+
+    row('Your listings needed', revPerListing>0?Math.ceil(30000/revPerListing).toLocaleString():3840,'')+
+    row('Daily pace needed ('+dFinal+' days left)', perDayFinal+'/day', parseFloat(perDayFinal)<=7?'green':parseFloat(perDayFinal)<=12?'gold':'red');
 }
 
 // ════════════════════════════════════════════
@@ -3254,13 +3348,13 @@ function renderConsistencyMsg(){
   var m=calcRealMetrics();
   var inProgress=listings.filter(function(l){return getStatus(l)==='in_progress';}).length;
   var todayPub=getTodayPublished();
-  var dailyTarget=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||2.0));
+  var dailyTarget=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||7.0));
 
   if(inProgress>0&&todayPub===0){
     el.innerHTML='You have <strong style="color:var(--rust2);">'+inProgress+' in-progress</strong> listings. '
       +'<strong style="color:var(--gold2);">Finish one before starting new ones.</strong> Half-done = $0.';
   } else if(todayPub===0){
-    el.innerHTML='<strong style="color:var(--rust2);">Day not started yet.</strong> You need <strong style="color:var(--teal);">'+dailyTarget+' listing'+(dailyTarget!==1?'s':'')+'/day</strong> to hit $5K by June 7. '
+    el.innerHTML='<strong style="color:var(--rust2);">Day not started yet.</strong> You need <strong style="color:var(--teal);">'+dailyTarget+' listing'+(dailyTarget!==1?'s':'')+'/day</strong> to reach $30K by Dec 31. '
       +(m.daysLeftSprint||daysUntilGoal())+' days left in sprint. <strong style="color:var(--gold);">Pick a listing below. Press ▶ Time. Start now.</strong>';
   } else if(todayPub<dailyTarget){
     var more=dailyTarget-todayPub;
@@ -3273,7 +3367,7 @@ function renderConsistencyMsg(){
   } else {
     el.innerHTML='🚀 <strong style="color:var(--teal);">SPRINT DAY!</strong> '
       +'<strong style="color:var(--green3);">'+todayPub+' listings published today.</strong> '
-      +'This is exactly how $5K/month gets built. Incredible work.';
+      +'This is exactly how $10K/month gets built. Unstoppable.';
   }
 }
 
@@ -3809,7 +3903,7 @@ function mvDrawRows(vpl){
   // Find max cumulative on page for bar scaling
   var maxCum=0; var cumRun=cumBefore;
   for(var k=0;k<page.length;k++){ cumRun+=rEst(page[k],vpl); if(cumRun>maxCum)maxCum=cumRun; }
-  var goal=10000;
+  var goal=30000;
 
   var h='';
   var cumSoFar=cumBefore;
@@ -3832,7 +3926,7 @@ function mvDrawRows(vpl){
     var cumColor=cumSoFar>=goal?'var(--green3)':cumSoFar>=goal*0.5?'var(--teal)':'var(--gold2)';
     var cumCell='<td class="cum-rev-cell" style="padding:6px 7px;">'
       +'<span style="font-family:Bebas Neue,sans-serif;font-size:13px;color:'+cumColor+';">$'+Math.round(cumSoFar).toLocaleString()+'</span>'
-      +(cumSoFar>=goal?'<span style="font-size:8px;color:var(--green3);display:block;">✓ $10K</span>':'<span style="font-size:8px;color:var(--mid);display:block;">'+(goal-Math.round(cumSoFar))>0?'$'+(goal-Math.round(cumSoFar)).toLocaleString()+' to go':'')
+      +(cumSoFar>=goal?'<span style="font-size:8px;color:var(--green3);display:block;">✓ $30K!</span>':'<span style="font-size:8px;color:var(--mid);display:block;">'+(goal-Math.round(cumSoFar))>0?'$'+(goal-Math.round(cumSoFar)).toLocaleString()+' to go':'')
       +'<div class="cum-rev-bar"><div class="cum-rev-fill" style="width:'+cumPct+'%;background:'+cumColor+';"></div></div>'
       +'</td>';
 
@@ -3890,7 +3984,7 @@ function renderPipDailyBanner(){
   var weekPub   = getWeekPublished();
   var inProg    = listings.filter(function(l){ return getStatus(l)==='in_progress'; }).length;
   var totalLive = listings.filter(function(l){ return l.stages.live; }).length;
-  var dailyTgt  = Math.max(1, Math.ceil(parseFloat(misc.projDailyTarget)||2.0));
+  var dailyTgt  = Math.max(1, Math.ceil(parseFloat(misc.projDailyTarget)||7.0));
   var queueSize = misc.workQueue ? Object.keys(misc.workQueue).filter(function(k){ return misc.workQueue[k]; }).length : 0;
 
   var e = function(id){ return document.getElementById(id); };
@@ -4084,7 +4178,7 @@ function toggleWhyFull(){
 
 // ② THIS MONTH ACTION CARD — surgical, specific, motivating
 function renderThisMonth(){
-  var dailyPace  = parseFloat(misc.projDailyTarget) || 1.67;
+  var dailyPace  = parseFloat(misc.projDailyTarget) || 7.0;
   var revenue    = parseFloat(misc.rdRevenue) || 250;
   var live       = parseFloat(misc.rdLive) || 32;
 
@@ -4170,8 +4264,8 @@ function renderProjections(){
   var visits    =parseFloat(misc.rdVisits)||900;
   var live      =parseFloat(misc.rdLive)||32;
   var aov       =parseFloat(misc.rdAOV)||12.95;
-  var dailyPace =parseFloat(misc.projDailyTarget)||2.0;
-  var totalTgt  =parseFloat(misc.projTotalTarget)||608;
+  var dailyPace =parseFloat(misc.projDailyTarget)||7.0;
+  var totalTgt  =parseFloat(misc.projTotalTarget)||3840;
   var igPerWk   =parseFloat(misc.projIGPosts)||0;
   var pinPerWk  =parseFloat(misc.projPinPins)||0;
   var viralBonus=parseFloat(misc.projViralBonus)||0;
@@ -4223,7 +4317,7 @@ function renderProjections(){
   }
 
   // Key metrics strip
-  var needed10k=revPerListing>0?Math.ceil(10000/revPerListing):500;
+  var needed30k=revPerListing>0?Math.ceil(30000/revPerListing):3840;
   var basis=document.getElementById('projBasis');
   if(basis){
     basis.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px;">'
@@ -4231,18 +4325,18 @@ function renderProjections(){
       +metricBox(live+' live','Live Listings','c-green')
       +metricBox(vpl+' visits/listing','Avg Visits/Listing/Mo','c-mid')
       +metricBox('$'+revPerListing.toFixed(2)+'/mo','Revenue Per Listing','c-teal')
-      +metricBox(needed10k.toLocaleString()+' listings','Needed for $10K/mo','c-rust')
+      +metricBox(needed30k.toLocaleString()+' listings','Needed for $30K/mo','c-rust')
       +(socialBaseRevMo>0?metricBox('+$'+socialBaseRevMo.toLocaleString()+'/mo','Social Boost Q1','c-teal'):metricBox('Set up social \u2191','Social Boost','c-mid'))
       +'</div>';
   }
 
   // Pace scenario cards
   var scenarios=[
-    {label:'Slow',daily:0.5,color:'var(--mid)',note:'Inconsistent days'},
-    {label:'Current',daily:1.0,color:'var(--rust2)',note:'1 listing/day'},
+    {label:'Slow',daily:2,color:'var(--mid)',note:'2/day — ~$12K ceiling'},
+    {label:'Steady',daily:5,color:'var(--rust2)',note:'5/day — ~$18K range'},
     {label:'Your Target',daily:dailyPace,color:'var(--gold)',note:dailyPace+'/day committed'},
-    {label:'Strong',daily:3,color:'var(--green3)',note:'Batching sessions'},
-    {label:'Sprint',daily:5,color:'var(--teal)',note:'Max output'}
+    {label:'Strong',daily:10,color:'var(--green3)',note:'Canva bulk: 2 sessions/day'},
+    {label:'Sprint',daily:15,color:'var(--teal)',note:'3 variations + full AI automation'}
   ];
   var seenD={};
   scenarios=scenarios.filter(function(s){if(seenD[s.daily])return false;seenD[s.daily]=true;return true;});
@@ -4253,9 +4347,9 @@ function renderProjections(){
       var baseRevMo=Math.round(projLive*revPerListing);
       var socRevMoQ4=Math.round(socialBaseRevMo*socialMults[3]);
       var totalRevMo=baseRevMo+socRevMoQ4;
-      var hit10=baseRevMo>=10000;var hit20=baseRevMo>=20000;
+      var hit10=baseRevMo>=15000;var hit20=baseRevMo>=30000;
       return '<div class="pcell" style="border-top:3px solid '+s.color+';position:relative;">'
-        +(hit20?'<div style="position:absolute;top:5px;right:7px;">\ud83d\ude80</div>':hit10?'<div style="position:absolute;top:5px;right:7px;">\ud83c\udfaf</div>':'')
+        +(hit20?'<div style="position:absolute;top:5px;right:7px;font-size:10px;">🏆 $30K</div>':hit10?'<div style="position:absolute;top:5px;right:7px;font-size:10px;">🎯 $15K</div>':'')
         +'<span class="pval" style="color:'+s.color+';">$'+baseRevMo.toLocaleString()+'</span>'
         +'<span class="plbl">'+s.label+'</span>'
         +'<span class="psub">'+s.note+'</span>'
@@ -4313,7 +4407,7 @@ function renderProjections(){
 
   var html=
   // === QUARTERLY TABLE ===
-  '<div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:18px 0 6px;">\ud83d\udcc5 QUARTERLY REVENUE PROJECTION \u2014 '+dailyPace+' LISTINGS/DAY</div>'
+  '<div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:18px 0 6px;">\ud83d\udcc5 QUARTERLY PROJECTION \u2014 '+dailyPace+'/day \u2014 ROAD TO $30K</div>'
   +'<div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Etsy organic only (left) vs with your IG + Pinterest + AI video strategy (right). Social income compounds each quarter as your audience grows: \u00d7'+socialMults.join(' \u2192 \u00d7')+'</div>'
   +'<div style="overflow-x:auto;margin-bottom:4px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:680px;">'
   +'<thead><tr style="border-bottom:2px solid var(--gold);">'
@@ -4327,9 +4421,9 @@ function renderProjections(){
   +'<th style="'+thS+'right;color:var(--cream2);">TOTAL QUARTER</th>'
   +'</tr></thead><tbody>'
   +qData.map(function(q){
-    var hit10=q.totalRevMo>=10000;var hit20=q.totalRevMo>=20000;
-    var bg=hit20?'rgba(78,205,196,.06)':hit10?'rgba(45,122,80,.06)':'';
-    var suf=hit20?' \ud83d\ude80':hit10?' \ud83c\udfaf':'';
+    var hit30=q.totalRevMo>=30000;var hit20=q.totalRevMo>=20000;var hit10=q.totalRevMo>=10000;
+    var bg=hit30?'rgba(201,151,58,.08)':hit20?'rgba(78,205,196,.06)':hit10?'rgba(45,122,80,.06)':'';
+    var suf=hit30?' 🏆':hit20?' 🚀':hit10?' 🎯':'';
     var allPast=q.qDays===0;
     return '<tr style="border-bottom:2px solid var(--ink3);background:'+bg+(allPast?';opacity:.4':'')+';">'
       +'<td style="padding:8px 8px;font-family:Bebas Neue,sans-serif;font-size:15px;color:'+q.color+';">'+q.label
@@ -4351,7 +4445,7 @@ function renderProjections(){
   +'<td style="padding:8px 8px;font-family:Bebas Neue,sans-serif;font-size:13px;color:var(--gold);" colspan="4">FULL YEAR 2026</td>'
   +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:14px;color:var(--gold2);border-right:1px solid rgba(255,255,255,.08);">$'+annualBase.toLocaleString()+'</td>'
   +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:14px;color:'+(annualSocial>0?'var(--teal)':'var(--mid)')+';">'+(annualSocial>0?'+$'+annualSocial.toLocaleString():'—')+'</td>'
-  +'<td colspan="2" style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:22px;color:'+(annualTotal>=120000?'var(--teal)':annualTotal>=60000?'var(--green3)':'var(--gold2)')+';">$'+annualTotal.toLocaleString()+'</td>'
+  +'<td colspan="2" style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:22px;color:'+(annualTotal>=300000?'var(--teal)':annualTotal>=150000?'var(--green3)':'var(--gold2)')+';">$'+annualTotal.toLocaleString()+'</td>'
   +'</tr>'
   +'</tbody></table></div>'
 
@@ -4368,9 +4462,9 @@ function renderProjections(){
   +'<th style="'+thS+'right;color:var(--green3);">TOTAL</th>'
   +'</tr></thead><tbody>'
   +monthData.map(function(m){
-    var hit10=m.total>=10000;var qc=qColors[m.qi];
+    var hit30=m.total>=30000;var hit10=m.total>=10000;var qc=qColors[m.qi];
     return '<tr style="border-bottom:1px solid var(--border);background:'+(hit10?'rgba(45,122,80,.05)':'')+(m.past?';opacity:.4':'')+';">'
-      +'<td style="padding:5px 8px;font-family:Bebas Neue,sans-serif;font-size:13px;color:'+qc+';">'+m.name+(m.past?' <span style="font-size:9px;color:var(--mid);">(past)</span>':'')+(hit10?' \ud83c\udfaf':'')+'</td>'
+      +'<td style="padding:5px 8px;font-family:Bebas Neue,sans-serif;font-size:13px;color:'+qc+';">'+m.name+(m.past?' <span style="font-size:9px;color:var(--mid);">(past)</span>':'')+(hit30?' 🏆':hit10?' 🎯':'')+'</td>'
       +'<td style="padding:5px 8px;text-align:center;font-family:DM Mono,monospace;font-size:10px;color:var(--mid);">'+m.effDays+'</td>'
       +'<td style="padding:5px 8px;text-align:right;font-family:DM Mono,monospace;font-size:10px;color:var(--gold2);">+'+m.add+'</td>'
       +'<td style="padding:5px 8px;text-align:right;font-family:DM Mono,monospace;font-size:10px;color:var(--cream2);">'+m.cumLive.toLocaleString()+'</td>'
@@ -4388,18 +4482,19 @@ function renderProjections(){
   +'<th style="'+thS+'right;color:var(--gold);">LISTINGS</th>'
   +'<th style="'+thS+'right;color:var(--gold);">MORE TO PUBLISH</th>'
   +'<th style="'+thS+'right;color:var(--gold2);">AT YOUR PACE</th>'
-  +'<th style="'+thS+'right;color:var(--green3);">AT 3/DAY</th>'
+  +'<th style="'+thS+'right;color:var(--gold2);">AT 7/DAY</th>'
   +'</tr></thead><tbody>'
-  +[1000,2000,3000,5000,7500,10000,15000,20000].map(function(target){
+  +[1000,2000,5000,10000,15000,20000,25000,30000].map(function(target){
     var listNeeded=revPerListing>0?Math.ceil(target/revPerListing):null;
     var more=listNeeded!==null?Math.max(0,listNeeded-live):null;
     var dT=(more!==null&&dailyPace>0)?Math.ceil(more/dailyPace):null;
-    var dS=more!==null?Math.ceil(more/3):null;
+    var dS=more!==null?Math.ceil(more/7):null;
     var already=listNeeded!==null&&live>=listNeeded;
     var rowBg=already?'rgba(45,122,80,.08)':target===10000?'rgba(201,151,58,.06)':'';
-    var tc=target===10000?'var(--gold)':target>10000?'var(--teal)':'var(--cream2)';
-    return '<tr style="border-bottom:1px solid var(--border);background:'+rowBg+';">'
-      +'<td style="padding:6px 8px;font-family:Bebas Neue,sans-serif;font-size:15px;color:'+tc+';">$'+target.toLocaleString()+(target===10000?' \ud83c\udfaf':target===20000?' \ud83d\ude80':'')+'/mo</td>'
+    var tc=target===30000?'var(--gold)':target>=15000?'var(--teal)':'var(--cream2)';
+    var medal=target===30000?' 🏆':target===20000?' 🚀':target===15000?' 🎯':target===10000?' ✅':'';
+    return '<tr style="border-bottom:1px solid var(--border);background:'+rowBg+(target===30000?';border:2px solid rgba(201,151,58,.4)':'')+';">'
+      +'<td style="padding:6px 8px;font-family:Bebas Neue,sans-serif;font-size:15px;color:'+tc+';">$'+target.toLocaleString()+medal+'/mo</td>'
       +'<td style="padding:6px 8px;text-align:right;font-family:DM Mono,monospace;color:var(--cream2);">'+(already?'<span style="color:var(--green3);">\u2713 Done!</span>':listNeeded?listNeeded.toLocaleString():'—')+'</td>'
       +'<td style="padding:6px 8px;text-align:right;font-family:DM Mono,monospace;color:var(--gold2);">'+(already?'—':more!==null?'+'+more:'—')+'</td>'
       +'<td style="padding:6px 8px;text-align:right;font-size:10px;color:var(--mid);">'+(already?'—':daysFromNow(dT))+'</td>'
@@ -5952,7 +6047,7 @@ function recordPublishedToday(count){
 
 function updateStreak(){
   var td=todayStr();
-  var dailyTarget=Math.ceil(parseFloat(misc.projDailyTarget)||2.0);
+  var dailyTarget=Math.ceil(parseFloat(misc.projDailyTarget)||7.0);
   var todayCount=getTodayPublished();
   // Check if today's target is hit
   if(todayCount>=dailyTarget){
@@ -5980,7 +6075,7 @@ function updateStreak(){
 
 function renderScorecard(){
   var m=calcRealMetrics();
-  var dailyTarget=parseFloat(misc.projDailyTarget)||2.0;
+  var dailyTarget=parseFloat(misc.projDailyTarget)||7.0;
   var todayPub=getTodayPublished();
   var weekPub=getWeekPublished();
   var weekTarget=Math.round(dailyTarget*7);
@@ -6035,7 +6130,7 @@ function renderScorecard(){
 // WEEKLY PACE CARDS
 // ════════════════════════════════════════════
 function renderPaceCards(){
-  var dailyTarget=parseFloat(misc.projDailyTarget)||2.0;
+  var dailyTarget=parseFloat(misc.projDailyTarget)||7.0;
   var now=new Date();
 
   // ── Week card ──
@@ -6339,15 +6434,47 @@ function syncRealDataInputs(){
 // ════════════════════════════════════════════
 // AUTOMATION TAB
 // ════════════════════════════════════════════
-var AUTO_KEY='bhq_auto_v1';
+
+// ════════════════════════════════════════════
+// AUTOMATION — Prompt Library + Mockups
+// Data structure per edition:
+//   autoSt[edId] = {
+//     custom:  [ {id, name, prompt, ready}, ... ],
+//     dl:      [ {id, name, prompt, ready}, ... ],
+//     mUrl, mNotes, mReady
+//   }
+// ════════════════════════════════════════════
+var AUTO_KEY='bhq_auto_v2';
 var autoSt={};
+var acPtype={};  // active product-type tab per edition: 'custom' or 'dl'
 
 function loadAutomation(){try{autoSt=JSON.parse(localStorage.getItem(AUTO_KEY)||'{}');}catch(e){autoSt={};}}
 function saveAutomation(){try{localStorage.setItem(AUTO_KEY,JSON.stringify(autoSt));}catch(e){}}
-function getAE(id){if(!autoSt[id])autoSt[id]={prompt:'',pReady:false,mUrl:'',mNotes:'',mReady:false};return autoSt[id];}
 function sEl(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
 function escA(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
+// Get/init edition state
+function getAE(edId){
+  if(!autoSt[edId])autoSt[edId]={custom:[],dl:[],mUrl:'',mNotes:'',mReady:false};
+  var ae=autoSt[edId];
+  if(!ae.custom)ae.custom=[];
+  if(!ae.dl)ae.dl=[];
+  return ae;
+}
+
+// How many ready prompts in an array
+function countReady(arr){return arr.filter(function(v){return v.ready;}).length;}
+
+// Edition is "prompt ready" if both custom and dl have at least one ready variation
+function edPromptReady(edId){
+  var ae=getAE(edId);
+  return countReady(ae.custom)>0&&countReady(ae.dl)>0;
+}
+
+// Unique ID
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+
+// ── Tab switching (top-level: canva / mockup) ──────────
 function switchAutoTab(tab){
   document.getElementById('autoCanvaPanel').style.display=tab==='canva'?'':'none';
   document.getElementById('autoMockupPanel').style.display=tab==='mockup'?'':'none';
@@ -6368,6 +6495,7 @@ function setAutoMockFilter(f,btn){
   renderMockGrid(f);
 }
 
+// ── renderAutomation (called on tab switch) ────────────
 function renderAutomation(){
   loadAutomation();
   renderCanvaGrid('all');
@@ -6378,13 +6506,14 @@ function renderAutomation(){
   if(n)n.value=ms.notes||'';
 }
 
+// ── Summary stats ──────────────────────────────────────
 function updateAutoStats(){
   var eds=EDITIONS,tot=eds.length;
-  var cr=eds.filter(function(e){return getAE(e.id).pReady;}).length;
+  var cr=eds.filter(function(e){return edPromptReady(e.id);}).length;
   var mr=eds.filter(function(e){return getAE(e.id).mReady;}).length;
   var ipIds={};
   listings.filter(function(l){return getStatus(l)==='in_progress';}).forEach(function(l){ipIds[l.edId]=true;});
-  var bl=Object.keys(ipIds).filter(function(id){return !getAE(id).pReady;}).length;
+  var bl=Object.keys(ipIds).filter(function(id){return !edPromptReady(id);}).length;
   sEl('autoCanvaDone',cr);sEl('autoCanvaTotal',tot);
   sEl('autoCanvaPct',Math.round(cr/tot*100)+'%');sEl('autoCanvaBlocked',bl);
   sEl('autoMockDone',mr);sEl('autoMockTotal',tot);
@@ -6392,15 +6521,187 @@ function updateAutoStats(){
   sEl('autoMockBase',(autoSt['_base']&&autoSt['_base'].url)?'Set':'Not set');
 }
 
+// ── Render one product-type panel (custom or dl) ───────
+function renderPtypePanel(edId, ptype){
+  var ae=getAE(edId);
+  var variations=ae[ptype]||[];
+  var isCustom=ptype==='custom';
+  var typeColor=isCustom?'var(--gold)':'var(--teal)';
+  var typeLabel=isCustom?'Custom Poster &#x2014; $19.95':'Instant Download &#x2014; $12.95';
+  var typeDesc=isCustom
+    ?'Personalised poster. Each order needs buyer\'s name, year, preferences.'
+    :'Evergreen poster. No personalisation &#x2014; fully passive income.';
+
+  var readyCnt=countReady(variations);
+  var totalCnt=variations.length;
+  var statusLine=totalCnt===0
+    ?'<span style="color:var(--mid);font-size:9px;">No prompts saved yet</span>'
+    :'<span style="font-size:9px;color:'+(readyCnt>0?'var(--green3)':'var(--mid)')+';">'+readyCnt+'/'+totalCnt+' variations ready</span>';
+
+  var rows=variations.map(function(v,i){
+    var bodyId='pvb_'+edId+'_'+ptype+'_'+i;
+    return '<div class="pv-row" id="pvr_'+edId+'_'+ptype+'_'+v.id+'">'
+      +'<div class="pv-head" onclick="togglePvBody(\''+bodyId+'\')">'
+        +'<span style="color:'+typeColor+';font-size:9px;flex-shrink:0;">&#9654;</span>'
+        +'<input class="pv-name-inp" type="text" placeholder="Variation name (e.g. 50th Standard, US Presidents angle)" '
+          +'value="'+escA(v.name)+'" '
+          +'onclick="event.stopPropagation()" '
+          +'oninput="pvSaveName(\''+edId+'\',\''+ptype+'\',\''+v.id+'\',this.value)">'
+        +(v.ready
+          ?'<span class="pv-badge-ready">READY</span>'
+          :'<span class="pv-badge-draft">DRAFT</span>')
+        +'<button class="pv-del" onclick="event.stopPropagation();pvDelete(\''+edId+'\',\''+ptype+'\',\''+v.id+'\')" title="Delete this variation">&#x2715;</button>'
+      +'</div>'
+      +'<div class="pv-body" id="'+bodyId+'" style="display:none;">'
+        +'<textarea class="at-ta" rows="5" '
+          +'placeholder="Paste your Canva Bulk Create prompt or CSV column headers here.\n\nExample: name, birth_year, headline_fact, sub_fact_1, colour_accent\n\nOr: the full AI prompt you use to generate the data rows for this variation." '
+          +'oninput="pvSavePrompt(\''+edId+'\',\''+ptype+'\',\''+v.id+'\',this.value)">'+escA(v.prompt)+'</textarea>'
+        +'<div style="display:flex;gap:6px;align-items:center;margin-top:6px;flex-wrap:wrap;">'
+          +'<button class="at-cp" onclick="pvCopy(\''+edId+'\',\''+ptype+'\',\''+v.id+'\')">&#x1F4CB; Copy Prompt</button>'
+          +'<label style="display:flex;align-items:center;gap:5px;font-size:9px;cursor:pointer;">'
+            +'<input type="checkbox" '+(v.ready?'checked ':'')
+              +'onchange="pvToggleReady(\''+edId+'\',\''+ptype+'\',\''+v.id+'\',this.checked)" '
+              +'style="cursor:pointer;accent-color:var(--green3);" onclick="event.stopPropagation()">'
+            +'<span style="color:'+(v.ready?'var(--green3)':'var(--mid)')+';">'
+              +(v.ready?'Ready &#x2014; tested in Canva Bulk Create':'Mark as Ready when tested and working')
+            +'</span>'
+          +'</label>'
+        +'</div>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+
+  return '<div style="padding:10px 12px 12px;">'
+    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">'
+      +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:10px;letter-spacing:2px;color:'+typeColor+';">'+typeLabel+'</span>'
+      +'<span style="font-size:9px;color:var(--mid);">&#x2014; '+typeDesc+'</span>'
+    +'</div>'
+    +statusLine
+    +'<div style="margin-top:8px;">'+rows+'</div>'
+    +'<button class="pv-add-btn" onclick="pvAdd(\''+edId+'\',\''+ptype+'\')">+ Add Variation</button>'
+  +'</div>';
+}
+
+// ── Toggle variation body open/close ──────────────────
+function togglePvBody(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  el.style.display=el.style.display==='none'?'block':'none';
+}
+
+// ── Add a new blank variation ─────────────────────────
+function pvAdd(edId,ptype){
+  var ae=getAE(edId);
+  if(!ae[ptype])ae[ptype]=[];
+  ae[ptype].push({id:uid(),name:'',prompt:'',ready:false});
+  saveAutomation();
+  // Re-render just this edition card
+  rePaintEdCard(edId);
+  updateAutoStats();
+  // Auto-open the new variation body
+  var rows=ae[ptype];
+  var newV=rows[rows.length-1];
+  setTimeout(function(){
+    var bodyId='pvb_'+edId+'_'+ptype+'_'+(rows.length-1);
+    var el=document.getElementById(bodyId);
+    if(el)el.style.display='block';
+  },50);
+}
+
+// ── Delete a variation ────────────────────────────────
+function pvDelete(edId,ptype,vid){
+  var ae=getAE(edId);
+  ae[ptype]=(ae[ptype]||[]).filter(function(v){return v.id!==vid;});
+  saveAutomation();
+  rePaintEdCard(edId);
+  updateAutoStats();
+}
+
+// ── Save helpers ──────────────────────────────────────
+function pvSaveName(edId,ptype,vid,val){
+  var v=pvFind(edId,ptype,vid);if(v)v.name=val;saveAutomation();
+}
+function pvSavePrompt(edId,ptype,vid,val){
+  var v=pvFind(edId,ptype,vid);if(v)v.prompt=val;saveAutomation();
+}
+function pvToggleReady(edId,ptype,vid,checked){
+  var v=pvFind(edId,ptype,vid);
+  if(v){v.ready=checked;saveAutomation();}
+  // Update just the badge and checkbox label in-place
+  var row=document.getElementById('pvr_'+edId+'_'+ptype+'_'+vid);
+  if(row){
+    var badge=row.querySelector('.pv-badge-ready,.pv-badge-draft');
+    if(badge){badge.className=checked?'pv-badge-ready':'pv-badge-draft';badge.textContent=checked?'READY':'DRAFT';}
+    var span=row.querySelector('.pv-body span');
+    if(span){span.style.color=checked?'var(--green3)':'var(--mid)';span.innerHTML=checked?'Ready &#x2014; tested in Canva Bulk Create':'Mark as Ready when tested and working';}
+  }
+  updateAutoStats();
+}
+function pvFind(edId,ptype,vid){
+  var ae=getAE(edId);
+  return (ae[ptype]||[]).find(function(v){return v.id===vid;});
+}
+
+// ── Copy prompt ───────────────────────────────────────
+function pvCopy(edId,ptype,vid){
+  var v=pvFind(edId,ptype,vid);
+  if(!v||!v.prompt){showToast('No prompt saved for this variation yet.');return;}
+  if(navigator.clipboard)navigator.clipboard.writeText(v.prompt).then(function(){showToast('Prompt copied!');});
+}
+
+// ── Switch product type tab within an edition card ────
+function switchPtype(edId,ptype){
+  acPtype[edId]=ptype;
+  var custom=document.getElementById('ptpanel_'+edId+'_custom');
+  var dl=document.getElementById('ptpanel_'+edId+'_dl');
+  var tbC=document.getElementById('pttab_'+edId+'_custom');
+  var tbD=document.getElementById('pttab_'+edId+'_dl');
+  if(custom)custom.style.display=ptype==='custom'?'block':'none';
+  if(dl)dl.style.display=ptype==='dl'?'block':'none';
+  if(tbC){tbC.className='pt-tab'+(ptype==='custom'?' on':'');}
+  if(tbD){tbD.className='pt-tab dl'+(ptype==='dl'?' on':'');}
+}
+
+// ── Re-paint a single edition card without full re-render
+function rePaintEdCard(edId){
+  var ae=getAE(edId);
+  var cPanel=document.getElementById('ptpanel_'+edId+'_custom');
+  var dPanel=document.getElementById('ptpanel_'+edId+'_dl');
+  if(cPanel)cPanel.innerHTML=renderPtypePanel(edId,'custom');
+  if(dPanel)dPanel.innerHTML=renderPtypePanel(edId,'dl');
+  // Update card border
+  var card=document.getElementById('atcard_'+edId);
+  if(card){
+    var isReady=edPromptReady(edId);
+    var ipIds={};
+    listings.filter(function(l){return getStatus(l)==='in_progress';}).forEach(function(l){ipIds[l.edId]=true;});
+    var bl=!!(ipIds[edId]&&!isReady);
+    card.style.borderColor=bl?'rgba(168,72,32,.5)':isReady?'rgba(45,122,80,.4)':'rgba(201,151,58,.2)';
+  }
+  // Update badge
+  var badge=document.getElementById('atbadge_'+edId);
+  if(badge){
+    var r=edPromptReady(edId);
+    badge.className='at-badge';
+    badge.style.color=r?'var(--green3)':'var(--mid)';
+    badge.style.borderColor=r?'var(--green3)':'var(--border)';
+    badge.textContent=r?'READY':'MISSING';
+  }
+}
+
+// ── Full grid render ──────────────────────────────────
 function renderCanvaGrid(f){
   var el=document.getElementById('autoCanvaGrid');if(!el)return;
   if(f===undefined)f='all';
   var ipIds={};
   listings.filter(function(l){return getStatus(l)==='in_progress';}).forEach(function(l){ipIds[l.edId]=true;});
   var eds=EDITIONS.filter(function(ed){
-    var st=getAE(ed.id);
-    if(f==='missing')return !st.pReady;
-    if(f==='ready')return st.pReady;
+    var ae=getAE(ed.id);
+    var r=edPromptReady(ed.id);
+    if(f==='missing')return !r;
+    if(f==='ready')return r;
+    if(f==='custom_miss')return countReady(ae.custom)===0;
+    if(f==='dl_miss')return countReady(ae.dl)===0;
     if(f==='generic')return ed.cat==='generic';
     if(f==='black')return ed.cat==='black';
     if(f==='a')return ed.shop==='a';
@@ -6409,45 +6710,56 @@ function renderCanvaGrid(f){
   });
   if(!eds.length){el.innerHTML='<div style="padding:20px;font-size:11px;color:var(--mid);">No editions match this filter.</div>';return;}
   el.innerHTML=eds.map(function(ed){
-    var st=getAE(ed.id);
-    var bl=!!(ipIds[ed.id]&&!st.pReady);
-    var bc=bl?'rgba(168,72,32,.5)':st.pReady?'rgba(45,122,80,.4)':'rgba(201,151,58,.2)';
+    var ae=getAE(ed.id);
+    var isReady=edPromptReady(ed.id);
+    var bl=!!(ipIds[ed.id]&&!isReady);
+    var bc=bl?'rgba(168,72,32,.5)':isReady?'rgba(45,122,80,.4)':'rgba(201,151,58,.2)';
     var lv=listings.filter(function(l){return l.edId===ed.id&&l.stages&&l.stages.live;}).length;
     var ip=listings.filter(function(l){return l.edId===ed.id&&getStatus(l)==='in_progress';}).length;
-    return'<div class="at-card" style="border-color:'+bc+';">'
+    var curPtype=acPtype[ed.id]||'custom';
+    // Ready dots for each type
+    var cDot=countReady(ae.custom)>0?'pt-dot pt-dot-ok':'pt-dot pt-dot-no';
+    var dDot=countReady(ae.dl)>0?'pt-dot pt-dot-ok':'pt-dot pt-dot-no';
+    return'<div class="at-card" id="atcard_'+ed.id+'" style="border-color:'+bc+';">'
+      // ── CARD HEADER
       +'<div class="at-head">'
         +'<div class="at-flag">'+ed.flag+'</div>'
         +'<div style="flex:1;">'
           +'<div class="at-nm">'+ed.name+'</div>'
-          +'<div class="at-sub">Shop '+ed.shop.toUpperCase()+(ed.cat==='black'?' &middot; Black Community':' &middot; Generic')+'</div>'
+          +'<div class="at-sub">Shop '+ed.shop.toUpperCase()+(ed.cat==='black'?' &middot; Black':'  &middot; Generic')+'</div>'
         +'</div>'
-        +(bl?'<span class="at-badge" style="color:#ff6b35;border-color:#ff6b35;">BLOCKING</span>':'')
-        +(st.pReady
-          ?'<span class="at-badge" style="color:var(--green3);border-color:var(--green3);">READY</span>'
-          :'<span class="at-badge" style="color:var(--mid);border-color:var(--border);">MISSING</span>')
+        +(bl?'<span class="at-badge" style="color:#ff6b35;border-color:#ff6b35;margin-right:4px;">BLOCKING</span>':'')
+        +'<span class="at-badge" id="atbadge_'+ed.id+'" style="color:'+(isReady?'var(--green3)':'var(--mid)')+';border-color:'+(isReady?'var(--green3)':'var(--border)')+';">'+(isReady?'READY':'MISSING')+'</span>'
       +'</div>'
-      +'<div class="at-body">'
-        +'<div style="display:flex;gap:14px;margin-bottom:7px;font-size:9px;">'
-          +'<span style="color:var(--green3);">'+lv+' live</span>'
-          +'<span style="color:var(--gold2);">'+ip+' in progress</span>'
-        +'</div>'
-        +(bl?'<div style="font-size:9px;color:#ff6b35;padding:4px 8px;background:rgba(255,69,0,.08);border-left:2px solid #ff6b35;margin-bottom:7px;">In-progress listings here — no prompt saved. Stage 2 is blocked.</div>':'')
-        +'<div style="font-size:8px;color:var(--mid);margin-bottom:4px;letter-spacing:1px;font-family:Bebas Neue,sans-serif;">CANVA BULK CREATE PROMPT / CSV COLUMN HEADERS</div>'
-        +'<textarea class="at-ta" id="acp_'+ed.id+'" rows="4" placeholder="Paste your Canva bulk create prompt or CSV column headers here.\n\nExample: name, birth_year, headline_fact, sub_fact_1, colour_accent\n\nOr: the AI prompt you use to generate CSV data rows for this edition." oninput="autoSavePrompt(\''+ed.id+'\')">'+escA(st.prompt)+'</textarea>'
-        +'<div style="display:flex;gap:6px;align-items:center;margin-top:6px;flex-wrap:wrap;">'
-          +'<button class="at-cp" onclick="autoCopyPrompt(\''+ed.id+'\')">Copy Prompt</button>'
-          +'<label style="display:flex;align-items:center;gap:5px;font-size:9px;cursor:pointer;">'
-            +'<input type="checkbox" id="acr_'+ed.id+'" '+(st.pReady?'checked ':'')+'onchange="autoTogglePReady(\''+ed.id+'\')" style="cursor:pointer;accent-color:var(--green3);">'
-            +'<span id="acl_'+ed.id+'" style="color:'+(st.pReady?'var(--green3)':'var(--mid)')+';">'
-              +(st.pReady?'Prompt Ready &#x2014; Stage 2 automated':'Mark as Ready when tested')
-            +'</span>'
-          +'</label>'
-        +'</div>'
+      // ── PIPELINE COUNTS
+      +'<div style="display:flex;gap:14px;padding:6px 12px 0;font-size:9px;">'
+        +'<span style="color:var(--green3);">'+lv+' live</span>'
+        +'<span style="color:var(--gold2);">'+ip+' in progress</span>'
+      +'</div>'
+      +(bl?'<div style="font-size:9px;color:#ff6b35;padding:4px 12px;margin:4px 0 0;">In-progress listings here &#x2014; prompts missing. Stage 2 is blocked.</div>':'')
+      // ── PRODUCT TYPE TABS
+      +'<div class="pt-tabs" style="margin:8px 12px 0;">'
+        +'<button class="pt-tab'+(curPtype==='custom'?' on':'')+'" id="pttab_'+ed.id+'_custom" onclick="switchPtype(\''+ed.id+'\',\'custom\')">'
+          +'<span class="pt-dot '+cDot+'" style="display:inline-block;vertical-align:middle;margin-right:4px;"></span>'
+          +'&#x270F;&#xFE0F; Custom Poster'
+        +'</button>'
+        +'<button class="pt-tab dl'+(curPtype==='dl'?' on':'')+'" id="pttab_'+ed.id+'_dl" onclick="switchPtype(\''+ed.id+'\',\'dl\')">'
+          +'<span class="pt-dot '+dDot+'" style="display:inline-block;vertical-align:middle;margin-right:4px;"></span>'
+          +'&#x26A1; Instant Download'
+        +'</button>'
+      +'</div>'
+      // ── PRODUCT PANELS
+      +'<div id="ptpanel_'+ed.id+'_custom" style="display:'+(curPtype==='custom'?'block':'none')+';">'
+        +renderPtypePanel(ed.id,'custom')
+      +'</div>'
+      +'<div id="ptpanel_'+ed.id+'_dl" style="display:'+(curPtype==='dl'?'block':'none')+';">'
+        +renderPtypePanel(ed.id,'dl')
       +'</div>'
     +'</div>';
   }).join('');
 }
 
+// ── Mockup grid (unchanged logic, same as before) ──────
 function renderMockGrid(f){
   var el=document.getElementById('autoMockGrid');if(!el)return;
   if(f===undefined)f='all';
@@ -6475,11 +6787,11 @@ function renderMockGrid(f){
         +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">'
           +'<div>'
             +'<div style="font-size:8px;color:var(--mid);margin-bottom:3px;">Canva Variant URL</div>'
-            +'<input type="text" class="at-ta" style="height:32px;resize:none;padding:5px 7px;" id="amv_'+ed.id+'" placeholder="canva.com/design/..." value="'+escA(st.mUrl)+'" oninput="autoSaveMock(\''+ed.id+'\')">'
+            +'<input type="text" class="at-ta" style="height:32px;resize:none;padding:5px 7px;" id="amv_'+ed.id+'" placeholder="canva.com/design/..." value="'+escA(st.mUrl||'')+'" oninput="autoSaveMock(\''+ed.id+'\')">'
           +'</div>'
           +'<div>'
             +'<div style="font-size:8px;color:var(--mid);margin-bottom:3px;">Variation Notes</div>'
-            +'<input type="text" class="at-ta" style="height:32px;resize:none;padding:5px 7px;" id="amn_'+ed.id+'" placeholder="e.g. Gold accent, afro frame" value="'+escA(st.mNotes)+'" oninput="autoSaveMock(\''+ed.id+'\')">'
+            +'<input type="text" class="at-ta" style="height:32px;resize:none;padding:5px 7px;" id="amn_'+ed.id+'" placeholder="e.g. Gold accent, afro frame" value="'+escA(st.mNotes||'')+'" oninput="autoSaveMock(\''+ed.id+'\')">'
           +'</div>'
         +'</div>'
         +'<label style="display:flex;align-items:center;gap:5px;font-size:9px;cursor:pointer;">'
@@ -6493,6 +6805,7 @@ function renderMockGrid(f){
   }).join('');
 }
 
+// ── Mockup save/toggle ────────────────────────────────
 function saveMockBase(){
   var u=document.getElementById('mockBaseUrl'),n=document.getElementById('mockBaseNotes');
   if(!autoSt['_base'])autoSt['_base']={};
@@ -6500,15 +6813,6 @@ function saveMockBase(){
   autoSt['_base'].notes=(n&&n.value)||'';
   saveAutomation();
   sEl('autoMockBase',autoSt['_base'].url?'Set':'Not set');
-}
-function autoSavePrompt(id){var t=document.getElementById('acp_'+id);if(t){getAE(id).prompt=t.value;saveAutomation();}}
-function autoTogglePReady(id){
-  var cb=document.getElementById('acr_'+id);
-  getAE(id).pReady=!!(cb&&cb.checked);saveAutomation();updateAutoStats();
-  var lb=document.getElementById('acl_'+id);
-  if(lb){lb.style.color=getAE(id).pReady?'var(--green3)':'var(--mid)';lb.innerHTML=getAE(id).pReady?'Prompt Ready &#x2014; Stage 2 automated':'Mark as Ready when tested';}
-  var cd=cb&&cb.closest('.at-card');
-  if(cd)cd.style.borderColor=getAE(id).pReady?'rgba(45,122,80,.4)':'rgba(201,151,58,.2)';
 }
 function autoSaveMock(id){
   var u=document.getElementById('amv_'+id),n=document.getElementById('amn_'+id);
@@ -6522,11 +6826,7 @@ function autoToggleMReady(id){
   var cd=cb&&cb.closest('.at-card');
   if(cd)cd.style.borderColor=getAE(id).mReady?'rgba(45,122,80,.4)':'rgba(201,151,58,.2)';
 }
-function autoCopyPrompt(id){
-  var st=getAE(id);
-  if(!st.prompt){showToast('No prompt saved for this edition yet.');return;}
-  if(navigator.clipboard)navigator.clipboard.writeText(st.prompt).then(function(){showToast('Prompt copied!');});
-}
+
 
 // ════════════════════════════════════════════
 // INIT
@@ -6584,7 +6884,7 @@ function init(){
   renderSprintPanel();
   // Initialise phase bar text for Phase 1 (default)
   var phBar=document.getElementById('phaseBar');
-  if(phBar)phBar.innerHTML='<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">608 priority listings</span>: highest-demand ages across all editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of birthday gift revenue.';
+  if(phBar)phBar.innerHTML='<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">608 priority listings</span>: highest-demand ages across all editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of your $10K goal.';
 
   // Bottom bar date
   var bd=document.getElementById('bbDate');
