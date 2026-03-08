@@ -1669,221 +1669,166 @@ table.tbl         { font-size: 13px; }
 
   <!-- ══════ PROJECTIONS VIEW ══════ -->
   <div id="v-projections" style="display:none;">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;">PROFIT PROJECTIONS — BASED ON YOUR REAL NUMBERS</div>
 
-    <!-- ① ALWAYS-VISIBLE WHY BANNER -->
-    <div class="why-banner" id="whyBanner">
-      <div class="why-fire" id="whyFire">🔥</div>
-      <div style="flex:1;min-width:0;">
-        <div class="why-headline">From <span style="color:var(--rust2);">$250</span> to <span style="color:var(--gold);">$30,000/month</span> by Dec 31 2026. 3,840 listings. 3 design variations. AI production. You just publish.</div>
-        <div class="why-pills">
-          <span class="why-pill" style="border-color:var(--gold);color:var(--gold);">🕌 Sadaqah from abundance</span>
-          <span class="why-pill" style="border-color:#9b59b6;color:#9b59b6;">💝 Marriage protected</span>
-          <span class="why-pill" style="border-color:var(--gold2);color:var(--gold2);">👨‍👩‍👧‍👦 Kids get your time</span>
-          <span class="why-pill" style="border-color:var(--green3);color:var(--green3);">👨‍👩‍👦🏽 Parents RM500/wk</span>
-          <span class="why-pill" style="border-color:var(--teal);color:var(--teal);">🌍 Work from anywhere</span>
-          <span class="why-pill" style="border-color:var(--rust2);color:var(--rust2);">💳 Debts cleared</span>
-        </div>
-      </div>
-      <button class="why-expand-btn" id="whyExpandBtn" onclick="toggleWhyFull()">READ MORE ▾</button>
-    </div>
-    <!-- Full WHY content — hidden by default -->
-    <div id="whyFullBody" style="display:none;margin-bottom:14px;">
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🕌</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">SADAQAH &amp; WAKAF</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Give from abundance. Every listing you publish is honest halal work. Ibaadah through consistency.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$30K/month removes every time and money barrier. School runs, weekend trips, total presence. You <em>show up</em> for them — fully, freely.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--green3);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👦🏽</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--green3);margin-bottom:4px;">YOUR PARENTS — RM500/WK</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">RM2,000/month of honour, every month, without stress. They gave you everything.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid #9b59b6;padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💝</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:#9b59b6;margin-bottom:4px;">YOUR MARRIAGE</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Financial stress has taken you to the edge. $30K removes the fire permanently. Safety. Calm. Space to love.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🌍</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:4px;">LOCATION FREEDOM</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Work from KL, Penang, London. No alarm from someone else. It earns while you pray Fajr.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--rust2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💳</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:4px;">DEBTS CLEARED</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Bills paid on time. Car fixed without dread. No more quiet panic at the end of the month.</div></div>
-      </div>
-      <div style="margin-top:10px;background:linear-gradient(135deg,rgba(201,151,58,.1),rgba(45,122,80,.07));border:1px solid var(--gold);padding:12px 16px;font-size:11px;color:var(--cream2);line-height:1.85;">
-        Not a fantasy — a <strong style="color:var(--gold);">mathematical certainty</strong>. Listings × right keywords × consistent daily work = compounding revenue forever. Every listing you publish today will be earning money in 5 years. <strong style="color:var(--gold2);">The only variable is how fast you publish.</strong>
+  <!-- PAGE HEADER -->
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:12px;">📈 PROFIT PROJECTIONS — BASED ON YOUR REAL NUMBERS</div>
+
+  <!-- ═══ WHY BANNER ═══ -->
+  <div class="why-banner" id="whyBanner">
+    <div class="why-fire" id="whyFire">🔥</div>
+    <div style="flex:1;min-width:0;">
+      <div class="why-headline">From <span style="color:var(--rust2);">$250</span> to <span style="color:var(--gold);">$30,000/month</span> by Dec 31 2026. 3,840 listings. 3 design variations. AI production. You just publish.</div>
+      <div class="why-pills">
+        <span class="why-pill" style="border-color:var(--gold);color:var(--gold);">🕌 Sadaqah from abundance</span>
+        <span class="why-pill" style="border-color:#9b59b6;color:#9b59b6;">💝 Marriage protected</span>
+        <span class="why-pill" style="border-color:var(--gold2);color:var(--gold2);">👨‍👩‍👧‍👦 Kids get your time</span>
+        <span class="why-pill" style="border-color:var(--green3);color:var(--green3);">👨‍👩‍👦🏽 Parents RM500/wk</span>
+        <span class="why-pill" style="border-color:var(--teal);color:var(--teal);">🌍 Work from anywhere</span>
+        <span class="why-pill" style="border-color:var(--rust2);color:var(--rust2);">💳 Debts cleared</span>
       </div>
     </div>
-
-    <!-- ② DAILY MISSION CARD -->
-    <div class="dm-card" id="dmCard">
-      <div class="dm-title" id="dmTitle">TODAY&#39;S MISSION</div>
-      <div class="dm-grid">
-        <div class="dm-cell"><div class="dm-num" id="dmToday" style="color:var(--rust2);">0</div><div class="dm-lbl">Today</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmDailyTgt" style="color:var(--gold);">7</div><div class="dm-lbl">Daily Target</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmMonth" style="color:var(--gold2);">0</div><div class="dm-lbl">This Month</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmMonthTgt" style="color:var(--mid);">210</div><div class="dm-lbl">Month Target</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmRevNow" style="color:var(--teal);">$250</div><div class="dm-lbl">Revenue Now</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmGap" style="color:var(--rust2);">$29,750</div><div class="dm-lbl">Gap to $30K</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmDaysLeft" style="color:var(--rust2);">298</div><div class="dm-lbl">Days Left</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmPaceNeed" style="color:var(--teal);">12/day</div><div class="dm-lbl">Pace Needed</div></div>
-      </div>
-      <div class="dm-bar-bg"><div class="dm-bar-fill" id="dmBar" style="width:1%;background:var(--rust2);"></div></div>
-      <div class="dm-msg" id="dmMsg">Loading&hellip;</div>
+    <button class="why-expand-btn" id="whyExpandBtn" onclick="toggleWhyFull()">READ MORE ▾</button>
+  </div>
+  <div id="whyFullBody" style="display:none;margin-bottom:14px;">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+      <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🕌</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">SADAQAH &amp; WAKAF</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Give from abundance. Every listing you publish is honest halal work. Ibaadah through consistency.</div></div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$30K/month removes every time and money barrier. School runs, weekend trips, total presence. You <em>show up</em> for them — fully, freely.</div></div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--green3);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👦🏽</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--green3);margin-bottom:4px;">YOUR PARENTS — RM500/WK</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">RM2,000/month of honour, every month, without stress. They gave you everything.</div></div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid #9b59b6;padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💝</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:#9b59b6;margin-bottom:4px;">YOUR MARRIAGE</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Financial stress has taken you to the edge. $30K removes the fire permanently. Safety. Calm. Space to love.</div></div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🌍</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:4px;">LOCATION FREEDOM</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Work from KL, Penang, London. No alarm from someone else. It earns while you pray Fajr.</div></div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--rust2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💳</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:4px;">DEBTS CLEARED</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Bills paid on time. Car fixed without dread. No more quiet panic at the end of the month.</div></div>
     </div>
-
-    <!-- ② THIS MONTH ACTION CARD — what do I need to do right now? -->
-    <div class="thismonth-card" id="thisMonthCard">
-      <div class="thismonth-header">📆 THIS MONTH — WHAT YOU NEED TO DO NOW</div>
-      <div class="thismonth-grid" id="thisMonthGrid">
-        <div class="tm-cell"><div class="tm-val" id="tmDone" style="color:var(--green3);">—</div><div class="tm-lbl">Published<br>This Month</div></div>
-        <div class="tm-cell"><div class="tm-val" id="tmTarget" style="color:var(--gold2);">—</div><div class="tm-lbl">Monthly<br>Target</div></div>
-        <div class="tm-cell"><div class="tm-val" id="tmRemain" style="color:var(--rust2);">—</div><div class="tm-lbl">Still Need<br>This Month</div></div>
-        <div class="tm-cell"><div class="tm-val" id="tmPerDay" style="color:var(--teal);">—</div><div class="tm-lbl">Per Day<br>Remaining</div></div>
-      </div>
-      <div class="tm-bar-bg"><div class="tm-bar-fill" id="tmBar" style="width:0%;background:var(--teal);"></div></div>
-      <div class="thismonth-msg" id="thisMonthMsg" style="margin-top:10px;">Loading…</div>
-    </div>
-
-    <!-- ③ CANONICAL DATA INPUT — one place, synced everywhere -->
-    <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 16px;margin-bottom:12px;">
-
-    <!-- ══ $30K ROADMAP — VARIATION STRATEGY ══ -->
-    <div id="roadmap30k" style="background:var(--ink2);border:1px solid rgba(201,151,58,.35);border-left:4px solid var(--gold);padding:16px 18px;margin-bottom:18px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:var(--gold);margin-bottom:4px;">🗺 YOUR $30K ROADMAP — SOLO OPERATOR + AI PRODUCTION</div>
-      <div style="font-size:10px;color:var(--cream2);line-height:1.7;margin-bottom:14px;">
-        At <strong style="color:var(--gold);">$7.81/listing/mo</strong> you need <strong style="color:var(--rust2);">3,840 live listings</strong> to hit $30K/month by Dec 31 2026.
-        That is achievable because <strong style="color:var(--teal);">Canva Bulk Create + AI fact generation</strong> collapses what takes other sellers hours into minutes per batch.
-        The math works. The only variable is your daily publishing pace.
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px;">
-        <div style="background:#0e0c0a;border:1px solid rgba(201,151,58,.2);border-top:3px solid var(--gold);padding:12px 13px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--gold);">⭐ PHASE 1 — FOUNDATION</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--cream);margin:4px 0 2px;">Mar → Jun 2026</div>
-          <div style="font-size:9px;color:var(--mid);margin-bottom:7px;">85 days · 5 listings/day</div>
-          <div style="font-size:10px;color:var(--cream2);line-height:1.65;">1 design per age/edition/format. All 16 ages × 20 editions.<br><strong style="color:var(--gold);">~425 new listings → ~$5,600/mo</strong><br><br><strong style="color:var(--teal);">Focus:</strong> Top 6 ages first: 50th, 60th, 40th, 30th, 70th, 55th.</div>
-        </div>
-        <div style="background:#0e0c0a;border:1px solid rgba(78,205,196,.2);border-top:3px solid var(--teal);padding:12px 13px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--teal);">🔥 PHASE 2 — SCALE WITH VARIATIONS</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--cream);margin:4px 0 2px;">Jun → Sept 2026</div>
-          <div style="font-size:9px;color:var(--mid);margin-bottom:7px;">99 days · 8 listings/day</div>
-          <div style="font-size:10px;color:var(--cream2);line-height:1.65;">2nd design variation for top 6 ages. Canva Bulk fully automated.<br><strong style="color:var(--teal);">~1,200 listings → ~$9,375/mo</strong><br><br><strong style="color:var(--gold2);">Enable:</strong> AI generates all CSV fact rows. Publish in batches of 20.</div>
-        </div>
-        <div style="background:#0e0c0a;border:1px solid rgba(45,122,80,.3);border-top:3px solid var(--green3);padding:12px 13px;">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:11px;letter-spacing:2px;color:var(--green3);">🚀 PHASE 3 — $30K SPRINT</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--cream);margin:4px 0 2px;">Sept → Dec 2026</div>
-          <div style="font-size:9px;color:var(--mid);margin-bottom:7px;">114 days · 12–15 listings/day</div>
-          <div style="font-size:10px;color:var(--cream2);line-height:1.65;">3rd variation for all 16 ages. Full AI pipeline.<br><strong style="color:var(--green3);">~3,840 listings → $30,000/mo 🏆</strong><br><br><strong style="color:var(--rust2);">Power move:</strong> 3 × 50th × 20 editions = 120 listings in separate search slots.</div>
-        </div>
-      </div>
-      <div style="background:#0e0c0a;border:1px solid rgba(168,72,32,.4);border-left:3px solid var(--rust2);padding:11px 13px;margin-bottom:12px;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--rust2);margin-bottom:6px;">❓ DO YOU NEED DESIGN VARIATIONS — YES. THE MATH.</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:6px;font-size:10px;color:var(--cream2);margin-bottom:8px;">
-          <div style="padding:7px 10px;background:rgba(201,151,58,.06);border:1px solid rgba(201,151,58,.15);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold);">1 DESIGN PER COMBO</div>640 listings · <strong style="color:var(--gold2);">~$5K/mo ceiling</strong></div>
-          <div style="padding:7px 10px;background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.15);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--teal);">2 DESIGNS PER COMBO</div>1,280 listings · <strong style="color:var(--teal);">~$10K/mo</strong></div>
-          <div style="padding:7px 10px;background:rgba(45,122,80,.06);border:1px solid rgba(45,122,80,.15);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--green3);">3 DESIGNS × TOP 6 AGES</div>1,920 listings · <strong style="color:var(--green3);">~$15K/mo</strong></div>
-          <div style="padding:7px 10px;background:rgba(201,151,58,.1);border:2px solid var(--gold);"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold);">3 DESIGNS × ALL 16 AGES</div>3,840 listings · <strong style="color:var(--gold);">~$30K/mo 🏆</strong></div>
-        </div>
-        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Each variation is a <em>different visual design style</em> (broadsheet vs magazine vs vintage) published as a separate Etsy listing — occupying different search slots. More slots = more traffic = more sales.<br><strong style="color:var(--teal);">Variation priority: 50th → 60th → 40th → 30th → 70th → 55th.</strong> Top 6 ages × 3 designs × 20 editions × 2 formats = <strong style="color:var(--gold);">720 listings → ~$5,622/mo from top ages alone.</strong></div>
-      </div>
-      <div style="background:#0e0c0a;border:1px solid rgba(78,205,196,.2);padding:11px 13px;margin-bottom:12px;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:8px;">🤖 AI PRODUCTION WORKFLOW — 10–15 LISTINGS/DAY SOLO</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px;font-size:9px;color:var(--cream2);line-height:1.6;">
-          <div style="border-left:2px solid var(--gold);padding-left:8px;"><strong style="color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 1: AI RESEARCH</strong><br>Claude/ChatGPT → 50 historical facts per age/country in one prompt → CSV. Raw material for infinite variations. Do once per age/edition pair.</div>
-          <div style="border-left:2px solid var(--teal);padding-left:8px;"><strong style="color:var(--teal);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 2: CANVA BULK</strong><br>Upload CSV → Canva Bulk Create renders 20–50 poster designs per session. 1 session = 20–50 unique listings. Your production engine.</div>
-          <div style="border-left:2px solid var(--green3);padding-left:8px;"><strong style="color:var(--green3);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 3: AI LISTINGS</strong><br>Claude writes 50 Etsy titles, descriptions + 13-tag sets in one prompt. Copy into Etsy. No manual writing. SEO-optimised per edition/country.</div>
-          <div style="border-left:2px solid #9b59b6;padding-left:8px;"><strong style="color:#9b59b6;font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 4: AI MOCKUPS</strong><br>Ideogram/Midjourney generates lifestyle mockups at scale. One style prompt = 20+ variations. Batch process entire age/edition once. Reuse per variation.</div>
-          <div style="border-left:2px solid var(--rust2);padding-left:8px;"><strong style="color:var(--rust2);font-family:'Bebas Neue',sans-serif;font-size:9px;">STAGE 5: AI MARKETING</strong><br>One Claude prompt → 30 days of IG captions + Pinterest descriptions. AI video tools turn your designs into Reels automatically. Monthly batch only.</div>
-          <div style="border-left:2px solid var(--gold2);padding-left:8px;"><strong style="color:var(--gold2);font-family:'Bebas Neue',sans-serif;font-size:9px;">THE KEY INSIGHT</strong><br>A competitor doing this manually needs a 5-person team. You have AI at every stage. Your only limit is publishing speed. Faster publish = faster compound = $30K sooner.</div>
-        </div>
-      </div>
-      <div style="background:#0e0c0a;border:1px solid rgba(201,151,58,.2);padding:11px 13px;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:8px;">📊 WEEKLY TRACKING — WHAT TO MEASURE AS SOLO OPERATOR</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:8px;font-size:9px;color:var(--cream2);line-height:1.6;">
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold2);margin-bottom:2px;">📌 PRODUCTION</div>Listings published this week<br>Canva bulk sessions run<br>AI fact CSVs generated<br>In-pipeline (unfinished count)<br><em style="color:var(--mid);">Target: 35–70/week</em></div>
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--teal);margin-bottom:2px;">📈 ETSY METRICS</div>Revenue vs last week (%)<br>Total visits + visits/listing<br>Conversion rate (aim: 3%+)<br>Top 5 listings by revenue<br><em style="color:var(--mid);">Target: +$50–$300/week rev gain</em></div>
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--green3);margin-bottom:2px;">🎨 VARIATION PROGRESS</div>Ages with 1 design live<br>Ages with 2 designs live<br>Ages with 3 designs live<br>Next variation priority<br><em style="color:var(--mid);">Target: Top 6 ages × 3 designs first</em></div>
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--rust2);margin-bottom:2px;">📱 SOCIAL</div>IG Reels posted (3+/wk)<br>Pinterest pins added (7+/wk)<br>Social → Etsy traffic<br>Best performing angle<br><em style="color:var(--mid);">Compounds ×5 by Q4</em></div>
-          <div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:#9b59b6;margin-bottom:2px;">🤖 AI EFFICIENCY</div>Time per listing (aim: &lt;10 min)<br>Prompt templates saved<br>This week's bottleneck<br>AI tools in active use<br><em style="color:var(--mid);">Target: &lt;10 mins/listing</em></div>
-          <div style="background:rgba(201,151,58,.08);border:1px solid rgba(201,151,58,.3);padding:7px 9px;"><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;color:var(--gold);margin-bottom:2px;">🏆 NORTH STAR</div><strong style="color:var(--gold);">$30,000/month by Dec 31.</strong><br>3,840 listings. 3 design variations.<br>AI at every stage. You at the wheel.<br><strong style="color:var(--rust2);">Every week not published = compound income that never starts.</strong></div>
-        </div>
-      </div>
-    </div>
-
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:4px;">📊 YOUR REAL ETSY NUMBERS — SINGLE SOURCE OF TRUTH <span style="font-size:8px;color:var(--mid);letter-spacing:1px;">UPDATE WEEKLY</span></div>
-      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">These numbers power Today, Money View, and all projections. Update once here — everywhere updates.</div>
-      <div class="real-data-grid">
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="Total Etsy revenue last month. Found in Etsy Finances tab. Powers all projections.">Monthly Revenue ($)</span>
-          <input type="number" class="rd-inp" id="rdRevenue" placeholder="250" oninput="saveRealData();renderThisMonth()">
-          <span class="rd-note">From Etsy Finances tab</span>
-        </div>
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="Shop visits last 30 days from Etsy Stats. Visits / Live Listings = visits per listing.">Monthly Visits</span>
-          <input type="number" class="rd-inp" id="rdVisits" placeholder="900" oninput="saveRealData()">
-          <span class="rd-note">Etsy Shop Stats → last 30d</span>
-        </div>
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="Total active listings. Revenue / Live Listings = your earnings per listing per month.">Live Listings</span>
-          <input type="number" class="rd-inp" id="rdLive" placeholder="32" oninput="saveRealData();renderThisMonth()">
-          <span class="rd-note">Your actual live count</span>
-        </div>
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="Average revenue per order. Mix of Instant DL ($12.95) and Custom ($19.95).">Avg Order Value ($)</span>
-          <input type="number" class="rd-inp" id="rdAOV" placeholder="12.95" step="0.01" oninput="saveRealData()">
-          <span class="rd-note">Mix of $12.95 + $19.95</span>
-        </div>
-      </div>
-      <div style="margin-top:6px;font-size:9px;color:var(--mid);" id="canonicalUpdated">Last updated: —</div>
-    </div>
-
-    <!-- ── SECTION 2: PUBLISHING PACE ── -->
-    <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 16px;margin-bottom:12px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold2);margin-bottom:4px;">🎯 PUBLISHING PACE TARGET</div>
-      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Set how many listings you commit to publishing per day. All projections recalculate instantly.</div>
-      <div class="real-data-grid">
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="The most important number. 7/day x 298 days = 2,086 new listings. Add 3 design variations per top age/edition = 3,840 total = $30K/mo by Dec 31.">Listings Per Day <span style="color:var(--gold2);">★</span></span>
-          <input type="number" class="rd-inp" id="projDailyTarget" placeholder="2.0" step="0.1" min="0.1" max="20" oninput="saveProjData();renderThisMonth()">
-          <span class="rd-note">e.g. 1 = 1 listing/day · 0.5 = every 2 days</span>
-        </div>
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="When to stop the sprint. 608 = full Phase 1, all high-demand ages and editions.">Total Listings Target</span>
-          <input type="number" class="rd-inp" id="projTotalTarget" placeholder="3840" oninput="saveProjData()">
-          <span class="rd-note">3,840 = 3 variations × 16 ages × 20 editions × 2 formats = $30K path</span>
-        </div>
-        <div class="rd-field" style="grid-column:span 2;">
-          <div id="paceCalcResult" style="font-size:11px;color:var(--cream2);line-height:1.8;padding:6px 0;"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SECTION 3: SOCIAL MEDIA MARKETING BOOST ── -->
-    <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 16px;margin-bottom:14px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--teal);margin-bottom:4px;">📱 SOCIAL MEDIA TRAFFIC BOOST</div>
-      <div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Model the extra income from IG Reels + Pinterest + AI video driving traffic to your Etsy shops. Be conservative.</div>
-      <div class="real-data-grid">
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="Weekly IG Reels. Drives extra Etsy traffic beyond organic search. Model conservatively.">IG Reels Per Week</span>
-          <input type="number" class="rd-inp" id="projIGPosts" placeholder="0" min="0" max="21" oninput="saveProjData()">
-          <span class="rd-note">AI-generated Reels for Black community</span>
-        </div>
-        <div class="rd-field">
-          <span class="rd-lbl" data-tip="Weekly Pinterest pins. Traffic compounds over months as pins get re-pinned.">Pinterest Pins Per Week</span>
-          <input type="number" class="rd-inp" id="projPinPins" placeholder="0" min="0" max="50" oninput="saveProjData()">
-          <span class="rd-note">Birthday poster pins linking to shop</span>
-        </div>
-        <div class="rd-field">
-          <span class="rd-lbl">Viral Bonus Visits/Mo</span>
-          <input type="number" class="rd-inp" id="projViralBonus" placeholder="0" oninput="saveProjData()">
-          <span class="rd-note">Extra visits if a Reel goes viral (estimate)</span>
-        </div>
-        <div class="rd-field">
-          <span class="rd-lbl" style="color:var(--teal);">Etsy Click-Through Rate %</span>
-          <input type="number" class="rd-inp" id="projSocialCTR" placeholder="3" min="0.1" max="100" step="0.1" oninput="saveProjData()">
-          <span class="rd-note">% of social views that visit your Etsy shop</span>
-        </div>
-      </div>
-      <div id="socialModelNote" style="margin-top:8px;padding:8px 10px;background:rgba(78,205,196,.06);border:1px solid rgba(78,205,196,.2);font-size:10px;color:var(--cream2);line-height:1.7;"></div>
-    </div>
-
-    <!-- LIVE METRICS STRIP -->
-    <div style="background:var(--ink2);border:1px solid var(--border);padding:8px 12px;margin-bottom:14px;" id="projBasis"></div>
-
-    <!-- PACE SCENARIOS -->
-    <div class="proj-grid" id="projGrid"></div>
-
-    <!-- ALL PROJECTION TABLES -->
-    <div id="projTable"></div>
   </div>
 
+  <!-- ═══ DAILY MISSION CARD ═══ -->
+  <div class="dm-card" id="dmCard">
+    <div class="dm-title" id="dmTitle">TODAY&#39;S MISSION</div>
+    <div class="dm-grid">
+      <div class="dm-cell"><div class="dm-num" id="dmToday" style="color:var(--rust2);">0</div><div class="dm-lbl">Today</div></div>
+      <div class="dm-cell"><div class="dm-num" id="dmDailyTgt" style="color:var(--gold);">7</div><div class="dm-lbl">Daily Target</div></div>
+      <div class="dm-cell"><div class="dm-num" id="dmMonth" style="color:var(--gold2);">0</div><div class="dm-lbl">This Month</div></div>
+      <div class="dm-cell"><div class="dm-num" id="dmMonthTgt" style="color:var(--mid);">210</div><div class="dm-lbl">Month Target</div></div>
+      <div class="dm-cell"><div class="dm-num" id="dmRevNow" style="color:var(--teal);">$250</div><div class="dm-lbl">Revenue Now</div></div>
+      <div class="dm-cell"><div class="dm-num" id="dmGap" style="color:var(--rust2);">$29,750</div><div class="dm-lbl">Gap to $30K</div></div>
+      <div class="dm-cell"><div class="dm-num" id="dmDaysLeft" style="color:var(--rust2);">298</div><div class="dm-lbl">Days Left</div></div>
+      <div class="dm-cell"><div class="dm-num" id="dmPaceNeed" style="color:var(--teal);">12/day</div><div class="dm-lbl">Pace Needed</div></div>
+    </div>
+    <div class="dm-bar-bg"><div class="dm-bar-fill" id="dmBar" style="width:1%;background:var(--rust2);"></div></div>
+    <div class="dm-msg" id="dmMsg">Loading&hellip;</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PROFIT CALCULATOR — ALL INPUTS IN ONE PLACE
+  ═══════════════════════════════════════════════ -->
+  <div style="background:var(--ink2);border:2px solid var(--gold);border-radius:2px;padding:16px 18px;margin-bottom:14px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:4px;color:var(--gold);margin-bottom:4px;">🧮 PROFIT CALCULATOR — TWEAK ANY INPUT, PROJECTIONS UPDATE LIVE</div>
+    <div style="font-size:10px;color:var(--mid);margin-bottom:14px;">Enter your real Etsy numbers + publishing pace. Every field drives the tables below. No guessing — pure math.</div>
+
+    <!-- ROW 1: YOUR CURRENT ETSY NUMBERS -->
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--gold2);margin-bottom:8px;">① YOUR CURRENT ETSY NUMBERS</div>
+    <div class="real-data-grid" style="margin-bottom:14px;">
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Last month's Etsy revenue. From Etsy Finances tab.">Monthly Revenue ($)</span>
+        <input type="number" class="rd-inp" id="rdRevenue" placeholder="250" oninput="saveRealData();renderProjections()">
+        <span class="rd-note">Etsy Finances → last 30d</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Total shop visits last 30 days. Etsy Stats tab.">Monthly Shop Visits</span>
+        <input type="number" class="rd-inp" id="rdVisits" placeholder="900" oninput="saveRealData();renderProjections()">
+        <span class="rd-note">Etsy Stats → last 30d</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Your active listing count right now.">Live Listings</span>
+        <input type="number" class="rd-inp" id="rdLive" placeholder="32" oninput="saveRealData();renderProjections()">
+        <span class="rd-note">Active listings on Etsy</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Average price per sale. Mix of Instant DL ($12.95) and Custom ($19.95).">Avg Order Value ($)</span>
+        <input type="number" class="rd-inp" id="rdAOV" placeholder="12.95" step="0.01" oninput="saveRealData();renderProjections()">
+        <span class="rd-note">Blended: $12.95–$19.95</span>
+      </div>
+    </div>
+
+    <!-- ROW 2: COSTS (for profit calculation) -->
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--rust2);margin-bottom:8px;">② COSTS — WHAT STAYS IN YOUR POCKET</div>
+    <div class="real-data-grid" style="margin-bottom:14px;">
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Etsy takes ~6.5% transaction + 3% payment processing + $0.20 listing. Enter total % deducted.">Etsy Fees (%)</span>
+        <input type="number" class="rd-inp" id="pcEtsyFee" placeholder="9.5" step="0.1" min="0" max="30" oninput="savePcData();renderProjections()">
+        <span class="rd-note">~6.5% transaction + 3% payment</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Canva Pro, AI tools (Claude, ChatGPT, Ideogram), etc. Enter monthly total.">Tools &amp; Subscriptions ($/mo)</span>
+        <input type="number" class="rd-inp" id="pcTools" placeholder="50" oninput="savePcData();renderProjections()">
+        <span class="rd-note">Canva Pro ~RM45 + AI tools</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="IG ads, Pinterest promoted pins, etc. Enter monthly total.">Ad Spend ($/mo)</span>
+        <input type="number" class="rd-inp" id="pcAds" placeholder="0" oninput="savePcData();renderProjections()">
+        <span class="rd-note">Etsy ads or social ads</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Any other regular cost: hosting, VA, domain, etc.">Other Costs ($/mo)</span>
+        <input type="number" class="rd-inp" id="pcOther" placeholder="0" oninput="savePcData();renderProjections()">
+        <span class="rd-note">VA, hosting, misc</span>
+      </div>
+    </div>
+
+    <!-- ROW 3: PUBLISHING PACE -->
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:3px;color:var(--teal);margin-bottom:8px;">③ PUBLISHING PACE — THE ONLY VARIABLE YOU CONTROL</div>
+    <div class="real-data-grid" style="margin-bottom:14px;">
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Your daily publish commitment. 7/day × 298 days = 2,086 new listings. That's the pace to $30K.">Listings Per Day ★</span>
+        <input type="number" class="rd-inp" id="projDailyTarget" placeholder="7" step="0.5" min="0.5" max="30" oninput="saveProjData();renderProjections()">
+        <span class="rd-note">7/day recommended for $30K by Dec 31</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Total listings you're aiming for. 3,840 = 3 designs × 16 ages × 20 editions × 2 formats = $30K path.">Total Listings Goal</span>
+        <input type="number" class="rd-inp" id="projTotalTarget" placeholder="3840" oninput="saveProjData();renderProjections()">
+        <span class="rd-note">3,840 listings = $30K/mo path</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Expected revenue per listing per month at target scale. Starts at your current rate, grows as shop gains authority.">Rev/Listing Growth (%/mo)</span>
+        <input type="number" class="rd-inp" id="pcRplGrowth" placeholder="2" step="0.5" min="0" max="20" oninput="savePcData();renderProjections()">
+        <span class="rd-note">Shop authority grows ~2%/mo</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Currency you want profit shown in. Rate vs USD.">USD → MYR Rate</span>
+        <input type="number" class="rd-inp" id="pcFxRate" placeholder="4.70" step="0.01" oninput="savePcData();renderProjections()">
+        <span class="rd-note">Show profit in MYR too</span>
+      </div>
+    </div>
+
+    <!-- LIVE CALCULATED SUMMARY -->
+    <div id="pcSummary" style="background:#0a0908;border:1px solid rgba(201,151,58,.3);padding:10px 14px;font-size:11px;line-height:2;"></div>
+  </div>
+
+  <!-- ═══ LIVE PROFIT OUTPUT ═══ -->
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;">💰 PROJECTED MONTHLY PROFIT — BASED ON YOUR INPUTS</div>
+
+  <!-- PACE SCENARIO CARDS (profit-aware) -->
+  <div class="proj-grid" id="projGrid" style="margin-bottom:14px;"></div>
+
+  <!-- QUARTERLY TABLE -->
+  <div id="projTable"></div>
+
+  <!-- MONTHLY BREAKDOWN -->
+  <div id="projMonthTable"></div>
+
+  <!-- THIS MONTH TRACKER (hidden, data sink) -->
+  <div class="thismonth-card" id="thisMonthCard" style="display:none;">
+    <div class="thismonth-header">📆 THIS MONTH</div>
+    <div class="thismonth-grid" id="thisMonthGrid">
+      <div class="tm-cell"><div class="tm-val" id="tmDone" style="color:var(--green3);">—</div><div class="tm-lbl">Published<br>This Month</div></div>
+      <div class="tm-cell"><div class="tm-val" id="tmTarget" style="color:var(--gold2);">—</div><div class="tm-lbl">Monthly<br>Target</div></div>
+      <div class="tm-cell"><div class="tm-val" id="tmRemain" style="color:var(--rust2);">—</div><div class="tm-lbl">Still Need<br>This Month</div></div>
+      <div class="tm-cell"><div class="tm-val" id="tmPerDay" style="color:var(--teal);">—</div><div class="tm-lbl">Per Day<br>Remaining</div></div>
+    </div>
+    <div class="tm-bar-bg"><div class="tm-bar-fill" id="tmBar" style="width:0%;background:var(--teal);"></div></div>
+    <div class="thismonth-msg" id="thisMonthMsg" style="margin-top:10px;">Loading…</div>
+  </div>
+
+</div>
   <!-- ══════ IDEAS VIEW ══════ -->
   <div id="v-ideas" style="display:none;">
     <!-- Header -->
@@ -2661,6 +2606,13 @@ var misc = {
   projPinPins: 0,
   projViralBonus: 0,
   projSocialCTR: 3,
+  // PROFIT CALCULATOR INPUTS
+  pcEtsyFee: 9.5,      // total Etsy fee % (transaction + payment)
+  pcTools: 50,         // monthly tools cost (Canva, AI, etc)
+  pcAds: 0,            // monthly ad spend
+  pcOther: 0,          // other monthly costs
+  pcRplGrowth: 2,      // monthly % growth in rev/listing as shop gains authority
+  pcFxRate: 4.70,      // USD to MYR exchange rate
   stageLastTouched: {},
   // STREAK + DAILY HISTORY
   streakCount: 0,
@@ -4405,118 +4357,120 @@ function saveProjData(){
   });
   saveMisc();renderProjections();renderThisMonth();
 }
+function savePcData(){
+  misc.pcEtsyFee  = document.getElementById('pcEtsyFee')  ? document.getElementById('pcEtsyFee').value  : misc.pcEtsyFee;
+  misc.pcTools    = document.getElementById('pcTools')    ? document.getElementById('pcTools').value    : misc.pcTools;
+  misc.pcAds      = document.getElementById('pcAds')      ? document.getElementById('pcAds').value      : misc.pcAds;
+  misc.pcOther    = document.getElementById('pcOther')    ? document.getElementById('pcOther').value    : misc.pcOther;
+  misc.pcRplGrowth= document.getElementById('pcRplGrowth')? document.getElementById('pcRplGrowth').value: misc.pcRplGrowth;
+  misc.pcFxRate   = document.getElementById('pcFxRate')   ? document.getElementById('pcFxRate').value   : misc.pcFxRate;
+  localStorage.setItem(MISC_KEY, JSON.stringify(misc));
+}
+
 
 function syncProjInputs(){
-  ['projDailyTarget','projTotalTarget','projIGPosts','projPinPins','projViralBonus','projSocialCTR'].forEach(function(id){
+  ['projDailyTarget','projTotalTarget','projIGPosts','projPinPins','projViralBonus','projSocialCTR','pcEtsyFee','pcTools','pcAds','pcOther','pcRplGrowth','pcFxRate'].forEach(function(id){
     var el=document.getElementById(id);if(!el)return;
     var val=misc[id];if(val!==undefined){if(el.value==='')el.value=String(val);el.placeholder=String(val);}
   });
 }
 
 function renderProjections(){
-  var revenue   =parseFloat(misc.rdRevenue)||250;
-  var visits    =parseFloat(misc.rdVisits)||900;
-  var live      =parseFloat(misc.rdLive)||32;
-  var aov       =parseFloat(misc.rdAOV)||12.95;
-  var dailyPace =parseFloat(misc.projDailyTarget)||7.0;
-  var totalTgt  =parseFloat(misc.projTotalTarget)||3840;
-  var igPerWk   =parseFloat(misc.projIGPosts)||0;
-  var pinPerWk  =parseFloat(misc.projPinPins)||0;
-  var viralBonus=parseFloat(misc.projViralBonus)||0;
-  var socialCTR =(parseFloat(misc.projSocialCTR)||3)/100;
-  var conv=REAL.convRate;var fee=REAL.etsyFeeRate;
-  var daysLeft=daysUntilGoal();var today=new Date();
+  // ── Read all inputs ──
+  var revenue    = parseFloat(misc.rdRevenue)||250;
+  var visits     = parseFloat(misc.rdVisits)||900;
+  var live       = parseFloat(misc.rdLive)||32;
+  var aov        = parseFloat(misc.rdAOV)||12.95;
+  var dailyPace  = parseFloat(misc.projDailyTarget)||7;
+  var totalTgt   = parseFloat(misc.projTotalTarget)||3840;
+  var etsyFeePct = (parseFloat(misc.pcEtsyFee)||9.5)/100;
+  var toolsCost  = parseFloat(misc.pcTools)||50;
+  var adsCost    = parseFloat(misc.pcAds)||0;
+  var otherCost  = parseFloat(misc.pcOther)||0;
+  var rplGrowth  = (parseFloat(misc.pcRplGrowth)||2)/100;   // monthly % growth in rev/listing
+  var fxRate     = parseFloat(misc.pcFxRate)||4.70;
 
-  // Core metric
-  var revPerListing=(live>0&&revenue>0)?revenue/live:(live>0&&visits>0?(visits/live)*conv*aov*(1-fee):14.06);
-  var vpl=live>0&&visits>0?Math.round(visits/live):52;
+  var fixedCosts = toolsCost + adsCost + otherCost;         // fixed monthly overhead
+  var today      = new Date();
+  var deadline   = new Date('2026-12-31');
+  var daysLeft   = Math.max(1, Math.ceil((deadline - today)/86400000));
 
-  // Social traffic model
-  var igViewsPerReel=800;var pinImpPerPin=150;
-  var igExtraVisits =Math.round(igPerWk*4.3*igViewsPerReel*socialCTR);
-  var pinExtraVisits=Math.round(pinPerWk*4.3*pinImpPerPin*socialCTR);
-  var baseExtraVisits=igExtraVisits+pinExtraVisits+viralBonus;
-  var socialBaseRevMo=Math.round(baseExtraVisits*conv*aov*(1-fee));
-  // Audience compounds each quarter as IG/Pinterest following grows
-  var socialMults=[1,2,3.5,5];
+  // ── Core metrics ──
+  var revPerListing = (live>0 && revenue>0) ? revenue/live : 7.81;
+  var vpl           = (live>0 && visits>0)  ? Math.round(visits/live) : 52;
 
+  // Net margin after Etsy fees (fixed costs are separate)
+  var netMarginPct  = 1 - etsyFeePct;
+
+  // Current gross profit
+  var curGross   = revenue;
+  var curProfit  = Math.round(revenue * netMarginPct - fixedCosts);
+
+  // ── Update daily mission ──
   renderDailyMission();
-  syncRealDataInputs();syncProjInputs();
+  syncRealDataInputs();
+  syncProjInputs();
 
-  // Pace inline note
-  var paceEl=document.getElementById('paceCalcResult');
-  if(paceEl){
-    var moreNeeded=Math.max(0,totalTgt-live);
-    var daysToFinish=dailyPace>0?Math.ceil(moreNeeded/dailyPace):9999;
-    var finDate=(function(){var d=new Date();d.setDate(d.getDate()+daysToFinish);return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'2-digit'});})();
-    var revAtTarget=Math.round(totalTgt*revPerListing);
-    paceEl.innerHTML='At <strong style="color:var(--gold2);">'+dailyPace+' listings/day</strong>: '
-      +moreNeeded+' more to publish \u2192 done by <strong style="color:var(--green3);">'+finDate+'</strong> ('+daysToFinish+' days) \u00b7 '
-      +'Revenue at '+totalTgt+' listings: <strong style="color:var(--teal);">$'+revAtTarget.toLocaleString()+'/mo</strong>';
-  }
-
-  // Social model note
-  var socialEl=document.getElementById('socialModelNote');
-  if(socialEl){
-    if(igPerWk===0&&pinPerWk===0&&viralBonus===0){
-      socialEl.innerHTML='\u{1f4cc} Enter your posting schedule above to see your projected social media income boost. '
-        +'Even 3 Reels/week targeting the Black community birthday niche can drive hundreds of extra Etsy visits per month.';
-    } else {
-      socialEl.innerHTML='<strong style="color:var(--teal);">\u{1f4ca} Social model (Q1 baseline):</strong>  '
-        +(igPerWk>0?igPerWk+' Reels/wk \u00d7 '+igViewsPerReel+' views \u00d7 '+Math.round(socialCTR*100)+'% CTR = <strong style="color:var(--cream2);">+'+igExtraVisits.toLocaleString()+' visits/mo</strong> from IG &nbsp;\u00b7&nbsp; ':'')
-        +(pinPerWk>0?pinPerWk+' Pins/wk \u00d7 '+pinImpPerPin+' imp \u00d7 '+Math.round(socialCTR*100)+'% CTR = <strong style="color:var(--cream2);">+'+pinExtraVisits.toLocaleString()+' visits/mo</strong> from Pinterest &nbsp;\u00b7&nbsp; ':'')
-        +(viralBonus>0?'<strong style="color:var(--gold2);">+'+viralBonus.toLocaleString()+' viral bonus</strong> &nbsp;\u00b7&nbsp; ':'')
-        +'Total Q1: <strong style="color:var(--green3);">+'+baseExtraVisits.toLocaleString()+' visits/mo \u2192 +$'+socialBaseRevMo.toLocaleString()+'/mo</strong>. '
-        +'Compounds to <strong style="color:var(--teal);">\u00d7'+socialMults[3]+' by Q4</strong> as your audience grows.';
-    }
-  }
-
-  // Key metrics strip
-  var needed30k=revPerListing>0?Math.ceil(30000/revPerListing):3840;
-  var basis=document.getElementById('projBasis');
-  if(basis){
-    basis.innerHTML='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:8px;">'
-      +metricBox('$'+revenue.toLocaleString()+'/mo','Current Revenue','c-gold')
-      +metricBox(live+' live','Live Listings','c-green')
-      +metricBox(vpl+' visits/listing','Avg Visits/Listing/Mo','c-mid')
-      +metricBox('$'+revPerListing.toFixed(2)+'/mo','Revenue Per Listing','c-teal')
-      +metricBox(needed30k.toLocaleString()+' listings','Needed for $30K/mo','c-rust')
-      +(socialBaseRevMo>0?metricBox('+$'+socialBaseRevMo.toLocaleString()+'/mo','Social Boost Q1','c-teal'):metricBox('Set up social \u2191','Social Boost','c-mid'))
+  // ── pcSummary panel ──
+  var sumEl = document.getElementById('pcSummary');
+  if(sumEl){
+    var cRPL  = revPerListing.toFixed(2);
+    var moreNeeded = Math.max(0, totalTgt - live);
+    var daysToFinish = dailyPace>0 ? Math.ceil(moreNeeded/dailyPace) : 9999;
+    var finDate = (function(){var d=new Date();d.setDate(d.getDate()+daysToFinish);
+      return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'2-digit'});})();
+    var listingsFor30k = Math.ceil(30000 / Math.max(0.01, revPerListing));
+    sumEl.innerHTML =
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px 12px;">'
+      +'<div><span style="color:var(--mid);">Current rev/listing/mo</span> <strong style="color:var(--gold);">$'+cRPL+'</strong></div>'
+      +'<div><span style="color:var(--mid);">Etsy net margin</span> <strong style="color:var(--gold2);">'+Math.round(netMarginPct*100)+'%</strong></div>'
+      +'<div><span style="color:var(--mid);">Fixed costs/mo</span> <strong style="color:var(--rust2);">-$'+Math.round(fixedCosts)+'</strong></div>'
+      +'<div><span style="color:var(--mid);">Current gross/mo</span> <strong style="color:var(--cream);">$'+Math.round(curGross)+'</strong></div>'
+      +'<div><span style="color:var(--mid);">Current net profit/mo</span> <strong style="color:'+(curProfit>=0?'var(--green3)':'var(--rust2)')+';">$'+curProfit+'</strong> <span style="color:var(--mid);font-size:9px;">(RM'+Math.round(curProfit*fxRate)+')</span></div>'
+      +'<div><span style="color:var(--mid);">Visits/listing/mo</span> <strong style="color:var(--teal);">'+vpl+'</strong></div>'
+      +'<div><span style="color:var(--mid);">Listings for $30K/mo</span> <strong style="color:var(--rust2);">'+listingsFor30k.toLocaleString()+'</strong></div>'
+      +'<div><span style="color:var(--mid);">At '+dailyPace+'/day → done</span> <strong style="color:var(--green3);">'+finDate+'</strong> ('+daysToFinish+'d)</div>'
       +'</div>';
   }
 
-  // Pace scenario cards
+  // ── Pace scenario cards ──
   var scenarios=[
-    {label:'Slow',daily:2,color:'var(--mid)',note:'2/day — ~$12K ceiling'},
-    {label:'Steady',daily:5,color:'var(--rust2)',note:'5/day — ~$18K range'},
-    {label:'Your Target',daily:dailyPace,color:'var(--gold)',note:dailyPace+'/day committed'},
-    {label:'Strong',daily:10,color:'var(--green3)',note:'Canva bulk: 2 sessions/day'},
-    {label:'Sprint',daily:15,color:'var(--teal)',note:'3 variations + full AI automation'}
+    {label:'SLOW',    daily:1,  color:'var(--mid)',    note:'1/day · passive pace'},
+    {label:'STEADY',  daily:3,  color:'var(--rust2)',  note:'3/day · building'},
+    {label:'YOUR PACE', daily:dailyPace, color:'var(--gold)', note:dailyPace+'/day committed ★'},
+    {label:'STRONG',  daily:10, color:'var(--green3)', note:'10/day · AI batching'},
+    {label:'SPRINT',  daily:15, color:'var(--teal)',   note:'15/day · full pipeline'}
   ];
-  var seenD={};
-  scenarios=scenarios.filter(function(s){if(seenD[s.daily])return false;seenD[s.daily]=true;return true;});
+  var seen={};
+  scenarios=scenarios.filter(function(s){if(seen[s.daily])return false;seen[s.daily]=true;return true;});
+
   var grid=document.getElementById('projGrid');
   if(grid){
     grid.innerHTML=scenarios.map(function(s){
-      var projLive=Math.min(totalTgt,Math.round(live+s.daily*daysLeft));
-      var baseRevMo=Math.round(projLive*revPerListing);
-      var socRevMoQ4=Math.round(socialBaseRevMo*socialMults[3]);
-      var totalRevMo=baseRevMo+socRevMoQ4;
-      var hit10=baseRevMo>=15000;var hit20=baseRevMo>=30000;
-      return '<div class="pcell" style="border-top:3px solid '+s.color+';position:relative;">'
-        +(hit20?'<div style="position:absolute;top:5px;right:7px;font-size:10px;">🏆 $30K</div>':hit10?'<div style="position:absolute;top:5px;right:7px;font-size:10px;">🎯 $15K</div>':'')
-        +'<span class="pval" style="color:'+s.color+';">$'+baseRevMo.toLocaleString()+'</span>'
+      var projLive  = Math.min(totalTgt, Math.round(live + s.daily*daysLeft));
+      var rplAtEnd  = revPerListing * Math.pow(1+rplGrowth, daysLeft/30); // compounding growth
+      var grossMo   = Math.round(projLive * rplAtEnd);
+      var profitMo  = Math.round(grossMo * netMarginPct - fixedCosts);
+      var profitMYR = Math.round(profitMo * fxRate);
+      var hit30     = grossMo >= 30000;
+      var hit15     = grossMo >= 15000;
+      var isTarget  = s.daily === dailyPace;
+      return '<div class="pcell" style="border-top:3px solid '+s.color+';'+(isTarget?'border:2px solid var(--gold);border-top:4px solid var(--gold);background:rgba(201,151,58,.06);':'')+'">'
+        +(hit30?'<div style="position:absolute;top:5px;right:7px;font-size:11px;">🏆</div>':hit15?'<div style="position:absolute;top:5px;right:7px;font-size:10px;">🎯</div>':'')
+        +'<span class="pval" style="color:'+s.color+';">$'+profitMo.toLocaleString()+'<span style="font-size:10px;color:var(--mid);">/mo profit</span></span>'
         +'<span class="plbl">'+s.label+'</span>'
         +'<span class="psub">'+s.note+'</span>'
-        +'<div style="margin-top:6px;padding-top:5px;border-top:1px solid rgba(255,255,255,.06);display:grid;grid-template-columns:1fr 1fr;gap:3px;font-size:9px;">'
-          +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:11px;color:var(--cream2);">'+projLive.toLocaleString()+'</div><div style="color:var(--mid);">listings by Dec 31</div></div>'
-          +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:11px;color:var(--gold2);">$'+(baseRevMo*12).toLocaleString()+'</div><div style="color:var(--mid);">annual Etsy only</div></div>'
-          +(socialBaseRevMo>0?'<div style="grid-column:span 2;padding-top:4px;border-top:1px solid rgba(78,205,196,.2);"><div style="font-family:Bebas Neue,sans-serif;font-size:11px;color:var(--teal);">+$'+socRevMoQ4.toLocaleString()+'/mo social (Q4)</div><div style="color:var(--mid);">\u2192 total $'+totalRevMo.toLocaleString()+'/mo</div></div>':'')
-        +'</div></div>';
+        +'<div style="margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:3px;font-size:9px;color:var(--mid);padding-top:5px;border-top:1px solid rgba(255,255,255,.06);">'
+          +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:11px;color:var(--cream2);">'+projLive.toLocaleString()+'</div>listings live</div>'
+          +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:11px;color:var(--gold2);">$'+grossMo.toLocaleString()+'</div>gross/mo</div>'
+          +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:11px;color:var(--green3);">$'+profitMo.toLocaleString()+'</div>profit/mo</div>'
+          +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:11px;color:var(--teal);">RM'+profitMYR.toLocaleString()+'</div>in MYR</div>'
+        +'</div>'
+      +'</div>';
     }).join('');
   }
 
-  // Build monthly data
+  // ── Monthly projection data ──
   var allMonths=[
     {m:0,name:'Jan 2026',days:31,qi:0},{m:1,name:'Feb 2026',days:28,qi:0},{m:2,name:'Mar 2026',days:31,qi:0},
     {m:3,name:'Apr 2026',days:30,qi:1},{m:4,name:'May 2026',days:31,qi:1},{m:5,name:'Jun 2026',days:30,qi:1},
@@ -4524,141 +4478,150 @@ function renderProjections(){
     {m:9,name:'Oct 2026',days:31,qi:3},{m:10,name:'Nov 2026',days:30,qi:3},{m:11,name:'Dec 2026',days:31,qi:3}
   ];
   var qColors=['var(--mid)','var(--gold)','var(--green3)','var(--teal)'];
-  var mCumLive=live;
+  var cumLive=live;
+  var monthsElapsed=0;  // track months for rpl growth
+
   var monthData=allMonths.map(function(md){
     var ms=new Date(2026,md.m,1);var me=new Date(2026,md.m+1,0);
     var effDays;
-    if(today.getFullYear()===2026&&today.getMonth()===md.m){effDays=Math.max(0,me.getDate()-today.getDate());}
-    else if(ms<today){effDays=0;}
+    if(today.getFullYear()===2026&&today.getMonth()===md.m){
+      effDays=Math.max(0,me.getDate()-today.getDate());
+    } else if(ms<today){effDays=0;}
     else{effDays=md.days;}
-    var add=Math.min(Math.round(dailyPace*effDays),Math.max(0,totalTgt-mCumLive));
-    mCumLive+=add;
-    var baseRev=Math.round(mCumLive*revPerListing);
-    var socRev=Math.round(socialBaseRevMo*socialMults[md.qi]);
-    return{name:md.name,qi:md.qi,effDays:effDays,add:add,cumLive:mCumLive,baseRev:baseRev,socRev:socRev,total:baseRev+socRev,past:(effDays===0&&ms<today)};
-  });
+    var isPast=(effDays===0&&ms<=today);
 
-  // Group into quarters
-  var qData=[0,1,2,3].map(function(qi){
-    var mths=monthData.filter(function(m){return m.qi===qi;});
-    var lastM=mths[mths.length-1];
+    var add=Math.min(Math.round(dailyPace*effDays), Math.max(0,totalTgt-cumLive));
+    cumLive+=add;
+
+    // rev/listing grows each month as shop builds authority
+    var rplThisMonth=revPerListing*Math.pow(1+rplGrowth, monthsElapsed);
+    if(!isPast) monthsElapsed++;
+
+    var gross   = Math.round(cumLive * rplThisMonth);
+    var etsyFee = Math.round(gross * etsyFeePct);
+    var profit  = gross - etsyFee - Math.round(fixedCosts);
+    var profitMYR=Math.round(profit * fxRate);
+
     return{
-      label:['Q1 2026','Q2 2026','Q3 2026','Q4 2026'][qi],
-      color:qColors[qi],mult:socialMults[qi],months:mths,
-      qDays:mths.reduce(function(s,m){return s+m.effDays;},0),
-      qAdded:mths.reduce(function(s,m){return s+m.add;},0),
-      cumLive:lastM.cumLive,baseRevMo:lastM.baseRev,socRevMo:lastM.socRev,totalRevMo:lastM.total,
-      qBaseRev:mths.reduce(function(s,m){return s+m.baseRev;},0),
-      qSocRev:mths.reduce(function(s,m){return s+m.socRev;},0),
-      qTotal:mths.reduce(function(s,m){return s+m.total;},0)
+      name:md.name, qi:md.qi, effDays:effDays, add:add,
+      cumLive:cumLive, rplThisMonth:rplThisMonth,
+      gross:gross, etsyFee:etsyFee, fixedCosts:Math.round(fixedCosts),
+      profit:profit, profitMYR:profitMYR, isPast:isPast
     };
   });
-  var annualBase=qData.reduce(function(s,q){return s+q.qBaseRev;},0);
-  var annualSocial=qData.reduce(function(s,q){return s+q.qSocRev;},0);
-  var annualTotal=annualBase+annualSocial;
 
-  var table=document.getElementById('projTable');if(!table)return;
-  var thS='padding:7px 8px;font-family:Bebas Neue,sans-serif;font-size:9px;letter-spacing:2px;text-align:';
+  // Quarterly rollup
+  var qData=[0,1,2,3].map(function(qi){
+    var mths=monthData.filter(function(m){return m.qi===qi;});
+    var last=mths[mths.length-1];
+    return{
+      label:['Q1 2026','Q2 2026','Q3 2026','Q4 2026'][qi],color:qColors[qi],months:mths,
+      qDays:   mths.reduce(function(s,m){return s+m.effDays;},0),
+      qAdded:  mths.reduce(function(s,m){return s+m.add;},0),
+      cumLive: last.cumLive,
+      endGross:last.gross, endProfit:last.profit,
+      qGross:  mths.reduce(function(s,m){return s+m.gross;},0),
+      qFees:   mths.reduce(function(s,m){return s+m.etsyFee;},0),
+      qFixed:  mths.reduce(function(s,m){return s+m.fixedCosts;},0),
+      qProfit: mths.reduce(function(s,m){return s+m.profit;},0),
+      qProfitMYR:mths.reduce(function(s,m){return s+m.profitMYR;},0)
+    };
+  });
+  var annualGross  = qData.reduce(function(s,q){return s+q.qGross;},0);
+  var annualFees   = qData.reduce(function(s,q){return s+q.qFees;},0);
+  var annualFixed  = qData.reduce(function(s,q){return s+q.qFixed;},0);
+  var annualProfit = qData.reduce(function(s,q){return s+q.qProfit;},0);
+  var annualMYR    = qData.reduce(function(s,q){return s+q.qProfitMYR;},0);
 
-  var html=
-  // === QUARTERLY TABLE ===
-  '<div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:18px 0 6px;">\ud83d\udcc5 QUARTERLY PROJECTION \u2014 '+dailyPace+'/day \u2014 ROAD TO $30K</div>'
-  +'<div style="font-size:10px;color:var(--mid);margin-bottom:10px;">Etsy organic only (left) vs with your IG + Pinterest + AI video strategy (right). Social income compounds each quarter as your audience grows: \u00d7'+socialMults.join(' \u2192 \u00d7')+'</div>'
-  +'<div style="overflow-x:auto;margin-bottom:4px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:680px;">'
-  +'<thead><tr style="border-bottom:2px solid var(--gold);">'
-  +'<th style="'+thS+'left;color:var(--gold);min-width:100px;">QUARTER</th>'
-  +'<th style="'+thS+'center;color:var(--gold);">WORK DAYS</th>'
-  +'<th style="'+thS+'right;color:var(--gold);">+PUBLISHED</th>'
-  +'<th style="'+thS+'right;color:var(--gold);">TOTAL LIVE</th>'
-  +'<th style="'+thS+'right;color:var(--gold2);border-right:1px solid rgba(255,255,255,.1);">ETSY /MO<br><span style="font-size:7px;font-weight:400;letter-spacing:0;text-transform:none;">(at Q end)</span></th>'
-  +'<th style="'+thS+'right;color:var(--teal);">+SOCIAL /MO<br><span style="font-size:7px;font-weight:400;letter-spacing:0;text-transform:none;">audience mult</span></th>'
-  +'<th style="'+thS+'right;color:var(--green3);">TOTAL /MO</th>'
-  +'<th style="'+thS+'right;color:var(--cream2);">TOTAL QUARTER</th>'
-  +'</tr></thead><tbody>'
-  +qData.map(function(q){
-    var hit30=q.totalRevMo>=30000;var hit20=q.totalRevMo>=20000;var hit10=q.totalRevMo>=10000;
-    var bg=hit30?'rgba(201,151,58,.08)':hit20?'rgba(78,205,196,.06)':hit10?'rgba(45,122,80,.06)':'';
-    var suf=hit30?' 🏆':hit20?' 🚀':hit10?' 🎯':'';
-    var allPast=q.qDays===0;
-    return '<tr style="border-bottom:2px solid var(--ink3);background:'+bg+(allPast?';opacity:.4':'')+';">'
-      +'<td style="padding:8px 8px;font-family:Bebas Neue,sans-serif;font-size:15px;color:'+q.color+';">'+q.label
-        +'<div style="font-size:9px;color:var(--mid);font-family:DM Mono,monospace;">'
-        +q.months.map(function(m){return m.name.split(' ')[0]+(m.past?' (past)':m.effDays>0?' ('+m.effDays+'d)':'');}).join(' \u00b7 ')
-        +'</div></td>'
-      +'<td style="padding:8px 8px;text-align:center;font-family:DM Mono,monospace;font-size:10px;color:var(--mid);">'+q.qDays+'d</td>'
-      +'<td style="padding:8px 8px;text-align:right;font-family:DM Mono,monospace;font-size:11px;color:var(--gold2);">+'+q.qAdded+'</td>'
-      +'<td style="padding:8px 8px;text-align:right;font-family:DM Mono,monospace;font-size:11px;color:var(--cream2);">'+q.cumLive.toLocaleString()+'</td>'
-      +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:16px;color:var(--gold2);border-right:1px solid rgba(255,255,255,.08);">$'+q.baseRevMo.toLocaleString()+'</td>'
-      +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:16px;color:'+(q.socRevMo>0?'var(--teal)':'var(--mid)')+';">'
-        +(q.socRevMo>0?'+$'+q.socRevMo.toLocaleString()+'<div style="font-size:8px;font-family:DM Mono,monospace;color:var(--mid);">\u00d7'+q.mult+' audience</div>':'<span style="font-size:10px;">add social \u2191</span>')
-      +'</td>'
-      +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:20px;color:'+(hit10?'var(--green3)':q.totalRevMo>=5000?'var(--gold2)':'var(--cream2)')+';">$'+q.totalRevMo.toLocaleString()+suf+'</td>'
-      +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:15px;color:var(--cream2);">$'+q.qTotal.toLocaleString()+'</td>'
-      +'</tr>';
-  }).join('')
-  +'<tr style="border-top:2px solid var(--gold);background:rgba(201,151,58,.06);">'
-  +'<td style="padding:8px 8px;font-family:Bebas Neue,sans-serif;font-size:13px;color:var(--gold);" colspan="4">FULL YEAR 2026</td>'
-  +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:14px;color:var(--gold2);border-right:1px solid rgba(255,255,255,.08);">$'+annualBase.toLocaleString()+'</td>'
-  +'<td style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:14px;color:'+(annualSocial>0?'var(--teal)':'var(--mid)')+';">'+(annualSocial>0?'+$'+annualSocial.toLocaleString():'—')+'</td>'
-  +'<td colspan="2" style="padding:8px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:22px;color:'+(annualTotal>=300000?'var(--teal)':annualTotal>=150000?'var(--green3)':'var(--gold2)')+';">$'+annualTotal.toLocaleString()+'</td>'
-  +'</tr>'
-  +'</tbody></table></div>'
+  var thS='padding:7px 8px;font-family:Bebas Neue,sans-serif;font-size:9px;letter-spacing:1.5px;text-align:';
+  var tdS='padding:7px 8px;font-family:DM Mono,monospace;font-size:10px;text-align:';
+  var bigS='padding:7px 8px;font-family:Bebas Neue,sans-serif;font-size:15px;text-align:';
 
-  // === MONTHLY BREAKDOWN ===
-  +'<div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:20px 0 6px;">\ud83d\udcc6 MONTH-BY-MONTH BREAKDOWN</div>'
-  +'<div style="overflow-x:auto;margin-bottom:20px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px;">'
-  +'<thead><tr style="border-bottom:2px solid var(--gold);">'
-  +'<th style="'+thS+'left;color:var(--gold);">MONTH</th>'
-  +'<th style="'+thS+'center;color:var(--gold);">DAYS</th>'
-  +'<th style="'+thS+'right;color:var(--gold);">+ADDED</th>'
-  +'<th style="'+thS+'right;color:var(--gold);">TOTAL LIVE</th>'
-  +'<th style="'+thS+'right;color:var(--gold2);border-right:1px solid rgba(255,255,255,.1);">ETSY /MO</th>'
-  +'<th style="'+thS+'right;color:var(--teal);">+SOCIAL</th>'
-  +'<th style="'+thS+'right;color:var(--green3);">TOTAL</th>'
-  +'</tr></thead><tbody>'
-  +monthData.map(function(m){
-    var hit30=m.total>=30000;var hit10=m.total>=10000;var qc=qColors[m.qi];
-    return '<tr style="border-bottom:1px solid var(--border);background:'+(hit10?'rgba(45,122,80,.05)':'')+(m.past?';opacity:.4':'')+';">'
-      +'<td style="padding:5px 8px;font-family:Bebas Neue,sans-serif;font-size:13px;color:'+qc+';">'+m.name+(m.past?' <span style="font-size:9px;color:var(--mid);">(past)</span>':'')+(hit30?' 🏆':hit10?' 🎯':'')+'</td>'
-      +'<td style="padding:5px 8px;text-align:center;font-family:DM Mono,monospace;font-size:10px;color:var(--mid);">'+m.effDays+'</td>'
-      +'<td style="padding:5px 8px;text-align:right;font-family:DM Mono,monospace;font-size:10px;color:var(--gold2);">+'+m.add+'</td>'
-      +'<td style="padding:5px 8px;text-align:right;font-family:DM Mono,monospace;font-size:10px;color:var(--cream2);">'+m.cumLive.toLocaleString()+'</td>'
-      +'<td style="padding:5px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:14px;color:var(--gold2);border-right:1px solid rgba(255,255,255,.08);">$'+m.baseRev.toLocaleString()+'</td>'
-      +'<td style="padding:5px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:14px;color:'+(m.socRev>0?'var(--teal)':'var(--mid)')+';">'+(m.socRev>0?'+$'+m.socRev.toLocaleString():'—')+'</td>'
-      +'<td style="padding:5px 8px;text-align:right;font-family:Bebas Neue,sans-serif;font-size:15px;color:'+(hit10?'var(--green3)':m.total>=5000?'var(--gold2)':'var(--cream2)')+';">$'+m.total.toLocaleString()+'</td>'
-      +'</tr>';
-  }).join('')+'</tbody></table></div>'
+  // ── Quarterly table ──
+  var qHtml=
+    '<div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:8px 0 6px;">📅 QUARTERLY PROFIT BREAKDOWN — '+dailyPace+'/day PACE</div>'
+    +'<div style="overflow-x:auto;margin-bottom:4px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:640px;">'
+    +'<thead><tr style="border-bottom:2px solid var(--gold);">'
+    +'<th style="'+thS+'left;color:var(--gold);">QUARTER</th>'
+    +'<th style="'+thS+'center;color:var(--mid);">DAYS</th>'
+    +'<th style="'+thS+'right;color:var(--mid);">+ADDED</th>'
+    +'<th style="'+thS+'right;color:var(--mid);">TOTAL LIVE</th>'
+    +'<th style="'+thS+'right;color:var(--gold2);">GROSS/MO<br><span style="font-size:7px;font-weight:400;letter-spacing:0;">(end of Q)</span></th>'
+    +'<th style="'+thS+'right;color:var(--rust2);">ETSY FEES</th>'
+    +'<th style="'+thS+'right;color:var(--rust2);">FIXED COSTS</th>'
+    +'<th style="'+thS+'right;color:var(--green3);">NET PROFIT/MO</th>'
+    +'<th style="'+thS+'right;color:var(--teal);">QUARTER TOTAL</th>'
+    +'</tr></thead><tbody>'
+    +qData.map(function(q){
+      var hit30=q.endProfit>=30000;var hit15=q.endProfit>=15000;var hit5=q.endProfit>=5000;
+      var profColor=q.endProfit<0?'var(--rust2)':hit30?'var(--teal)':hit15?'var(--green3)':hit5?'var(--gold2)':'var(--cream2)';
+      var bg=hit30?'rgba(78,205,196,.06)':hit15?'rgba(45,122,80,.06)':hit5?'rgba(201,151,58,.04)':'';
+      var suf=hit30?' 🏆':hit15?' 🎯':hit5?' 📈':'';
+      var allPast=q.qDays===0;
+      return '<tr style="border-bottom:2px solid var(--ink3);background:'+bg+(allPast?';opacity:.35':'')+'">'
+        +'<td style="'+thS+'left;color:'+q.color+';font-size:14px;">'+q.label
+          +'<div style="font-size:8px;color:var(--mid);font-family:DM Mono,monospace;">'
+          +q.months.map(function(m){return m.name.split(' ')[0]+(m.isPast?' ✓':m.effDays>0?' ('+m.effDays+'d)':'');}).join(' · ')
+          +'</div></td>'
+        +'<td style="'+tdS+'center;color:var(--mid);">'+q.qDays+'d</td>'
+        +'<td style="'+tdS+'right;color:var(--gold2);">+'+q.qAdded+'</td>'
+        +'<td style="'+tdS+'right;color:var(--cream2);">'+q.cumLive.toLocaleString()+'</td>'
+        +'<td style="'+bigS+'right;color:var(--gold2);">$'+q.endGross.toLocaleString()+'</td>'
+        +'<td style="'+tdS+'right;color:var(--rust2);">-$'+q.qFees.toLocaleString()+'</td>'
+        +'<td style="'+tdS+'right;color:var(--rust2);">-$'+q.qFixed.toLocaleString()+'</td>'
+        +'<td style="'+bigS+'right;color:'+profColor+';">$'+q.endProfit.toLocaleString()+suf+'</td>'
+        +'<td style="'+bigS+'right;color:var(--cream2);">$'+q.qProfit.toLocaleString()+'<div style="font-size:8px;color:var(--teal);">RM'+q.qProfitMYR.toLocaleString()+'</div></td>'
+        +'</tr>';
+    }).join('')
+    +'<tr style="border-top:2px solid var(--gold);background:rgba(201,151,58,.08);">'
+    +'<td style="'+thS+'left;color:var(--gold);font-size:13px;" colspan="4">FULL YEAR 2026</td>'
+    +'<td style="'+bigS+'right;color:var(--gold2);">$'+annualGross.toLocaleString()+'</td>'
+    +'<td style="'+tdS+'right;color:var(--rust2);">-$'+annualFees.toLocaleString()+'</td>'
+    +'<td style="'+tdS+'right;color:var(--rust2);">-$'+annualFixed.toLocaleString()+'</td>'
+    +'<td style="'+bigS+'right;color:'+(annualProfit>=200000?'var(--teal)':annualProfit>=100000?'var(--green3)':'var(--gold2)')+';">$'+annualProfit.toLocaleString()+'</td>'
+    +'<td style="font-family:Bebas Neue,sans-serif;font-size:20px;text-align:right;padding:7px 8px;color:var(--teal);">RM'+annualMYR.toLocaleString()+'</td>'
+    +'</tr></tbody></table></div>';
 
-  // === MILESTONES ===
-  +'<div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:16px 0 8px;">\ud83c\udfc6 REVENUE MILESTONES \u2014 LISTINGS NEEDED</div>'
-  +'<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:520px;">'
-  +'<thead><tr style="border-bottom:2px solid var(--gold);">'
-  +'<th style="'+thS+'left;color:var(--gold);">TARGET $/MO</th>'
-  +'<th style="'+thS+'right;color:var(--gold);">LISTINGS</th>'
-  +'<th style="'+thS+'right;color:var(--gold);">MORE TO PUBLISH</th>'
-  +'<th style="'+thS+'right;color:var(--gold2);">AT YOUR PACE</th>'
-  +'<th style="'+thS+'right;color:var(--gold2);">AT 7/DAY</th>'
-  +'</tr></thead><tbody>'
-  +[1000,2000,5000,10000,15000,20000,25000,30000].map(function(target){
-    var listNeeded=revPerListing>0?Math.ceil(target/revPerListing):null;
-    var more=listNeeded!==null?Math.max(0,listNeeded-live):null;
-    var dT=(more!==null&&dailyPace>0)?Math.ceil(more/dailyPace):null;
-    var dS=more!==null?Math.ceil(more/7):null;
-    var already=listNeeded!==null&&live>=listNeeded;
-    var rowBg=already?'rgba(45,122,80,.08)':target===10000?'rgba(201,151,58,.06)':'';
-    var tc=target===30000?'var(--gold)':target>=15000?'var(--teal)':'var(--cream2)';
-    var medal=target===30000?' 🏆':target===20000?' 🚀':target===15000?' 🎯':target===10000?' ✅':'';
-    return '<tr style="border-bottom:1px solid var(--border);background:'+rowBg+(target===30000?';border:2px solid rgba(201,151,58,.4)':'')+';">'
-      +'<td style="padding:6px 8px;font-family:Bebas Neue,sans-serif;font-size:15px;color:'+tc+';">$'+target.toLocaleString()+medal+'/mo</td>'
-      +'<td style="padding:6px 8px;text-align:right;font-family:DM Mono,monospace;color:var(--cream2);">'+(already?'<span style="color:var(--green3);">\u2713 Done!</span>':listNeeded?listNeeded.toLocaleString():'—')+'</td>'
-      +'<td style="padding:6px 8px;text-align:right;font-family:DM Mono,monospace;color:var(--gold2);">'+(already?'—':more!==null?'+'+more:'—')+'</td>'
-      +'<td style="padding:6px 8px;text-align:right;font-size:10px;color:var(--mid);">'+(already?'—':daysFromNow(dT))+'</td>'
-      +'<td style="padding:6px 8px;text-align:right;font-size:10px;color:var(--mid);">'+(already?'—':daysFromNow(dS))+'</td>'
-      +'</tr>';
-  }).join('')
-  +'</tbody></table></div>';
+  var qtEl=document.getElementById('projTable');
+  if(qtEl) qtEl.innerHTML=qHtml;
 
-  table.innerHTML=html;
+  // ── Monthly breakdown table ──
+  var mHtml=
+    '<div style="font-family:Bebas Neue,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:20px 0 6px;">📆 MONTH-BY-MONTH PROFIT BREAKDOWN</div>'
+    +'<div style="font-size:10px;color:var(--mid);margin-bottom:8px);">Rev/listing grows +'+Math.round(rplGrowth*100)+'%/mo as your shop gains search authority. Profit = Gross − Etsy Fees ('+Math.round(etsyFeePct*100)+'%) − Fixed Costs ($'+Math.round(fixedCosts)+'/mo).</div>'
+    +'<div style="overflow-x:auto;margin-bottom:20px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:640px;">'
+    +'<thead><tr style="border-bottom:2px solid var(--gold);">'
+    +'<th style="'+thS+'left;color:var(--gold);">MONTH</th>'
+    +'<th style="'+thS+'center;color:var(--mid);">DAYS</th>'
+    +'<th style="'+thS+'right;color:var(--mid);">+ADDED</th>'
+    +'<th style="'+thS+'right;color:var(--mid);">LIVE</th>'
+    +'<th style="'+thS+'right;color:var(--gold2);">GROSS/MO</th>'
+    +'<th style="'+thS+'right;color:var(--rust2);">FEES</th>'
+    +'<th style="'+thS+'right;color:var(--rust2);">COSTS</th>'
+    +'<th style="'+thS+'right;color:var(--green3);">PROFIT/MO</th>'
+    +'<th style="'+thS+'right;color:var(--teal);">IN MYR</th>'
+    +'</tr></thead><tbody>'
+    +monthData.map(function(m){
+      var profColor=m.profit<0?'var(--rust2)':m.profit>=30000?'var(--teal)':m.profit>=10000?'var(--green3)':m.profit>=5000?'var(--gold2)':'var(--cream2)';
+      var bg=m.profit>=30000?'rgba(78,205,196,.06)':m.profit>=15000?'rgba(45,122,80,.06)':m.profit>=5000?'rgba(201,151,58,.03)':'';
+      var qc=qColors[m.qi];
+      var suf=m.profit>=30000?' 🏆':m.profit>=15000?' 🎯':m.profit>=5000?' 📈':'';
+      return '<tr style="border-bottom:1px solid var(--border);background:'+bg+(m.isPast?';opacity:.35':'')+'">'
+        +'<td style="'+thS+'left;color:'+qc+';font-size:11px;">'+m.name+(m.isPast?' <span style="font-size:8px;color:var(--mid);">(past)</span>':'')+'</td>'
+        +'<td style="'+tdS+'center;color:var(--mid);">'+m.effDays+'d</td>'
+        +'<td style="'+tdS+'right;color:var(--gold2);">+'+m.add+'</td>'
+        +'<td style="'+tdS+'right;color:var(--cream2);">'+m.cumLive.toLocaleString()+'</td>'
+        +'<td style="'+bigS+'right;color:var(--gold2);">$'+m.gross.toLocaleString()+'</td>'
+        +'<td style="'+tdS+'right;color:var(--rust2);">-$'+m.etsyFee.toLocaleString()+'</td>'
+        +'<td style="'+tdS+'right;color:var(--rust2);">-$'+m.fixedCosts.toLocaleString()+'</td>'
+        +'<td style="'+bigS+'right;color:'+profColor+';">$'+m.profit.toLocaleString()+suf+'</td>'
+        +'<td style="'+bigS+'right;color:var(--teal);">RM'+m.profitMYR.toLocaleString()+'</td>'
+        +'</tr>';
+    }).join('')
+    +'</tbody></table></div>';
+
+  var mtEl=document.getElementById('projMonthTable');
+  if(mtEl) mtEl.innerHTML=mHtml;
 }
 
 function metricBox(val,lbl,cls){
@@ -6542,16 +6505,14 @@ function renderDeadlines(){}  // kept for backward compat — pace cards replace
 
 // ════════════════════════════════════════════
 function syncRealDataInputs(){
-  // Only populate the value if the field is currently empty — never overwrite what the user typed
-  var map={rdRevenue:'rdRevenue',rdVisits:'rdVisits',rdLive:'rdLive',rdAOV:'rdAOV'};
-  Object.keys(map).forEach(function(elId){
-    var el=document.getElementById(elId);
-    if(!el)return;
-    var saved=misc[map[elId]];
-    if(saved){
-      if(el.value==='')el.value=String(saved);
-      el.placeholder=String(saved);
-    }
+  var fields={
+    rdRevenue:'rdRevenue', rdVisits:'rdVisits', rdLive:'rdLive', rdAOV:'rdAOV',
+    pcEtsyFee:'pcEtsyFee', pcTools:'pcTools', pcAds:'pcAds', pcOther:'pcOther',
+    pcRplGrowth:'pcRplGrowth', pcFxRate:'pcFxRate'
+  };
+  Object.keys(fields).forEach(function(key){
+    var el=document.getElementById(fields[key]);
+    if(el && !el.value && misc[key]) el.value=misc[key];
   });
 }
 
