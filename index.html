@@ -1018,28 +1018,27 @@ table.tbl         { font-size: 13px; }
 .pt-dot-ok{background:var(--green3);}
 .pt-dot-no{background:#6b5f52;}
 
-/* ═══ v14 ENHANCEMENTS ═══ */
-.mv-goal-strip{background:linear-gradient(135deg,rgba(201,151,58,.12),rgba(168,72,32,.07));border:1px solid rgba(201,151,58,.4);border-left:4px solid var(--gold);padding:10px 14px;margin-bottom:10px;display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;}
-.mv-goal-col{text-align:center;min-width:72px;}
-.mv-goal-num{font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1;margin-bottom:2px;}
+/* ─── v14: MONEY VIEW GOAL STRIP ─── */
+.mv-goal-strip{background:linear-gradient(135deg,rgba(201,151,58,.1),rgba(168,72,32,.06));border:1px solid rgba(201,151,58,.35);border-left:4px solid var(--gold);padding:10px 14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.mv-goal-col{text-align:center;min-width:70px;}
+.mv-goal-num{font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;margin-bottom:2px;}
 .mv-goal-sub{font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);}
-.mv-goal-bar-wrap{flex:1;min-width:180px;margin-top:4px;}
 .mv-goal-bar-bg{background:var(--ink3);border-radius:3px;height:6px;position:relative;overflow:hidden;margin:6px 0 3px;}
 .mv-goal-bar-fill{height:100%;border-radius:3px;transition:width .8s;background:linear-gradient(90deg,var(--rust2),var(--gold));}
 .mv-next-banner{background:#0b0a09;border:1px solid rgba(78,205,196,.3);border-left:3px solid var(--teal);padding:8px 12px;margin-bottom:10px;font-size:10px;color:var(--cream2);line-height:1.6;}
 .mv-next-label{font-family:'Bebas Neue',sans-serif;font-size:8px;letter-spacing:2px;color:var(--teal);margin-bottom:3px;}
-/* Daily mission card */
-.dm-card{background:linear-gradient(135deg,rgba(201,151,58,.11),rgba(168,72,32,.07));border:2px solid var(--gold);padding:14px 16px;margin-bottom:14px;position:relative;overflow:hidden;}
+/* ─── v14: DAILY MISSION CARD ─── */
+.dm-card{background:linear-gradient(135deg,rgba(201,151,58,.1),rgba(168,72,32,.06));border:2px solid var(--gold);padding:14px 16px;margin-bottom:14px;position:relative;overflow:hidden;}
 .dm-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust2),var(--gold),var(--teal));}
-.dm-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:4px;color:var(--gold);margin-bottom:10px;}
+.dm-title{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;color:var(--gold);margin-bottom:10px;}
 .dm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px;margin-bottom:10px;}
 .dm-cell{background:rgba(0,0,0,.3);padding:8px 6px;text-align:center;}
-.dm-num{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;}
+.dm-num{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;}
 .dm-lbl{font-size:7px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:2px;}
 .dm-bar-bg{background:var(--ink3);border-radius:2px;height:5px;margin-bottom:10px;overflow:hidden;}
 .dm-bar-fill{height:100%;border-radius:2px;transition:width .6s;}
 .dm-msg{font-size:10px;color:var(--cream2);line-height:1.8;padding:8px 12px;background:rgba(0,0,0,.25);border-left:3px solid var(--gold);}
-/* Cumulative milestone badge */
+/* ─── v14: CUMULATIVE MILESTONE BADGE ─── */
 .cum-badge{font-family:'Bebas Neue',sans-serif;font-size:7px;letter-spacing:.5px;padding:1px 4px;border-radius:1px;display:inline-block;margin-top:1px;}
 </style>
 </head>
@@ -1445,43 +1444,20 @@ table.tbl         { font-size: 13px; }
 
     <!-- $30K GOAL STRIP -->
     <div class="mv-goal-strip">
-      <div style="flex:1;min-width:0;">
-        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:2px;">ROAD TO $30K/MO BY DEC 31 2026 &mdash; PUBLISH IN RANK ORDER BELOW</div>
-        <div class="mv-goal-bar-wrap">
-          <div style="display:flex;justify-content:space-between;font-size:7px;letter-spacing:1px;color:var(--mid);">
-            <span style="color:var(--rust2);">$250</span><span>$5K</span><span>$10K</span><span>$15K</span><span style="color:var(--gold);">$30K &#127942;</span>
-          </div>
-          <div class="mv-goal-bar-bg">
-            <div id="mvGoalBarFill" class="mv-goal-bar-fill" style="width:1%;"></div>
-            <div style="position:absolute;top:0;bottom:0;left:16.7%;width:1px;background:rgba(255,255,255,.12);"></div>
-            <div style="position:absolute;top:0;bottom:0;left:33.3%;width:1px;background:rgba(255,255,255,.12);"></div>
-            <div style="position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(255,255,255,.12);"></div>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:8px;margin-top:2px;">
-            <span id="mvGoalPct" style="color:var(--gold2);">0% of $30K</span>
-            <span id="mvGoalDays" style="color:var(--rust2);">298 days left</span>
-          </div>
-        </div>
+      <div style="flex:1;min-width:180px;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">ROAD TO $30K/MO &mdash; DEC 31 2026</div>
+        <div style="display:flex;justify-content:space-between;font-size:7px;color:var(--mid);margin-bottom:2px;"><span style="color:var(--rust2);">$250</span><span>$5K</span><span>$10K</span><span>$15K</span><span style="color:var(--gold);">$30K &#127942;</span></div>
+        <div class="mv-goal-bar-bg"><div id="mvGoalBarFill" class="mv-goal-bar-fill" style="width:1%;"></div></div>
+        <div style="display:flex;justify-content:space-between;font-size:8px;margin-top:1px;"><span id="mvGoalPct" style="color:var(--gold2);">0% of $30K</span><span id="mvGoalDays" style="color:var(--rust2);">298 days left</span></div>
       </div>
-      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGLive" style="color:var(--green3);">32</div><div class="mv-goal-sub">Live Now</div></div>
+      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGLive" style="color:var(--green3);">32</div><div class="mv-goal-sub">Live</div></div>
       <div class="mv-goal-col"><div class="mv-goal-num" id="mvGRev" style="color:var(--gold2);">$250</div><div class="mv-goal-sub">Monthly Rev</div></div>
-      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGNeeded" style="color:var(--rust2);">3,808</div><div class="mv-goal-sub">Still to Publish</div></div>
-      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGPace" style="color:var(--teal);">12.8</div><div class="mv-goal-sub">Daily Pace Needed</div></div>
+      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGNeeded" style="color:var(--rust2);">3,808</div><div class="mv-goal-sub">To Publish</div></div>
+      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGPace" style="color:var(--teal);">12.8/day</div><div class="mv-goal-sub">Pace Needed</div></div>
     </div>
-
     <!-- NEXT ACTION BANNER -->
-    <div class="mv-next-banner">
-      <div class="mv-next-label">&#9654; NEXT ACTION</div>
-      <div id="mvNextMsg">Loading&hellip;</div>
-    </div>
+    <div class="mv-next-banner"><div class="mv-next-label">&#9654; NEXT ACTION</div><div id="mvNextMsg">Loading&hellip;</div></div>
 
-    <!-- FILTERS ROW -->
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:2px solid var(--gold2);">
-      <div>
-        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--cream);line-height:1.1;">&#128176; Top Money Listings</div>
-        <div style="font-size:10px;color:var(--mid);margin-top:2px;">Ranked by demand &times; revenue &mdash; publish in this order for max ROI</div>
-      </div>
-      <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:3px solid var(--gold2);">
       <div>
         <div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:4px;color:var(--gold2);margin-bottom:3px;">YOUARTWORTHY · TOP MONEY LISTINGS · 2026</div>
@@ -1542,7 +1518,7 @@ table.tbl         { font-size: 13px; }
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--teal);text-align:right;" data-tip="Running total if every listing above this rank were live. At goal line = your monthly target.">CUM $/MO</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;" data-tip="Not Started = no stages. In Progress = started. Live = on Etsy and earning passive income.">STATUS</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;min-width:65px;" data-tip="% of 8 stages done. Get to Stage 6 (Live) to start earning. Never delay Live for Reel/Pin.">PROGRESS</th>
-          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;" data-tip="Design variation. V1=1st design. Add V2/V3 for same combo = 3x Etsy search slots = 3x revenue ceiling.">VAR</th>
+          <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;" data-tip="Design variation — V1=first design. Add V2+V3 for same age+edition = 3x search slots = 3x revenue.">VAR</th>
           <th style="padding:5px 7px;font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;" data-tip="Open detail panel to update stages, add notes, or start a timed session.">ACTION</th>
         </tr></thead>
         <tbody id="mvBody"></tbody>
@@ -1715,9 +1691,9 @@ table.tbl         { font-size: 13px; }
     <div id="whyFullBody" style="display:none;margin-bottom:14px;">
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🕌</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">SADAQAH &amp; WAKAF</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Give from abundance. Every listing you publish is honest halal work. Ibaadah through consistency.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$30K/month means no alarm, no boss, no clock. School runs, weekend trips, full presence. Every listing you publish is time bought back for your kids.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--gold2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👧‍👦</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold2);margin-bottom:4px;">YOUR KIDS &amp; TIME</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">$30K/month removes every time and money barrier. School runs, weekend trips, total presence. You <em>show up</em> for them — fully, freely.</div></div>
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--green3);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">👨‍👩‍👦🏽</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--green3);margin-bottom:4px;">YOUR PARENTS — RM500/WK</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">RM2,000/month of honour, every month, without stress. They gave you everything.</div></div>
-        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid #9b59b6;padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💝</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:#9b59b6;margin-bottom:4px;">YOUR MARRIAGE</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Financial stress has been taking you to the edge. $30K removes it permanently. Not just surviving — providing. Safety, calm, space to truly love.</div></div>
+        <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid #9b59b6;padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💝</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:#9b59b6;margin-bottom:4px;">YOUR MARRIAGE</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Financial stress has taken you to the edge. $30K removes the fire permanently. Safety. Calm. Space to love.</div></div>
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--teal);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">🌍</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--teal);margin-bottom:4px;">LOCATION FREEDOM</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Work from KL, Penang, London. No alarm from someone else. It earns while you pray Fajr.</div></div>
         <div style="background:var(--ink2);border:1px solid var(--border);border-left:4px solid var(--rust2);padding:12px 13px;"><div style="font-size:18px;margin-bottom:4px;">💳</div><div style="font-family:'Bebas Neue',sans-serif;font-size:9px;letter-spacing:2px;color:var(--rust2);margin-bottom:4px;">DEBTS CLEARED</div><div style="font-size:11px;color:var(--cream2);line-height:1.65;">Bills paid on time. Car fixed without dread. No more quiet panic at the end of the month.</div></div>
       </div>
@@ -1726,34 +1702,34 @@ table.tbl         { font-size: 13px; }
       </div>
     </div>
 
-    <!-- DAILY MISSION CARD -->
+    <!-- ② DAILY MISSION CARD -->
     <div class="dm-card" id="dmCard">
-      <div class="dm-title" id="dmTitle">&#9889; TODAY&apos;S MISSION</div>
+      <div class="dm-title" id="dmTitle">TODAY&#39;S MISSION</div>
       <div class="dm-grid">
-        <div class="dm-cell"><div class="dm-num" id="dmToday" style="color:var(--green3);">0</div><div class="dm-lbl">Published Today</div></div>
+        <div class="dm-cell"><div class="dm-num" id="dmToday" style="color:var(--rust2);">0</div><div class="dm-lbl">Today</div></div>
         <div class="dm-cell"><div class="dm-num" id="dmDailyTgt" style="color:var(--gold);">7</div><div class="dm-lbl">Daily Target</div></div>
         <div class="dm-cell"><div class="dm-num" id="dmMonth" style="color:var(--gold2);">0</div><div class="dm-lbl">This Month</div></div>
         <div class="dm-cell"><div class="dm-num" id="dmMonthTgt" style="color:var(--mid);">210</div><div class="dm-lbl">Month Target</div></div>
         <div class="dm-cell"><div class="dm-num" id="dmRevNow" style="color:var(--teal);">$250</div><div class="dm-lbl">Revenue Now</div></div>
         <div class="dm-cell"><div class="dm-num" id="dmGap" style="color:var(--rust2);">$29,750</div><div class="dm-lbl">Gap to $30K</div></div>
-        <div class="dm-cell"><div class="dm-num" id="dmDaysLeft" style="color:var(--rust2);">298</div><div class="dm-lbl">Days to Dec 31</div></div>
+        <div class="dm-cell"><div class="dm-num" id="dmDaysLeft" style="color:var(--rust2);">298</div><div class="dm-lbl">Days Left</div></div>
         <div class="dm-cell"><div class="dm-num" id="dmPaceNeed" style="color:var(--teal);">12/day</div><div class="dm-lbl">Pace Needed</div></div>
       </div>
-      <div class="dm-bar-bg"><div class="dm-bar-fill" id="dmBar" style="width:0%;background:var(--teal);"></div></div>
+      <div class="dm-bar-bg"><div class="dm-bar-fill" id="dmBar" style="width:1%;background:var(--rust2);"></div></div>
       <div class="dm-msg" id="dmMsg">Loading&hellip;</div>
     </div>
 
-    <!-- THIS MONTH CARD (kept for compatibility, hidden) -->
-    <div class="thismonth-card" id="thisMonthCard" style="display:none;">
-      <div class="thismonth-header">&#128198; THIS MONTH</div>
+    <!-- ② THIS MONTH ACTION CARD — what do I need to do right now? -->
+    <div class="thismonth-card" id="thisMonthCard">
+      <div class="thismonth-header">📆 THIS MONTH — WHAT YOU NEED TO DO NOW</div>
       <div class="thismonth-grid" id="thisMonthGrid">
-        <div class="tm-cell"><div class="tm-val" id="tmDone" style="color:var(--green3);">&#8212;</div><div class="tm-lbl">Published<br>This Month</div></div>
-        <div class="tm-cell"><div class="tm-val" id="tmTarget" style="color:var(--gold2);">&#8212;</div><div class="tm-lbl">Monthly<br>Target</div></div>
-        <div class="tm-cell"><div class="tm-val" id="tmRemain" style="color:var(--rust2);">&#8212;</div><div class="tm-lbl">Still Need<br>This Month</div></div>
-        <div class="tm-cell"><div class="tm-val" id="tmPerDay" style="color:var(--teal);">&#8212;</div><div class="tm-lbl">Per Day<br>Remaining</div></div>
+        <div class="tm-cell"><div class="tm-val" id="tmDone" style="color:var(--green3);">—</div><div class="tm-lbl">Published<br>This Month</div></div>
+        <div class="tm-cell"><div class="tm-val" id="tmTarget" style="color:var(--gold2);">—</div><div class="tm-lbl">Monthly<br>Target</div></div>
+        <div class="tm-cell"><div class="tm-val" id="tmRemain" style="color:var(--rust2);">—</div><div class="tm-lbl">Still Need<br>This Month</div></div>
+        <div class="tm-cell"><div class="tm-val" id="tmPerDay" style="color:var(--teal);">—</div><div class="tm-lbl">Per Day<br>Remaining</div></div>
       </div>
       <div class="tm-bar-bg"><div class="tm-bar-fill" id="tmBar" style="width:0%;background:var(--teal);"></div></div>
-      <div class="thismonth-msg" id="thisMonthMsg" style="margin-top:10px;">Loading&hellip;</div>
+      <div class="thismonth-msg" id="thisMonthMsg" style="margin-top:10px;">Loading…</div>
     </div>
 
     <!-- ③ CANONICAL DATA INPUT — one place, synced everywhere -->
@@ -3956,50 +3932,39 @@ function mvDrawStats(vpl){
     else ns++;
     tE+=e;
   });
-  var revenue=misc.rdRevenue||250;
-  var liveCt=misc.rdLive||32;
-  var rpl=liveCt>0&&revenue>0?revenue/liveCt:7.81;
-  var needed30k=Math.ceil(REAL.goalMonthly/rpl);
+  var revenue=parseFloat(misc.rdRevenue)||250;
+  var liveCt=parseFloat(misc.rdLive)||32;
+  var rpl2=liveCt>0&&revenue>0?revenue/liveCt:7.81;
+  var needed30k=Math.ceil(REAL.goalMonthly/Math.max(0.01,rpl2));
   var stillNeeded=Math.max(0,needed30k-dn);
-  var daysLeft=Math.max(1,Math.ceil((REAL.goalDeadline-new Date())/86400000));
-  var paceNeed=(stillNeeded/daysLeft).toFixed(1);
-  var pct=Math.min(100,Math.round(revenue/REAL.goalMonthly*100));
-  var sv=function(id,v,c){var e2=document.getElementById(id);if(!e2)return;e2.textContent=v;if(c)e2.style.color=c;};
-  sv('mvGLive', dn, dn>0?'var(--green3)':'var(--mid)');
-  sv('mvGRev',  '$'+revenue.toLocaleString(),'var(--gold2)');
-  sv('mvGNeeded',stillNeeded.toLocaleString(),stillNeeded>2000?'var(--rust2)':stillNeeded>500?'var(--gold2)':'var(--green3)');
-  sv('mvGPace', paceNeed+'/day',parseFloat(paceNeed)<=7?'var(--teal)':parseFloat(paceNeed)<=12?'var(--gold2)':'var(--rust2)');
-  sv('mvGoalPct',pct+'% of $30K',pct>=50?'var(--teal)':'var(--gold2)');
-  sv('mvGoalDays',daysLeft+' days left',daysLeft<90?'var(--rust2)':'var(--mid)');
+  var dl2=Math.max(1,Math.ceil((REAL.goalDeadline-new Date())/86400000));
+  var pn2=(stillNeeded/dl2).toFixed(1);
+  var pct2=Math.min(100,Math.round(revenue/REAL.goalMonthly*100));
+  var sv2=function(id,v,c){var e2=document.getElementById(id);if(e2){e2.textContent=v;if(c)e2.style.color=c;}};
+  sv2('mvGLive',dn,dn>0?'var(--green3)':'var(--mid)');
+  sv2('mvGRev','$'+Math.round(revenue).toLocaleString(),'var(--gold2)');
+  sv2('mvGNeeded',stillNeeded.toLocaleString(),stillNeeded>2000?'var(--rust2)':stillNeeded>500?'var(--gold2)':'var(--green3)');
+  sv2('mvGPace',pn2+'/day',parseFloat(pn2)<=7?'var(--teal)':parseFloat(pn2)<=12?'var(--gold2)':'var(--rust2)');
+  sv2('mvGoalPct',pct2+'% of $30K',pct2>=50?'var(--teal)':'var(--gold2)');
+  sv2('mvGoalDays',dl2+' days left',dl2<90?'var(--rust2)':'var(--mid)');
   var gBar=document.getElementById('mvGoalBarFill');
-  if(gBar){
-    gBar.style.width=Math.max(1,pct)+'%';
-    gBar.style.background=pct>=100?'var(--green3)':pct>=50?'var(--teal)':pct>=20?'var(--gold)':'linear-gradient(90deg,var(--rust2),var(--gold))';
-  }
+  if(gBar){gBar.style.width=Math.max(1,pct2)+'%';gBar.style.background=pct2>=100?'var(--green3)':pct2>=50?'var(--teal)':pct2>=20?'var(--gold)':'linear-gradient(90deg,var(--rust2),var(--gold))';}
   var nxEl=document.getElementById('mvNextMsg');
   if(nxEl){
     var topIP=mvAll.find(function(x){return getStatus(x)==='in_progress';});
     var topNS=mvAll.find(function(x){return getStatus(x)==='not_started';});
     if(topIP){
-      var pg=getProgress(topIP);
-      nxEl.innerHTML='<strong style="color:var(--gold2);">FINISH in-progress first:</strong> '
-        +topIP.ageLabel+' &middot; '+topIP.edName+' &middot; '+topIP.format
-        +' <span style="font-family:Bebas Neue,sans-serif;font-size:9px;color:var(--teal);">['+pg+'% done]</span>'
-        +' &mdash; half-done = $0/mo. <strong style="color:var(--cream);">Complete it. Mark Live. Then start the next.</strong>';
+      nxEl.innerHTML='<strong style="color:var(--gold2);">FINISH in-progress first:</strong> '+topIP.ageLabel+' &middot; '+topIP.edName+' &middot; '+topIP.format+' <span style="color:var(--teal);">['+getProgress(topIP)+'% done]</span> &mdash; half-done = $0/mo. <strong style="color:var(--cream);">Complete it, mark Live, then start next.</strong>';
     } else if(topNS){
-      var e2b=rEst(topNS,vpl),lb2=rLbl(rScore(topNS));
-      nxEl.innerHTML='<strong style="color:var(--green3);">START next PRIME listing:</strong>'
-        +' <strong style="color:var(--gold);">'+topNS.ageLabel+'</strong> &middot; '+topNS.edName+' &middot; '+topNS.format
-        +' <span style="font-family:Bebas Neue,sans-serif;font-size:9px;padding:1px 4px;background:rgba(231,76,60,.2);color:#e74c3c;">'+lb2+'</span>'
-        +' &mdash; earns <strong style="color:var(--gold2);">~$'+e2b+'/mo forever.</strong>'
-        +' <strong style="color:var(--cream);">Click &blacktriangleright; Start to open it now.</strong>';
+      nxEl.innerHTML='<strong style="color:var(--green3);">START next listing:</strong> <strong style="color:var(--gold);">'+topNS.ageLabel+'</strong> &middot; '+topNS.edName+' &middot; '+topNS.format+' &mdash; earns <strong style="color:var(--gold2);">~$'+rEst(topNS,vpl)+'/mo forever.</strong> <strong style="color:var(--cream);">Click Start now.</strong>';
     } else {
-      nxEl.innerHTML='<strong style="color:var(--green3);">All current listings complete!</strong>'
-        +' Add 2nd design variations for top ages &mdash; each is a new Etsy search slot = new passive income forever.';
+      nxEl.innerHTML='<strong style="color:var(--green3);">All listings complete!</strong> Add 2nd design variations &mdash; each = new Etsy search slot = more passive income.';
     }
   }
   function box(lbl,val,col,bl){
-    return'<div class="mv-stat-box" style="border-left:3px solid '+bl+';">'      +'<div class="mv-stat-lbl">'+lbl+'</div>'      +'<div class="mv-stat-val" style="color:'+col+';">'+val+'</div></div>';
+    return'<div class="mv-stat-box" style="border-left:3px solid '+bl+';">'
+      +'<div class="mv-stat-lbl">'+lbl+'</div>'
+      +'<div class="mv-stat-val" style="color:'+col+';">'+val+'</div></div>';
   }
   el.innerHTML=
     box('Filtered',t.toLocaleString(),'var(--cream)','var(--border)')+
@@ -4008,9 +3973,9 @@ function mvDrawStats(vpl){
     box('Live',dn,'var(--green3)','var(--green3)')+
     box('In Progress',ip>0?ip:'none',ip>0?'var(--gold2)':'var(--mid)','var(--border)')+
     box('Not Started',ns,'var(--mid)','var(--border)')+
-    box('Live $/mo','$'+dE.toLocaleString(),'var(--green3)','var(--green3)')+
-    box('Full Pot','$'+tE.toLocaleString(),'var(--teal)','var(--teal)')+
-    box('$30K Gap','$'+Math.max(0,REAL.goalMonthly-revenue).toLocaleString(),'var(--rust2)','var(--rust2)');
+    box('Live $/mo','$'+Math.round(dE).toLocaleString(),'var(--green3)','var(--green3)')+
+    box('Full Pot','$'+Math.round(tE).toLocaleString(),'var(--teal)','var(--teal)')+
+    box('$30K Gap','$'+Math.max(0,Math.round(REAL.goalMonthly-revenue)).toLocaleString(),'var(--rust2)','var(--rust2)');
 }
 
 function mvDrawRows(vpl){
@@ -4046,7 +4011,7 @@ function mvDrawRows(vpl){
       ?'<span style="font-size:9px;color:var(--green3);">✓ Live</span>'
       :'<button onclick="event.stopPropagation();openDetail(\''+l.id+'\')" style="font-family:Bebas Neue,sans-serif;font-size:9px;letter-spacing:1px;padding:2px 8px;background:none;border:1px solid var(--gold2);color:var(--gold2);cursor:pointer;">▶ Start</button>';
 
-    // Cumulative rev cell with $5K/$10K/$15K/$30K milestone markers
+    // Cumulative rev cell with milestone badges
     var cumPct=Math.min(100,Math.round(cumSoFar/goal*100));
     var cumColor=cumSoFar>=goal?'var(--green3)':cumSoFar>=goal*0.5?'var(--teal)':cumSoFar>=5000?'var(--gold2)':'var(--mid)';
     var prevCum=cumSoFar-est;
@@ -4056,7 +4021,18 @@ function mvDrawRows(vpl){
     else if(cumSoFar>=10000&&prevCum<10000) cumBadge='<span class="cum-badge" style="background:rgba(78,205,196,.15);color:var(--teal);">$10K &#9650;</span>';
     else if(cumSoFar>=5000 &&prevCum<5000)  cumBadge='<span class="cum-badge" style="background:rgba(201,151,58,.1);color:var(--gold2);">$5K &#9650;</span>';
     var toGo=Math.max(0,goal-Math.round(cumSoFar));
-    var cumCell='<td class="cum-rev-cell" style="padding:6px 7px;">'      +'<span style="font-family:Bebas Neue,sans-serif;font-size:13px;color:'+cumColor+';">$'+Math.round(cumSoFar).toLocaleString()+'</span>'      +(cumBadge||(toGo>0?'<span style="font-size:8px;color:var(--mid);display:block;">$'+toGo.toLocaleString()+' to $30K</span>':''))      +'<div class="cum-rev-bar"><div class="cum-rev-fill" style="width:'+cumPct+'%;background:'+cumColor+';"></div></div>'      +'</td>';
+    var cumCell='<td class="cum-rev-cell" style="padding:6px 7px;">'
+      +'<span style="font-family:Bebas Neue,sans-serif;font-size:13px;color:'+cumColor+';">$'+Math.round(cumSoFar).toLocaleString()+'</span>'
+      +(cumBadge||(toGo>0?'<span style="font-size:8px;color:var(--mid);display:block;">$'+toGo.toLocaleString()+' to $30K</span>':''))
+      +'<div class="cum-rev-bar"><div class="cum-rev-fill" style="width:'+cumPct+'%;background:'+cumColor+';"></div></div>'
+      +'</td>';
+    var cumPct=Math.min(100,Math.round(cumSoFar/goal*100));
+    var cumColor=cumSoFar>=goal?'var(--green3)':cumSoFar>=goal*0.5?'var(--teal)':'var(--gold2)';
+    var cumCell='<td class="cum-rev-cell" style="padding:6px 7px;">'
+      +'<span style="font-family:Bebas Neue,sans-serif;font-size:13px;color:'+cumColor+';">$'+Math.round(cumSoFar).toLocaleString()+'</span>'
+      +(cumSoFar>=goal?'<span style="font-size:8px;color:var(--green3);display:block;">✓ $30K!</span>':'<span style="font-size:8px;color:var(--mid);display:block;">'+(goal-Math.round(cumSoFar))>0?'$'+(goal-Math.round(cumSoFar)).toLocaleString()+' to go':'')
+      +'<div class="cum-rev-bar"><div class="cum-rev-fill" style="width:'+cumPct+'%;background:'+cumColor+';"></div></div>'
+      +'</td>';
 
     h+='<tr data-mid="'+l.id+'" style="border-bottom:1px solid var(--border);cursor:pointer;'+(rank===1?'background:rgba(201,151,58,.06);':'')+'" onclick="openDetail(\''+l.id+'\')" onmouseover="this.style.background=\'var(--ink3)\'" onmouseout="this.style.background=\''+(rank===1?'rgba(201,151,58,.06)':'')+'\';">'
       +'<td style="padding:6px 7px;white-space:nowrap;font-family:Bebas Neue,sans-serif;font-size:12px;color:var(--mid);">'+medal+rank+'</td>'
@@ -4069,7 +4045,6 @@ function mvDrawRows(vpl){
       +'<td style="padding:6px 7px;text-align:center;"><span style="font-size:13px;color:'+stCol+';">'+stIcon+'</span><div style="font-size:8px;color:'+stCol+';">'+st.replace('_',' ')+'</div></td>'
       +'<td style="padding:6px 7px;text-align:center;"><div style="width:50px;height:4px;background:var(--ink3);border-radius:2px;margin:0 auto;"><div style="height:4px;border-radius:2px;background:'+stCol+';width:'+pr+'%;"></div></div><div style="font-size:8px;color:var(--mid);margin-top:2px;">'+pr+'%</div></td>'
       +'<td style="padding:6px 7px;text-align:center;">'+action+'</td>'
-      +'<td style="padding:6px 7px;text-align:center;white-space:nowrap;"><span style="font-family:Bebas Neue,sans-serif;font-size:7px;padding:1px 4px;background:rgba(201,151,58,.12);border:1px solid rgba(201,151,58,.4);color:var(--gold2);display:inline-block;margin-bottom:2px;">V1</span><br>'+action+'</td>'
   });
   tb.innerHTML=h;
 }
@@ -4305,66 +4280,52 @@ function toggleWhyFull(){
 }
 
 // ② THIS MONTH ACTION CARD — surgical, specific, motivating
-// ════════════════════════════════════════════
-// DAILY MISSION CARD — Projections tab
-// ════════════════════════════════════════════
 function renderDailyMission(){
-  var dailyTgt=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||7));
+  var dailyTgt=Math.max(1,Math.round(parseFloat(misc.projDailyTarget)||7));
   var revenue=parseFloat(misc.rdRevenue)||250;
   var live=parseFloat(misc.rdLive)||32;
-  var todayPub=getTodayPublished();
-  var monthPub=getMonthPublished();
+  var todayPub=getTodayPublished()||0;
+  var monthPub=getMonthPublished()||0;
   var now=new Date();
   var daysInMo=new Date(now.getFullYear(),now.getMonth()+1,0).getDate();
   var dayOfMo=now.getDate();
   var monthTgt=Math.round(dailyTgt*daysInMo);
-  var pct=Math.min(100,Math.round(monthPub/Math.max(1,monthTgt)*100));
+  var pct=monthTgt>0?Math.min(100,Math.round(monthPub/monthTgt*100)):0;
   var gap30k=Math.max(0,REAL.goalMonthly-revenue);
   var daysLeft=Math.max(1,Math.ceil((REAL.goalDeadline-now)/86400000));
   var rpl=live>0&&revenue>0?revenue/live:7.81;
-  var listFor30k=Math.ceil(REAL.goalMonthly/rpl);
+  var listFor30k=Math.ceil(REAL.goalMonthly/Math.max(0.01,rpl));
   var stillNeed=Math.max(0,listFor30k-live);
   var paceNeed=(stillNeed/daysLeft).toFixed(1);
-  var sv=function(id,v,c){var e=document.getElementById(id);if(!e)return;e.textContent=v;if(c)e.style.color=c;};
+  var sv=function(id,v,c){var e=document.getElementById(id);if(e){e.textContent=v;if(c)e.style.color=c;}};
   var todayCol=todayPub>=dailyTgt?'var(--green3)':todayPub>0?'var(--gold2)':'var(--rust2)';
-  sv('dmToday',   todayPub,   todayCol);
-  sv('dmDailyTgt',dailyTgt,   'var(--gold)');
-  sv('dmMonth',   monthPub,   monthPub>=Math.round(dailyTgt*dayOfMo)?'var(--green3)':'var(--gold2)');
-  sv('dmMonthTgt',monthTgt,   'var(--mid)');
-  sv('dmRevNow',  '$'+revenue.toLocaleString(),'var(--teal)');
-  sv('dmGap',     '$'+gap30k.toLocaleString(),gap30k>0?'var(--rust2)':'var(--green3)');
-  sv('dmDaysLeft',daysLeft,   daysLeft<60?'var(--rust2)':daysLeft<120?'var(--gold2)':'var(--teal)');
+  sv('dmToday',todayPub,todayCol);
+  sv('dmDailyTgt',dailyTgt,'var(--gold)');
+  sv('dmMonth',monthPub,monthPub>=Math.round(dailyTgt*dayOfMo)?'var(--green3)':'var(--gold2)');
+  sv('dmMonthTgt',monthTgt,'var(--mid)');
+  sv('dmRevNow','$'+Math.round(revenue).toLocaleString(),'var(--teal)');
+  sv('dmGap','$'+Math.round(gap30k).toLocaleString(),gap30k>0?'var(--rust2)':'var(--green3)');
+  sv('dmDaysLeft',daysLeft,daysLeft<60?'var(--rust2)':daysLeft<120?'var(--gold2)':'var(--teal)');
   sv('dmPaceNeed',paceNeed+'/day',parseFloat(paceNeed)<=7?'var(--teal)':parseFloat(paceNeed)<=12?'var(--gold2)':'var(--rust2)');
   var bar=document.getElementById('dmBar');
   if(bar){bar.style.width=pct+'%';bar.style.background=pct>=100?'var(--green3)':pct>=70?'var(--teal)':'linear-gradient(90deg,var(--rust2),var(--gold))';}
   var h2=now.getHours();
-  var greeting=h2<5?'LATE NIGHT SESSION':h2<9?'FAJR TO PUBLISH':h2<12?'MORNING SPRINT':h2<15?'AFTERNOON PUSH':h2<18?'FINAL STRETCH TODAY':h2<21?'EVENING HUSTLE':'NIGHT OWL SESSION';
-  var dow=['SUN','MON','TUE','WED','THU','FRI','SAT'][now.getDay()];
-  var months=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
-  var titleEl=document.getElementById('dmTitle');
-  if(titleEl)titleEl.textContent='&#9889; '+greeting+' — '+dow+' '+dayOfMo+' '+months[now.getMonth()];
+  var greeting=h2<5?'LATE NIGHT SESSION':h2<9?'FAJR TO PUBLISH':h2<12?'MORNING SPRINT':h2<15?'AFTERNOON PUSH':h2<18?'FINAL STRETCH':h2<21?'EVENING HUSTLE':'NIGHT OWL';
+  var dows=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  var mons=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+  var te=document.getElementById('dmTitle');
+  if(te)te.textContent=greeting+' — '+dows[now.getDay()]+' '+dayOfMo+' '+mons[now.getMonth()];
   var more=Math.max(0,dailyTgt-todayPub);
   var rplStr='$'+rpl.toFixed(2);
-  var msg;
+  var msg='';
   if(todayPub===0){
-    msg='<strong style="color:var(--rust2);">Not started yet.</strong> You need <strong style="color:var(--gold);">'+dailyTgt+' listings today</strong> for the $30K sprint.'
-      +' Each one earns <strong style="color:var(--gold2);">'+rplStr+'/mo forever.</strong>'
-      +' Miss today and that compound income never starts.'
-      +' <strong style="color:var(--teal);">Open Pipeline &rarr; find a PRIME listing &rarr; press &blacktriangleright; Start &rarr; set your timer. Go.</strong>'
-      +' <em style="color:var(--mid);">('+paceNeed+' listings/day for '+daysLeft+' days = $30K by Dec 31.)</em>';
+    msg='<strong style="color:var(--rust2);">Not started yet.</strong> You need <strong style="color:var(--gold);">'+dailyTgt+' listings today</strong>. Each earns <strong style="color:var(--gold2);">'+rplStr+'/mo forever.</strong> Miss today and that income never starts. <strong style="color:var(--teal);">Open Pipeline, find PRIME, press Start. Go now.</strong> <em style="color:var(--mid);">('+paceNeed+'/day for '+daysLeft+' days = $30K by Dec 31)</em>';
   } else if(todayPub<dailyTgt){
-    msg='<strong style="color:var(--green3);">'+todayPub+' published today &mdash; you started!</strong>'
-      +' <strong style="color:var(--gold);">'+more+' more</strong> to hit your '+dailyTgt+'/day target.'
-      +' You are in the game. Each listing compounds on top of the last.'
-      +' <strong style="color:var(--teal);">Batch the next stage. Use your saved Canva prompt. Publish before you rest.</strong>';
+    msg='<strong style="color:var(--green3);">'+todayPub+' published today — you started!</strong> <strong style="color:var(--gold);">'+more+' more</strong> to hit your '+dailyTgt+'/day target. Each listing compounds. <strong style="color:var(--teal);">Batch the next stage. Publish before you rest.</strong>';
   } else if(todayPub<dailyTgt*2){
-    msg='<strong style="color:var(--green3);">&checkmark; Daily target hit &mdash; '+todayPub+' published!</strong>'
-      +' Every listing beyond target is ahead of the path to $30K.'
-      +' <strong style="color:var(--teal);">Can you do one more? You are ahead of the curve. Keep building.</strong>';
+    msg='<strong style="color:var(--green3);">✓ Daily target hit — '+todayPub+' published!</strong> Every listing beyond target is ahead of $30K. <strong style="color:var(--teal);">Can you do one more? Keep building.</strong>';
   } else {
-    msg='<strong style="color:var(--gold);">EXCEPTIONAL DAY &mdash; '+todayPub+' listings published!</strong>'
-      +' This is exactly how $30,000/month gets built.'
-      +' Days like this <strong style="color:var(--teal);">buy you rest days without falling behind.</strong>';
+    msg='<strong style="color:var(--gold);">EXCEPTIONAL DAY — '+todayPub+' published!</strong> This is exactly how $30K/month gets built. Days like this buy you rest without falling behind.';
   }
   var msgEl=document.getElementById('dmMsg');
   if(msgEl)msgEl.innerHTML=msg;
@@ -5219,7 +5180,7 @@ function showView(name,tabEl){
   });
 
   if(name==='money')mvApply();
-  if(name==='projections')renderDailyMission();
+  if(name==='projections'){renderDailyMission();}
   if(name==='pipeline'){renderLegend();applyFilters();}
   if(name==='projections'){renderProjections();renderThisMonth();}
   if(name==='seo'){renderTagSets();}
@@ -7073,6 +7034,7 @@ function init(){
   populateFilters();
   renderLegend();
   renderPipDailyBanner();
+  renderDailyMission();
   renderThisMonth();
   renderTagSets();
   _syncCanonInputs();
