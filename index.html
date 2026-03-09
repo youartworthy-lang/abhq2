@@ -168,7 +168,9 @@ body{background:var(--ink);color:var(--cream);font-family:'Plus Jakarta Sans',sa
 
 /* Shop filter in header */
 .shop-toggle{display:flex;gap:2px;align-items:center;}
-.stog{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;letter-spacing:1px;padding:3px 8px;border:1px solid var(--border);cursor:pointer;color:var(--mid);background:none;transition:all .12s;}
+.stog{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;letter-spacing:1px;padding:3px 8px;border:1px solid var(--border);cursor:pointer;color:var(--mid);background:none;transition:all .12s;display:inline-flex;align-items:center;gap:3px;}
+.stog-icon{font-size:12px;line-height:1;}
+.stog-label{white-space:nowrap;}
 .stog:hover{color:var(--gold2);}
 .stog.sa.on{border-color:var(--gold);color:var(--gold);background:rgba(201,151,58,.1);}
 .stog.sb.on{border-color:var(--teal);color:var(--teal);background:rgba(78,205,196,.1);}
@@ -945,26 +947,45 @@ table.tbl         { font-size: 13px; }
    ═══════════════════════════════════════════════════ */
 @media (max-width: 767px) {
 
-  /* ── Page ── */
-  .page { padding: 12px 12px 130px; }
+  /* ══ GLOBAL: prevent horizontal overflow ══ */
+  * { box-sizing: border-box; }
+  body { overflow-x: hidden; }
+  .page {
+    padding: 10px 10px 80px;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
 
-  /* ── Header (two-row) ── */
-  .hdr-nav { position: sticky; top: 0; }
+  /* ══ DESKTOP NAV: hidden on mobile ══ */
+  #desktopNav { display: none !important; }
+
+  /* ══ TOOLBAR ROW ══ */
   .hdr {
     height: auto;
-    min-height: 40px;
+    min-height: 44px;
     padding: 6px 10px;
-    top: 33px; /* below compact nav strip */
+    top: 0;           /* no desktop nav above it on mobile */
     gap: 6px;
+    flex-wrap: nowrap;
+    overflow: hidden;
   }
-  #hdrTimer { display: none !important; }
-  .logo { font-size: 15px; }
-  .logo sub { font-size: 9px; }
-  .hbtns .btn { font-size: 11px; padding: 4px 9px; }
-  /* Nav tabs: compact on mobile */
-  .ntab { padding: 8px 12px; font-size: 10px; }
+  .logo { font-size: 14px; flex-shrink: 1; min-width: 0; }
+  .logo sub { font-size: 8px; }
 
-  /* ── Mobile bottom nav ── */
+  /* Shop toggle: icon-only pills */
+  .stog-label { display: none; }
+  .stog-icon  { font-size: 14px; line-height: 1; }
+  .stog { padding: 4px 7px; min-width: 32px; text-align: center; }
+
+  /* Font scale buttons: tighter */
+  .fsz-btn { width: 20px; height: 20px; font-size: 10px; }
+  .fsz-bar  { gap: 1px; }
+
+  /* Hide session timer & divider from toolbar on mobile */
+  #hdrTimer, .hdr-timer-div { display: none !important; }
+  .hdiv { height: 18px; }
+
+  /* ══ BOTTOM NAV ══ */
   #mobileNav {
     display: flex !important;
     position: fixed;
@@ -983,112 +1004,110 @@ table.tbl         { font-size: 13px; }
     align-items: center;
     justify-content: center;
     gap: 2px;
-    padding: 7px 10px;
+    padding: 6px 8px;
     background: none;
     border: none;
     cursor: pointer;
     color: var(--mid);
-    flex-shrink: 0;
-    min-width: 54px;
+    flex: 1;
+    min-width: 44px;
+    max-width: 64px;
     transition: color .15s;
   }
   .mnav-btn.on { color: var(--gold); }
-  .mnav-icon { font-size: 18px; line-height: 1; }
-  .mnav-lbl  { font-family:'Plus Jakarta Sans',sans-serif; font-size: 9px; letter-spacing: 1px; white-space: nowrap; }
+  .mnav-icon { font-size: 17px; line-height: 1; }
+  .mnav-lbl  { font-family:'Plus Jakarta Sans',sans-serif; font-size: 8px; letter-spacing: 0.5px; white-space: nowrap; }
 
-  /* ── Scorecard: compress on mobile ── */
-  .scorecard { grid-template-columns: 1fr 1fr; }
-  .sc-streak { grid-column: span 2; flex-direction: row; gap: 10px; justify-content: flex-start; }
-  .sc-streak-num { font-size: 36px; }
-  /* ── Pace strip: stack ── */
+  /* ══ TODAY PAGE ══ */
+  /* Sprint panel: no min-width overflows */
+  .sprint-panel { padding: 10px 12px; }
+  /* 4-col KPIs → 2×2 */
+  .sprint-panel [style*="grid-template-columns:repeat(4,1fr)"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+  /* 3-col strategy cards → 1 col */
+  .sprint-panel + div[style*="grid-template-columns:repeat(3,1fr)"],
+  #v-today > div[style*="grid-template-columns:repeat(3,1fr)"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  /* Update numbers grid: 2 col stays ok */
+  .sprint-panel [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* Scorecard */
+  .scorecard { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .sc-streak { grid-column: span 2; flex-direction: row; gap: 8px; justify-content: flex-start; }
+  .sc-streak-num { font-size: 32px; }
+  /* Pace strip: 1 col */
   .pace-strip { grid-template-columns: 1fr; gap: 8px; }
-  /* ── Session banner: wrap ── */
-  .session-banner.active { flex-direction: column; align-items: flex-start; }
-
-  /* ── Stats bottom bar - compact on mobile ── */
-  .bottom-bar {
-    display: none !important; /* replaced by mobile nav */
-  }
-
-  /* ── Mission strip ── */
-        
-  /* ── Dashboard strip: 3 cols on mobile ── */
-  .dash { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .dn   { font-size: 26px; }
-
-  /* ── Deadline strip: stack ── */
-  .dstrip { grid-template-columns: 1fr; gap: 8px; }
-
-  /* ── Today 2-col → 1-col ── */
+  /* Today 2-col → 1 col */
   .today-grid { grid-template-columns: 1fr; gap: 10px; }
-
-  /* ── Timer display ── */
-  .timer-display { font-size: 44px; }
-
-  /* ── Gap grid: 1 col ── */
+  .timer-display { font-size: 40px; }
   .gap-grid { grid-template-columns: 1fr; }
+  /* Session banner */
+  .session-banner.active { flex-direction: column; align-items: flex-start; gap: 8px; }
+  /* Dash strip */
+  .dash { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .dn   { font-size: 22px; }
 
-  /* ── Pipeline filters: wrap tightly ── */
-  .filters { gap: 4px; }
-  .fsearch { width: 100%; }
-  .fsel    { flex: 1; min-width: 100px; }
-
-  /* ── Pipeline table: horizontal scroll ── */
-  .twrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table.tbl { min-width: 620px; }
-
-  /* ── Projections: 2×2 ── */
-  .proj-grid { grid-template-columns: repeat(2, 1fr); }
-  .real-data-grid { grid-template-columns: repeat(2, 1fr); }
-
-  /* ── Money view stats: 2 col ── */
+  /* ══ MONEY VIEW ══ */
   .mv-stats { grid-template-columns: repeat(2, 1fr); }
+  .mv-goal-strip { flex-direction: column; gap: 8px; }
 
-  /* ── Ideas: full-width ── */
-  #ideaStats { grid-template-columns: repeat(3, 1fr); }
+  /* ══ PIPELINE ══ */
+  .filters { gap: 4px; flex-wrap: wrap; }
+  .fsearch { width: 100%; }
+  .fsel    { flex: 1; min-width: 110px; }
+  .twrap   { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.tbl { min-width: 580px; }
 
-  /* ── SEO: stack library on top, builders below ── */
-  #v-seo [style*="grid-template-columns:1fr 400px"] {
-    display: block !important;
-  }
-  #v-seo [style*="position:sticky"] {
-    position: static !important;
-    max-height: none !important;
-    margin-top: 14px;
-  }
-  #seoKwBoard {
-    max-height: 45vh !important;
-  }
-  /* SEO how-to: stack ── */
-  #v-seo [style*="grid-template-columns:repeat(3,1fr)"] {
-    display: block !important;
-  }
-  #v-seo [style*="grid-template-columns:repeat(3,1fr)"] > div {
-    margin-bottom: 6px;
-  }
+  /* ══ PROJECTIONS ══ */
+  .proj-grid      { grid-template-columns: repeat(2, 1fr); }
+  .real-data-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Scope bar: wrap */
+  #projScopeBar > div { flex-wrap: wrap; gap: 4px; }
 
-  /* ── Modals: full width ── */
+  /* ══ IDEAS ══ */
+  #ideaStats { grid-template-columns: repeat(2, 1fr); }
+
+  /* ══ SEO ══ */
+  #v-seo [style*="grid-template-columns:1fr 400px"] { display: block !important; }
+  #v-seo [style*="position:sticky"] { position: static !important; max-height: none !important; margin-top: 14px; }
+  #seoKwBoard { max-height: 45vh !important; }
+  #v-seo [style*="grid-template-columns:repeat(3,1fr)"] { display: block !important; }
+  #v-seo [style*="grid-template-columns:repeat(3,1fr)"] > div { margin-bottom: 6px; }
+  .seo-right-sticky { position: static !important; max-height: none !important; }
+
+  /* ══ AUTOMATION ══ */
+  .at-grid { grid-template-columns: 1fr; }
+  .at-sbar { grid-template-columns: 1fr 1fr; }
+
+  /* ══ MODALS ══ */
   .modal-box,
-  .modal-overlay .modal-box { width: 96vw !important; max-width: 96vw !important; padding: 16px 14px; }
+  .modal-overlay .modal-box { width: 95vw !important; max-width: 95vw !important; padding: 14px 12px; }
   .modal-box [style*="grid-template-columns:1fr 1fr"] { display: block !important; }
   .modal-box [style*="grid-template-columns:1fr 1fr"] > div { margin-bottom: 6px; }
-  .modal-box [style*="grid-template-columns:span 2"],
-  .modal-box [style*="grid-column:span 2"] { grid-column: span 1 !important; }
-
-  /* ── Detail slide-panel: full width ── */
   .dpanel { width: 100% !important; max-width: 100vw; }
 
-  /* ── Toolkit items: stack actions below ── */
+  /* ══ MISC ══ */
   .tk-item { flex-wrap: wrap; gap: 8px; }
   .tk-actions { width: 100%; justify-content: flex-start; margin-top: 4px; }
-
-  /* ── Done/Perf modal: 3-col stays ok, keep ── */
-
-  /* ── Toast: wider ── */
   .toast { width: 88vw; text-align: center; font-size: 12px; }
+  .bottom-bar { display: none !important; }
 
-  /* ── Sticky SEO right panel: un-sticky ── */
-  .seo-right-sticky { position: static !important; max-height: none !important; }
+  /* ══ FONT SCALE — ensure it cascades ══ */
+  .page, .page * { max-width: 100%; }
+  input, select, textarea { max-width: 100%; }
+
+  /* ══ INLINE GRIDS on Today that use style= ══ */
+  /* 3-col strategy section */
+  #v-today > div[style*="repeat(3,1fr)"] {
+    display: flex !important; flex-direction: column !important;
+  }
 }
 
 /* Tablet: 768–1023px — softer adjustments */
@@ -1129,6 +1148,65 @@ table.tbl         { font-size: 13px; }
 .at-ta::placeholder{color:#6b5f52;font-style:italic;}
 .at-cp{font-family:'Plus Jakarta Sans',sans-serif;font-size:8px;letter-spacing:1px;padding:3px 8px;background:none;border:1px solid rgba(201,151,58,.2);color:#6b5f52;cursor:pointer;transition:all .15s;}
 .at-cp:hover{border-color:#c9973a;color:#c9973a;}
+/* ══ MOBILE HIERARCHY OVERRIDES ══ */
+@media (max-width: 767px) {
+  /* Sprint panel header: no min-width that forces overflow */
+  .sprint-panel [style*="min-width:200px"] { min-width: 0 !important; }
+  .sprint-panel [style*="flex-shrink:0"] { flex-shrink: 1 !important; }
+
+  /* Strategy 3-col cards: collapse to 1-col */
+  div[style*="grid-template-columns:repeat(3,1fr)"] {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+  }
+
+  /* Non-negotiable: tighter */
+  #v-today > div[style*="border:2px solid var(--gold)"] {
+    flex-wrap: wrap; gap: 8px;
+  }
+
+  /* Scorecard numbers: smaller on mobile */
+  .sc-val { font-size: 24px !important; }
+
+  /* Today active timer widget: full width */
+  #todayActiveTimer > div:last-child { flex-wrap: wrap; }
+
+  /* Pipeline: phase tabs scroll */
+  .phase-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .ptab { flex-shrink: 0; min-width: 120px; }
+
+  /* Money view: MV table scroll */
+  .mv-table-wrap { overflow-x: auto; }
+
+  /* Projections scope bar: wrap */
+  #projScopeBar { flex-wrap: wrap; gap: 6px; }
+
+  /* Ensure no element bleeds past screen */
+  #v-today, #v-money, #v-pipeline, #v-projections,
+  #v-ideas, #v-toolkit, #v-seo, #v-automation {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Update Numbers box: full width on mobile */
+  .sprint-panel [style*="flex-shrink:0"][style*="padding"] {
+    width: 100% !important;
+    flex-shrink: 1 !important;
+    box-sizing: border-box;
+  }
+
+  /* Fix 4-col KPI cards */
+  #sprintPanel [style*="repeat(4,1fr)"],
+  #v-today [style*="repeat(4,1fr)"] {
+    grid-template-columns: repeat(2,1fr) !important;
+    gap: 6px !important;
+  }
+
+  /* Font scale: ensure var(--fs) applies everywhere */
+  :root { font-size: calc(14px * var(--fs, 1)); }
+}
+
+/* Automation tab remap */
 @media(max-width:767px){.at-grid{grid-template-columns:1fr;}.at-sbar{grid-template-columns:1fr 1fr;}}
 
 /* ── PRODUCT TYPE TABS (Custom / Instant DL) ── */
@@ -1210,8 +1288,8 @@ table.tbl         { font-size: 13px; }
 </div>
 
 <!-- HEADER -->
-<!-- ══ ROW 1: NAV TABS — always at the very top ══ -->
-<div class="hdr-nav">
+<!-- ══ ROW 1: NAV TABS — desktop only, hidden on mobile ══ -->
+<div class="hdr-nav" id="desktopNav">
   <nav class="nav">
     <button class="ntab on" onclick="showView('today',this)">⚡ Today</button>
     <button class="ntab" onclick="showView('money',this)">💰 Money View</button>
@@ -1224,15 +1302,24 @@ table.tbl         { font-size: 13px; }
   </nav>
 </div>
 
-<!-- ══ ROW 2: TOOLBAR — logo, shop, font size, session timer ══ -->
+<!-- ══ ROW 2: TOOLBAR ══ -->
 <div class="hdr">
   <div class="logo">Amir's Birthday <span>HQ</span> <sub>v5</sub></div>
   <div class="hdiv"></div>
-  <div class="shop-toggle">
-    <button class="stog sab on" onclick="setGlobalShop('both',this)">Both</button>
-    <button class="stog sa" onclick="setGlobalShop('a',this)">A·YouArtWorthy</button>
-    <button class="stog sb" onclick="setGlobalShop('b',this)">B·HomeGriot</button>
+
+  <!-- SHOP TOGGLE — icon pills on mobile, full text on desktop -->
+  <div class="shop-toggle" id="shopToggle">
+    <button class="stog sab on" onclick="setGlobalShop('both',this)" title="Both shops">
+      <span class="stog-icon">⊕</span><span class="stog-label"> Both</span>
+    </button>
+    <button class="stog sa" onclick="setGlobalShop('a',this)" title="YouArtWorthy">
+      <span class="stog-icon">🎨</span><span class="stog-label"> A</span>
+    </button>
+    <button class="stog sb" onclick="setGlobalShop('b',this)" title="HomeGriot">
+      <span class="stog-icon">🌍</span><span class="stog-label"> B</span>
+    </button>
   </div>
+
   <!-- FONT SIZE CONTROL -->
   <div class="hdiv"></div>
   <div class="fsz-bar" title="Text size — applies across all pages">
@@ -1241,8 +1328,9 @@ table.tbl         { font-size: 13px; }
     <button class="fsz-btn" id="fszL" onclick="setFontScale(1.15)" title="Large" style="font-size:17px;">A</button>
     <button class="fsz-btn" id="fszXL" onclick="setFontScale(1.3)" title="Extra large" style="font-size:19px;">A</button>
   </div>
-  <!-- SESSION TIMER -->
-  <div class="hdiv"></div>
+
+  <!-- SESSION TIMER — desktop only -->
+  <div class="hdiv hdr-timer-div"></div>
   <div id="hdrTimer" onclick="showView('today',document.querySelector('.ntab'))" style="display:flex;align-items:center;gap:6px;cursor:pointer;padding:2px 8px;border:1px solid var(--gold);background:rgba(201,151,58,.06);" title="Click to go to Today">
     <span style="font-size:11px;">⏱</span>
     <div>
@@ -4862,14 +4950,16 @@ function setFontScale(scale){
 }
 
 function applyFontScale(scale){
-  // 1. Update CSS --fs variable (drives calc() classes)
+  // Set CSS variable on root — drives all calc(Npx * var(--fs)) rules
   document.documentElement.style.setProperty('--fs', String(scale));
-  // 2. Also scale the html element font-size so rem-based and inherited sizes scale
+  // Also set html font-size so em/rem cascade works
   document.documentElement.style.fontSize = Math.round(scale * 14) + 'px';
-  // 3. Mark active button
-  FS_LEVELS.forEach(function(lvl, i){
-    var el = document.getElementById(FS_IDS[i]);
-    if(el) el.classList.toggle('on', Math.abs(lvl - scale) < 0.01);
+  // Mark active button
+  var ids = ['fszS','fszM','fszL','fszXL'];
+  var levels = [0.85, 1, 1.15, 1.3];
+  ids.forEach(function(id, i){
+    var el = document.getElementById(id);
+    if(el) el.classList.toggle('on', Math.abs(levels[i] - scale) < 0.01);
   });
   if(misc) misc.fontScale = scale;
 }
