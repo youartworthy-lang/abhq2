@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amir's Birthday HQ — YouArtWorthy</title>
+<title>Amir's Birthday HQ v15 — YouArtWorthy</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -602,6 +602,9 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0 2px;font-size:12p
 .proj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
 .pcell{background:var(--ink2);border:1px solid var(--border);padding:14px 16px;text-align:center;position:relative;overflow:hidden;cursor:pointer;transition:border-color .15s;}
 .pcell::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.proj-phase-tab{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;letter-spacing:2px;padding:5px 14px;background:none;border:1px solid var(--border);color:var(--mid);cursor:pointer;transition:all .15s;}
+.proj-phase-tab:hover{border-color:var(--gold);color:var(--gold);}
+.proj-phase-tab.on{background:rgba(201,151,58,.12);border-color:var(--gold);color:var(--gold);font-weight:700;}
 .pcell.t1::after{background:var(--rust2);}
 .pcell.t2::after{background:var(--gold);}
 .pcell.t3::after{background:var(--green3);}
@@ -765,6 +768,10 @@ table.tbl{width:100%;border-collapse:separate;border-spacing:0 2px;font-size:12p
 .ph-1{background:var(--gold);color:var(--ink);}
 .ph-2{background:var(--ink3);color:var(--mid);border:1px solid var(--border);}
 .fmtb{font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;letter-spacing:1px;padding:2px 5px;display:inline-block;border-radius:2px;}
+.vbadge{font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:700;padding:1px 4px;border-radius:2px;display:inline-block;vertical-align:middle;}
+.vb1{background:rgba(201,151,58,.15);color:var(--gold);border:1px solid rgba(201,151,58,.3);}
+.vb2{background:rgba(78,205,196,.12);color:var(--teal);border:1px solid rgba(78,205,196,.3);}
+.vb3{background:rgba(168,72,32,.15);color:var(--rust2);border:1px solid rgba(168,72,32,.3);}
 .fmt-i{background:rgba(155,89,182,.25);color:#c39bd3;border:1px solid rgba(155,89,182,.4);}
 .fmt-c{background:rgba(168,72,32,.2);color:#ffb09a;border:1px solid rgba(168,72,32,.4);}
 .eff-td{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;padding:1px 4px;border-radius:2px;}
@@ -965,9 +972,9 @@ table.tbl         { font-size: 13px; }
     min-height: 44px;
     padding: 6px 10px;
     top: 0;           /* no desktop nav above it on mobile */
-    gap: 6px;
-    flex-wrap: nowrap;
-    overflow: hidden;
+    gap: 4px;
+    flex-wrap: wrap;
+    overflow: visible;
   }
   .logo { font-size: 14px; flex-shrink: 1; min-width: 0; }
   .logo sub { font-size: 8px; }
@@ -1389,22 +1396,26 @@ table.tbl         { font-size: 13px; }
       </div>
 
       <!-- 4 sprint KPIs -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:10px;">
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-bottom:10px;">
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(168,72,32,.3);">
           <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:30px;line-height:1;" id="sprintDaysLeft" style="color:var(--rust2);">—</div>
           <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Days until December 31 2026 — your $30K sprint deadline. Every listing compounds forever. Miss today = permanent lost income.">Days Left</div>
         </div>
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(201,151,58,.3);">
           <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:30px;line-height:1;color:var(--gold2);" id="sprintListingsNeeded">—</div>
-          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="New listings to reach $30,000/month by Dec 31. At $7.81/listing you need ~3,840. 3 design variations per top age/edition/format is the strategy.">Listings to Publish</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="New listings to reach $30,000/month by Dec 31. At $7.81/listing you need ~1,376 Phase 1 listings. V1/V2/V3 designs on top-country editions is the strategy.">Listings to Publish</div>
         </div>
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(78,205,196,.3);">
           <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:30px;line-height:1;color:var(--teal);" id="sprintPerDay">—</div>
-          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Listings/day needed for $30K. Need ~3,840 live. 7/day x 298 days = 2,086 + variations of top ages = full target. Canva Bulk Create makes 10–15/day possible.">Per Day Required</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Listings/day needed for $30K. Need ~1,376 Phase 1 live. V1/V2/V3 top-country designs per age. Canva Bulk Create makes 10–15/day possible.">Per Day Required</div>
         </div>
         <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(45,122,80,.3);">
           <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:30px;line-height:1;color:var(--green3);" id="sprintRevPerListing">—</div>
           <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;">$ per Listing/mo</div>
+        </div>
+        <div style="background:rgba(0,0,0,.4);padding:9px 10px;border:1px solid rgba(80,220,130,.4);border-top:2px solid var(--green3);">
+          <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:30px;line-height:1;color:var(--green3);" id="sprintAddedToday">+$0</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-top:1px;" data-tip="Passive income added today: new listings published today × your $/listing/mo. Every listing you publish earns this forever. Make it bigger.">$ Added Today</div>
         </div>
       </div>
 
@@ -1448,15 +1459,15 @@ table.tbl         { font-size: 13px; }
         <div style="position:absolute;top:8px;right:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:40px;opacity:.08;color:var(--rust2);">1</div>
         <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:8px;letter-spacing:2px;color:var(--rust2);margin-bottom:4px;">🎯 HIGHEST IMPACT NOW</div>
         <div style="font-family:'DM Serif Display',serif;font-size:14px;font-weight:700;color:var(--cream);margin-bottom:6px;">Publish HIGH-SCORE listings first</div>
-        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Score 85+ listings earn 3× more per visitor. Your pipeline has hundreds of them sitting unpublished. Filter → score order → batch 5 at once. <strong style="color:var(--gold2);">Every hour on a low-score listing is stolen from your income.</strong></div>
-        <button onclick="showView('pipeline')" style="margin-top:8px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:none;border:1px solid var(--rust2);color:var(--rust2);cursor:pointer;">→ Go to Pipeline</button>
+        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">USA 50th · UK 60th · Canada 40th — these are your highest-score slots. Each has V1, V2, and V3 waiting to publish. 3 designs × 1 age × 1 country = 3 listings from the same Canva template. <strong style="color:var(--gold2);">Start with V1 of your top age/country. Then V2 same day. V3 completes the triple.</strong></div>
+        <button onclick="goToPipelineV('1')" style="margin-top:8px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:none;border:1px solid var(--rust2);color:var(--rust2);cursor:pointer;">→ Start with V1 Priority</button>
       </div>
       <div style="background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--gold);padding:12px 14px;position:relative;">
         <div style="position:absolute;top:8px;right:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:40px;opacity:.08;color:var(--gold);">2</div>
         <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:8px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">⚡ SPEED MULTIPLIER</div>
         <div style="font-family:'DM Serif Display',serif;font-size:14px;font-weight:700;color:var(--cream);margin-bottom:6px;">Batch the SAME stage for 5 listings</div>
-        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Don't do all 8 stages for 1 listing. Do stage 1 (Research) for 5 listings → stage 2 for all 5. Same template = <strong style="color:var(--gold2);">4× faster per listing.</strong> Context switching kills your output.</div>
-        <button onclick="showView('pipeline')" style="margin-top:8px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:none;border:1px solid var(--gold);color:var(--gold);cursor:pointer;">→ Go to Pipeline + Batch</button>
+        <div style="font-size:10px;color:var(--cream2);line-height:1.65;">Design V1 USA 50th in Canva → duplicate the template → swap design elements → V2 done in minutes → V3 in minutes more. Do Canva stage for all 3 versions before moving to Hero. <strong style="color:var(--gold2);">One design session = 3 listings. Same SEO research. 3× the impressions on Etsy.</strong></div>
+        <button onclick="goToPipelineV('')" style="margin-top:8px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;padding:4px 10px;background:none;border:1px solid var(--gold);color:var(--gold);cursor:pointer;">→ Batch V1+V2+V3 Together</button>
       </div>
       <div style="background:var(--ink2);border:1px solid var(--border);border-top:3px solid var(--teal);padding:12px 14px;position:relative;">
         <div style="position:absolute;top:8px;right:10px;font-family:Plus Jakarta Sans,sans-serif;font-size:40px;opacity:.08;color:var(--teal);">3</div>
@@ -1585,6 +1596,7 @@ table.tbl         { font-size: 13px; }
             <button class="fmode-btn" data-mode="age" onclick="setFocusMode('age',this)">By Age</button>
             <button class="fmode-btn" data-mode="country" onclick="setFocusMode('country',this)">By Country</button>
             <button class="fmode-btn" data-mode="format" onclick="setFocusMode('format',this)">By Format</button>
+            <button class="fmode-btn" data-mode="variation" onclick="setFocusMode('variation',this)">By Version</button>
           </div>
           <div class="focus-chips" id="focusChips"></div>
         </div>
@@ -1639,7 +1651,13 @@ table.tbl         { font-size: 13px; }
           </div>
         </div>
 
-        <div class="today-tasks-lbl">📌 Do These Next — Highest ROI First <span style="font-size:9px;color:var(--mid);font-family:IBM Plex Mono,monospace;">(click ⏱ on a stage to start countdown)</span></div>
+        <div class="today-tasks-lbl" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;">
+          <span>📌 Do These Next — Highest ROI First <span style="font-size:9px;color:var(--mid);font-family:IBM Plex Mono,monospace;">(click ⏱ to start countdown)</span></span>
+          <span style="display:flex;gap:4px;">
+            <button id="ttPhaseP1" class="btn" style="font-size:9px;padding:3px 8px;background:var(--rust2);border-color:var(--rust2);color:#fff;" onclick="setTodayPhase(1)">📌 P1 Priority</button>
+            <button id="ttPhaseP2" class="btn btn-mid" style="font-size:9px;padding:3px 8px;" onclick="setTodayPhase(2)">📦 P2 Long-tail</button>
+          </span>
+        </div>
         <div id="todayTasks"></div>
       </div>
 
@@ -1648,20 +1666,8 @@ table.tbl         { font-size: 13px; }
 
         <!-- INCOME GAP - REAL NUMBERS -->
         <div class="gap-card">
-          <div class="card-title">💰 Real Income Gap Calculator</div>
-          <div class="gap-grid">
-            <div class="gap-field">
-              <span class="gap-lbl">Your Monthly Etsy Revenue ($)</span>
-              <input type="number" class="gap-input" id="gapCurrent" placeholder="e.g. 250" oninput="calcGap();saveRealData()">
-              <span style="font-size:9px;color:var(--mid);">Update from Etsy stats</span>
-            </div>
-            <div class="gap-field">
-              <span class="gap-lbl">Monthly Visits (last 30 days)</span>
-              <input type="number" class="gap-input" id="gapVisits" placeholder="e.g. 900" oninput="calcGap();saveRealData()">
-              <span style="font-size:9px;color:var(--mid);">From Etsy Shop Stats</span>
-            </div>
-          </div>
-          <div id="gapResult"><div style="font-size:11px;color:var(--mid);">Enter your real Etsy numbers above to see your exact path to $10,000/month.</div></div>
+          <div class="card-title">🎯 Variation Strategy — Path to $30K</div>
+          <div id="gapResult"><div style="font-size:11px;color:var(--mid);">Loading…</div></div>
         </div>
 
         <!-- CONSISTENCY ENGINE — now dynamic -->
@@ -1703,14 +1709,14 @@ table.tbl         { font-size: 13px; }
     <div class="mv-goal-strip">
       <div style="flex:1;min-width:180px;">
         <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:10px;letter-spacing:2px;color:var(--gold);margin-bottom:4px;">ROAD TO $30K/MO &mdash; DEC 31 2026</div>
-        <div style="display:flex;justify-content:space-between;font-size:7px;color:var(--mid);margin-bottom:2px;"><span style="color:var(--rust2);">$250</span><span>$5K</span><span>$10K</span><span>$15K</span><span style="color:var(--gold);">$30K &#127942;</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:7px;color:var(--mid);margin-bottom:2px;"><span style="color:var(--rust2);">$250</span><span>$5K</span><span style="color:var(--gold2);">$10.7K ★P1</span><span>$15K</span><span style="color:var(--gold);">$30K &#127942;</span></div>
         <div class="mv-goal-bar-bg"><div id="mvGoalBarFill" class="mv-goal-bar-fill" style="width:1%;"></div></div>
         <div style="display:flex;justify-content:space-between;font-size:8px;margin-top:1px;"><span id="mvGoalPct" style="color:var(--gold2);">0% of $30K</span><span id="mvGoalDays" style="color:var(--rust2);">298 days left</span></div>
       </div>
       <div class="mv-goal-col"><div class="mv-goal-num" id="mvGLive" style="color:var(--green3);">32</div><div class="mv-goal-sub">Live</div></div>
       <div class="mv-goal-col"><div class="mv-goal-num" id="mvGRev" style="color:var(--gold2);">$250</div><div class="mv-goal-sub">Monthly Rev</div></div>
-      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGNeeded" style="color:var(--rust2);">3,808</div><div class="mv-goal-sub">To Publish</div></div>
-      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGPace" style="color:var(--teal);">12.8/day</div><div class="mv-goal-sub">Pace Needed</div></div>
+      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGNeeded" style="color:var(--rust2);">—</div><div class="mv-goal-sub">Phase 1 Left</div></div>
+      <div class="mv-goal-col"><div class="mv-goal-num" id="mvGPace" style="color:var(--teal);">—</div><div class="mv-goal-sub">Phase 1 Pace</div></div>
     </div>
     <!-- NEXT ACTION BANNER -->
     <div class="mv-next-banner"><div class="mv-next-label">&#9654; NEXT ACTION</div><div id="mvNextMsg">Loading&hellip;</div></div>
@@ -1719,7 +1725,7 @@ table.tbl         { font-size: 13px; }
       <div>
         <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:4px;color:var(--gold2);margin-bottom:3px;">YOUARTWORTHY · TOP MONEY LISTINGS · 2026</div>
         <div style="font-family:'DM Serif Display',serif;font-size:22px;font-weight:900;color:var(--cream);line-height:1.1;">💰 Top Money Listings</div>
-        <div style="font-size:10px;color:var(--mid);margin-top:2px;">All listings ranked by real Etsy demand × revenue potential — highest ROI first · 50 per page</div>
+        <div style="font-size:10px;color:var(--mid);margin-top:2px;">Phase 1: 1,376 listings (V1+V2+V3 top-country ages) ranked by ROI · highest earners first · 50 per page</div>
       </div>
       <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
         <select id="mvCatF" class="fsel" onchange="mvApply()">
@@ -1735,6 +1741,12 @@ table.tbl         { font-size: 13px; }
         </select>
         <select id="mvStatF" class="fsel" onchange="mvApply()"><option value="">All Statuses</option><option value="not_started">○ Not Started</option><option value="in_progress">▶ In Progress</option><option value="completed">✓ Live</option></select>
         <select id="mvPhF" class="fsel" onchange="mvApply()"><option value="">All Phases</option><option value="1">Phase 1 · Priority</option><option value="2">Phase 2 · Full</option></select>
+        <select id="mvVerF" class="fsel" onchange="mvApply()">
+          <option value="">All Versions</option>
+          <option value="1">V1 Original</option>
+          <option value="2">V2 Fresh</option>
+          <option value="3">V3 Third</option>
+        </select>
         <button class="btn btn-mid" style="font-size:10px;" onclick="mvReset()">✕ Clear</button>
       </div>
     </div>
@@ -1769,7 +1781,7 @@ table.tbl         { font-size: 13px; }
           <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;" data-tip="Revenue rank. #1 = highest estimated monthly income. Publish in this order for max ROI.">RANK</th>
           <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;" data-tip="Birthday milestone. 50th = highest search volume. Age demand drives ~40% of birthday traffic.">AGE</th>
           <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:left;" data-tip="Cultural edition. USA Generic = most traffic. Black community = strong diaspora loyalty.">EDITION</th>
-          <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;" data-tip="Format. Instant DL = $12.95 passive. Custom = $19.95 but you personalise each order.">FMT</th>
+          <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;" data-tip="Format. Instant DL = $9.99 passive. Custom = $17.99 but you personalise each order.">FMT</th>
           <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:center;" data-tip="ROI Score 0-100. Age Demand 40% + Edition 40% + Format 20%. PRIME 85+ = publish first.">SCORE</th>
           <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--gold2);text-align:right;" data-tip="Estimated monthly revenue for this single listing (visits x conv x price x 0.93).">EST $/MO</th>
           <th style="padding:5px 7px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1px;color:var(--teal);text-align:right;" data-tip="Running total if every listing above this rank were live. At goal line = your monthly target.">CUM $/MO</th>
@@ -1802,7 +1814,7 @@ table.tbl         { font-size: 13px; }
       <div class="ptab" onclick="setPhase('all',this)">
         All Listings
         <span id="ptabCntAll" style="font-size:9px;opacity:.6;"></span>
-        <div style="font-size:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:0;margin-top:1px;">Full 3,800 listing view</div>
+        <div style="font-size:8px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:0;margin-top:1px;">Phase 1: 1,376 · Phase 2: all remaining</div>
       </div>
     </div>
     <!-- Phase context bar -->
@@ -1888,6 +1900,13 @@ table.tbl         { font-size: 13px; }
           <option value="">All Editions</option>
         </select>
 
+        <select id="fSelVer" onchange="fState.ver=this.value;pipPage=1;applyFilters()" style="background:var(--ink3);border:1px solid var(--border);color:var(--cream2);font-family:Plus Jakarta Sans,sans-serif;font-size:10px;letter-spacing:1px;padding:4px 7px;cursor:pointer;outline:none;" title="Filter by design version">
+          <option value="">All Versions</option>
+          <option value="1">🥇 V1 Original</option>
+          <option value="2">🆕 V2 Fresh</option>
+          <option value="3">🔥 V3 Third</option>
+        </select>
+
         <select id="fSelAge" onchange="fState.ageVal=this.value;pipPage=1;applyFilters()" style="background:var(--ink3);border:1px solid var(--border);color:var(--cream2);font-family:Plus Jakarta Sans,sans-serif;font-size:10px;letter-spacing:1px;padding:4px 7px;cursor:pointer;outline:none;">
           <option value="">All Ages</option>
         </select>
@@ -1907,7 +1926,7 @@ table.tbl         { font-size: 13px; }
         <thead><tr>
           <th style="width:18px;"><input type="checkbox" class="row-sel-cb" id="selectAllCb" onclick="batchToggleAll(this)" title="Select all visible"></th>
           <th title="Work Queue. Star to add to focus list.">⭐</th>
-          <th title="Listing ID. Click any row to open detail panel.">ID</th><th title="Phase 1 = Priority 608 highest-demand listings. Do these first.">Ph</th><th title="Age Priority. P-CRIT = top 3 ages. Always finish P-CRIT first.">Pri</th><th title="ROI Score 0-100. Age 40% + Edition 40% + Format 20%. PRIME 85+ = publish first.">Score</th><th title="Birthday milestone. 50th = highest search volume globally.">Age</th><th title="Cultural edition. Each earns independently. USA Generic = most traffic.">Edition</th><th title="Instant DL = $12.95 passive. Custom = $19.95 but requires personalisation.">Fmt</th>
+          <th title="Listing ID. Click any row to open detail panel.">ID</th><th title="Phase 1 = 1,376 priority listings: V1/V2/V3 designs on top-country ages. Do these first.">Ph</th><th title="Age Priority. P-CRIT = top 3 ages. Always finish P-CRIT first.">Pri</th><th title="ROI Score 0-100. Age 40% + Edition 40% + Format 20%. PRIME 85+ = publish first.">Score</th><th title="Birthday milestone. 50th = highest search volume globally.">Age</th><th title="Cultural edition. Each earns independently. USA Generic = most traffic.">Edition</th><th title="Instant DL = $9.99 passive. Custom = $17.99 but requires personalisation.">Fmt</th>
           <th>1·Facts<br><small style="font-size:7px;color:#555;">~20m</small></th>
           <th>2·Canva<br><small style="font-size:7px;color:#555;">~25m</small></th>
           <th style="color:#9b59b6;">3·Hero<br><small style="font-size:7px;">~15m</small></th>
@@ -1934,7 +1953,7 @@ table.tbl         { font-size: 13px; }
   <div class="why-banner" id="whyBanner">
     <div class="why-fire" id="whyFire">🔥</div>
     <div style="flex:1;min-width:0;">
-      <div class="why-headline">From <span style="color:var(--rust2);">$250</span> to <span style="color:var(--gold);">$30,000/month</span> by Dec 31 2026. 3,840 listings. 3 design variations. AI production. You just publish.</div>
+      <div class="why-headline">From <span style="color:var(--rust2);">$250</span> to <span style="color:var(--gold);">$30,000/month</span> by Dec 31 2026. 1,376 Phase 1 listings. V1/V2/V3 designs on every top-country age. AI production. You just publish.</div>
       <div class="why-pills">
         <span class="why-pill" style="border-color:var(--gold);color:var(--gold);">🕌 Sadaqah from abundance</span>
         <span class="why-pill" style="border-color:#9b59b6;color:#9b59b6;">💝 Marriage protected</span>
@@ -2029,9 +2048,9 @@ table.tbl         { font-size: 13px; }
         <span class="rd-note">Active listings on Etsy</span>
       </div>
       <div class="rd-field">
-        <span class="rd-lbl" data-tip="Average price per sale. Mix of Instant DL ($12.95) and Custom ($19.95).">Avg Order Value ($)</span>
-        <input type="number" class="rd-inp" id="rdAOV" placeholder="12.95" step="0.01" oninput="saveRealData();renderProjections()">
-        <span class="rd-note">Blended: $12.95–$19.95</span>
+        <span class="rd-lbl" data-tip="Average price per sale. Mix of Instant DL ($9.99) and Custom ($17.99).">Avg Order Value ($)</span>
+        <input type="number" class="rd-inp" id="rdAOV" placeholder="9.99" step="0.01" oninput="saveRealData();renderProjections()">
+        <span class="rd-note">Blended: $9.99–$17.99</span>
       </div>
     </div>
 
@@ -2064,14 +2083,14 @@ table.tbl         { font-size: 13px; }
     <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:3px;color:var(--teal);margin-bottom:8px;">③ PUBLISHING PACE — THE ONLY VARIABLE YOU CONTROL</div>
     <div class="real-data-grid" style="margin-bottom:14px;">
       <div class="rd-field">
-        <span class="rd-lbl" data-tip="Your daily publish commitment. 7/day × 298 days = 2,086 new listings. That's the pace to $30K.">Listings Per Day ★</span>
+        <span class="rd-lbl" data-tip="Your daily publish commitment. 7/day Phase 1 pace. Phase 1 = 1,376 listings → ~$10,750/mo. Add P2 pace below for the full $30K path.">Listings Per Day ★</span>
         <input type="number" class="rd-inp" id="projDailyTarget" placeholder="7" step="0.5" min="0.5" max="30" oninput="saveProjData();renderProjections()">
         <span class="rd-note">7/day recommended for $30K by Dec 31</span>
       </div>
       <div class="rd-field">
-        <span class="rd-lbl" data-tip="Total listings you're aiming for. 3,840 = 3 designs × 16 ages × 20 editions × 2 formats = $30K path.">Total Listings Goal</span>
-        <input type="number" class="rd-inp" id="projTotalTarget" placeholder="3840" oninput="saveProjData();renderProjections()">
-        <span class="rd-note">3,840 listings = $30K/mo path</span>
+        <span class="rd-lbl" data-tip="Phase 1 total: 16 priority ages × 44 editions × 86 listings/age = 1,376. Completing Phase 1 → ~$10,750/mo milestone. Phase 1 + Phase 2 (8,600 total) → ~$30,000/mo.">Total Listings Goal</span>
+        <input type="number" class="rd-inp" id="projTotalTarget" placeholder="1376" oninput="saveProjData();renderProjections()">
+        <span class="rd-note">1,376 Phase 1 listings → ~$10,750/mo milestone</span>
       </div>
       <div class="rd-field">
         <span class="rd-lbl" data-tip="Expected revenue per listing per month at target scale. Starts at your current rate, grows as shop gains authority.">Rev/Listing Growth (%/mo)</span>
@@ -2086,49 +2105,71 @@ table.tbl         { font-size: 13px; }
     </div>
 
     <!-- ROW 4: OUTSIDE ETSY MARKETING -->
-    <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:3px;color:#9b59b6;margin-bottom:8px;">④ OUTSIDE ETSY MARKETING — AI VIDEO + IG REELS + PINTEREST</div>
-    <div style="font-size:10px;color:var(--mid);margin-bottom:10px;line-height:1.6;">Model extra revenue from social traffic driving buyers to your Etsy shop. Uses <strong style="color:var(--cream2);">your real conversion rate</strong> derived from current Etsy data — not guesswork. AI video tools (Canva, CapCut AI, Veed.io) let you produce Reels in batches with no filming required.</div>
+    <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:3px;color:#9b59b6;margin-bottom:8px;">④ OUTSIDE ETSY MARKETING — SOCIAL BOOST</div>
+    <div style="font-size:10px;color:var(--mid);margin-bottom:10px;line-height:1.6;">Add extra revenue from IG Reels, Pinterest, or any social traffic driving buyers to Etsy. Set 0 when not running social. Set a % boost when you are — simpler and just as accurate at your current scale.</div>
     <div class="real-data-grid" style="margin-bottom:10px;">
       <div class="rd-field">
-        <span class="rd-lbl" data-tip="IG Reels published per week. AI video tools mean you can batch 7–14 Reels in one session using your poster designs.">IG Reels Per Week</span>
-        <input type="number" class="rd-inp" id="mktIG" placeholder="0" min="0" max="30" oninput="saveMktData();renderProjections()">
-        <span class="rd-note">0 = no IG · 3/wk = moderate · 7/wk = strong</span>
+        <span class="rd-lbl" data-tip="Extra monthly revenue added by social traffic (IG Reels, Pinterest, TikTok, etc.) as a % of your Etsy revenue. 0 = no social. 10% = social drives 10% extra on top of organic Etsy. Conservative estimate is better than complex guesswork at this stage.">Social Boost (% of Etsy rev)</span>
+        <input type="number" class="rd-inp" id="mktSocialBoost" placeholder="0" min="0" max="100" step="5" oninput="saveMktData();renderProjections()">
+        <span class="rd-note">0 = no social · 10% = active IG/Pinterest · 25% = strong social</span>
       </div>
       <div class="rd-field">
-        <span class="rd-lbl" data-tip="Avg views per Reel. New accounts: ~300–800. Niche accounts with consistent posting: 1,000–5,000+. Be conservative.">Avg Views Per Reel</span>
-        <input type="number" class="rd-inp" id="mktIGViews" placeholder="500" min="0" oninput="saveMktData();renderProjections()">
-        <span class="rd-note">Realistic: 300–800 for new account</span>
-      </div>
-      <div class="rd-field">
-        <span class="rd-lbl" data-tip="Pinterest pins per week. Birthday posters are highly pinnable — evergreen traffic that compounds for years.">Pinterest Pins Per Week</span>
-        <input type="number" class="rd-inp" id="mktPin" placeholder="0" min="0" max="50" oninput="saveMktData();renderProjections()">
-        <span class="rd-note">0 = none · 7/wk = steady growth</span>
-      </div>
-      <div class="rd-field">
-        <span class="rd-lbl" data-tip="Avg monthly impressions per pin. Evergreen birthday pins can reach 500–3,000+ impressions/mo after 3–6 months.">Avg Pin Impressions/Mo</span>
-        <input type="number" class="rd-inp" id="mktPinImpr" placeholder="300" min="0" oninput="saveMktData();renderProjections()">
-        <span class="rd-note">New pins: 100–500 · mature: 500–3,000</span>
-      </div>
-      <div class="rd-field">
-        <span class="rd-lbl" data-tip="% of social viewers who click through to your Etsy shop. Industry average for niche product creators: 1–3%.">Social → Etsy CTR (%)</span>
-        <input type="number" class="rd-inp" id="mktCTR" placeholder="1.5" min="0.1" max="20" step="0.1" oninput="saveMktData();renderProjections()">
-        <span class="rd-note">1–2% conservative · 3%+ strong niche</span>
-      </div>
-      <div class="rd-field">
-        <span class="rd-lbl" data-tip="Social audience compounds quarterly as followers grow and old content keeps getting discovered. 1.0x = no growth, 2.0x = doubles each quarter.">Audience Growth (×/quarter)</span>
+        <span class="rd-lbl" data-tip="How fast your social reach grows each quarter. 1.0x = flat, 1.5x = +50% each quarter. Only matters if Social Boost > 0.">Social Reach Growth (×/quarter)</span>
         <input type="number" class="rd-inp" id="mktAudGrowth" placeholder="1.5" min="1" max="5" step="0.1" oninput="saveMktData();renderProjections()">
-        <span class="rd-note">1.5× = +50% reach each quarter</span>
+        <span class="rd-note">1.0× = flat · 1.5× = growing · 2.0× = viral</span>
       </div>
     </div>
-    <!-- Marketing model output -->
+    <!-- Marketing model output — still uses same mktModelNote id for JS compat -->
     <div id="mktModelNote" style="background:rgba(155,89,182,.06);border:1px solid rgba(155,89,182,.25);padding:10px 12px;font-size:10px;color:var(--cream2);line-height:1.8;margin-bottom:14px;"></div>
+
 
     <!-- LIVE CALCULATED SUMMARY -->
     <div id="pcSummary" style="background:#0a0908;border:1px solid rgba(201,151,58,.3);padding:10px 14px;font-size:11px;line-height:2;"></div>
   </div>
 
-  <!-- ═══ LIVE PROFIT OUTPUT ═══ -->
-  <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:8px;">💰 PROJECTED MONTHLY PROFIT — BASED ON YOUR INPUTS</div>
+
+  <!-- ═══════════════════════════════════════════
+       PHASE 2 CALCULATOR
+  ═══════════════════════════════════════════════ -->
+  <div style="background:var(--ink2);border:2px solid var(--teal);border-radius:2px;padding:16px 18px;margin-bottom:14px;">
+    <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:13px;letter-spacing:4px;color:var(--teal);margin-bottom:4px;">📦 PHASE 2 CALCULATOR — LONG-TAIL AGES</div>
+    <div style="font-size:10px;color:var(--mid);margin-bottom:14px;line-height:1.6;">Phase 2 covers <strong style="color:var(--cream2);">84 remaining ages</strong> (ages 1–100 minus the 16 Phase 1 priority ages) × 44 editions × 86 listings/age = <strong style="color:var(--teal);">7,224 listings.</strong> These ages have lower Etsy search demand than the HOT/HIGH milestones — so earnings per listing are lower but 7,224 listings stacks significant passive income <em>on top of</em> Phase 1. Designs reuse Phase 1 Canva templates. Set your Phase 2 pace and demand estimate below.</div>
+    <div class="real-data-grid" style="margin-bottom:10px;">
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Daily listings to publish for Phase 2. Can run parallel to Phase 1 once you have a design system. Reuses your Phase 1 Canva templates.">P2 Listings Per Day</span>
+        <input type="number" class="rd-inp" id="p2DailyPace" placeholder="3" step="0.5" min="0" max="30" oninput="saveP2Data();renderProjections()">
+        <span class="rd-note">3/day = parallel to P1 · 5/day = dedicated sprint</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Total Phase 2 listing target. 84 ages × 44 editions × 86 listings/age = 7,224. (42 editions have 2 formats, 2 editions have 1 format.) Adjust if targeting a subset.">P2 Total Target</span>
+        <input type="number" class="rd-inp" id="p2TotalTarget" placeholder="7224" oninput="saveP2Data();renderProjections()">
+        <span class="rd-note">84 ages × 44 editions × 86/age = 7,224</span>
+      </div>
+      <div class="rd-field">
+        <span class="rd-lbl" data-tip="Phase 2 ages earn less per listing than Phase 1 HOT ages — lower Etsy search volume. 20% means a Phase 2 listing earns ~20% of what a Phase 1 listing earns. Adjust up/down as your real P2 data comes in.">P2 Demand Level (% of P1 RPL)</span>
+        <input type="number" class="rd-inp" id="p2DemandPct" placeholder="20" step="1" min="5" max="80" oninput="saveP2Data();renderProjections()">
+        <span class="rd-note">20% = conservative · 35% = moderate · 50% = optimistic</span>
+      </div>
+      <div class="rd-field" style="background:rgba(78,205,196,.05);border:1px solid rgba(78,205,196,.2);padding:8px 10px;">
+        <span class="rd-lbl" style="color:var(--teal);">P2 Est. Rev/Listing/Mo</span>
+        <div id="p2RplDisplay" style="font-family:Plus Jakarta Sans,sans-serif;font-size:18px;color:var(--teal);margin:4px 0;">—</div>
+        <span class="rd-note">= P1 RPL × demand %. Updates live.</span>
+      </div>
+    </div>
+    <!-- Phase 2 live summary -->
+    <div id="p2Summary" style="background:#0a0908;border:1px solid rgba(78,205,196,.3);padding:10px 14px;font-size:11px;line-height:2;"></div>
+  </div>
+
+  <!-- ═══ LIVE PROFIT OUTPUT HEADER ═══ -->
+  <div style="font-family:Plus Jakarta Sans,sans-serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:4px;">💰 PROJECTED MONTHLY PROFIT — PHASE 1 · PHASE 2 · COMBINED</div>
+  <div style="font-size:10px;color:var(--mid);margin-bottom:8px;">Phase 1 = priority ages (high demand). Phase 2 = long-tail ages (lower demand, high volume). Combined = road to $30K.</div>
+
+  <!-- PHASE TABS -->
+  <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">
+    <button class="proj-phase-tab on" id="ptabPhase1" onclick="setProjPhaseView('p1',this)">📌 Phase 1 Only</button>
+    <button class="proj-phase-tab" id="ptabPhase2" onclick="setProjPhaseView('p2',this)">📦 Phase 2 Only</button>
+    <button class="proj-phase-tab" id="ptabCombined" onclick="setProjPhaseView('combined',this)">🏆 Combined P1+P2</button>
+  </div>
 
   <!-- PACE SCENARIO CARDS (profit-aware) -->
   <div class="proj-grid" id="projGrid" style="margin-bottom:14px;"></div>
@@ -2710,8 +2751,8 @@ table.tbl         { font-size: 13px; }
       Each type holds multiple named prompt <em>variations</em> — e.g. &ldquo;50th Standard&rdquo;, &ldquo;50th Premium Facts&rdquo;, &ldquo;US Presidents angle&rdquo;.
       Save as many variations as you like per type. One click copies any prompt. Mark a variation Ready when it&rsquo;s tested and working in Canva Bulk Create.
       <div style="display:flex;gap:16px;margin-top:7px;font-size:9px;">
-        <span><span style="color:#c9973a;">&#9632;</span> <strong style="color:#f0ead8;">Custom Poster</strong> — personalised, $19.95, requires buyer input</span>
-        <span><span style="color:#4ecdc4;">&#9632;</span> <strong style="color:#f0ead8;">Instant Download</strong> — evergreen, $12.95, fully passive income</span>
+        <span><span style="color:#c9973a;">&#9632;</span> <strong style="color:#f0ead8;">Custom Poster</strong> — personalised, $17.99, requires buyer input</span>
+        <span><span style="color:#4ecdc4;">&#9632;</span> <strong style="color:#f0ead8;">Instant Download</strong> — evergreen, $9.99, fully passive income</span>
       </div>
     </div>
     <div class="at-sbar">
@@ -2836,39 +2877,85 @@ var PRIORITY_AGES = [
 // EDITIONS — exact listing types per shop
 // cat: 'generic' | 'black'   type: 'country' | 'global'
 var EDITIONS = [
-  // ── SHOP A: YouArtWorthy ──────────────────────────────────────────
-  // Generic country editions — both formats
-  {id:'a_usa_gen', name:'USA Generic',       flag:'🇺🇸', shop:'a', cat:'generic', fmts:['Custom','Instant DL']},
-  {id:'a_uk_gen',  name:'UK Generic',        flag:'🇬🇧', shop:'a', cat:'generic', fmts:['Custom','Instant DL']},
-  {id:'a_can_gen', name:'Canada Generic',    flag:'🇨🇦', shop:'a', cat:'generic', fmts:['Custom','Instant DL']},
-  {id:'a_aus_gen', name:'Australia Generic', flag:'🇦🇺', shop:'a', cat:'generic', fmts:['Custom','Instant DL']},
-  {id:'a_nz_gen',  name:'New Zealand Generic',flag:'🇳🇿',shop:'a', cat:'generic', fmts:['Custom','Instant DL']},
-  {id:'a_ire_gen', name:'Ireland Generic',   flag:'🇮🇪', shop:'a', cat:'generic', fmts:['Custom','Instant DL']},
-  // Black Community — Global (Instant DL only)
-  {id:'a_glb_blk', name:'Global Black',      flag:'🌍',  shop:'a', cat:'black',   fmts:['Instant DL']},
-  // Black Community — country editions — both formats
-  {id:'a_usa_blk', name:'USA Black',         flag:'🇺🇸', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'a_uk_blk',  name:'UK Black',          flag:'🇬🇧', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'a_can_blk', name:'Canada Black',      flag:'🇨🇦', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'a_jam_blk', name:'Jamaica',           flag:'🇯🇲', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'a_tri_blk', name:'Trinidad & T.',     flag:'🇹🇹', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'a_bar_blk', name:'Barbados',          flag:'🇧🇧', shop:'a', cat:'black',   fmts:['Custom','Instant DL']},
-  // ── SHOP B: HomeGriot ─────────────────────────────────────────────
-  // Black Community — Global (Instant DL only)
-  {id:'b_glb_blk', name:'Global Black',      flag:'🌍',  shop:'b', cat:'black',   fmts:['Instant DL']},
-  // Black Community — country editions — both formats
-  {id:'b_usa_blk', name:'USA Black',         flag:'🇺🇸', shop:'b', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'b_uk_blk',  name:'UK Black',          flag:'🇬🇧', shop:'b', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'b_can_blk', name:'Canada Black',      flag:'🇨🇦', shop:'b', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'b_jam_blk', name:'Jamaica',           flag:'🇯🇲', shop:'b', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'b_tri_blk', name:'Trinidad & T.',     flag:'🇹🇹', shop:'b', cat:'black',   fmts:['Custom','Instant DL']},
-  {id:'b_bar_blk', name:'Barbados',          flag:'🇧🇧', shop:'b', cat:'black',   fmts:['Custom','Instant DL']}
+  // ══════════════════════════════════════════════════════════════════
+  // SHOP A: YouArtWorthy
+  // ══════════════════════════════════════════════════════════════════
+
+  // ── Generic: V1 (original design) ───────────────────────────────
+  {id:'a_usa_gen',    name:'USA Generic',            flag:'🇺🇸', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:1},
+  {id:'a_uk_gen',     name:'UK Generic',             flag:'🇬🇧', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:1},
+  {id:'a_can_gen',    name:'Canada Generic',         flag:'🇨🇦', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:1},
+  {id:'a_aus_gen',    name:'Australia Generic',      flag:'🇦🇺', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:1},
+  {id:'a_nz_gen',     name:'New Zealand Generic',    flag:'🇳🇿', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:1},
+  {id:'a_ire_gen',    name:'Ireland Generic',        flag:'🇮🇪', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:1},
+
+  // ── Generic: V2 (fresh design — same market, new thumbnail) ─────
+  {id:'a_usa_gen_v2', name:'USA Generic V2',         flag:'🇺🇸', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:2},
+  {id:'a_uk_gen_v2',  name:'UK Generic V2',          flag:'🇬🇧', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:2},
+  {id:'a_can_gen_v2', name:'Canada Generic V2',      flag:'🇨🇦', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:2},
+  {id:'a_aus_gen_v2', name:'Australia Generic V2',   flag:'🇦🇺', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:2},
+  {id:'a_nz_gen_v2',  name:'New Zealand Generic V2', flag:'🇳🇿', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:2},
+  {id:'a_ire_gen_v2', name:'Ireland Generic V2',     flag:'🇮🇪', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:2},
+
+  // ── Generic: V3 (third design — triple the impressions) ─────────
+  {id:'a_usa_gen_v3', name:'USA Generic V3',         flag:'🇺🇸', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:3},
+  {id:'a_uk_gen_v3',  name:'UK Generic V3',          flag:'🇬🇧', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:3},
+  {id:'a_can_gen_v3', name:'Canada Generic V3',      flag:'🇨🇦', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:3},
+  {id:'a_aus_gen_v3', name:'Australia Generic V3',   flag:'🇦🇺', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:3},
+  {id:'a_nz_gen_v3',  name:'New Zealand Generic V3', flag:'🇳🇿', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:3},
+  {id:'a_ire_gen_v3', name:'Ireland Generic V3',     flag:'🇮🇪', shop:'a', cat:'generic', fmts:['Custom','Instant DL'], v:3},
+
+  // ── Black Community — Global (Instant DL only, 1 design) ────────
+  {id:'a_glb_blk',    name:'Global Black',           flag:'🌍',  shop:'a', cat:'black',   fmts:['Instant DL'], v:1},
+
+  // ── Black: USA, UK, Canada — V1/V2/V3 (top diaspora markets) ────
+  {id:'a_usa_blk',    name:'USA Black',              flag:'🇺🇸', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'a_uk_blk',     name:'UK Black',               flag:'🇬🇧', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'a_can_blk',    name:'Canada Black',           flag:'🇨🇦', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+
+  {id:'a_usa_blk_v2', name:'USA Black V2',           flag:'🇺🇸', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:2},
+  {id:'a_uk_blk_v2',  name:'UK Black V2',            flag:'🇬🇧', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:2},
+  {id:'a_can_blk_v2', name:'Canada Black V2',        flag:'🇨🇦', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:2},
+
+  {id:'a_usa_blk_v3', name:'USA Black V3',           flag:'🇺🇸', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:3},
+  {id:'a_uk_blk_v3',  name:'UK Black V3',            flag:'🇬🇧', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:3},
+  {id:'a_can_blk_v3', name:'Canada Black V3',        flag:'🇨🇦', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:3},
+
+  // ── Black: Smaller markets — V1 only (prove demand first) ────────
+  {id:'a_jam_blk',    name:'Jamaica',                flag:'🇯🇲', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'a_tri_blk',    name:'Trinidad & T.',          flag:'🇹🇹', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'a_bar_blk',    name:'Barbados',               flag:'🇧🇧', shop:'a', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+
+  // ══════════════════════════════════════════════════════════════════
+  // SHOP B: HomeGriot
+  // ══════════════════════════════════════════════════════════════════
+
+  // ── Black: Global (Instant DL only) ──────────────────────────────
+  {id:'b_glb_blk',    name:'Global Black',           flag:'🌍',  shop:'b', cat:'black',   fmts:['Instant DL'], v:1},
+
+  // ── Black: USA, UK, Canada — V1/V2/V3 ───────────────────────────
+  {id:'b_usa_blk',    name:'USA Black',              flag:'🇺🇸', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'b_uk_blk',     name:'UK Black',               flag:'🇬🇧', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'b_can_blk',    name:'Canada Black',           flag:'🇨🇦', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+
+  {id:'b_usa_blk_v2', name:'USA Black V2',           flag:'🇺🇸', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:2},
+  {id:'b_uk_blk_v2',  name:'UK Black V2',            flag:'🇬🇧', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:2},
+  {id:'b_can_blk_v2', name:'Canada Black V2',        flag:'🇨🇦', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:2},
+
+  {id:'b_usa_blk_v3', name:'USA Black V3',           flag:'🇺🇸', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:3},
+  {id:'b_uk_blk_v3',  name:'UK Black V3',            flag:'🇬🇧', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:3},
+  {id:'b_can_blk_v3', name:'Canada Black V3',        flag:'🇨🇦', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:3},
+
+  // ── Black: Smaller markets — V1 only ─────────────────────────────
+  {id:'b_jam_blk',    name:'Jamaica',                flag:'🇯🇲', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'b_tri_blk',    name:'Trinidad & T.',          flag:'🇹🇹', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:1},
+  {id:'b_bar_blk',    name:'Barbados',               flag:'🇧🇧', shop:'b', cat:'black',   fmts:['Custom','Instant DL'], v:1}
 ];
 
 // REAL BUSINESS CONSTANTS - based on your actual numbers
 var REAL = {
-  priceInstant: 12.95,
-  priceCustom: 19.95,
+  priceInstant: 9.99,
+  priceCustom: 17.99,
   convRate: 0.03,    // 3% - your real conversion rate
   etsyFeeRate: 0.07, // ~7% Etsy fees (listing + transaction)
   goalMonthly: 30000,
@@ -2881,11 +2968,26 @@ var REAL = {
 var AGE_D={50:100,60:92,40:85,70:78,30:72,55:65,25:60,35:58,45:55,65:50,21:48,75:42,80:38,85:28,90:20,95:12};
 // Edition demand scores — Shop A generic high traffic, Black community strong diaspora demand
 var ED_D={
+  // ── Shop A Generic V1 ──
   a_usa_gen:100, a_uk_gen:78,  a_can_gen:70, a_aus_gen:72, a_nz_gen:52, a_ire_gen:58,
+  // ── Shop A Generic V2 (same market, fresh design — 92% of V1) ──
+  a_usa_gen_v2:92, a_uk_gen_v2:72, a_can_gen_v2:64, a_aus_gen_v2:66, a_nz_gen_v2:48, a_ire_gen_v2:54,
+  // ── Shop A Generic V3 (third design — 85% of V1) ──
+  a_usa_gen_v3:85, a_uk_gen_v3:66, a_can_gen_v3:60, a_aus_gen_v3:61, a_nz_gen_v3:44, a_ire_gen_v3:49,
+  // ── Shop A Black V1 ──
   a_glb_blk:42,
   a_usa_blk:88,  a_uk_blk:82,  a_can_blk:65, a_jam_blk:76, a_tri_blk:50, a_bar_blk:44,
+  // ── Shop A Black V2 ──
+  a_usa_blk_v2:81, a_uk_blk_v2:75, a_can_blk_v2:60,
+  // ── Shop A Black V3 ──
+  a_usa_blk_v3:75, a_uk_blk_v3:70, a_can_blk_v3:55,
+  // ── Shop B HomeGriot V1 ──
   b_glb_blk:40,
-  b_usa_blk:88,  b_uk_blk:82,  b_can_blk:65, b_jam_blk:76, b_tri_blk:50, b_bar_blk:44
+  b_usa_blk:88,  b_uk_blk:82,  b_can_blk:65, b_jam_blk:76, b_tri_blk:50, b_bar_blk:44,
+  // ── Shop B Black V2 ──
+  b_usa_blk_v2:81, b_uk_blk_v2:75, b_can_blk_v2:60,
+  // ── Shop B Black V3 ──
+  b_usa_blk_v3:75, b_uk_blk_v3:70, b_can_blk_v3:55
 };
 var FMT_D={'Instant DL':100,'Custom':65};
 function rScore(l){return l._score!==undefined ? l._score : Math.round((AGE_D[l.ageVal]||5)*0.4+(ED_D[l.edId]||20)*0.4+(FMT_D[l.format]||50)*0.2);}
@@ -2947,10 +3049,13 @@ var misc = {
   rdRevenue: 250,  // REAL: $250/month current (updated March 2026)
   rdVisits: 900,   // ~28 visits/listing × 32 listings (estimate)
   rdLive: 32,      // current live listings
-  rdAOV: 12.95,    // average order value
+  rdAOV: 9.99,    // average order value
   // PROJECTION INPUTS — 6-month sprint to $10K
   projDailyTarget: 7.0,  // 7 listings/day x 298 days = path to $30K
-  projTotalTarget: 3840,  // 3 variations × 16 ages × 20 editions × 2 formats = $30K
+  projTotalTarget: 1376,  // Phase 1: 16 ages × 44 editions (incl. V2/V3 top countries) × formats
+  p2DailyPace: 3,          // Phase 2 default daily pace
+  p2TotalTarget: 7224,     // Phase 2: 84 ages × 86 listings/age (44 eds × 2 fmts mostly)
+  p2DemandPct: 20,         // Phase 2 demand as % of Phase 1 RPL
   projIGPosts: 0,
   projPinPins: 0,
   projViralBonus: 0,
@@ -3152,7 +3257,7 @@ function generateListings(){
           id:'P'+pad(id++,3),phase:1,
           ageLabel:ag.label,ageVal:ag.age,birthYear:by,
           agePri:ag.pri,agePc:ag.pc,priOrder:ag.priOrder,
-          edId:ed.id,edName:ed.name,edFlag:ed.flag,edShop:ed.shop,edCat:ed.cat,
+          edId:ed.id,edName:ed.name,edFlag:ed.flag,edShop:ed.shop,edCat:ed.cat,edV:ed.v||1,
           format:fmt,stages:blankStages(),actualTimes:{},notes:'',lastTouched:0,
           _score: computeScore(ag.age, ed.id, fmt)
         });
@@ -3169,7 +3274,7 @@ function generateListings(){
           id:'F'+pad(id++,4),phase:2,
           ageLabel:age+'th',ageVal:age,birthYear:year,
           agePri:'PHASE2',agePc:'p-low',priOrder:100+age,
-          edId:ed.id,edName:ed.name,edFlag:ed.flag,edShop:ed.shop,edCat:ed.cat,
+          edId:ed.id,edName:ed.name,edFlag:ed.flag,edShop:ed.shop,edCat:ed.cat,edV:ed.v||1,
           format:fmt,stages:blankStages(),actualTimes:{},notes:'',lastTouched:0,
           _score: computeScore(age, ed.id, fmt)
         });
@@ -3237,13 +3342,15 @@ function saveRealData(){
   if(rv&&rv.value.trim()!==''){misc.rdRevenue=parseFloat(rv.value)||misc.rdRevenue||250;}
   if(vi&&vi.value.trim()!==''){misc.rdVisits=parseFloat(vi.value)||misc.rdVisits||900;}
   if(li&&li.value.trim()!==''){misc.rdLive=parseFloat(li.value)||misc.rdLive||32;}
-  if(ao&&ao.value.trim()!==''){misc.rdAOV=parseFloat(ao.value)||misc.rdAOV||12.95;}
+  if(ao&&ao.value.trim()!==''){misc.rdAOV=parseFloat(ao.value)||misc.rdAOV||9.99;}
   misc.rdLastUpdated = Date.now();
   saveMisc();
   updateMissionStrip();
   updateBottomBar();
   renderProjections();
   renderThisMonth();
+  renderSprintPanel();
+  calcGap();
   // Update canonical timestamp label
   var cu = document.getElementById('canonicalUpdated');
   if(cu) cu.textContent = 'Last updated: ' + new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
@@ -3299,27 +3406,34 @@ function calcRealMetrics(){
   var realLive=misc.rdLive||live;
   var revenue=misc.rdRevenue||250;
   var visits=misc.rdVisits||900;
-  var aov=misc.rdAOV||12.95;
+  var aov=misc.rdAOV||9.99;
   var daysLeft=daysUntilGoal();
   var daysLeftSprint=daysUntilSprint();
 
   // Revenue per listing per month (from real data)
   var revPerListing=realLive>0&&revenue>0?revenue/realLive:0;
 
-  // Listings needed to reach $10K/month goal
-  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):3840;
-  var listingsNeeded=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):3840;
+  // Phase 1 target: 1,376 listings (V1+V2+V3 top-country ages) → ~$10,750/mo
+  var PHASE1_TARGET = 1376;
+  var listingsForPhase1 = Math.max(0, PHASE1_TARGET - realLive);
+  var perDayPhase1 = daysLeftSprint>0 ? Math.ceil(listingsForPhase1/daysLeftSprint) : 0;
+
+  // $30K total target (Phase 1 + Phase 2)
+  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):1376;
+  var listingsNeeded=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):1376;
   var moreFor5k=Math.max(0,listingsFor5k-realLive);
   var moreNeeded=Math.max(0,listingsNeeded-realLive);
 
-  // Per day for sprint
-  var perDaySprint=daysLeftSprint>0?Math.ceil(moreFor5k/daysLeftSprint):0;
+  // Per day for sprint (Phase 1 is the immediate target)
+  var perDaySprint=daysLeftSprint>0?Math.ceil(listingsForPhase1/daysLeftSprint):0;
   var perDay=daysLeft>0?Math.ceil(moreNeeded/daysLeft):0;
 
   return{live:realLive,revenue:revenue,visits:visits,aov:aov,
     revPerListing:revPerListing,
     listingsNeeded:listingsNeeded,listingsFor5k:listingsFor5k,
     moreNeeded:moreNeeded,moreFor5k:moreFor5k,
+    listingsForPhase1:listingsForPhase1,perDayPhase1:perDayPhase1,
+    phase1Target:PHASE1_TARGET,
     perDay:perDay,perDaySprint:perDaySprint,
     daysLeft:daysLeft,daysLeftSprint:daysLeftSprint};
 }
@@ -3339,9 +3453,19 @@ function renderSprintPanel(){
   };
 
   set('sprintDaysLeft', m.daysLeftSprint, m.daysLeftSprint<30?'var(--rust2)':m.daysLeftSprint<60?'var(--gold2)':'var(--teal)');
-  set('sprintListingsNeeded', m.moreFor5k, 'var(--gold2)');
-  set('sprintPerDay', m.perDaySprint+'/day', m.perDaySprint>12?'var(--rust2)':m.perDaySprint>7?'var(--gold2)':'var(--teal)');
+  set('sprintListingsNeeded', m.listingsForPhase1, 'var(--gold2)');
+  set('sprintPerDay', m.perDaySprint+'/day', m.perDaySprint>7?'var(--rust2)':m.perDaySprint>4?'var(--gold2)':'var(--teal)');
   set('sprintRevPerListing', m.revPerListing>0?'$'+m.revPerListing.toFixed(2):'—', 'var(--green3)');
+
+  // $ Added Today: count listings marked live TODAY × RPL
+  var todayPublished = getTodayPublished();
+  var rpl = m.revPerListing>0 ? m.revPerListing : 7.81;
+  var addedToday = todayPublished * rpl;
+  var addedTodayEl = document.getElementById('sprintAddedToday');
+  if(addedTodayEl){
+    addedTodayEl.textContent = '+$'+addedToday.toFixed(addedToday<10?2:0);
+    addedTodayEl.style.color = todayPublished===0 ? 'var(--mid)' : todayPublished>=3 ? 'var(--green3)' : 'var(--teal)';
+  }
 
   // Progress bar
   var bar=document.getElementById('sprintBar');
@@ -3363,8 +3487,12 @@ function renderSprintPanel(){
   } else {
     var rpl=m.revPerListing;
     var listingVal=rpl>0?'$'+rpl.toFixed(2):'~$7.80';
-    urgency='You need <strong style="color:var(--gold);">'+m.moreFor5k+' more listings</strong> in <strong style="color:var(--rust2);">'+m.daysLeftSprint+' days</strong> — that\'s <strong style="color:var(--teal);">'+m.perDaySprint+' listings/day.</strong> '
-      +'Each listing earns <strong style="color:var(--gold2);">'+listingVal+'/mo</strong> forever. '
+    var phase1Done=Math.min(m.live,m.phase1Target);
+    var phase1Pct=Math.round(phase1Done/m.phase1Target*100);
+    urgency='<strong style="color:var(--gold2);">Phase 1: '+phase1Done+'/'+m.phase1Target+'</strong> ('+phase1Pct+'%) → ~$10,750/mo milestone. '
+      +'Need <strong style="color:var(--gold);">'+m.listingsForPhase1+' more</strong> in <strong style="color:var(--rust2);">'+m.daysLeftSprint+' days</strong> — '
+      +'<strong style="color:var(--teal);">'+m.perDaySprint+' listings/day.</strong> '
+      +'Each earns <strong style="color:var(--gold2);">'+listingVal+'/mo</strong> forever. '
       +(m.perDaySprint<=2
         ? 'This is <strong style="color:var(--green3);">very achievable</strong> — 2 listings/day = roughly 3–4 hours of focused work. You have everything you need.'
         : m.perDaySprint<=3
@@ -3374,6 +3502,8 @@ function renderSprintPanel(){
   }
   var urg=document.getElementById('sprintUrgency');
   if(urg)urg.innerHTML=urgency;
+
+  calcGap();
 
   // Non-negotiable box
   var target=Math.max(1,Math.ceil(parseFloat(misc.projDailyTarget)||7.0));
@@ -3427,7 +3557,7 @@ function updateBottomBar(){
   var bd=document.getElementById('bbDate');
   if(bb)bb.textContent=m.live+' live';
   if(br)br.textContent='$'+Math.round(m.revenue).toLocaleString()+'/mo';
-  if(bn)bn.textContent=m.moreFor5k+' listings to $10K';
+  if(bn)bn.textContent=m.listingsForPhase1+' to Phase 1 goal';
   if(bd)bd.textContent=todayStr();
 }
 
@@ -3584,7 +3714,8 @@ function renderTodayTasks(){
   var pool=listings.filter(function(l){
     if(globalShop==='a'&&l.edShop!=='a')return false;
     if(globalShop==='b'&&l.edShop!=='b')return false;
-    if(l.phase!==1)return false; // priority only
+    var todayPh = misc.todayPhase||1;
+    if(l.phase!==todayPh)return false; // phase filter (P1 priority or P2 long-tail)
     var st=getStatus(l);
     return st!=='completed';
   });
@@ -3593,9 +3724,12 @@ function renderTodayTasks(){
   if(misc.focusMode==='age'&&misc.focusValue){
     pool=pool.filter(function(l){return String(l.ageVal)===String(misc.focusValue);});
   } else if(misc.focusMode==='country'&&misc.focusValue){
-    pool=pool.filter(function(l){return l.edId===misc.focusValue;});
+    // Match base country ID — shows V1 + V2 + V3 for that country
+    pool=pool.filter(function(l){return l.edId===misc.focusValue||l.edId===misc.focusValue+'_v2'||l.edId===misc.focusValue+'_v3';});
   } else if(misc.focusMode==='format'&&misc.focusValue){
     pool=pool.filter(function(l){return l.format===misc.focusValue;});
+  } else if(misc.focusMode==='variation'&&misc.focusValue){
+    pool=pool.filter(function(l){return String(l.edV||1)===String(misc.focusValue);});
   }
 
   // Sort: in-progress first (finish what's started), then by score
@@ -3607,7 +3741,8 @@ function renderTodayTasks(){
   });
 
   pool=pool.slice(0,10);
-  if(!pool.length){el.innerHTML='<div style="font-size:11px;color:var(--mid);padding:8px 0;">All Phase 1 listings complete for this filter! 🏆</div>';return;}
+  var _phaseLbl = (misc.todayPhase===2)?'Phase 2':'Phase 1';
+  if(!pool.length){el.innerHTML='<div style="font-size:11px;color:var(--mid);padding:8px 0;">All '+_phaseLbl+' listings complete for this filter! 🏆</div>';return;}
 
   el.innerHTML=pool.map(function(l){
     var next=getNextStage(l);
@@ -3622,13 +3757,24 @@ function renderTodayTasks(){
     return '<div class="tt-item" onclick="openDetail(\''+l.id+'\')">'
       +cb
       +'<div class="tt-info">'
-        +'<div class="tt-name'+(isDone?' done':'')+'">'+l.edFlag+' '+l.ageLabel+' '+l.edName+'</div>'
+        +'<div class="tt-name'+(isDone?' done':'')+'">'+l.edFlag+' '+l.ageLabel+' '+l.edName.replace(/ V[23]$/,'')+(l.edV>1?' <span class="vbadge vb'+l.edV+'">V'+l.edV+'</span>':'')+'</div>'
         +'<div class="tt-stage">'+(next?'Next: '+next.name:'✓ Complete')+' · '+scoreEl+'</div>'
       +'</div>'
       +'<span class="tt-mins">'+(mins?mins+'m':'')+'</span>'
       +actionBtn
       +'</div>';
   }).join('');
+}
+
+function setTodayPhase(ph){
+  misc.todayPhase = ph;
+  saveMisc();
+  // Update button styles
+  var p1Btn = document.getElementById('ttPhaseP1');
+  var p2Btn = document.getElementById('ttPhaseP2');
+  if(p1Btn){ p1Btn.style.background = ph===1?'var(--rust2)':''; p1Btn.style.borderColor = ph===1?'var(--rust2)':'var(--border)'; p1Btn.className = ph===1?'btn':'btn btn-mid'; }
+  if(p2Btn){ p2Btn.style.background = ph===2?'var(--teal)':''; p2Btn.style.borderColor = ph===2?'var(--teal)':'var(--border)'; p2Btn.className = ph===2?'btn':'btn btn-mid'; }
+  renderTodayTasks();
 }
 
 function quickDoneStage(lid){
@@ -3674,13 +3820,22 @@ function renderFocusChips(){
   if(misc.focusMode==='age'){
     PRIORITY_AGES.forEach(function(a){chips.push({val:String(a.age),label:a.label});});
   } else if(misc.focusMode==='country'){
+    // Group by base country (strip V2/V3 suffix) so chips are clean
     var seen={};
     listings.forEach(function(l){
+      if(l.phase!==1)return;
       if(globalShop!=='both'&&l.edShop!==globalShop)return;
-      if(!seen[l.edId]){seen[l.edId]=true;chips.push({val:l.edId,label:l.edFlag+' '+l.edName});}
+      var baseId=l.edId.replace(/_v[23]$/,'');
+      if(!seen[baseId]){
+        seen[baseId]=true;
+        var baseName=l.edName.replace(/ V[23]$/,'');
+        chips.push({val:baseId,label:l.edFlag+' '+baseName});
+      }
     });
   } else if(misc.focusMode==='format'){
     chips=[{val:'Instant DL',label:'⚡ Instant DL'},{val:'Custom',label:'✏️ Custom'}];
+  } else if(misc.focusMode==='variation'){
+    chips=[{val:'1',label:'🥇 V1 Original'},{val:'2',label:'🆕 V2 Fresh'},{val:'3',label:'🔥 V3 Third'}];
   }
   el.innerHTML=chips.map(function(c){
     return'<button class="chip'+(misc.focusValue===c.val?' on':'')+'" onclick="setFocusChip(\''+c.val+'\',this)">'+c.label+'</button>';
@@ -3726,16 +3881,16 @@ function updateDashboard(){
   var totalEst=live.reduce(function(s,l){return s+rEst(l,vpl);},0);
 
   var el=document.getElementById('dashEl');if(!el)return;
-  function box(n,l,s,cls){
+  function dashBox(n,l,s,cls){
     return'<div class="dc '+cls+'"><span class="dn" style="color:'+(cls==='c-green'?'var(--green3)':cls==='c-rust'?'var(--rust2)':cls==='c-teal'?'var(--teal)':cls==='c-mid'?'var(--mid)':'var(--gold)')+'">'+n+'</span><span class="dl">'+l+'</span>'+(s?'<span class="ds">'+s+'</span>':'')+'</div>';
   }
   el.innerHTML=
-    box(p1.length,'Phase 1 Listings','Priority catalog','c-gold')+
-    box(live.length,'Live on Etsy',globalShop==='both'?'Both shops':'Shop '+globalShop.toUpperCase(),'c-green')+
-    box(ip.length,'In Progress','Finish these first','c-rust')+
-    box(prime.length,'PRIME Score ≥85','Highest ROI first','c-purple')+
-    box('$'+Math.round(totalEst).toLocaleString(),'Est. Monthly Revenue','Live listings only','c-teal')+
-    box(pool.filter(function(l){return getStatus(l)==='not_started';}).length,'Not Started','Ready to create','c-mid');
+    dashBox(p1.length,'Phase 1 Listings','Priority catalog','c-gold')+
+    dashBox(live.length,'Live on Etsy',globalShop==='both'?'Both shops':'Shop '+globalShop.toUpperCase(),'c-green')+
+    dashBox(ip.length,'In Progress','Finish these first','c-rust')+
+    dashBox(prime.length,'PRIME Score ≥85','Highest ROI first','c-purple')+
+    dashBox('$'+Math.round(totalEst).toLocaleString(),'Est. Monthly Revenue','Live listings only','c-teal')+
+    dashBox(pool.filter(function(l){return getStatus(l)==='not_started';}).length,'Not Started','Ready to create','c-mid');
 }
 
 // ════════════════════════════════════════════
@@ -3785,20 +3940,19 @@ function updateDeadlineCard(shop,dateStr){
 // GAP CALC
 // ════════════════════════════════════════════
 function calcGap(){
-  var currEl=document.getElementById('gapCurrent');
-  var visitEl=document.getElementById('gapVisits');
   var el=document.getElementById('gapResult');
   if(!el)return;
-  var curr=parseFloat((currEl&&currEl.value)||misc.rdRevenue)||250;
-  var visits=parseFloat((visitEl&&visitEl.value)||misc.rdVisits)||900;
+  // Use stored real data (updated via sprint panel Update Numbers box)
+  var curr=parseFloat(misc.rdRevenue)||250;
+  var visits=parseFloat(misc.rdVisits)||900;
   var live=misc.rdLive||32;
-  var price=misc.rdAOV||12.95;
+  var price=misc.rdAOV||9.99;
   var conv=REAL.convRate;
   var vpl=live>0?visits/live:28;
   var revPerListing=live>0&&curr>0?curr/live:(vpl*conv*price*(1-REAL.etsyFeeRate));
   var gap10k_main=Math.max(0,REAL.sprintGoal-curr);
   var gap10k=Math.max(0,REAL.goalMonthly-curr);
-  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):3840;
+  var listingsFor5k=revPerListing>0?Math.ceil(REAL.sprintGoal/revPerListing):1376;
   var listingsFor10k=revPerListing>0?Math.ceil(REAL.goalMonthly/revPerListing):714;
   var moreFor5k=Math.max(0,listingsFor5k-live);
   var moreFor10k=Math.max(0,listingsFor10k-live);
@@ -3819,10 +3973,12 @@ function calcGap(){
     row('More to publish',  moreFor5k, moreFor5k>0?'red':'green')+
     row('Daily pace needed ('+dSprint+'d left)', perDaySprint+'/day', parseFloat(perDaySprint)<=2?'green':parseFloat(perDaySprint)<=3?'gold':'red')+
     '<div style="font-family:\'Plus Jakarta Sans\',sans-serif;font-size:9px;letter-spacing:2px;color:var(--gold);margin:8px 0 5px;">🎯 VARIATION STRATEGY — PATH TO $30K</div>'+
-    row('Top 6 ages × 1 design each (720 listings)', '→ ~$5,600/mo','')+
-    row('Top 6 ages × 2 designs (1,440 listings)', '→ ~$11,200/mo','')+
-    row('All 16 ages × 3 designs (3,840 listings)', '→ ~$30,000/mo 🏆','')+
-    row('Your listings needed', revPerListing>0?Math.ceil(30000/revPerListing).toLocaleString():3840,'')+
+    row('V1 only — top 6 generic countries × 16 ages (192 listings)', '→ ~$1,500/mo','')+
+    row('V1+V2 — double your top generic slots (384 listings)', '→ ~$3,000/mo','')+
+    row('All V1 Phase 1 published (608 listings)', '→ ~$4,750/mo','')+
+    row('Full Phase 1: V1+V2+V3 on top countries (1,376)', '→ ~$10,750/mo 🎯','')+
+    row('Phase 1 + Phase 2 full scale (8,600 listings)', '→ ~$30,000/mo 🏆','')+
+    row('Your listings needed', revPerListing>0?Math.ceil(30000/revPerListing).toLocaleString():1376,'')+
     row('Daily pace needed ('+dFinal+' days left)', perDayFinal+'/day', parseFloat(perDayFinal)<=7?'green':parseFloat(perDayFinal)<=12?'gold':'red');
 }
 
@@ -3885,7 +4041,7 @@ function addEmailCampaign(){
 // ════════════════════════════════════════════
 
 // Active filter state — all independent
-var fState = {cat:'all', fmt:'all', stat:'all', edId:'', ageVal:'', search:'', recency:'all'};
+var fState = {cat:'all', fmt:'all', stat:'all', edId:'', ageVal:'', ver:'', search:'', recency:'all'};
 
 function setPhase(p,el){
   curPhase=p;
@@ -3895,9 +4051,9 @@ function setPhase(p,el){
   var bar=document.getElementById('phaseBar');
   if(bar){
     var msg={
-      p1:'<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">608 priority listings</span>: the highest-demand ages (50th, 60th, 70th, 40th, 30th, 80th, 25th, 21st) across all editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of birthday gift revenue.',
-      p2:'<strong style="color:var(--teal);">📦 Phase 2</strong> — <span style="color:var(--cream2);">3,192 remaining listings</span>: every other age (1–100) across all editions. Build these after Phase 1 is live to maximise long-tail traffic. Use <strong style="color:var(--gold2);">Age filter</strong> to batch by year.',
-      all:'<strong style="color:var(--cream2);">All 3,800 listings</strong> — complete view across both phases and all editions. Use filters to focus.'
+      p1:'<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">1,376 priority listings</span>: the highest-demand ages across V1/V2/V3 designs (50th, 60th, 70th, 40th, 30th, 80th, 25th, 21st) across all editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of birthday gift revenue.',
+      p2:'<strong style="color:var(--teal);">📦 Phase 2</strong> — <span style="color:var(--cream2);">remaining ages (all other years)</span> across all 44 editions. Build <em>after</em> Phase 1 V1/V2/V3 are fully live. Long-tail traffic compounds over time. Use <strong style="color:var(--gold2);">Age filter</strong> to batch by year.',
+      all:'<strong style="color:var(--cream2);">All listings: Phase 1 + Phase 2</strong> — complete view across both phases and all editions. Use filters to focus.'
     };
     bar.innerHTML=msg[p]||'';
   }
@@ -3911,11 +4067,25 @@ function populateFilters(){
   var ageSel= document.getElementById('fSelAge');
   if(!edSel||!ageSel) return;
 
-  // Editions: deduplicate from all listings
-  var seen={};
-  var opts='<option value="">All Editions</option>';
-  EDITIONS.forEach(function(ed){
-    if(!seen[ed.id]){seen[ed.id]=true;opts+='<option value="'+ed.id+'">'+ed.flag+' '+ed.name+'</option>';}
+  // Build grouped edition dropdown with optgroups
+  var groups = [
+    { label:'🇺🇸🇬🇧🇨🇦 Generic — Shop A (YouArtWorthy)',
+      filter: function(ed){ return ed.shop==='a' && ed.cat==='generic'; } },
+    { label:'✊ Black Community — Shop A (YouArtWorthy)',
+      filter: function(ed){ return ed.shop==='a' && ed.cat==='black'; } },
+    { label:'✊ Black Community — Shop B (HomeGriot)',
+      filter: function(ed){ return ed.shop==='b' && ed.cat==='black'; } }
+  ];
+  var opts = '<option value="">All Editions</option>';
+  groups.forEach(function(grp){
+    var members = EDITIONS.filter(grp.filter);
+    if(!members.length) return;
+    opts += '<optgroup label="'+grp.label+'">';
+    members.forEach(function(ed){
+      var vLabel = ed.v > 1 ? ' · V'+ed.v : '';
+      opts += '<option value="'+ed.id+'">'+ed.flag+' '+ed.name.replace(/ V[23]$/,'')+vLabel+'</option>';
+    });
+    opts += '</optgroup>';
   });
   edSel.innerHTML=opts;
 
@@ -3941,9 +4111,9 @@ function setFilterEd(v){fState.edId=v;var s=document.getElementById('fSelEd');if
 function setFilterAge(v){fState.ageVal=String(v);var s=document.getElementById('fSelAge');if(s)s.value=String(v);pipPage=1;applyFilters();}
 
 function clearFilters(){
-  fState={cat:'all',fmt:'all',stat:'all',edId:'',ageVal:'',search:'',recency:'all'};
-  var ids=['fSelCat','fSelFmt','fSelStat','fSelEd','fSelAge','fSearch','fSelRecency'];
-  var defs=['all','all','all','','','','all'];
+  fState={cat:'all',fmt:'all',stat:'all',edId:'',ageVal:'',ver:'',search:'',recency:'all'};
+  var ids=['fSelCat','fSelFmt','fSelStat','fSelEd','fSelVer','fSelAge','fSearch','fSelRecency'];
+  var defs=['all','all','all','','','','','all'];
   ids.forEach(function(id,i){var el=document.getElementById(id);if(el)el.value=defs[i];});
   // Reset queue filter button style
   var qb=document.getElementById('queueFilterBtn');
@@ -3961,6 +4131,8 @@ function applyFilters(){
   fState.search = srch.toLowerCase();
   var recSel = document.getElementById('fSelRecency');
   if(recSel) fState.recency = recSel.value||'all';
+  var verSel = document.getElementById('fSelVer');
+  if(verSel) fState.ver = verSel.value||'';
 
   // Time boundaries for recency filter
   var now = Date.now();
@@ -3975,8 +4147,18 @@ function applyFilters(){
     if(fState.cat!=='all' && l.edCat!==fState.cat) return false;
     if(fState.fmt!=='all' && l.format!==fState.fmt) return false;
     if(fState.stat!=='all' && getStatus(l)!==fState.stat) return false;
-    if(fState.edId && l.edId!==fState.edId) return false;
+    if(fState.edId){
+      // If base edition selected (no _v2/_v3), also show V2/V3 variants
+      var isBase = !fState.edId.match(/_v[23]$/);
+      if(isBase){
+        var baseMatch = l.edId===fState.edId||l.edId===fState.edId+'_v2'||l.edId===fState.edId+'_v3';
+        if(!baseMatch) return false;
+      } else {
+        if(l.edId!==fState.edId) return false;
+      }
+    }
     if(fState.ageVal && String(l.ageVal)!==fState.ageVal) return false;
+    if(fState.ver && String(l.edV||1)!==fState.ver) return false;
     if(fState.search){
       var combined=(l.ageLabel+' '+l.edName+' '+l.format+' '+(l.notes||'')).toLowerCase();
       if(combined.indexOf(fState.search)===-1) return false;
@@ -4092,7 +4274,7 @@ function renderTable(){
       '<td><span class="pbadge '+l.agePc+'">'+l.agePri+'</span></td>',
       '<td><span class="'+tierCls+'">'+sc+'</span></td>',
       '<td style="font-family:Plus Jakarta Sans,sans-serif;font-size:14px;color:var(--cream);">'+l.ageLabel+' <span style="font-size:8px;color:var(--mid);">'+(CY-l.ageVal)+'</span></td>',
-      '<td>'+l.edFlag+' <span style="font-size:11px;color:var(--cream2);">'+l.edName+'</span> <span style="font-size:8px;color:var(--mid);">'+l.edShop.toUpperCase()+'</span></td>',
+      '<td>'+l.edFlag+' <span style="font-size:11px;color:var(--cream2);">'+l.edName.replace(/ V([123])$/,'')+'</span>'+(l.edV>1?'<span style="font-size:8px;font-weight:700;color:var(--teal);margin-left:3px;">V'+l.edV+'</span>':' <span style="font-size:8px;color:var(--mid);">V1</span>')+' <span style="font-size:8px;color:var(--mid);">'+l.edShop.toUpperCase()+'</span></td>',
       '<td><span class="fmtb '+(l.format==='Instant DL'?'fmt-i':'fmt-c')+'">'+(l.format==='Instant DL'?'⚡DL':'✏️CUS')+'</span></td>'
     ];
 
@@ -4179,7 +4361,7 @@ function openDetail(lid){
   var l=listings.find(function(x){return x.id===lid;});
   if(!l)return;
   activeDetailId=lid;
-  document.getElementById('dTitle').textContent=l.edFlag+' '+l.ageLabel+' '+l.edName+' ('+l.format+')';
+  document.getElementById('dTitle').textContent=l.edFlag+' '+l.ageLabel+' '+l.edName+(l.edV>1?' [V'+l.edV+']':'')+' · '+l.format;
   document.getElementById('dMeta').textContent=l.id+' · Shop '+l.edShop.toUpperCase()+' · Phase '+l.phase+' · Score '+rScore(l)+' · '+rLbl(rScore(l));
   renderDetailStages(l);
   var dn=document.getElementById('dNotes');
@@ -4361,17 +4543,20 @@ function mvBuild(){
   var ff=document.getElementById("mvFmtF");
   var sf=document.getElementById("mvStatF");
   var pf=document.getElementById("mvPhF");
+  var vf=document.getElementById("mvVerF");
   var cat=cf?cf.value:"";
   var tier=tf?tf.value:"";
   var fmt=ff?ff.value:"";
   var stat=sf?sf.value:"";
   var ph=pf?pf.value:"";
+  var ver=vf?vf.value:"";
   pool=pool.filter(function(l){
     if(cat&&l.edCat!==cat)return false;
     if(tier){var lbl=rLbl(rScore(l));if(lbl!==tier)return false;}
     if(fmt&&l.format!==fmt)return false;
     if(stat&&getStatus(l)!==stat)return false;
     if(ph&&String(l.phase)!==ph)return false;
+    if(ver&&String(l.edV||1)!==ver)return false;
     return true;
   });
   pool.sort(function(a,b){return rScore(b)-rScore(a);});
@@ -4388,7 +4573,7 @@ function mvApply(){
 }
 
 function mvReset(){
-  ["mvCatF","mvTierF","mvFmtF","mvStatF","mvPhF"].forEach(function(id){var e=document.getElementById(id);if(e)e.value="";});
+  ["mvCatF","mvTierF","mvFmtF","mvStatF","mvPhF","mvVerF"].forEach(function(id){var e=document.getElementById(id);if(e)e.value="";});
   mvApply();
 }
 
@@ -4409,15 +4594,19 @@ function mvDrawStats(vpl){
   var liveCt=parseFloat(misc.rdLive)||32;
   var rpl2=liveCt>0&&revenue>0?revenue/liveCt:7.81;
   var needed30k=Math.ceil(REAL.goalMonthly/Math.max(0.01,rpl2));
-  var stillNeeded=Math.max(0,needed30k-dn);
+  var phase1Total=1376; // Phase 1: V1/V2/V3 on top-country ages
+  var phase1Left=Math.max(0,phase1Total-dn);
+  var phase1Pct=Math.min(100,Math.round(dn/phase1Total*100));
+  var PHASE1_TARGET=phase1Total;
+  var phase1Remaining=phase1Left;
   var dl2=Math.max(1,Math.ceil((REAL.goalDeadline-new Date())/86400000));
-  var pn2=(stillNeeded/dl2).toFixed(1);
+  var phase1Pace=(phase1Left/dl2).toFixed(1);
   var pct2=Math.min(100,Math.round(revenue/REAL.goalMonthly*100));
   var sv2=function(id,v,c){var e2=document.getElementById(id);if(e2){e2.textContent=v;if(c)e2.style.color=c;}};
   sv2('mvGLive',dn,dn>0?'var(--green3)':'var(--mid)');
   sv2('mvGRev','$'+Math.round(revenue).toLocaleString(),'var(--gold2)');
-  sv2('mvGNeeded',stillNeeded.toLocaleString(),stillNeeded>2000?'var(--rust2)':stillNeeded>500?'var(--gold2)':'var(--green3)');
-  sv2('mvGPace',pn2+'/day',parseFloat(pn2)<=7?'var(--teal)':parseFloat(pn2)<=12?'var(--gold2)':'var(--rust2)');
+  sv2('mvGNeeded',phase1Left.toLocaleString(),phase1Left>1000?'var(--rust2)':phase1Left>300?'var(--gold2)':'var(--green3)');
+  sv2('mvGPace',phase1Pace+'/day',parseFloat(phase1Pace)<=4?'var(--teal)':parseFloat(phase1Pace)<=7?'var(--gold2)':'var(--rust2)');
   sv2('mvGoalPct',pct2+'% of $30K',pct2>=50?'var(--teal)':'var(--gold2)');
   sv2('mvGoalDays',dl2+' days left',dl2<90?'var(--rust2)':'var(--mid)');
   var gBar=document.getElementById('mvGoalBarFill');
@@ -4427,28 +4616,28 @@ function mvDrawStats(vpl){
     var topIP=mvAll.find(function(x){return getStatus(x)==='in_progress';});
     var topNS=mvAll.find(function(x){return getStatus(x)==='not_started';});
     if(topIP){
-      nxEl.innerHTML='<strong style="color:var(--gold2);">FINISH in-progress first:</strong> '+topIP.ageLabel+' &middot; '+topIP.edName+' &middot; '+topIP.format+' <span style="color:var(--teal);">['+getProgress(topIP)+'% done]</span> &mdash; half-done = $0/mo. <strong style="color:var(--cream);">Complete it, mark Live, then start next.</strong>';
+      nxEl.innerHTML='<strong style="color:var(--gold2);">FINISH in-progress first:</strong> '+topIP.ageLabel+' &middot; '+topIP.edName.replace(/ V[23]$/,'')+(topIP.edV>1?' <span class="vbadge vb'+topIP.edV+'">V'+topIP.edV+'</span>':'')+' &middot; '+topIP.format+' <span style="color:var(--teal);">['+getProgress(topIP)+'% done]</span> &mdash; half-done = $0/mo. <strong style="color:var(--cream);">Complete it, mark Live, then start next.</strong>';
     } else if(topNS){
-      nxEl.innerHTML='<strong style="color:var(--green3);">START next listing:</strong> <strong style="color:var(--gold);">'+topNS.ageLabel+'</strong> &middot; '+topNS.edName+' &middot; '+topNS.format+' &mdash; earns <strong style="color:var(--gold2);">~$'+rEst(topNS,vpl)+'/mo forever.</strong> <strong style="color:var(--cream);">Click Start now.</strong>';
+      nxEl.innerHTML='<strong style="color:var(--green3);">START next listing:</strong> <strong style="color:var(--gold);">'+topNS.ageLabel+'</strong> &middot; '+topNS.edName.replace(/ V[23]$/,'')+(topNS.edV>1?' <span class="vbadge vb'+topNS.edV+'">V'+topNS.edV+'</span>':'')+' &middot; '+topNS.format+' &mdash; earns <strong style="color:var(--gold2);">~$'+rEst(topNS,vpl)+'/mo forever.</strong> <strong style="color:var(--cream);">Click Start now.</strong>';
     } else {
-      nxEl.innerHTML='<strong style="color:var(--green3);">All listings complete!</strong> Add 2nd design variations &mdash; each = new Etsy search slot = more passive income.';
+      nxEl.innerHTML='<strong style="color:var(--green3);">All listings complete!</strong> Now publish V2 designs on your top 50th &amp; 60th listings &mdash; same search, new thumbnail, triple impressions. Duplicate template in Canva, swap design elements, live in minutes.';
     }
   }
-  function box(lbl,val,col,bl){
+  function statBox(lbl,val,col,bl){
     return'<div class="mv-stat-box" style="border-left:3px solid '+bl+';">'
       +'<div class="mv-stat-lbl">'+lbl+'</div>'
       +'<div class="mv-stat-val" style="color:'+col+';">'+val+'</div></div>';
   }
   el.innerHTML=
-    box('Filtered',t.toLocaleString(),'var(--cream)','var(--border)')+
-    box('PRIME',pr,'#e74c3c','#e74c3c')+
-    box('HIGH',hi,'var(--gold2)','var(--gold2)')+
-    box('Live',dn,'var(--green3)','var(--green3)')+
-    box('In Progress',ip>0?ip:'none',ip>0?'var(--gold2)':'var(--mid)','var(--border)')+
-    box('Not Started',ns,'var(--mid)','var(--border)')+
-    box('Live $/mo','$'+Math.round(dE).toLocaleString(),'var(--green3)','var(--green3)')+
-    box('Full Pot','$'+Math.round(tE).toLocaleString(),'var(--teal)','var(--teal)')+
-    box('$30K Gap','$'+Math.max(0,Math.round(REAL.goalMonthly-revenue)).toLocaleString(),'var(--rust2)','var(--rust2)');
+    statBox('Filtered',t.toLocaleString(),'var(--cream)','var(--border)')+
+    statBox('PRIME',pr,'#e74c3c','#e74c3c')+
+    statBox('HIGH',hi,'var(--gold2)','var(--gold2)')+
+    statBox('Live ✓',dn,'var(--green3)','var(--green3)')+
+    statBox('Phase 1 '+Math.min(100,Math.round(dn/1376*100))+'%',dn+'/1376','var(--teal)','var(--teal)')+
+    statBox('P1 Left',phase1Left,'var(--gold2)','var(--gold2)')+
+    statBox('Live $/mo','$'+Math.round(dE).toLocaleString(),'var(--green3)','var(--green3)')+
+    statBox('V1→V3 Pot','$'+Math.round(tE).toLocaleString(),'var(--teal)','var(--teal)')+
+    statBox('$30K Gap','$'+Math.max(0,Math.round(REAL.goalMonthly-revenue)).toLocaleString(),'var(--rust2)','var(--rust2)');
 }
 
 function mvDrawRows(vpl){
@@ -4510,7 +4699,7 @@ function mvDrawRows(vpl){
     h+='<tr data-mid="'+l.id+'" style="border-bottom:1px solid var(--border);cursor:pointer;'+(rank===1?'background:rgba(201,151,58,.06);':'')+'" onclick="openDetail(\''+l.id+'\')" onmouseover="this.style.background=\'var(--ink3)\'" onmouseout="this.style.background=\''+(rank===1?'rgba(201,151,58,.06)':'')+'\';">'
       +'<td style="padding:6px 7px;white-space:nowrap;font-family:Plus Jakarta Sans,sans-serif;font-size:12px;color:var(--mid);">'+medal+rank+'</td>'
       +'<td style="padding:6px 7px;white-space:nowrap;"><span style="font-family:Plus Jakarta Sans,sans-serif;font-size:14px;color:var(--cream);">'+l.ageLabel+'</span> <span style="font-size:8px;color:var(--mid);">'+by+'</span></td>'
-      +'<td style="padding:6px 7px;"><span style="font-size:12px;">'+l.edFlag+'</span> <span style="font-size:11px;color:var(--cream2);">'+l.edName+'</span> <span style="font-size:8px;color:var(--mid);">'+l.edShop.toUpperCase()+'</span> <span style="font-family:Plus Jakarta Sans,sans-serif;font-size:8px;padding:1px 4px;letter-spacing:1px;'+tierCls+'">'+lbl+'</span></td>'
+      +'<td style="padding:6px 7px;"><span style="font-size:12px;">'+l.edFlag+'</span> <span style="font-size:11px;color:var(--cream2);">'+l.edName.replace(/ V[23]$/,'')+'</span>'+(l.edV>1?'<span class="vbadge vb'+l.edV+'" style="margin-left:3px;">V'+l.edV+'</span>':'')+' <span style="font-size:8px;color:var(--mid);">'+l.edShop.toUpperCase()+'</span> <span style="font-family:Plus Jakarta Sans,sans-serif;font-size:8px;padding:1px 4px;letter-spacing:1px;'+tierCls+'">'+lbl+'</span></td>'
       +'<td style="padding:6px 7px;text-align:center;font-size:13px;">'+(l.format==='Instant DL'?'<span title="Instant DL" style="color:var(--gold2);">⚡</span>':'<span title="Custom" style="color:var(--mid);">✏️</span>')+'</td>'
       +'<td style="padding:6px 7px;text-align:center;"><span style="font-family:Plus Jakarta Sans,sans-serif;font-size:18px;color:'+scCol+';">'+sc+'</span><br><span style="font-size:8px;color:'+scCol+';">'+lbl+'</span></td>'
       +'<td style="padding:6px 7px;text-align:right;white-space:nowrap;"><span style="font-family:Plus Jakarta Sans,sans-serif;font-size:16px;color:var(--green3);">$'+est+'</span><span style="font-size:8px;color:var(--mid);">/mo</span></td>'
@@ -4888,7 +5077,7 @@ function savePcData(){
   localStorage.setItem(MISC_KEY, JSON.stringify(misc));
 }
 function saveMktData(){
-  var fields=['mktIG','mktIGViews','mktPin','mktPinImpr','mktCTR','mktAudGrowth'];
+  var fields=['mktSocialBoost','mktAudGrowth'];
   fields.forEach(function(id){
     var el=document.getElementById(id);
     if(el) misc[id]=el.value;
@@ -4980,206 +5169,188 @@ function syncProjInputs(){
   });
 }
 
+// Phase view state: 'p1' | 'p2' | 'combined'
+var projPhaseView = 'p1';
+
+function setProjPhaseView(view, el){
+  projPhaseView = view;
+  document.querySelectorAll('.proj-phase-tab').forEach(function(b){b.classList.remove('on');});
+  if(el) el.classList.add('on');
+  renderProjections();
+}
+
+function saveP2Data(){
+  ['p2DailyPace','p2TotalTarget','p2DemandPct'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el&&el.value!=='') misc[id]=parseFloat(el.value)||0;
+  });
+  saveMisc();
+}
+
+function syncP2Inputs(){
+  ['p2DailyPace','p2TotalTarget','p2DemandPct'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el&&misc[id]!==undefined) el.value=misc[id];
+  });
+}
+
 function renderProjections(){
   // ══ READ ALL INPUTS ══
-  // Base real data (global totals from inputs)
   var revenue     = parseFloat(misc.rdRevenue)||250;
   var visits      = parseFloat(misc.rdVisits)||900;
   var liveFull    = parseFloat(misc.rdLive)||32;
-  var aov         = parseFloat(misc.rdAOV)||12.95;
+  var aov         = parseFloat(misc.rdAOV)||9.99;
 
-  // ── Compute scoped live count from actual listings data ──
-  // Filter listings by current projScope (shop, cat, fmt)
+  // ── Scope fraction (Phase 1 denominator only) ──
   var scopedListings = listings.filter(function(l){
-    if(projScope.shop !== 'both' && l.edShop !== projScope.shop) return false;
-    if(projScope.cat  !== 'all'  && l.edCat  !== projScope.cat)  return false;
-    if(projScope.fmt  !== 'all'  && l.format  !== projScope.fmt)  return false;
+    if(projScope.shop!=='both' && l.edShop!==projScope.shop) return false;
+    if(projScope.cat !=='all'  && l.edCat !==projScope.cat)  return false;
+    if(projScope.fmt !=='all'  && l.format!==projScope.fmt)  return false;
     return true;
   });
-  var totalListings = listings.length || 1;
-  var scopedTotal   = scopedListings.length;
-  var scopeFraction = scopedTotal / totalListings;
-  // Scale revenue & visits by fraction of scoped listings vs total
-  // (approximation: assumes uniform rev per listing across editions)
-  var live    = Math.max(1, Math.round(liveFull * scopeFraction));
-  revenue = Math.max(1, Math.round(revenue * scopeFraction));
-  visits  = Math.max(1, Math.round(visits  * scopeFraction));
+  var phase1Listings = listings.filter(function(l){ return l.phase===1; });
+  var scopedPhase1   = scopedListings.filter(function(l){ return l.phase===1; });
+  var totalListings  = phase1Listings.length||1;
+  var scopedTotal    = scopedPhase1.length;
+  var scopeFraction  = scopedTotal/totalListings;
 
-  // Count scoped live (staged as 'live') vs pipeline progress
-  var scopedLive = scopedListings.filter(function(l){ return l.stages.live; }).length;
+  var live    = Math.max(1, Math.round(liveFull*scopeFraction));
+  revenue = Math.max(1, Math.round(revenue*scopeFraction));
+  visits  = Math.max(1, Math.round(visits *scopeFraction));
 
-  // Update scope count badge
   var scEl = document.getElementById('projScopeCount');
-  var shopLabel = projScope.shop==='both'?'Both shops':projScope.shop==='a'?'Shop A':'Shop B';
-  var catLabel  = projScope.cat==='all'?'all types':projScope.cat;
-  var fmtLabel  = projScope.fmt==='all'?'both formats':projScope.fmt;
-  if(scEl) scEl.textContent = scopedTotal+' listings in scope ('+shopLabel+', '+catLabel+', '+fmtLabel+')';
-  var dailyPace   = parseFloat(misc.projDailyTarget)||7;
-  var totalTgt    = parseFloat(misc.projTotalTarget)||3840;
-  // Scale totalTgt by scopeFraction so pace cards show scoped goal
-  var totalTgtScoped = Math.round(totalTgt * scopeFraction);
-  var etsyFeePct  = (parseFloat(misc.pcEtsyFee)||9.5)/100;
-  var toolsCost   = parseFloat(misc.pcTools)||50;
-  var adsCost     = parseFloat(misc.pcAds)||0;
-  var otherCost   = parseFloat(misc.pcOther)||0;
-  var rplGrowth   = (parseFloat(misc.pcRplGrowth)||2)/100;
-  var fxRate      = parseFloat(misc.pcFxRate)||4.70;
-  // Marketing inputs
-  var mktIG       = parseFloat(misc.mktIG)||0;
-  var mktIGViews  = parseFloat(misc.mktIGViews)||500;
-  var mktPin      = parseFloat(misc.mktPin)||0;
-  var mktPinImpr  = parseFloat(misc.mktPinImpr)||300;
-  var mktCTRpct   = (parseFloat(misc.mktCTR)||1.5)/100;
-  var mktAudMult  = parseFloat(misc.mktAudGrowth)||1.5;
+  var shopLbl = projScope.shop==='both'?'Both shops':projScope.shop==='a'?'Shop A':'Shop B';
+  var catLbl  = projScope.cat==='all'?'all types':projScope.cat;
+  var fmtLbl  = projScope.fmt==='all'?'both formats':projScope.fmt;
+  if(scEl) scEl.textContent = scopedTotal+' listings in scope ('+shopLbl+', '+catLbl+', '+fmtLbl+')';
 
-  var fixedCosts  = toolsCost + adsCost + otherCost;
-  var today       = new Date();
-  var deadline    = new Date('2026-12-31');
-  var daysLeft    = Math.max(1, Math.ceil((deadline - today)/86400000));
+  // ── Phase 1 inputs ──
+  var p1Daily   = parseFloat(misc.projDailyTarget)||7;
+  var p1TgtFull = parseFloat(misc.projTotalTarget)||1376;
+  var p1Tgt     = Math.round(p1TgtFull*scopeFraction);
 
-  // ══ CORE METRICS FROM REAL DATA ══
-  // Use REAL conversion rate derived from actual Etsy data
-  var realConvRate = (live>0 && visits>0 && revenue>0)
-    ? (revenue / aov) / visits   // real orders/visit from your actual numbers
-    : 0.03;                      // fallback 3%
-  var revPerListing = (live>0 && revenue>0) ? revenue/live : 7.81;
-  var vpl = (live>0 && visits>0) ? Math.round(visits/live) : 52;
-  var netMarginPct = 1 - etsyFeePct;
-  var curProfit = Math.round(revenue * netMarginPct - fixedCosts);
+  // ── Phase 2 inputs ──
+  var p2Daily      = parseFloat(misc.p2DailyPace)||3;
+  var p2Tgt        = parseFloat(misc.p2TotalTarget)||7224;
+  var p2DemandFrac = (parseFloat(misc.p2DemandPct)||20)/100;
+  // Phase 2 = same ages as Phase 1 template set, but lower-search-volume ages
+  // P2 RPL = P1 RPL × demand fraction (default 20% — conservative)
 
-  // ══ MARKETING TRAFFIC MODEL ══
-  // Monthly social impressions (base, before audience growth)
-  var igMonthlyImpr = mktIG * 4.33 * mktIGViews;          // reels/wk × weeks/mo × views/reel
-  var pinMonthlyImpr = mktPin * 4.33 * mktPinImpr;        // pins/wk × weeks × impr/pin (cumulative)
-  var totalSocialImpr = igMonthlyImpr + pinMonthlyImpr;
+  // ── Shared cost/growth inputs ──
+  var etsyFeePct = (parseFloat(misc.pcEtsyFee)||9.5)/100;
+  var toolsCost  = parseFloat(misc.pcTools)||50;
+  var adsCost    = parseFloat(misc.pcAds)||0;
+  var otherCost  = parseFloat(misc.pcOther)||0;
+  var rplGrowth  = (parseFloat(misc.pcRplGrowth)||2)/100;
+  var fxRate     = parseFloat(misc.pcFxRate)||4.70;
+  var fixedCosts = toolsCost+adsCost+otherCost;
 
-  // Extra Etsy visits from social (using real CTR input)
-  var socialVisitsBase = Math.round(totalSocialImpr * mktCTRpct);
+  // ── Marketing inputs — read via saveMktData / stored in misc ──
 
-  // Extra orders using REAL conversion rate from current Etsy data
-  var socialOrdersBase = Math.round(socialVisitsBase * realConvRate);
-  var socialRevenueBase = Math.round(socialOrdersBase * aov);
-  // Social profit (same margin, no extra fixed costs — AI tools already in pcTools)
-  var socialProfitBase = Math.round(socialRevenueBase * netMarginPct);
-  var socialActive = (mktIG > 0 || mktPin > 0);
+  var today    = new Date();
+  var deadline = new Date('2026-12-31');
+  var daysLeft = Math.max(1,Math.ceil((deadline-today)/86400000));
+  var netMgn   = 1-etsyFeePct;
 
-  // Quarter audience multipliers [Q1,Q2,Q3,Q4]
-  // Q1 = base, Q2 = base×mult, Q3 = base×mult², Q4 = base×mult³
-  var qMults = [1, mktAudMult, mktAudMult*mktAudMult, mktAudMult*mktAudMult*mktAudMult];
+  // ══ PHASE 1 CORE METRICS (from your real Etsy data) ══
+  var realConv  = (live>0&&visits>0&&revenue>0) ? (revenue/aov)/visits : 0.03;
+  var p1Rpl     = (live>0&&revenue>0) ? revenue/live : 7.81;
+  var curProfit = Math.round(revenue*netMgn - fixedCosts);
+
+  // ══ PHASE 2 CORE METRICS ══
+  // P2 covers ages with lower Etsy search volume → lower RPL
+  // Demand % is user-tunable: 20% conservative, 35% moderate, 50% optimistic
+  var p2Rpl = p1Rpl * p2DemandFrac;
+
+  // ── Marketing inputs — simplified social boost ──
+  var mktSocialBoost = (parseFloat(misc.mktSocialBoost)||0)/100;  // 0–1 fraction
+  var mktAudMult     = parseFloat(misc.mktAudGrowth)||1.5;
+  var socialActive   = mktSocialBoost > 0;
+
+  // Social revenue = boost% × current Etsy gross (scales with your Etsy growth)
+  var socRBase = Math.round(revenue * mktSocialBoost);
+  var socPBase = Math.round(socRBase * netMgn);
+  var qMults   = [1, mktAudMult, mktAudMult*mktAudMult, mktAudMult*mktAudMult*mktAudMult];
 
   // ══ UPDATE UI ══
   renderDailyMission();
   syncRealDataInputs();
   syncProjInputs();
+  syncP2Inputs();
 
-  // Marketing model note
+  // p2RplDisplay live update
+  var rplEl = document.getElementById('p2RplDisplay');
+  if(rplEl) rplEl.textContent = '$'+p2Rpl.toFixed(2)+'/listing/mo';
+
+  // ── Marketing note ──
   var mktEl = document.getElementById('mktModelNote');
   if(mktEl){
     if(!socialActive){
-      mktEl.innerHTML = '<span style="color:var(--mid);">📌 Enter your IG Reels/week and Pinterest pins to model extra revenue from social traffic. '
-        +'All calculations use <strong style="color:var(--cream2);">your real Etsy conversion rate</strong> ('+Math.round(realConvRate*100*10)/10+'%) — not an assumed number. '
-        +'Zero risk: social drives extra traffic, Etsy closes the sale.</span>';
+      mktEl.innerHTML = '<span style="color:var(--mid);">📌 Set Social Boost % above (e.g. 10%) to model extra revenue from IG Reels, Pinterest, or TikTok driving buyers to your shop.</span>';
     } else {
-      var aiNote = (mktIG>0)
-        ? '<strong style="color:#9b59b6;">AI video workflow:</strong> Use Canva Animate, CapCut AI, or Veed.io — upload your poster PNG, '
-          +'auto-generate a 15-sec Reel. Batch '+mktIG+' Reels in one session (~'+(mktIG*8)+' min). No filming needed. &nbsp;·&nbsp; '
-        : '';
+      var boostPct = Math.round(mktSocialBoost*100);
       mktEl.innerHTML =
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin-bottom:8px;font-size:10px;">'
-        +(mktIG>0
-          ? '<div>📱 <strong style="color:var(--cream2);">IG:</strong> '+mktIG+' reels/wk × '+mktIGViews.toLocaleString()+' views × '+Math.round(mktCTRpct*100*10)/10+'% CTR'
-            +' = <strong style="color:var(--gold2);">'+socialVisitsBase.toLocaleString()+' visits/mo</strong>'
-            +' → <strong style="color:var(--green3);">+$'+socialProfitBase.toLocaleString()+'/mo profit</strong> (Q1 base)</div>'
-          : '')
-        +(mktPin>0
-          ? '<div>📌 <strong style="color:var(--cream2);">Pinterest:</strong> '+mktPin+' pins/wk × '+mktPinImpr.toLocaleString()+' impr × '+Math.round(mktCTRpct*100*10)/10+'% CTR'
-            +' → compounding evergreen traffic (grows as pins age)</div>'
-          : '')
-        +'<div>🔢 <strong style="color:var(--cream2);">Real conv rate used:</strong> '+Math.round(realConvRate*1000)/10+'% (from your Etsy data: $'+revenue+' rev ÷ $'+aov+' AOV ÷ '+visits+' visits)</div>'
-        +'<div>📈 <strong style="color:var(--cream2);">Audience growth:</strong> ×'+mktAudMult+'/quarter → Q4 = ×'+qMults[3].toFixed(1)+' baseline reach</div>'
+        +'<div>📱 <strong style="color:var(--cream2);">Social:</strong> <strong style="color:var(--gold2);">'+boostPct+'%</strong> of Etsy revenue = <strong style="color:var(--green3);">+$'+socRBase.toLocaleString()+'/mo gross</strong></div>'
+        +'<div>💰 After Etsy fees: <strong style="color:var(--gold2);">+$'+socPBase.toLocaleString()+'/mo profit</strong></div>'
+        +'<div>📈 Audience ×'+mktAudMult+'/quarter → Q4 = ×'+qMults[3].toFixed(1)+'</div>'
+        +'<div>🎯 Social Q4: <strong style="color:var(--green3);">+$'+Math.round(socPBase*qMults[3]).toLocaleString()+'/mo</strong></div>'
         +'</div>'
-        +aiNote
-        +'<strong style="color:#9b59b6;">Total social profit by Dec 31:</strong> starts at <strong style="color:var(--gold2);">$'+socialProfitBase.toLocaleString()+'/mo</strong>, '
-        +'grows to <strong style="color:var(--green3);">$'+Math.round(socialProfitBase*qMults[3]).toLocaleString()+'/mo by Q4</strong> as your audience compounds. '
-        +'This stacks <em>on top of</em> your Etsy organic income — it\'s all the same conversion funnel.';
+        +'<span style="color:var(--mid);">Social compounds with audience growth. As listings increase, base Etsy rev grows → social boost grows proportionally.</span>';
     }
   }
 
-  // pcSummary
+  // ── Phase 1 calculator summary (pcSummary) ──
   var sumEl = document.getElementById('pcSummary');
   if(sumEl){
-    var moreNeeded = Math.max(0, totalTgt - live);
-    var daysToFinish = dailyPace>0 ? Math.ceil(moreNeeded/dailyPace) : 9999;
-    var finDate = (function(){var d=new Date();d.setDate(d.getDate()+daysToFinish);
-      return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'2-digit'});})();
-    var scopeLabel = projScope.shop==='both'?'Both shops':'Shop '+(projScope.shop||'both').toUpperCase();
-    scopeLabel += projScope.cat!=='all'?' · '+projScope.cat:'';
-    scopeLabel += projScope.fmt!=='all'?' · '+projScope.fmt:'';
-    var listingsFor30k = Math.ceil(30000 / Math.max(0.01, revPerListing));
-    var totalProfitQ4 = Math.round((Math.min(totalTgt,live+dailyPace*daysLeft)*revPerListing*Math.pow(1+rplGrowth,daysLeft/30))*netMarginPct
-      - fixedCosts + socialProfitBase*qMults[3]);
+    var p1More   = Math.max(0, p1TgtFull-live);
+    var p1Days   = p1Daily>0 ? Math.ceil(p1More/p1Daily) : 9999;
+    var p1Fin    = (function(){var d=new Date();d.setDate(d.getDate()+p1Days);return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'2-digit'});})();
+    var p1PeakRev= Math.round(p1TgtFull*p1Rpl*Math.pow(1+rplGrowth,daysLeft/30));
+    var p1PeakPr = Math.round(p1PeakRev*netMgn-fixedCosts);
+    var sLbl = projScope.shop==='both'?'Both shops':'Shop '+(projScope.shop||'both').toUpperCase();
+    sLbl += projScope.cat!=='all'?' · '+projScope.cat:'';
+    sLbl += projScope.fmt!=='all'?' · '+projScope.fmt:'';
     sumEl.innerHTML =
-      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:5px 12px;">'
-      +'<div style="grid-column:span 2;font-size:calc(9px * var(--fs));color:var(--teal);font-weight:600;padding-bottom:4px;border-bottom:1px solid rgba(78,205,196,.2);">Scope: '+scopeLabel+'</div>'
-      +'<div><span style="color:var(--mid);">Rev/listing/mo (real)</span> <strong style="color:var(--gold);">$'+revPerListing.toFixed(2)+'</strong></div>'
-      +'<div><span style="color:var(--mid);">Real Etsy conv rate</span> <strong style="color:var(--teal);">'+Math.round(realConvRate*1000)/10+'%</strong></div>'
-      +'<div><span style="color:var(--mid);">Etsy net margin</span> <strong style="color:var(--gold2);">'+Math.round(netMarginPct*100)+'%</strong></div>'
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:5px 12px;">'
+      +'<div style="grid-column:span 2;font-size:9px;color:var(--gold);font-weight:600;font-family:Plus Jakarta Sans,sans-serif;padding-bottom:4px;border-bottom:1px solid rgba(201,151,58,.2);">① Phase 1 Summary — Scope: '+sLbl+'</div>'
+      +'<div><span style="color:var(--mid);">P1 rev/listing/mo (real)</span> <strong style="color:var(--gold);">$'+p1Rpl.toFixed(2)+'</strong></div>'
+      +'<div><span style="color:var(--mid);">Real conv rate</span> <strong style="color:var(--teal);">'+Math.round(realConv*1000)/10+'%</strong></div>'
+      +'<div><span style="color:var(--mid);">Etsy net margin</span> <strong style="color:var(--gold2);">'+Math.round(netMgn*100)+'%</strong></div>'
       +'<div><span style="color:var(--mid);">Fixed costs/mo</span> <strong style="color:var(--rust2);">-$'+Math.round(fixedCosts)+'</strong></div>'
-      +'<div><span style="color:var(--mid);">Current net profit/mo</span> <strong style="color:'+(curProfit>=0?'var(--green3)':'var(--rust2)')+';">$'+curProfit+'</strong> <span style="color:var(--mid);font-size:9px;">(RM'+Math.round(curProfit*fxRate)+')</span></div>'
-      +(socialActive ? '<div><span style="color:var(--mid);">Social profit Q1</span> <strong style="color:#9b59b6;">+$'+socialProfitBase.toLocaleString()+'</strong></div>' : '')
-      +'<div><span style="color:var(--mid);">Listings for $30K gross</span> <strong style="color:var(--rust2);">'+listingsFor30k.toLocaleString()+'</strong></div>'
-      +'<div><span style="color:var(--mid);">At '+dailyPace+'/day → done</span> <strong style="color:var(--green3);">'+finDate+'</strong> ('+daysToFinish+'d)</div>'
-      +(socialActive ? '<div><span style="color:var(--mid);">Total profit at target (Dec)</span> <strong style="color:var(--teal);">$'+totalProfitQ4.toLocaleString()+'</strong></div>' : '')
+      +'<div><span style="color:var(--mid);">Current profit/mo</span> <strong style="color:'+(curProfit>=0?'var(--green3)':'var(--rust2)')+';">$'+curProfit+'</strong> <span style="color:var(--mid);font-size:8px;">(RM'+Math.round(curProfit*fxRate)+')</span></div>'
+      +'<div><span style="color:var(--mid);">P1 target</span> <strong style="color:var(--gold);">1,376 listings</strong></div>'
+      +'<div><span style="color:var(--mid);">P1 peak gross (Dec)</span> <strong style="color:var(--gold2);">$'+p1PeakRev.toLocaleString()+'</strong></div>'
+      +'<div><span style="color:var(--mid);">P1 peak profit (Dec)</span> <strong style="color:var(--green3);">$'+p1PeakPr.toLocaleString()+'</strong></div>'
+      +'<div><span style="color:var(--mid);">At '+p1Daily+'/day → done</span> <strong style="color:var(--teal);">'+p1Fin+'</strong> ('+p1Days+'d)</div>'
+      +(socialActive?'<div><span style="color:var(--mid);">Social profit Q1</span> <strong style="color:#9b59b6;">+$'+socPBase.toLocaleString()+'</strong></div>':'')
       +'</div>';
   }
 
-  // ══ PACE SCENARIO CARDS ══
-  var scenarios=[
-    {label:'SLOW',      daily:1,         color:'var(--mid)',    note:'1/day · passive pace'},
-    {label:'STEADY',    daily:3,         color:'var(--rust2)',  note:'3/day · building habit'},
-    {label:'YOUR PACE', daily:dailyPace, color:'var(--gold)',   note:dailyPace+'/day — your target ★'},
-    {label:'STRONG',    daily:10,        color:'var(--green3)', note:'10/day · AI batching'},
-    {label:'SPRINT',    daily:15,        color:'var(--teal)',   note:'15/day · full pipeline'}
-  ];
-  var seen={};
-  scenarios = scenarios.filter(function(s){if(seen[s.daily])return false;seen[s.daily]=true;return true;});
-
-  var grid = document.getElementById('projGrid');
-  if(grid){
-    grid.innerHTML = scenarios.map(function(s){
-      var projLive   = Math.min(totalTgtScoped, Math.round(live + s.daily*daysLeft));
-      var rplAtEnd   = revPerListing * Math.pow(1+rplGrowth, daysLeft/30);
-      var grossEtsy  = Math.round(projLive * rplAtEnd);
-      var profitEtsy = Math.round(grossEtsy * netMarginPct - fixedCosts);
-      var socProfQ4  = Math.round(socialProfitBase * qMults[3]);  // Q4 social profit
-      var totalProfit= profitEtsy + socProfQ4;
-      var profitMYR  = Math.round(totalProfit * fxRate);
-      var hit30 = totalProfit >= 30000;
-      var hit15 = totalProfit >= 15000;
-      var isTarget = s.daily === dailyPace;
-      return '<div class="pcell" style="border-top:3px solid '+s.color+';position:relative;'
-        +(isTarget ? 'border:2px solid var(--gold);border-top:4px solid var(--gold);background:rgba(201,151,58,.06);' : '')+'">'
-        +(hit30 ? '<div style="position:absolute;top:5px;right:7px;font-size:11px;">🏆</div>'
-               : hit15 ? '<div style="position:absolute;top:5px;right:7px;font-size:10px;">🎯</div>' : '')
-        +'<span class="pval" style="color:'+s.color+';">$'+totalProfit.toLocaleString()
-          +'<span style="font-size:9px;color:var(--mid);">/mo profit</span></span>'
-        +'<span class="plbl">'+s.label+'</span>'
-        +'<span class="psub">'+s.note+'</span>'
-        +'<div style="margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:3px;font-size:9px;color:var(--mid);padding-top:5px;border-top:1px solid rgba(255,255,255,.06);">'
-          +'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--cream2);">'+projLive.toLocaleString()+'</div>listings</div>'
-          +'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--gold2);">$'+grossEtsy.toLocaleString()+'</div>gross/mo</div>'
-          +'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--green3);">$'+profitEtsy.toLocaleString()+'</div>etsy profit</div>'
-          +(socialActive
-            ? '<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:#9b59b6;">+$'+socProfQ4.toLocaleString()+'</div>social (Q4)</div>'
-            : '<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--mid);">+social</div>add above ↑</div>')
-          +'<div style="grid-column:span 2;padding-top:3px;border-top:1px solid rgba(255,255,255,.04);">'
-            +'<div style="font-family:Plus Jakarta Sans,sans-serif;font-size:13px;color:var(--teal);">RM'+profitMYR.toLocaleString()+'</div>total in MYR</div>'
-        +'</div>'
+  // ── Phase 2 calculator summary (p2Summary) ──
+  var p2SumEl = document.getElementById('p2Summary');
+  if(p2SumEl){
+    var p2More   = Math.max(0, p2Tgt);
+    var p2Days   = p2Daily>0 ? Math.ceil(p2More/p2Daily) : 9999;
+    var p2Fin    = (function(){var d=new Date();d.setDate(d.getDate()+p2Days);return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'2-digit'});})();
+    var p2LiveDec= Math.min(p2Tgt, Math.round(p2Daily*daysLeft));
+    var p2GrsDec = Math.round(p2LiveDec*p2Rpl*Math.pow(1+rplGrowth,daysLeft/30));
+    var p2PrDec  = Math.round(p2GrsDec*netMgn);
+    var p2PrMo   = Math.round(p2LiveDec*p2Rpl);
+    p2SumEl.innerHTML =
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:5px 12px;">'
+      +'<div style="grid-column:span 2;font-size:9px;color:var(--teal);font-weight:600;font-family:Plus Jakarta Sans,sans-serif;padding-bottom:4px;border-bottom:1px solid rgba(78,205,196,.2);">② Phase 2 Live Summary</div>'
+      +'<div><span style="color:var(--mid);">P2 rev/listing/mo</span> <strong style="color:var(--teal);">$'+p2Rpl.toFixed(2)+'</strong> <span style="color:var(--mid);font-size:8px;">(P1 × '+Math.round(p2DemandFrac*100)+'%)</span></div>'
+      +'<div><span style="color:var(--mid);">P2 target listings</span> <strong style="color:var(--cream2);">'+p2Tgt.toLocaleString()+'</strong> <span style="color:var(--mid);font-size:8px;">(84 ages × 86/age = 7,224)</span></div>'
+      +'<div><span style="color:var(--mid);">At '+p2Daily+'/day → done</span> <strong style="color:var(--gold2);">'+p2Fin+'</strong> ('+p2Days+'d)</div>'
+      +'<div><span style="color:var(--mid);">P2 live by Dec 31</span> <strong style="color:var(--cream2);">'+p2LiveDec.toLocaleString()+'</strong></div>'
+      +'<div><span style="color:var(--mid);">P2 gross/mo at Dec</span> <strong style="color:var(--gold2);">$'+p2GrsDec.toLocaleString()+'</strong></div>'
+      +'<div><span style="color:var(--mid);">P2 profit/mo at Dec</span> <strong style="color:var(--teal);">$'+p2PrDec.toLocaleString()+'</strong></div>'
+      +'<div><span style="color:var(--mid);">P1+P2 combined (Dec)</span> <strong style="color:var(--green3);">$'+(Math.round(Math.min(p1TgtFull,live+p1Daily*daysLeft)*p1Rpl*Math.pow(1+rplGrowth,daysLeft/30)*netMgn-fixedCosts)+p2PrDec).toLocaleString()+'</strong>/mo profit</div>'
       +'</div>';
-    }).join('');
   }
 
-  // ══ MONTHLY DATA (with social layered in) ══
+  // ══ MONTHLY SIMULATION — both phases run in parallel ══
   var allMonths=[
     {m:0,name:'Jan 2026',days:31,qi:0},{m:1,name:'Feb 2026',days:28,qi:0},{m:2,name:'Mar 2026',days:31,qi:0},
     {m:3,name:'Apr 2026',days:30,qi:1},{m:4,name:'May 2026',days:31,qi:1},{m:5,name:'Jun 2026',days:30,qi:1},
@@ -5187,192 +5358,280 @@ function renderProjections(){
     {m:9,name:'Oct 2026',days:31,qi:3},{m:10,name:'Nov 2026',days:30,qi:3},{m:11,name:'Dec 2026',days:31,qi:3}
   ];
   var qColors=['var(--mid)','var(--gold)','var(--green3)','var(--teal)'];
-  var cumLive = live;
-  var monthsElapsed = 0;
+  var p1Cum=live, p2Cum=0, moElapsed=0;
 
   var monthData = allMonths.map(function(md){
-    var ms = new Date(2026,md.m,1); var me = new Date(2026,md.m+1,0);
-    var effDays;
-    if(today.getFullYear()===2026 && today.getMonth()===md.m){
-      effDays = Math.max(0, me.getDate()-today.getDate());
-    } else if(ms < today){ effDays=0; }
-    else { effDays = md.days; }
-    var isPast = (effDays===0 && ms<=today);
+    var ms=new Date(2026,md.m,1); var me=new Date(2026,md.m+1,0);
+    var eff;
+    if(today.getFullYear()===2026&&today.getMonth()===md.m){
+      eff=Math.max(0,me.getDate()-today.getDate());
+    } else if(ms<today){ eff=0; }
+    else { eff=md.days; }
+    var isPast=(eff===0&&ms<=today);
 
-    var add = Math.min(Math.round(dailyPace*effDays), Math.max(0, totalTgt-cumLive));
-    cumLive += add;
+    var p1Add=Math.min(Math.round(p1Daily*eff), Math.max(0,p1Tgt-p1Cum));
+    var p2Add=Math.min(Math.round(p2Daily*eff), Math.max(0,p2Tgt-p2Cum));
+    p1Cum+=p1Add; p2Cum+=p2Add;
 
-    var rplThisMonth = revPerListing * Math.pow(1+rplGrowth, monthsElapsed);
-    if(!isPast) monthsElapsed++;
+    var p1RplMo = p1Rpl*Math.pow(1+rplGrowth,moElapsed);
+    var p2RplMo = p2Rpl*Math.pow(1+rplGrowth,moElapsed);
+    if(!isPast) moElapsed++;
 
-    var grossEtsy  = Math.round(cumLive * rplThisMonth);
-    var etsyFee    = Math.round(grossEtsy * etsyFeePct);
-    var profitEtsy = grossEtsy - etsyFee - Math.round(fixedCosts);
+    // Phase 1 — bears all fixed costs (tools etc already running)
+    var p1Grs = Math.round(p1Cum*p1RplMo);
+    var p1Fee = Math.round(p1Grs*etsyFeePct);
+    var p1Pr  = p1Grs-p1Fee-Math.round(fixedCosts);
 
-    // Social scales with quarterly audience multiplier
-    var qMult      = qMults[md.qi];
-    var socRevMo   = Math.round(socialRevenueBase * qMult);
-    var socProfMo  = Math.round(socialProfitBase * qMult);
-    var socVisits  = Math.round(socialVisitsBase * qMult);
+    // Phase 2 — no additional fixed costs (same Canva/tools subscription)
+    var p2Grs = Math.round(p2Cum*p2RplMo);
+    var p2Fee = Math.round(p2Grs*etsyFeePct);
+    var p2Pr  = p2Grs-p2Fee;
 
-    var totalGross  = grossEtsy + socRevMo;
-    var totalProfit = profitEtsy + socProfMo;
-    var profitMYR   = Math.round(totalProfit * fxRate);
+    var qm     = qMults[md.qi];
+    var socRev = Math.round(socRBase*qm);
+    var socPr  = Math.round(socPBase*qm);
+
+    var combGrs = p1Grs+p2Grs+socRev;
+    var combPr  = p1Pr+p2Pr+socPr;
+    var combMYR = Math.round(combPr*fxRate);
 
     return{
-      name:md.name, qi:md.qi, effDays:effDays, add:add,
-      cumLive:cumLive, rplThisMonth:rplThisMonth, isPast:isPast,
-      grossEtsy:grossEtsy, etsyFee:etsyFee, fixedCosts:Math.round(fixedCosts),
-      profitEtsy:profitEtsy,
-      socRevMo:socRevMo, socProfMo:socProfMo, socVisits:socVisits, qMult:qMult,
-      totalGross:totalGross, totalProfit:totalProfit, profitMYR:profitMYR
+      name:md.name, qi:md.qi, eff:eff, isPast:isPast,
+      p1Add:p1Add, p1Cum:p1Cum, p1RplMo:p1RplMo,
+      p1Grs:p1Grs, p1Fee:p1Fee, fixC:Math.round(fixedCosts), p1Pr:p1Pr,
+      p2Add:p2Add, p2Cum:p2Cum, p2RplMo:p2RplMo,
+      p2Grs:p2Grs, p2Fee:p2Fee, p2Pr:p2Pr,
+      socRev:socRev, socPr:socPr, qm:qm,
+      combGrs:combGrs, combPr:combPr, combMYR:combMYR
     };
   });
 
   // Quarterly rollup
-  var qData = [0,1,2,3].map(function(qi){
-    var mths = monthData.filter(function(m){return m.qi===qi;});
-    var last = mths[mths.length-1];
+  var qData=[0,1,2,3].map(function(qi){
+    var mths=monthData.filter(function(m){return m.qi===qi;}); var last=mths[mths.length-1];
     return{
-      label:['Q1 2026','Q2 2026','Q3 2026','Q4 2026'][qi], color:qColors[qi], months:mths,
-      qDays:     mths.reduce(function(s,m){return s+m.effDays;},0),
-      qAdded:    mths.reduce(function(s,m){return s+m.add;},0),
-      cumLive:   last.cumLive,
-      endGrossEtsy:  last.grossEtsy,
-      endProfitEtsy: last.profitEtsy,
-      endSocProfit:  last.socProfMo,
-      endTotalProfit:last.totalProfit,
-      qGrossEtsy:mths.reduce(function(s,m){return s+m.grossEtsy;},0),
-      qFees:     mths.reduce(function(s,m){return s+m.etsyFee;},0),
-      qFixed:    mths.reduce(function(s,m){return s+m.fixedCosts;},0),
-      qProfitEtsy:mths.reduce(function(s,m){return s+m.profitEtsy;},0),
-      qSocRev:   mths.reduce(function(s,m){return s+m.socRevMo;},0),
-      qSocProfit:mths.reduce(function(s,m){return s+m.socProfMo;},0),
-      qTotalProfit:mths.reduce(function(s,m){return s+m.totalProfit;},0),
-      qProfitMYR:mths.reduce(function(s,m){return s+m.profitMYR;},0),
-      qMult:     last.qMult
+      lbl:['Q1 2026','Q2 2026','Q3 2026','Q4 2026'][qi], color:qColors[qi], mths:mths,
+      qDays:mths.reduce(function(s,m){return s+m.eff;},0),
+      p1Add:mths.reduce(function(s,m){return s+m.p1Add;},0),
+      p2Add:mths.reduce(function(s,m){return s+m.p2Add;},0),
+      p1Cum:last.p1Cum, p2Cum:last.p2Cum,
+      p1GrsEnd:last.p1Grs, p1PrEnd:last.p1Pr,
+      p2GrsEnd:last.p2Grs, p2PrEnd:last.p2Pr,
+      socPrEnd:last.socPr, qm:last.qm, combPrEnd:last.combPr,
+      p1QGrs:mths.reduce(function(s,m){return s+m.p1Grs;},0),
+      p1QPr :mths.reduce(function(s,m){return s+m.p1Pr;},0),
+      p2QGrs:mths.reduce(function(s,m){return s+m.p2Grs;},0),
+      p2QPr :mths.reduce(function(s,m){return s+m.p2Pr;},0),
+      socQPr:mths.reduce(function(s,m){return s+m.socPr;},0),
+      combQPr:mths.reduce(function(s,m){return s+m.combPr;},0),
+      combQMYR:mths.reduce(function(s,m){return s+m.combMYR;},0)
     };
   });
 
-  var annualGrossEtsy   = qData.reduce(function(s,q){return s+q.qGrossEtsy;},0);
-  var annualFees        = qData.reduce(function(s,q){return s+q.qFees;},0);
-  var annualFixed       = qData.reduce(function(s,q){return s+q.qFixed;},0);
-  var annualProfitEtsy  = qData.reduce(function(s,q){return s+q.qProfitEtsy;},0);
-  var annualSocRev      = qData.reduce(function(s,q){return s+q.qSocRev;},0);
-  var annualSocProfit   = qData.reduce(function(s,q){return s+q.qSocProfit;},0);
-  var annualTotalProfit = qData.reduce(function(s,q){return s+q.qTotalProfit;},0);
-  var annualMYR         = qData.reduce(function(s,q){return s+q.qProfitMYR;},0);
+  var annP1Grs=qData.reduce(function(s,q){return s+q.p1QGrs;},0);
+  var annP1Pr =qData.reduce(function(s,q){return s+q.p1QPr;},0);
+  var annP2Grs=qData.reduce(function(s,q){return s+q.p2QGrs;},0);
+  var annP2Pr =qData.reduce(function(s,q){return s+q.p2QPr;},0);
+  var annSocPr=qData.reduce(function(s,q){return s+q.socQPr;},0);
+  var annComb =qData.reduce(function(s,q){return s+q.combQPr;},0);
+  var annMYR  =qData.reduce(function(s,q){return s+q.combQMYR;},0);
 
-  var thS = 'padding:7px 8px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1.5px;text-align:';
-  var tdS = 'padding:7px 8px;font-family:IBM Plex Mono,monospace;font-size:10px;text-align:';
-  var bigS= 'padding:7px 8px;font-family:Plus Jakarta Sans,sans-serif;font-size:14px;text-align:';
+  // ── View state — which phases are visible ──
+  var pv   = projPhaseView||'p1';
+  var sP1  = pv==='p1'||pv==='combined';
+  var sP2  = pv==='p2'||pv==='combined';
+  var sSoc = socialActive;
+  var pvTitle = pv==='p1'?'📌 PHASE 1 ONLY — Priority Ages ('+p1TgtFull.toLocaleString()+' listings)'
+               :pv==='p2'?'📦 PHASE 2 ONLY — Long-Tail Ages ('+p2Tgt.toLocaleString()+' listings)'
+               :'🏆 PHASE 1 + PHASE 2 COMBINED — Full $30K Path';
+
+  // ── Pace scenario cards ──
+  var scenarios=[
+    {lbl:'SLOW',      p1:1,       p2:1,       c:'var(--mid)',    note:'1/day each'},
+    {lbl:'STEADY',    p1:3,       p2:2,       c:'var(--rust2)',  note:'P1: 3 · P2: 2/day'},
+    {lbl:'YOUR PACE', p1:p1Daily, p2:p2Daily, c:'var(--gold)',   note:'P1: '+p1Daily+' · P2: '+p2Daily+'/day ★'},
+    {lbl:'STRONG',    p1:10,      p2:5,       c:'var(--green3)', note:'P1: 10 · P2: 5/day'},
+    {lbl:'SPRINT',    p1:15,      p2:8,       c:'var(--teal)',   note:'P1: 15 · P2: 8/day'}
+  ];
+  var seen={};
+  scenarios=scenarios.filter(function(s){var k=s.p1+'-'+s.p2;if(seen[k])return false;seen[k]=true;return true;});
+
+  var grid=document.getElementById('projGrid');
+  if(grid){
+    grid.innerHTML=scenarios.map(function(s){
+      var p1L   = Math.min(p1Tgt, Math.round(live+s.p1*daysLeft));
+      var p2L   = Math.min(p2Tgt, Math.round(s.p2*daysLeft));
+      var p1RE  = p1Rpl*Math.pow(1+rplGrowth,daysLeft/30);
+      var p2RE  = p2Rpl*Math.pow(1+rplGrowth,daysLeft/30);
+      var p1Grs = Math.round(p1L*p1RE);
+      var p2Grs = Math.round(p2L*p2RE);
+      var p1Pr  = Math.round(p1Grs*netMgn-fixedCosts);
+      var p2Pr  = Math.round(p2Grs*netMgn);
+      var socQ4 = Math.round(socPBase*qMults[3]);
+      var disp  = (sP1?p1Pr:0)+(sP2?p2Pr:0)+(sSoc?socQ4:0);
+      var dispMYR = Math.round(disp*fxRate);
+      var hit30=disp>=30000, hit15=disp>=15000;
+      var isTgt=s.p1===p1Daily&&s.p2===p2Daily;
+      return '<div class="pcell" style="border-top:3px solid '+s.c+';position:relative;'
+        +(isTgt?'border:2px solid var(--gold);border-top:4px solid var(--gold);background:rgba(201,151,58,.06);':'')+'\">'
+        +(hit30?'<div style="position:absolute;top:5px;right:7px;font-size:11px;">🏆</div>'
+              :hit15?'<div style="position:absolute;top:5px;right:7px;font-size:10px;">🎯</div>':'')
+        +'<span class="pval" style="color:'+s.c+';">$'+disp.toLocaleString()+'<span style="font-size:9px;color:var(--mid);">/mo profit</span></span>'
+        +'<span class="plbl">'+s.lbl+'</span>'
+        +'<span class="psub">'+s.note+'</span>'
+        +'<div style="margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:3px;font-size:9px;color:var(--mid);padding-top:5px;border-top:1px solid rgba(255,255,255,.06);">'
+        +(sP1
+          ?'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--gold2);">'+p1L.toLocaleString()+'</div>P1 listings</div>'
+           +'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--green3);">$'+p1Pr.toLocaleString()+'</div>P1 profit</div>'
+          :'')
+        +(sP2
+          ?'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--teal);">'+p2L.toLocaleString()+'</div>P2 listings</div>'
+           +'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--teal);">$'+p2Pr.toLocaleString()+'</div>P2 profit</div>'
+          :'')
+        +(sSoc
+          ?'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:#9b59b6;">+$'+socQ4.toLocaleString()+'</div>social Q4</div>'
+          :'<div><div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;color:var(--mid);">+ social</div>add above ↑</div>')
+        +'<div style="grid-column:span 2;padding-top:3px;border-top:1px solid rgba(255,255,255,.04);">'
+          +'<div style="font-family:Plus Jakarta Sans,sans-serif;font-size:13px;color:var(--teal);">RM'+dispMYR.toLocaleString()+'</div>total in MYR</div>'
+        +'</div></div>';
+    }).join('');
+  }
+
+  var thS='padding:7px 8px;font-family:Plus Jakarta Sans,sans-serif;font-size:9px;letter-spacing:1.5px;text-align:';
+  var tdS='padding:7px 8px;font-family:IBM Plex Mono,monospace;font-size:10px;text-align:';
+  var bgS='padding:7px 8px;font-family:Plus Jakarta Sans,sans-serif;font-size:14px;text-align:';
 
   // ══ QUARTERLY TABLE ══
-  var qHtml =
-    '<div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:8px 0 4px;">📅 QUARTERLY PROFIT — '+dailyPace+'/day ETSY'+(socialActive?' + SOCIAL MARKETING':'')+' — ROAD TO $30K</div>'
-    +(socialActive ? '<div style="font-size:9px;color:#9b59b6;margin-bottom:8px;">Social revenue uses your <strong>real Etsy conversion rate ('+Math.round(realConvRate*1000)/10+'%)</strong> applied to social traffic. Audience grows ×'+mktAudMult+' per quarter.</div>' : '<div style="font-size:9px;color:var(--mid);margin-bottom:8px;">Add IG Reels + Pinterest in section ④ above to see social revenue stacked here.</div>')
-    +'<div style="overflow-x:auto;margin-bottom:4px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:'+(socialActive?'820':'640')+'px;">'
+  var pNote = sP1&&sP2
+    ? 'P1: $'+p1Rpl.toFixed(2)+'/listing ('+p1Daily+'/day) · P2: $'+p2Rpl.toFixed(2)+'/listing ('+p2Daily+'/day = P1×'+Math.round(p2DemandFrac*100)+'% demand)'
+    : sP1 ? '1,376 Phase 1 listings at $'+p1Rpl.toFixed(2)+'/listing/mo · '+p1Daily+'/day pace'
+          : p2Tgt.toLocaleString()+' Phase 2 listings at $'+p2Rpl.toFixed(2)+'/listing/mo ('+Math.round(p2DemandFrac*100)+'% of P1 demand) · '+p2Daily+'/day';
+
+  var qHtml=
+    '<div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:8px 0 6px;">📅 QUARTERLY PROFIT — '+pvTitle+'</div>'
+    +'<div style="font-size:9px;color:var(--mid);margin-bottom:10px;">'+pNote+(sSoc?' + social marketing':'')+'</div>'
+    +'<div style="overflow-x:auto;margin-bottom:4px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:680px;">'
     +'<thead><tr style="border-bottom:2px solid var(--gold);">'
     +'<th style="'+thS+'left;color:var(--gold);">QUARTER</th>'
     +'<th style="'+thS+'center;color:var(--mid);">DAYS</th>'
-    +'<th style="'+thS+'right;color:var(--mid);">+ADDED</th>'
-    +'<th style="'+thS+'right;color:var(--mid);">TOTAL LIVE</th>'
-    +'<th style="'+thS+'right;color:var(--gold2);">ETSY GROSS/MO<br><span style="font-size:7px;font-weight:400;letter-spacing:0;">(end of Q)</span></th>'
-    +'<th style="'+thS+'right;color:var(--rust2);">FEES+COSTS</th>'
-    +'<th style="'+thS+'right;color:var(--green3);">ETSY PROFIT/MO</th>'
-    +(socialActive ? '<th style="'+thS+'right;color:#9b59b6;">SOCIAL PROFIT/MO<br><span style="font-size:7px;font-weight:400;letter-spacing:0;">audience ×mult</span></th>' : '')
-    +'<th style="'+thS+'right;color:var(--teal);">TOTAL PROFIT/MO</th>'
-    +'<th style="'+thS+'right;color:var(--cream2);">QUARTER TOTAL</th>'
+    +(sP1
+      ?'<th style="'+thS+'right;color:var(--gold2);">P1<br><span style="font-size:8px;font-weight:400;">+added</span></th>'
+       +'<th style="'+thS+'right;color:var(--gold2);">P1<br><span style="font-size:8px;font-weight:400;">live</span></th>'
+       +'<th style="'+thS+'right;color:var(--gold2);">P1 GROSS/MO<br><span style="font-size:7px;font-weight:400;">(end of Q)</span></th>'
+       +'<th style="'+thS+'right;color:var(--green3);">P1 PROFIT/MO</th>'
+      :'')
+    +(sP2
+      ?'<th style="'+thS+'right;color:var(--teal);">P2<br><span style="font-size:8px;font-weight:400;">+added</span></th>'
+       +'<th style="'+thS+'right;color:var(--teal);">P2<br><span style="font-size:8px;font-weight:400;">live</span></th>'
+       +'<th style="'+thS+'right;color:var(--teal);">P2 GROSS/MO<br><span style="font-size:7px;font-weight:400;">(end of Q)</span></th>'
+       +'<th style="'+thS+'right;color:var(--teal);">P2 PROFIT/MO</th>'
+      :'')
+    +(sSoc?'<th style="'+thS+'right;color:#9b59b6;">SOCIAL/MO</th>':'')
+    +'<th style="'+thS+'right;color:var(--cream2);">TOTAL/MO</th>'
+    +'<th style="'+thS+'right;color:var(--cream2);">Q TOTAL</th>'
     +'</tr></thead><tbody>'
     +qData.map(function(q){
-      var tp = q.endTotalProfit;
-      var hit30=tp>=30000, hit15=tp>=15000, hit5=tp>=5000;
-      var profColor = tp<0?'var(--rust2)':hit30?'var(--teal)':hit15?'var(--green3)':hit5?'var(--gold2)':'var(--cream2)';
-      var bg = hit30?'rgba(78,205,196,.06)':hit15?'rgba(45,122,80,.06)':hit5?'rgba(201,151,58,.04)':'';
-      var suf = hit30?' 🏆':hit15?' 🎯':hit5?' 📈':'';
-      var allPast = q.qDays===0;
-      var feesAndCosts = q.qFees + q.qFixed;
-      return '<tr style="border-bottom:2px solid var(--ink3);background:'+bg+(allPast?';opacity:.35':'')+'">'
-        +'<td style="'+thS+'left;color:'+q.color+';font-size:14px;">'+q.label
+      var disp=(sP1?q.p1PrEnd:0)+(sP2?q.p2PrEnd:0)+(sSoc?q.socPrEnd:0);
+      var h30=disp>=30000,h15=disp>=15000,h5=disp>=5000;
+      var pc=disp<0?'var(--rust2)':h30?'var(--teal)':h15?'var(--green3)':h5?'var(--gold2)':'var(--cream2)';
+      var bg=h30?'rgba(78,205,196,.06)':h15?'rgba(45,122,80,.06)':h5?'rgba(201,151,58,.04)':'';
+      var sf=h30?' 🏆':h15?' 🎯':h5?' 📈':'';
+      var past=q.qDays===0;
+      var qDisp=(sP1?q.p1QPr:0)+(sP2?q.p2QPr:0)+(sSoc?q.socQPr:0);
+      return '<tr style="border-bottom:2px solid var(--ink3);background:'+bg+(past?';opacity:.35':'')+'">'
+        +'<td style="'+thS+'left;color:'+q.color+';font-size:14px;">'+q.lbl
           +'<div style="font-size:8px;color:var(--mid);font-family:IBM Plex Mono,monospace;">'
-          +q.months.map(function(m){return m.name.split(' ')[0]+(m.isPast?' ✓':m.effDays>0?' ('+m.effDays+'d)':'');}).join(' · ')+'</div></td>'
+          +q.mths.map(function(m){return m.name.split(' ')[0]+(m.isPast?' ✓':m.eff>0?' ('+m.eff+'d)':'');}).join(' · ')+'</div></td>'
         +'<td style="'+tdS+'center;color:var(--mid);">'+q.qDays+'d</td>'
-        +'<td style="'+tdS+'right;color:var(--gold2);">+'+q.qAdded+'</td>'
-        +'<td style="'+tdS+'right;color:var(--cream2);">'+q.cumLive.toLocaleString()+'</td>'
-        +'<td style="'+bigS+'right;color:var(--gold2);">$'+q.endGrossEtsy.toLocaleString()+'</td>'
-        +'<td style="'+tdS+'right;color:var(--rust2);">-$'+feesAndCosts.toLocaleString()+'</td>'
-        +'<td style="'+bigS+'right;color:var(--green3);">$'+q.endProfitEtsy.toLocaleString()+'</td>'
-        +(socialActive
-          ? '<td style="'+bigS+'right;color:#9b59b6;">+$'+q.endSocProfit.toLocaleString()
-              +'<div style="font-size:8px;font-family:IBM Plex Mono,monospace;color:var(--mid);">×'+q.qMult.toFixed(1)+' audience</div></td>'
-          : '')
-        +'<td style="'+bigS+'right;color:'+profColor+';">$'+tp.toLocaleString()+suf+'</td>'
-        +'<td style="'+bigS+'right;color:var(--cream2);">$'+q.qTotalProfit.toLocaleString()
-          +'<div style="font-size:8px;color:var(--teal);">RM'+q.qProfitMYR.toLocaleString()+'</div></td>'
+        +(sP1
+          ?'<td style="'+tdS+'right;color:var(--gold2);">+'+q.p1Add+'</td>'
+           +'<td style="'+tdS+'right;color:var(--gold2);">'+q.p1Cum.toLocaleString()+'</td>'
+           +'<td style="'+bgS+'right;color:var(--gold2);">$'+q.p1GrsEnd.toLocaleString()+'</td>'
+           +'<td style="'+bgS+'right;color:var(--green3);">$'+q.p1PrEnd.toLocaleString()+'</td>'
+          :'')
+        +(sP2
+          ?'<td style="'+tdS+'right;color:var(--teal);">+'+q.p2Add+'</td>'
+           +'<td style="'+tdS+'right;color:var(--teal);">'+q.p2Cum.toLocaleString()+'</td>'
+           +'<td style="'+bgS+'right;color:var(--teal);">$'+q.p2GrsEnd.toLocaleString()+'</td>'
+           +'<td style="'+bgS+'right;color:var(--teal);">$'+q.p2PrEnd.toLocaleString()+'</td>'
+          :'')
+        +(sSoc?'<td style="'+bgS+'right;color:#9b59b6;">+$'+q.socPrEnd.toLocaleString()+'<div style="font-size:8px;color:var(--mid);">×'+q.qm.toFixed(1)+'</div></td>':'')
+        +'<td style="'+bgS+'right;color:'+pc+';">$'+disp.toLocaleString()+sf+'</td>'
+        +'<td style="'+bgS+'right;color:var(--cream2);">$'+qDisp.toLocaleString()+'<div style="font-size:8px;color:var(--teal);">RM'+Math.round(qDisp*fxRate).toLocaleString()+'</div></td>'
         +'</tr>';
     }).join('')
     +'<tr style="border-top:2px solid var(--gold);background:rgba(201,151,58,.08);">'
-    +'<td style="'+thS+'left;color:var(--gold);font-size:12px;" colspan="4">FULL YEAR 2026</td>'
-    +'<td style="'+bigS+'right;color:var(--gold2);">$'+annualGrossEtsy.toLocaleString()+'</td>'
-    +'<td style="'+tdS+'right;color:var(--rust2);">-$'+(annualFees+annualFixed).toLocaleString()+'</td>'
-    +'<td style="'+bigS+'right;color:var(--green3);">$'+annualProfitEtsy.toLocaleString()+'</td>'
-    +(socialActive
-      ? '<td style="'+bigS+'right;color:#9b59b6;">+$'+annualSocProfit.toLocaleString()+'</td>'
-      : '')
-    +'<td style="'+bigS+'right;color:'+(annualTotalProfit>=200000?'var(--teal)':annualTotalProfit>=100000?'var(--green3)':'var(--gold2)')+';">$'+annualTotalProfit.toLocaleString()+'</td>'
-    +'<td style="font-family:Plus Jakarta Sans,sans-serif;font-size:18px;text-align:right;padding:7px 8px;color:var(--teal);">RM'+annualMYR.toLocaleString()+'</td>'
+    +'<td style="'+thS+'left;color:var(--gold);font-size:12px;" colspan="2">FULL YEAR 2026</td>'
+    +(sP1?'<td colspan="2" style="'+tdS+'center;color:var(--gold2);">P1 year gross: $'+annP1Grs.toLocaleString()+'</td><td style="'+bgS+'right;color:var(--gold2);">$'+annP1Grs.toLocaleString()+'</td><td style="'+bgS+'right;color:var(--green3);">$'+annP1Pr.toLocaleString()+'</td>':'')
+    +(sP2?'<td colspan="2" style="'+tdS+'center;color:var(--teal);">P2 year gross: $'+annP2Grs.toLocaleString()+'</td><td style="'+bgS+'right;color:var(--teal);">$'+annP2Grs.toLocaleString()+'</td><td style="'+bgS+'right;color:var(--teal);">$'+annP2Pr.toLocaleString()+'</td>':'')
+    +(sSoc?'<td style="'+bgS+'right;color:#9b59b6;">$'+annSocPr.toLocaleString()+'</td>':'')
+    +'<td style="'+bgS+'right;color:var(--teal);">$'+annComb.toLocaleString()+'</td>'
+    +'<td style="font-family:Plus Jakarta Sans,sans-serif;font-size:18px;text-align:right;padding:7px 8px;color:var(--teal);">RM'+annMYR.toLocaleString()+'</td>'
     +'</tr></tbody></table></div>';
 
-  var qtEl = document.getElementById('projTable');
-  if(qtEl) qtEl.innerHTML = qHtml;
+  var qtEl=document.getElementById('projTable');
+  if(qtEl) qtEl.innerHTML=qHtml;
 
   // ══ MONTHLY TABLE ══
-  var mHtml =
-    '<div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:20px 0 4px;">📆 MONTH-BY-MONTH PROFIT BREAKDOWN</div>'
-    +'<div style="font-size:9px;color:var(--mid);margin-bottom:8px;">Rev/listing grows +'+Math.round(rplGrowth*100)+'%/mo (shop authority). '
-    +(socialActive ? 'Social audience grows ×'+mktAudMult+' per quarter. Conv rate: '+Math.round(realConvRate*1000)/10+'% (from your real Etsy data). ' : '')
-    +'Profit = Gross − Etsy Fees ('+Math.round(etsyFeePct*100)+'%) − Fixed Costs ($'+Math.round(fixedCosts)+'/mo).</div>'
-    +'<div style="overflow-x:auto;margin-bottom:20px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:'+(socialActive?'820':'640')+'px;">'
+  var mHtml=
+    '<div style="font-family:Plus Jakarta Sans,sans-serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin:20px 0 4px;">📆 MONTH-BY-MONTH — '+pvTitle+'</div>'
+    +'<div style="font-size:9px;color:var(--mid);margin-bottom:8px;">'
+    +'RPL grows +'+Math.round(rplGrowth*100)+'%/mo (shop authority). '
+    +(sP1&&sP2?'P1 $'+p1Rpl.toFixed(2)+' · P2 $'+p2Rpl.toFixed(2)+'/listing. ':'')
+    +(sSoc?'Social ×'+mktAudMult+'/quarter. ':'')
+    +'Profit = Gross − Etsy fees ('+Math.round(etsyFeePct*100)+'%) − fixed costs $'+Math.round(fixedCosts)+'/mo (P1 only).</div>'
+    +'<div style="overflow-x:auto;margin-bottom:20px;"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:680px;">'
     +'<thead><tr style="border-bottom:2px solid var(--gold);">'
     +'<th style="'+thS+'left;color:var(--gold);">MONTH</th>'
     +'<th style="'+thS+'center;color:var(--mid);">DAYS</th>'
-    +'<th style="'+thS+'right;color:var(--mid);">+ADDED</th>'
-    +'<th style="'+thS+'right;color:var(--mid);">LIVE</th>'
-    +'<th style="'+thS+'right;color:var(--gold2);">ETSY GROSS</th>'
-    +'<th style="'+thS+'right;color:var(--rust2);">FEES+COSTS</th>'
-    +'<th style="'+thS+'right;color:var(--green3);">ETSY PROFIT</th>'
-    +(socialActive ? '<th style="'+thS+'right;color:#9b59b6;">SOCIAL REV</th><th style="'+thS+'right;color:#9b59b6;">SOCIAL PROFIT</th>' : '')
-    +'<th style="'+thS+'right;color:var(--teal);">TOTAL PROFIT</th>'
-    +'<th style="'+thS+'right;color:var(--cream2);">IN MYR</th>'
+    +(sP1
+      ?'<th style="'+thS+'right;color:var(--gold2);">P1 LIVE</th>'
+       +'<th style="'+thS+'right;color:var(--gold2);">P1 RPL</th>'
+       +'<th style="'+thS+'right;color:var(--gold2);">P1 GROSS</th>'
+       +'<th style="'+thS+'right;color:var(--green3);">P1 PROFIT</th>'
+      :'')
+    +(sP2
+      ?'<th style="'+thS+'right;color:var(--teal);">P2 LIVE</th>'
+       +'<th style="'+thS+'right;color:var(--teal);">P2 RPL</th>'
+       +'<th style="'+thS+'right;color:var(--teal);">P2 GROSS</th>'
+       +'<th style="'+thS+'right;color:var(--teal);">P2 PROFIT</th>'
+      :'')
+    +(sSoc?'<th style="'+thS+'right;color:#9b59b6;">SOCIAL</th>':'')
+    +'<th style="'+thS+'right;color:var(--cream2);">TOTAL PROFIT</th>'
+    +'<th style="'+thS+'right;color:var(--cream2);">MYR</th>'
     +'</tr></thead><tbody>'
     +monthData.map(function(m){
-      var tp = m.totalProfit;
-      var profColor = tp<0?'var(--rust2)':tp>=30000?'var(--teal)':tp>=10000?'var(--green3)':tp>=5000?'var(--gold2)':'var(--cream2)';
-      var bg = tp>=30000?'rgba(78,205,196,.06)':tp>=15000?'rgba(45,122,80,.05)':tp>=5000?'rgba(201,151,58,.03)':'';
-      var suf = tp>=30000?' 🏆':tp>=15000?' 🎯':tp>=5000?' 📈':'';
-      var qc = qColors[m.qi];
-      var fc = m.etsyFee + m.fixedCosts;
+      var disp=(sP1?m.p1Pr:0)+(sP2?m.p2Pr:0)+(sSoc?m.socPr:0);
+      var pc=disp<0?'var(--rust2)':disp>=30000?'var(--teal)':disp>=10000?'var(--green3)':disp>=5000?'var(--gold2)':'var(--cream2)';
+      var bg=disp>=30000?'rgba(78,205,196,.06)':disp>=15000?'rgba(45,122,80,.05)':disp>=5000?'rgba(201,151,58,.03)':'';
+      var sf=disp>=30000?' 🏆':disp>=15000?' 🎯':disp>=5000?' 📈':'';
+      var qc=qColors[m.qi];
       return '<tr style="border-bottom:1px solid var(--border);background:'+bg+(m.isPast?';opacity:.35':'')+'">'
         +'<td style="'+thS+'left;color:'+qc+';font-size:11px;">'+m.name+(m.isPast?' <span style="font-size:8px;color:var(--mid);">(past)</span>':'')+'</td>'
-        +'<td style="'+tdS+'center;color:var(--mid);">'+m.effDays+'d</td>'
-        +'<td style="'+tdS+'right;color:var(--gold2);">+'+m.add+'</td>'
-        +'<td style="'+tdS+'right;color:var(--cream2);">'+m.cumLive.toLocaleString()+'</td>'
-        +'<td style="'+bigS+'right;color:var(--gold2);">$'+m.grossEtsy.toLocaleString()+'</td>'
-        +'<td style="'+tdS+'right;color:var(--rust2);">-$'+fc.toLocaleString()+'</td>'
-        +'<td style="'+bigS+'right;color:var(--green3);">$'+m.profitEtsy.toLocaleString()+'</td>'
-        +(socialActive
-          ? '<td style="'+tdS+'right;color:#9b59b6;">+$'+m.socRevMo.toLocaleString()+'<div style="font-size:7px;color:var(--mid);">×'+m.qMult.toFixed(1)+'</div></td>'
-           +'<td style="'+bigS+'right;color:#9b59b6;">+$'+m.socProfMo.toLocaleString()+'</td>'
-          : '')
-        +'<td style="'+bigS+'right;color:'+profColor+';">$'+tp.toLocaleString()+suf+'</td>'
-        +'<td style="'+bigS+'right;color:var(--teal);">RM'+m.profitMYR.toLocaleString()+'</td>'
+        +'<td style="'+tdS+'center;color:var(--mid);">'+m.eff+'d</td>'
+        +(sP1
+          ?'<td style="'+tdS+'right;color:var(--gold2);">'+m.p1Cum.toLocaleString()+'</td>'
+           +'<td style="'+tdS+'right;color:var(--mid);">$'+m.p1RplMo.toFixed(2)+'</td>'
+           +'<td style="'+bgS+'right;color:var(--gold2);">$'+m.p1Grs.toLocaleString()+'</td>'
+           +'<td style="'+bgS+'right;color:var(--green3);">$'+m.p1Pr.toLocaleString()+'</td>'
+          :'')
+        +(sP2
+          ?'<td style="'+tdS+'right;color:var(--teal);">'+m.p2Cum.toLocaleString()+'</td>'
+           +'<td style="'+tdS+'right;color:var(--mid);">$'+m.p2RplMo.toFixed(2)+'</td>'
+           +'<td style="'+bgS+'right;color:var(--teal);">$'+m.p2Grs.toLocaleString()+'</td>'
+           +'<td style="'+bgS+'right;color:var(--teal);">$'+m.p2Pr.toLocaleString()+'</td>'
+          :'')
+        +(sSoc?'<td style="'+tdS+'right;color:#9b59b6;">+$'+m.socPr.toLocaleString()+'<div style="font-size:7px;color:var(--mid);">×'+m.qm.toFixed(1)+'</div></td>':'')
+        +'<td style="'+bgS+'right;color:'+pc+';">$'+disp.toLocaleString()+sf+'</td>'
+        +'<td style="'+bgS+'right;color:var(--teal);">RM'+m.combMYR.toLocaleString()+'</td>'
         +'</tr>';
     }).join('')
     +'</tbody></table></div>';
 
-  var mtEl = document.getElementById('projMonthTable');
-  if(mtEl) mtEl.innerHTML = mHtml;
+  var mtEl=document.getElementById('projMonthTable');
+  if(mtEl) mtEl.innerHTML=mHtml;
 }
+
 
 function metricBox(val,lbl,cls){
   var c=cls==='c-gold'?'var(--gold)':cls==='c-green'?'var(--green3)':cls==='c-teal'?'var(--teal)':cls==='c-rust'?'var(--rust2)':cls==='c-purple'?'#9b59b6':'var(--mid)';
@@ -5667,7 +5926,7 @@ function _seedToolkit(){
     // Listing
     {step:'listing',type:'prompt',platform:'claude',name:'Claude — Etsy SEO Title Generator',url:'',desc:'Generates 5 keyword-rich Etsy listing titles. Paste the best one.',content:'Write 5 Etsy listing titles for a digital birthday newspaper poster for a [N]th birthday [Black/Jamaican/Caribbean] edition. Rules: max 140 chars, lead with highest-search keyword, include: "personalised", "digital download", age, cultural identity. Vary the order across the 5 options.'},
     {step:'listing',type:'prompt',platform:'claude',name:'Claude — Etsy Description Writer',url:'',desc:'Full listing description with sections for Etsy SEO.',content:'Write a complete Etsy product description for a personalised [N]th birthday newspaper poster (digital download) for the [Black/Jamaican/UK Caribbean] community. Include: opening hook, what\'s included, customisation options, print instructions, why they\'ll love it, 3 FAQs. Tone: warm, professional, culturally aware. End with 10 SEO tags.'},
-    {step:'listing',type:'checklist',platform:'',name:'Pre-Publish Checklist',url:'',desc:'Run through this before every listing goes live.',content:'PRE-PUBLISH CHECKLIST:\n□ Title has main keyword in first 40 chars\n□ 10 tags filled (all unique, all relevant)\n□ 5+ photos including lifestyle mockup\n□ Price set correctly ($12.95 DL / $19.95 Custom)\n□ Instant download file attached (for DL type)\n□ Custom order settings correct (for Custom type)\n□ Description has both short + long keyword variations\n□ Category: Prints > Digital Prints'},
+    {step:'listing',type:'checklist',platform:'',name:'Pre-Publish Checklist',url:'',desc:'Run through this before every listing goes live.',content:'PRE-PUBLISH CHECKLIST:\n□ Title has main keyword in first 40 chars\n□ 10 tags filled (all unique, all relevant)\n□ 5+ photos including lifestyle mockup\n□ Price set correctly ($9.99 DL / $17.99 Custom)\n□ Instant download file attached (for DL type)\n□ Custom order settings correct (for Custom type)\n□ Description has both short + long keyword variations\n□ Category: Prints > Digital Prints'},
     // Social
     {step:'social',type:'prompt',platform:'claude',name:'Claude — IG Reel Script (Birthday)',url:'',desc:'AI video script for Instagram Reels promoting birthday poster.',content:'Write a 30-second Instagram Reel script for a birthday newspaper poster targeting the Black community. Format: [Hook 3s] [Problem/desire 5s] [Product reveal 8s] [Features 8s] [CTA 6s]. Hook must be culturally resonant — something that makes a Black British/Caribbean/American person stop scrolling. CTA: "Link in bio" + urgency.'},
     {step:'social',type:'prompt',platform:'claude',name:'Claude — Pinterest Pin Description',url:'',desc:'SEO-optimised Pinterest pin description.',content:'Write a Pinterest pin description for a [N]th birthday newspaper poster (digital download) targeting [Black/Jamaican/Caribbean] buyers. Include: emotional hook, what it is, customisation, 5 relevant hashtags. Max 500 chars. Lead with the most searchable phrase.'},
@@ -5875,6 +6134,14 @@ var VIEWS=['today','money','pipeline','projections','ideas','toolkit','seo','aut
 function mobileNavSelect(btn){
   document.querySelectorAll('#mobileNav .mnav-btn').forEach(function(b){b.classList.remove('on');});
   if(btn&&btn.classList.contains('mnav-btn'))btn.classList.add('on');
+}
+
+// Helper called by Today strategy cards to jump to pipeline with version filter set
+function goToPipelineV(ver){
+  showView('pipeline');
+  var sel = document.getElementById('fSelVer');
+  if(sel){ sel.value = ver; }
+  applyFilters();
 }
 
 function showView(name,tabEl){
@@ -7242,16 +7509,8 @@ function addWin(){
 }
 
 // ════════════════════════════════════════════
-// REAL DATA SYNC (keep deadlines for backward compat)
+// REAL DATA SYNC
 // ════════════════════════════════════════════
-function saveDeadlines(){
-  var eA=document.getElementById('deadlineA');
-  var eB=document.getElementById('deadlineB');
-  if(eA)misc.deadlineA=eA.value;
-  if(eB)misc.deadlineB=eB.value;
-  saveMisc();
-}
-function renderDeadlines(){}  // kept for backward compat — pace cards replace this visually
 
 // ════════════════════════════════════════════
 function syncRealDataInputs(){
@@ -7396,7 +7655,7 @@ function renderPtypePanel(edId, ptype){
   var variations=ae[ptype]||[];
   var isCustom=ptype==='custom';
   var typeColor=isCustom?'var(--gold)':'var(--teal)';
-  var typeLabel=isCustom?'Custom Poster &#x2014; $19.95':'Instant Download &#x2014; $12.95';
+  var typeLabel=isCustom?'Custom Poster &#x2014; $17.99':'Instant Download &#x2014; $9.99';
   var typeDesc=isCustom
     ?'Personalised poster. Each order needs buyer\'s name, year, preferences.'
     :'Evergreen poster. No personalisation &#x2014; fully passive income.';
@@ -7740,6 +7999,7 @@ function init(){
   calcGap();
   checkStuckListings();
   renderTodayTasks();
+  setTodayPhase(misc.todayPhase||1);
   renderFocusChips();
   renderConsistencyMsg();
   renderScorecard();
@@ -7756,7 +8016,7 @@ function init(){
   renderSprintPanel();
   // Initialise phase bar text for Phase 1 (default)
   var phBar=document.getElementById('phaseBar');
-  if(phBar)phBar.innerHTML='<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">608 priority listings</span>: highest-demand ages across all editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of your $10K goal.';
+  if(phBar)phBar.innerHTML='<strong style="color:var(--gold);">⭐ Phase 1</strong> — <span style="color:var(--cream2);">1,376 priority listings</span>: highest-demand ages across V1/V2/V3 top-country editions. <strong style="color:var(--gold2);">Do these first</strong> — they drive 80% of your $10K goal.';
 
   // Bottom bar date
   var bd=document.getElementById('bbDate');
