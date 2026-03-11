@@ -1292,6 +1292,15 @@ table.tbl         { font-size: 13px; }
   <button class="mnav-btn" onclick="showView('automation',this);mobileNavSelect(this)">
     <span class="mnav-icon">⚙️</span><span class="mnav-lbl">Automate</span>
   </button>
+  <button class="mnav-btn" onclick="showView('lfp',this);mobileNavSelect(this)">
+    <span class="mnav-icon">🏛️</span><span class="mnav-lbl">Legacy FP</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('yaw',this);mobileNavSelect(this)">
+    <span class="mnav-icon">🎨</span><span class="mnav-lbl">YAW P1</span>
+  </button>
+  <button class="mnav-btn" onclick="showView('hg',this);mobileNavSelect(this)">
+    <span class="mnav-icon">🏠</span><span class="mnav-lbl">HG P1</span>
+  </button>
 </div>
 
 <!-- HEADER -->
@@ -1306,6 +1315,9 @@ table.tbl         { font-size: 13px; }
     <button class="ntab" onclick="showView('toolkit',this)">🧰 Toolkit &amp; Prompts</button>
     <button class="ntab" onclick="showView('seo',this)">🔍 SEO</button>
     <button class="ntab" onclick="showView('automation',this)">⚙️ Automate</button>
+    <button class="ntab" onclick="showView('lfp',this)">🏛️ Legacy FP</button>
+    <button class="ntab" onclick="showView('yaw',this)">🎨 YAW P1</button>
+    <button class="ntab" onclick="showView('hg',this)">🏠 HomeGriot P1</button>
   </nav>
 </div>
 
@@ -1556,6 +1568,34 @@ table.tbl         { font-size: 13px; }
         <div class="pace-sub" id="paceMonthMsg">Loading…</div>
         <div class="pace-progress"><div class="pace-progress-fill" id="paceMonthBar" style="width:0%;background:var(--teal);"></div></div>
       </div>
+    </div>
+
+    <!-- ④ VELOCITY TREND + TOP 3 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+
+      <!-- Velocity card -->
+      <div class="pace-card neutral" id="velocityCard" style="position:relative;">
+        <div class="pace-title">📈 VELOCITY — WEEK OVER WEEK</div>
+        <div style="display:flex;align-items:baseline;gap:6px;margin:4px 0;">
+          <div style="font-size:26px;font-weight:700;" id="velThisWeek">0</div>
+          <div style="font-size:11px;color:var(--mid);">this wk</div>
+          <div style="font-size:16px;color:var(--mid);margin:0 2px;">vs</div>
+          <div style="font-size:22px;font-weight:700;color:var(--mid);" id="velLastWeek">0</div>
+          <div style="font-size:11px;color:var(--mid);">last wk</div>
+        </div>
+        <div style="font-size:11px;font-weight:600;margin-top:2px;" id="velDelta">—</div>
+        <div style="font-size:9px;color:var(--mid);margin-top:4px;" id="vel7DayAvg">7-day avg: —</div>
+        <div style="height:3px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden;">
+          <div id="velBar" style="height:100%;width:50%;background:var(--gold);border-radius:2px;transition:width .4s;"></div>
+        </div>
+      </div>
+
+      <!-- Top 3 this week card -->
+      <div class="pace-card neutral" style="padding:10px 12px;">
+        <div class="pace-title">🎯 TOP 3 NEXT — HIGHEST IMPACT</div>
+        <div id="top3List" style="display:flex;flex-direction:column;gap:5px;margin-top:6px;"></div>
+      </div>
+
     </div>
 
     <!-- MAIN 2-COL -->
@@ -2815,31 +2855,856 @@ table.tbl         { font-size: 13px; }
 
 </div>
 <!-- END AUTOMATION TAB -->
-<!-- BOTTOM BAR -->
-<div class="bottom-bar">
-  <div>
-    <div class="bb-stat" id="bbLive" style="color:var(--green3);">— live</div>
-    <div class="bb-label">listings</div>
-  </div>
-  <div style="width:1px;height:30px;background:var(--border);"></div>
-  <div>
-    <div class="bb-stat" id="bbRevEst" style="color:var(--gold2);">$—</div>
-    <div class="bb-label">est. monthly</div>
-  </div>
-  <div style="width:1px;height:30px;background:var(--border);"></div>
-  <div>
-    <div class="bb-stat" id="bbNeeded" style="color:var(--rust2);">— needed</div>
-    <div class="bb-label">$30K · Dec 31</div>
-  </div>
-  <div style="flex:1;"></div>
-  <div style="font-size:9px;color:var(--mid);font-family:IBM Plex Mono,monospace;" id="bbDate"></div>
-  <div style="font-size:9px;color:var(--mid);font-family:Plus Jakarta Sans,sans-serif;letter-spacing:1px;" id="bbProfile"></div>
-  <div style="width:1px;height:30px;background:var(--border);"></div>
-  <button class="btn btn-gold" onclick="showDoneForToday()" style="font-size:10px;padding:3px 10px;">✓ Done Today</button>
-  <button class="btn btn-mid" onclick="showRestDay()" style="font-size:10px;padding:3px 10px;">🌙 Rest Day</button>
-</div>
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- LEGACY FRONT PAGE TAB — Standalone, zero impact on other tabs  -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="v-lfp" style="display:none;padding:12px 8px 100px;">
 
-<div class="toast" id="toastEl"></div>
+  <!-- ── HEADER BANNER ── -->
+  <div style="background:linear-gradient(135deg,rgba(15,40,25,.95),rgba(8,25,18,1));border:1px solid #1a5c35;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div style="font-size:22px;">🏛️</div>
+      <div>
+        <div style="font-size:16px;font-weight:700;color:#e8d5a3;letter-spacing:.5px;">Legacy Front Page</div>
+        <div style="font-size:10px;color:#6a8f6a;letter-spacing:1.5px;text-transform:uppercase;margin-top:1px;">Shared Shop · Amir + Partner</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
+        <div style="background:rgba(45,122,80,.2);border:1px solid #2d7a50;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#4ecb82;" id="lfpStatLive">0</div>
+          <div style="font-size:8px;color:#5a8a6a;letter-spacing:1px;text-transform:uppercase;">Live</div>
+        </div>
+        <div style="background:rgba(201,151,58,.12);border:1px solid #c9973a;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#e8d5a3;" id="lfpStatTotal">238</div>
+          <div style="font-size:8px;color:#8a7a4a;letter-spacing:1px;text-transform:uppercase;">Total Goal</div>
+        </div>
+        <div style="background:rgba(78,203,130,.1);border:1px solid #2d7a50;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#4ecb82;" id="lfpStatRev">$0</div>
+          <div style="font-size:8px;color:#5a8a6a;letter-spacing:1px;text-transform:uppercase;">Est. /mo</div>
+        </div>
+        <div style="background:rgba(168,72,32,.12);border:1px solid #8b3a1e;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#e8a87c;" id="lfpStatRemain">238</div>
+          <div style="font-size:8px;color:#8a5a3a;letter-spacing:1px;text-transform:uppercase;">Remaining</div>
+        </div>
+      </div>
+    </div>
+    <!-- Progress bar -->
+    <div style="margin-top:10px;">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#5a7a5a;margin-bottom:3px;">
+        <span id="lfpProgPct">0% complete</span>
+        <span>Target: 238 listings · $1,859/mo at full scale</span>
+      </div>
+      <div style="height:6px;background:#0a1f12;border-radius:3px;overflow:hidden;">
+        <div id="lfpProgBar" style="height:100%;width:0%;background:linear-gradient(90deg,#2d7a50,#4ecb82);border-radius:3px;transition:width .5s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUB-TABS ── -->
+  <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;">
+    <button id="lfpTabTasks" class="btn" onclick="lfpShowSub('tasks',this)" style="font-size:11px;padding:6px 14px;background:var(--rust2);border-color:var(--rust2);">📌 Priority Tasks</button>
+    <button id="lfpTabPipeline" class="btn btn-mid" onclick="lfpShowSub('pipeline',this)" style="font-size:11px;padding:6px 14px;">📋 Pipeline</button>
+    <button id="lfpTabProjections" class="btn btn-mid" onclick="lfpShowSub('projections',this)" style="font-size:11px;padding:6px 14px;">📈 Projections</button>
+  </div>
+
+  <!-- ── SUB: PRIORITY TASKS ── -->
+  <div id="lfpSubTasks">
+
+    <!-- Real data inputs -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">📊 LFP Real Data (update weekly)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;">
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Monthly Revenue ($)</div>
+          <input type="number" id="lfpRevInput" placeholder="0" oninput="lfpSaveMisc();lfpRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Monthly Visits</div>
+          <input type="number" id="lfpVisitsInput" placeholder="0" oninput="lfpSaveMisc();lfpRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Live Listings</div>
+          <input type="number" id="lfpLiveInput" placeholder="0" oninput="lfpSaveMisc();lfpRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Daily Target</div>
+          <input type="number" id="lfpDailyInput" placeholder="3" oninput="lfpSaveMisc();lfpRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Today's mission -->
+    <div style="background:linear-gradient(135deg,rgba(201,151,58,.1),rgba(45,122,80,.08));border:1px solid #c9973a;border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">🎯 Today's Mission</div>
+        <div style="font-size:9px;color:var(--mid)" id="lfpTodayDate"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;">
+        <div><div style="font-size:24px;font-weight:700;color:var(--teal);" id="lfpTodayDone">0</div><div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Published<br>Today</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--gold);" id="lfpDailyTgt">3</div><div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Daily<br>Target</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--green3);" id="lfpAddedToday">+$0</div><div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">$ Added<br>Today</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--rust2);" id="lfpRemainToday">—</div><div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Still<br>Needed</div></div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:var(--cream2);line-height:1.5;" id="lfpMissionMsg">Set your daily target above to get started.</div>
+    </div>
+
+    <!-- Priority task list -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--rust2);text-transform:uppercase;">📌 Top Priority Listings</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <select id="lfpFilterEd" onchange="lfpRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Editions</option>
+            <option value="lfp_usa_gen">🇺🇸 USA Generic</option>
+            <option value="lfp_uk_gen">🇬🇧 UK Generic</option>
+            <option value="lfp_can_gen">🇨🇦 Canada Generic</option>
+            <option value="lfp_aus_gen">🇦🇺 Australia Generic</option>
+            <option value="lfp_usa_blk">🇺🇸 USA Black</option>
+            <option value="lfp_uk_blk">🇬🇧 UK Black</option>
+            <option value="lfp_can_blk">🇨🇦 Canada Black</option>
+          </select>
+          <select id="lfpFilterCat" onchange="lfpRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Types</option>
+            <option value="generic">Generic</option>
+            <option value="black">Black Community</option>
+          </select>
+          <select id="lfpFilterFmt" onchange="lfpRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Formats</option>
+            <option value="Custom">Custom</option>
+            <option value="Instant DL">Instant DL</option>
+          </select>
+          <select id="lfpFilterStatus" onchange="lfpRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="pending">Pending Only</option>
+            <option value="all">All</option>
+            <option value="live">Live Only</option>
+          </select>
+        </div>
+      </div>
+      <div id="lfpTaskList" style="display:flex;flex-direction:column;gap:4px;"></div>
+    </div>
+  </div>
+
+  <!-- ── SUB: PIPELINE ── -->
+  <div id="lfpSubPipeline" style="display:none;">
+
+    <!-- Bulk actions -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;flex:0 0 100%;">⚡ Batch Operations</div>
+      <select id="lfpBatchStage" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+        <option value="">Mark stage as done...</option>
+        <option value="facts">✓ Research & Facts</option>
+        <option value="canva">✓ Canva Design</option>
+        <option value="hero">✓ Hero Image</option>
+        <option value="mockup">✓ Mockup</option>
+        <option value="listing">✓ Etsy Listing Copy</option>
+        <option value="live">✓ Published Live</option>
+      </select>
+      <select id="lfpBatchAge" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+        <option value="">For age...</option>
+        <option value="1">1st</option><option value="16">16th</option><option value="18">18th</option>
+        <option value="21">21st</option><option value="25">25th</option><option value="30">30th</option>
+        <option value="35">35th</option><option value="40">40th</option><option value="45">45th</option>
+        <option value="50">50th</option><option value="55">55th</option><option value="60">60th</option>
+        <option value="65">65th</option><option value="70">70th</option><option value="75">75th</option>
+        <option value="80">80th</option><option value="90">90th</option>
+      </select>
+      <select id="lfpBatchEd" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+        <option value="">For edition...</option>
+        <option value="lfp_usa_gen">🇺🇸 USA Generic</option>
+        <option value="lfp_uk_gen">🇬🇧 UK Generic</option>
+        <option value="lfp_can_gen">🇨🇦 Canada Generic</option>
+        <option value="lfp_aus_gen">🇦🇺 Australia Generic</option>
+        <option value="lfp_usa_blk">🇺🇸 USA Black</option>
+        <option value="lfp_uk_blk">🇬🇧 UK Black</option>
+        <option value="lfp_can_blk">🇨🇦 Canada Black</option>
+      </select>
+      <button class="btn" onclick="lfpBatchMark()" style="font-size:10px;padding:5px 12px;background:var(--teal);border-color:var(--teal);">Apply Batch</button>
+      <button class="btn btn-mid" onclick="lfpRenderPipeline()" style="font-size:10px;padding:5px 12px;">Refresh</button>
+    </div>
+
+    <!-- Pipeline filters -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center;">
+      <select id="lfpPipeEd" onchange="lfpRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Editions</option>
+        <option value="lfp_usa_gen">🇺🇸 USA Gen</option>
+        <option value="lfp_uk_gen">🇬🇧 UK Gen</option>
+        <option value="lfp_can_gen">🇨🇦 CAN Gen</option>
+        <option value="lfp_aus_gen">🇦🇺 AUS Gen</option>
+        <option value="lfp_usa_blk">🇺🇸 USA Blk</option>
+        <option value="lfp_uk_blk">🇬🇧 UK Blk</option>
+        <option value="lfp_can_blk">🇨🇦 CAN Blk</option>
+      </select>
+      <select id="lfpPipeFmt" onchange="lfpRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Formats</option>
+        <option value="Custom">Custom</option>
+        <option value="Instant DL">Instant DL</option>
+      </select>
+      <select id="lfpPipeStatus" onchange="lfpRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Status</option>
+        <option value="not_started">Not Started</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Live ✓</option>
+      </select>
+      <div style="font-size:10px;color:var(--mid);margin-left:auto;" id="lfpPipeCount"></div>
+    </div>
+
+    <!-- Pipeline table -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;" id="lfpPipeTable">
+        <thead>
+          <tr style="background:var(--ink3);color:var(--mid);font-size:9px;letter-spacing:1px;text-transform:uppercase;">
+            <th style="padding:6px 8px;text-align:left;white-space:nowrap;">Age</th>
+            <th style="padding:6px 8px;text-align:left;white-space:nowrap;">Edition</th>
+            <th style="padding:6px 8px;text-align:left;white-space:nowrap;">Format</th>
+            <th style="padding:6px 4px;text-align:center;" title="Research & Facts">📚</th>
+            <th style="padding:6px 4px;text-align:center;" title="Canva Design">🎨</th>
+            <th style="padding:6px 4px;text-align:center;" title="Hero Image">🖼️</th>
+            <th style="padding:6px 4px;text-align:center;" title="Mockup">📐</th>
+            <th style="padding:6px 4px;text-align:center;" title="Listing Copy">✍️</th>
+            <th style="padding:6px 4px;text-align:center;" title="Published Live">🟢</th>
+            <th style="padding:6px 8px;text-align:center;">Status</th>
+          </tr>
+        </thead>
+        <tbody id="lfpPipeBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── SUB: PROJECTIONS ── -->
+  <div id="lfpSubProjections" style="display:none;">
+
+    <!-- Projections inputs -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">⚙️ Projection Settings</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Daily Publish Rate</div>
+          <input type="number" id="lfpProjDaily" value="3" oninput="lfpRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">RPL Estimate ($/listing/mo)</div>
+          <input type="number" id="lfpProjRpl" value="7.81" step="0.01" oninput="lfpRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Partner Split (%)</div>
+          <input type="number" id="lfpProjSplit" value="50" min="1" max="99" oninput="lfpRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Key projection metrics -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px;">
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--teal);" id="lfpProjDaysLeft">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Days to<br>Complete</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--gold);" id="lfpProjFullRev">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Full Scale<br>Revenue</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--green3);" id="lfpProjYourCut">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Your Share<br>(/mo)</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--rust2);" id="lfpProjRemain">238</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Listings<br>Remaining</div>
+      </div>
+    </div>
+
+    <!-- Milestone table -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">🏆 Revenue Milestones</div>
+      <div id="lfpMilestones"></div>
+    </div>
+
+    <!-- Edition breakdown -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;">📊 Progress by Edition</div>
+      <div id="lfpEdBreakdown"></div>
+    </div>
+  </div>
+
+</div>
+<!-- END LEGACY FRONT PAGE TAB -->
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- YOUARTWORTHY PHASE 1 TAB — zero coupling to main app or LFP -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="v-yaw" style="display:none;padding:12px 8px 100px;">
+
+  <!-- ── HEADER BANNER ── -->
+  <div style="background:linear-gradient(135deg,rgba(14,30,14,.97),rgba(8,20,8,1));border:1px solid #2a6a3a;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div style="font-size:22px;">🎨</div>
+      <div>
+        <div style="font-size:16px;font-weight:700;color:#a8e8b8;letter-spacing:.5px;">YouArtWorthy — Phase 1</div>
+        <div style="font-size:10px;color:#4a8a5a;letter-spacing:1.5px;text-transform:uppercase;margin-top:1px;">16 Priority Ages · 31 Editions · V1/V2/V3 · 976 listings</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
+        <div style="background:rgba(45,122,80,.15);border:1px solid #2d7a50;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#a8e8b8;" id="yawStatLive">0</div>
+          <div style="font-size:8px;color:#4a8a5a;letter-spacing:1px;text-transform:uppercase;">Live</div>
+        </div>
+        <div style="background:rgba(168,72,32,.12);border:1px solid #8b3a1e;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#e8a87c;" id="yawStatTotal">976</div>
+          <div style="font-size:8px;color:#8a5a3a;letter-spacing:1px;text-transform:uppercase;">P1 Goal</div>
+        </div>
+        <div style="background:rgba(45,122,80,.1);border:1px solid #2d7a50;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#4ecb82;" id="yawStatRev">$0</div>
+          <div style="font-size:8px;color:#5a8a6a;letter-spacing:1px;text-transform:uppercase;">Est. /mo</div>
+        </div>
+        <div style="background:rgba(201,151,58,.1);border:1px solid #6a5020;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#c9973a;" id="yawStatRemain">976</div>
+          <div style="font-size:8px;color:#8a6a3a;letter-spacing:1px;text-transform:uppercase;">Remaining</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#4a6a4a;margin-bottom:3px;">
+        <span id="yawProgPct">0% complete</span>
+        <span>Full P1: ~$7,623/mo · Full scale (all 100 ages): ~$23,600+/mo</span>
+      </div>
+      <div style="height:6px;background:#0a140a;border-radius:3px;overflow:hidden;">
+        <div id="yawProgBar" style="height:100%;width:0%;background:linear-gradient(90deg,#2d7a50,#4ecb82);border-radius:3px;transition:width .5s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUB-TABS ── -->
+  <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;">
+    <button id="yawTabTasks"       class="btn"     onclick="yawShowSub('tasks',this)"       style="font-size:11px;padding:6px 14px;background:var(--gold);border-color:var(--gold);color:#1a0e04;">📌 Priority Tasks</button>
+    <button id="yawTabPipeline"    class="btn btn-mid" onclick="yawShowSub('pipeline',this)"    style="font-size:11px;padding:6px 14px;">📋 Pipeline</button>
+    <button id="yawTabProjections" class="btn btn-mid" onclick="yawShowSub('projections',this)" style="font-size:11px;padding:6px 14px;">📈 Projections</button>
+  </div>
+
+  <!-- ══ TASKS SUB ══ -->
+  <div id="yawSubTasks">
+
+    <!-- Real data inputs -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">📊 YAW Real Data (update weekly)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;">
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Monthly Revenue ($)</div>
+          <input type="number" id="yawRevInput" placeholder="250" oninput="yawSaveMisc();yawRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Monthly Visits</div>
+          <input type="number" id="yawVisitsInput" placeholder="900" oninput="yawSaveMisc();yawRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Live Listings (Etsy)</div>
+          <input type="number" id="yawLiveInput" placeholder="32" oninput="yawSaveMisc();yawRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Daily Target</div>
+          <input type="number" id="yawDailyInput" placeholder="7" oninput="yawSaveMisc();yawRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Today's mission -->
+    <div style="background:linear-gradient(135deg,rgba(45,122,80,.12),rgba(20,80,40,.08));border:1px solid #2d7a50;border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:4px;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;">🎯 Today's Mission — YouArtWorthy</div>
+        <div style="font-size:9px;color:var(--mid);" id="yawTodayDate"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;">
+        <div><div style="font-size:24px;font-weight:700;color:var(--teal);"    id="yawTodayDone">0</div>  <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Published<br>Today</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--gold);"    id="yawDailyTgt">7</div>   <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Daily<br>Target</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--green3);"  id="yawAddedToday">+$0</div><div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">$ Added<br>Today</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--rust2);"   id="yawRemainToday">—</div> <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Still<br>Needed</div></div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:var(--cream2);line-height:1.5;" id="yawMissionMsg">Set your daily target to get started.</div>
+    </div>
+
+    <!-- Filters + task list -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;">📌 Top Priority — Phase 1 (50th first)</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <select id="yawFilterCat" onchange="yawRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Types</option>
+            <option value="generic">Generic</option>
+            <option value="black">Black</option>
+          </select>
+          <select id="yawFilterVer" onchange="yawRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Versions</option>
+            <option value="v1">V1</option>
+            <option value="v2">V2</option>
+            <option value="v3">V3</option>
+          </select>
+          <select id="yawFilterFmt" onchange="yawRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Formats</option>
+            <option value="Custom">Custom</option>
+            <option value="Instant DL">Instant DL</option>
+          </select>
+          <select id="yawFilterAge" onchange="yawRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Ages</option>
+            <option value="50">50th</option><option value="60">60th</option><option value="40">40th</option>
+            <option value="70">70th</option><option value="30">30th</option><option value="55">55th</option>
+            <option value="25">25th</option><option value="35">35th</option><option value="45">45th</option>
+            <option value="65">65th</option><option value="21">21st</option><option value="75">75th</option>
+            <option value="80">80th</option><option value="85">85th</option><option value="90">90th</option>
+            <option value="95">95th</option>
+          </select>
+          <select id="yawFilterStatus" onchange="yawRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="pending">Pending Only</option>
+            <option value="all">All</option>
+            <option value="live">Live Only</option>
+          </select>
+        </div>
+      </div>
+      <div id="yawTaskList" style="display:flex;flex-direction:column;gap:4px;"></div>
+    </div>
+  </div>
+
+  <!-- ══ PIPELINE SUB ══ -->
+  <div id="yawSubPipeline" style="display:none;">
+
+    <!-- Batch ops -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">⚡ Batch Operations</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="yawBatchStage" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+          <option value="">Mark stage done...</option>
+          <option value="facts">✓ Research</option>
+          <option value="canva">✓ Canva</option>
+          <option value="hero">✓ Hero Image</option>
+          <option value="mockup">✓ Mockup</option>
+          <option value="listing">✓ Listing Copy</option>
+          <option value="live">✓ Published Live</option>
+        </select>
+        <select id="yawBatchAge" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+          <option value="">For age...</option>
+          <option value="50">50th</option><option value="60">60th</option><option value="40">40th</option>
+          <option value="70">70th</option><option value="30">30th</option><option value="55">55th</option>
+          <option value="25">25th</option><option value="35">35th</option><option value="45">45th</option>
+          <option value="65">65th</option><option value="21">21st</option><option value="75">75th</option>
+          <option value="80">80th</option><option value="85">85th</option><option value="90">90th</option>
+          <option value="95">95th</option>
+        </select>
+        <select id="yawBatchCat" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+          <option value="">All types</option>
+          <option value="generic">Generic only</option>
+          <option value="black">Black only</option>
+        </select>
+        <select id="yawBatchVer" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+          <option value="">All versions</option>
+          <option value="v1">V1 only</option>
+          <option value="v2">V2 only</option>
+          <option value="v3">V3 only</option>
+        </select>
+        <button class="btn" onclick="yawBatchMark()" style="font-size:10px;padding:5px 12px;background:var(--teal);border-color:var(--teal);color:#fff;">Apply Batch</button>
+        <button class="btn btn-mid" onclick="yawRenderPipeline()" style="font-size:10px;padding:5px 12px;">Refresh</button>
+      </div>
+    </div>
+
+    <!-- Pipeline filters -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center;">
+      <select id="yawPipeCat" onchange="yawRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Types</option>
+        <option value="generic">Generic</option>
+        <option value="black">Black</option>
+      </select>
+      <select id="yawPipeVer" onchange="yawRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Versions</option>
+        <option value="v1">V1</option>
+        <option value="v2">V2</option>
+        <option value="v3">V3</option>
+      </select>
+      <select id="yawPipeAge" onchange="yawRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Ages</option>
+        <option value="50">50th</option><option value="60">60th</option><option value="40">40th</option>
+        <option value="70">70th</option><option value="30">30th</option><option value="55">55th</option>
+        <option value="25">25th</option><option value="35">35th</option><option value="45">45th</option>
+        <option value="65">65th</option><option value="21">21st</option><option value="75">75th</option>
+        <option value="80">80th</option><option value="85">85th</option><option value="90">90th</option>
+        <option value="95">95th</option>
+      </select>
+      <select id="yawPipeFmt" onchange="yawRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Formats</option>
+        <option value="Custom">Custom</option>
+        <option value="Instant DL">Instant DL</option>
+      </select>
+      <select id="yawPipeStatus" onchange="yawRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Status</option>
+        <option value="not_started">Not Started</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Live ✓</option>
+      </select>
+      <div style="font-size:10px;color:var(--mid);margin-left:auto;" id="yawPipeCount"></div>
+    </div>
+
+    <!-- Table -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr style="background:var(--ink3);color:var(--mid);font-size:9px;letter-spacing:1px;text-transform:uppercase;">
+            <th style="padding:6px 8px;text-align:left;">Age</th>
+            <th style="padding:6px 8px;text-align:left;">Edition</th>
+            <th style="padding:6px 4px;text-align:center;">Ver</th>
+            <th style="padding:6px 8px;text-align:left;">Format</th>
+            <th style="padding:6px 4px;text-align:center;" title="Research">📚</th>
+            <th style="padding:6px 4px;text-align:center;" title="Canva">🎨</th>
+            <th style="padding:6px 4px;text-align:center;" title="Hero">🖼️</th>
+            <th style="padding:6px 4px;text-align:center;" title="Mockup">📐</th>
+            <th style="padding:6px 4px;text-align:center;" title="Copy">✍️</th>
+            <th style="padding:6px 4px;text-align:center;" title="Live">🟢</th>
+            <th style="padding:6px 8px;text-align:center;">Status</th>
+          </tr>
+        </thead>
+        <tbody id="yawPipeBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ PROJECTIONS SUB ══ -->
+  <div id="yawSubProjections" style="display:none;">
+
+    <!-- Settings -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">⚙️ Projection Settings</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Daily Publish Rate</div>
+          <input type="number" id="yawProjDaily" value="7" oninput="yawSaveMisc();yawRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">RPL ($/listing/mo)</div>
+          <input type="number" id="yawProjRpl" value="7.81" step="0.01" oninput="yawSaveMisc();yawRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Etsy Fee %</div>
+          <input type="number" id="yawProjFee" value="9.5" step="0.1" oninput="yawSaveMisc();yawRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI boxes -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px;">
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--gold);"   id="yawProjDaysLeft">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Days to<br>Complete P1</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--teal);"   id="yawProjFullRev">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Full P1<br>Revenue</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--green3);" id="yawProjProfit">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Est. Profit<br>(after fees)</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--rust2);"  id="yawProjRemain">976</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Listings<br>Remaining</div>
+      </div>
+    </div>
+
+    <!-- Milestones -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;">🏆 Phase 1 Revenue Milestones</div>
+      <div id="yawMilestones"></div>
+    </div>
+
+    <!-- Category/Version breakdown -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;">📊 Progress by Category &amp; Version</div>
+      <div id="yawCatBreakdown"></div>
+    </div>
+
+    <!-- Edition breakdown -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">📋 Progress by Edition (all 31)</div>
+      <div id="yawEdBreakdown"></div>
+    </div>
+  </div>
+
+</div>
+<!-- END YOUARTWORTHY TAB -->
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- HOMEGRIOT PHASE 1 TAB — zero coupling to main app, LFP, or YAW -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div id="v-hg" style="display:none;padding:12px 8px 100px;">
+
+  <!-- ── HEADER BANNER ── -->
+  <div style="background:linear-gradient(135deg,rgba(10,22,35,.97),rgba(5,15,25,1));border:1px solid #1a5a7a;border-radius:10px;padding:14px 16px;margin-bottom:12px;">
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div style="font-size:22px;">🏠</div>
+      <div>
+        <div style="font-size:16px;font-weight:700;color:#8ad4e8;letter-spacing:.5px;">HomeGriot — Phase 1</div>
+        <div style="font-size:10px;color:#2a6a8a;letter-spacing:1.5px;text-transform:uppercase;margin-top:1px;">16 Priority Ages · 13 Editions · V1/V2/V3 · 400 listings · Black Only</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
+        <div style="background:rgba(26,90,122,.15);border:1px solid #1a5a7a;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#8ad4e8;" id="hgStatLive">0</div>
+          <div style="font-size:8px;color:#2a6a8a;letter-spacing:1px;text-transform:uppercase;">Live</div>
+        </div>
+        <div style="background:rgba(168,72,32,.12);border:1px solid #8b3a1e;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#e8a87c;" id="hgStatTotal">400</div>
+          <div style="font-size:8px;color:#8a5a3a;letter-spacing:1px;text-transform:uppercase;">P1 Goal</div>
+        </div>
+        <div style="background:rgba(26,90,122,.1);border:1px solid #1a5a7a;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#4ecbb8;" id="hgStatRev">$0</div>
+          <div style="font-size:8px;color:#2a7a6a;letter-spacing:1px;text-transform:uppercase;">Est. /mo</div>
+        </div>
+        <div style="background:rgba(201,151,58,.1);border:1px solid #6a5020;border-radius:6px;padding:5px 10px;text-align:center;">
+          <div style="font-size:18px;font-weight:700;color:#c9973a;" id="hgStatRemain">400</div>
+          <div style="font-size:8px;color:#8a6a3a;letter-spacing:1px;text-transform:uppercase;">Remaining</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:10px;">
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:#2a4a6a;margin-bottom:3px;">
+        <span id="hgProgPct">0% complete</span>
+        <span>Full P1: ~$3,124/mo · Black audience, high intent</span>
+      </div>
+      <div style="height:6px;background:#050f18;border-radius:3px;overflow:hidden;">
+        <div id="hgProgBar" style="height:100%;width:0%;background:linear-gradient(90deg,#1a5a7a,#4ecbb8);border-radius:3px;transition:width .5s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SUB-TABS ── -->
+  <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;">
+    <button id="hgTabTasks"       class="btn"     onclick="hgShowSub('tasks',this)"       style="font-size:11px;padding:6px 14px;background:var(--teal);border-color:var(--teal);color:#040e14;">📌 Priority Tasks</button>
+    <button id="hgTabPipeline"    class="btn btn-mid" onclick="hgShowSub('pipeline',this)"    style="font-size:11px;padding:6px 14px;">📋 Pipeline</button>
+    <button id="hgTabProjections" class="btn btn-mid" onclick="hgShowSub('projections',this)" style="font-size:11px;padding:6px 14px;">📈 Projections</button>
+  </div>
+
+  <!-- ══ TASKS SUB ══ -->
+  <div id="hgSubTasks">
+
+    <!-- Real data inputs -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">📊 HomeGriot Real Data (update weekly)</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;">
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Monthly Revenue ($)</div>
+          <input type="number" id="hgRevInput" placeholder="0" oninput="hgSaveMisc();hgRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Monthly Visits</div>
+          <input type="number" id="hgVisitsInput" placeholder="0" oninput="hgSaveMisc();hgRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Live Listings (Etsy)</div>
+          <input type="number" id="hgLiveInput" placeholder="0" oninput="hgSaveMisc();hgRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Daily Target</div>
+          <input type="number" id="hgDailyInput" placeholder="5" oninput="hgSaveMisc();hgRenderAll()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Today's mission -->
+    <div style="background:linear-gradient(135deg,rgba(26,90,122,.12),rgba(10,40,60,.08));border:1px solid #1a5a7a;border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:4px;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;">🎯 Today's Mission — HomeGriot</div>
+        <div style="font-size:9px;color:var(--mid);" id="hgTodayDate"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;">
+        <div><div style="font-size:24px;font-weight:700;color:var(--teal);"   id="hgTodayDone">0</div>  <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Published<br>Today</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--gold);"   id="hgDailyTgt">5</div>   <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Daily<br>Target</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--green3);" id="hgAddedToday">+$0</div><div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">$ Added<br>Today</div></div>
+        <div><div style="font-size:24px;font-weight:700;color:var(--rust2);"  id="hgRemainToday">—</div> <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;">Still<br>Needed</div></div>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:var(--cream2);line-height:1.5;" id="hgMissionMsg">Set your daily target to get started.</div>
+    </div>
+
+    <!-- Filters + task list -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;">
+        <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;">📌 Top Priority — USA Black 50th first</div>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;">
+          <select id="hgFilterVer" onchange="hgRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Versions</option>
+            <option value="v1">V1</option>
+            <option value="v2">V2</option>
+            <option value="v3">V3</option>
+          </select>
+          <select id="hgFilterFmt" onchange="hgRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Formats</option>
+            <option value="Custom">Custom</option>
+            <option value="Instant DL">Instant DL</option>
+          </select>
+          <select id="hgFilterAge" onchange="hgRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="">All Ages</option>
+            <option value="50">50th</option><option value="60">60th</option><option value="40">40th</option>
+            <option value="70">70th</option><option value="30">30th</option><option value="55">55th</option>
+            <option value="25">25th</option><option value="35">35th</option><option value="45">45th</option>
+            <option value="65">65th</option><option value="21">21st</option><option value="75">75th</option>
+            <option value="80">80th</option><option value="85">85th</option><option value="90">90th</option>
+            <option value="95">95th</option>
+          </select>
+          <select id="hgFilterStatus" onchange="hgRenderTasks()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:3px 6px;">
+            <option value="pending">Pending Only</option>
+            <option value="all">All</option>
+            <option value="live">Live Only</option>
+          </select>
+        </div>
+      </div>
+      <div id="hgTaskList" style="display:flex;flex-direction:column;gap:4px;"></div>
+    </div>
+  </div>
+
+  <!-- ══ PIPELINE SUB ══ -->
+  <div id="hgSubPipeline" style="display:none;">
+
+    <!-- Batch ops -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">⚡ Batch Operations</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <select id="hgBatchStage" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+          <option value="">Mark stage done...</option>
+          <option value="facts">✓ Research</option>
+          <option value="canva">✓ Canva</option>
+          <option value="hero">✓ Hero Image</option>
+          <option value="mockup">✓ Mockup</option>
+          <option value="listing">✓ Listing Copy</option>
+          <option value="live">✓ Published Live</option>
+        </select>
+        <select id="hgBatchAge" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+          <option value="">For age...</option>
+          <option value="50">50th</option><option value="60">60th</option><option value="40">40th</option>
+          <option value="70">70th</option><option value="30">30th</option><option value="55">55th</option>
+          <option value="25">25th</option><option value="35">35th</option><option value="45">45th</option>
+          <option value="65">65th</option><option value="21">21st</option><option value="75">75th</option>
+          <option value="80">80th</option><option value="85">85th</option><option value="90">90th</option>
+          <option value="95">95th</option>
+        </select>
+        <select id="hgBatchVer" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:11px;padding:5px 8px;">
+          <option value="">All versions</option>
+          <option value="v1">V1 only</option>
+          <option value="v2">V2 only</option>
+          <option value="v3">V3 only</option>
+        </select>
+        <button class="btn" onclick="hgBatchMark()" style="font-size:10px;padding:5px 12px;background:var(--teal);border-color:var(--teal);color:#fff;">Apply Batch</button>
+        <button class="btn btn-mid" onclick="hgRenderPipeline()" style="font-size:10px;padding:5px 12px;">Refresh</button>
+      </div>
+    </div>
+
+    <!-- Pipeline filters -->
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;align-items:center;">
+      <select id="hgPipeVer" onchange="hgRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Versions</option>
+        <option value="v1">V1</option>
+        <option value="v2">V2</option>
+        <option value="v3">V3</option>
+      </select>
+      <select id="hgPipeAge" onchange="hgRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Ages</option>
+        <option value="50">50th</option><option value="60">60th</option><option value="40">40th</option>
+        <option value="70">70th</option><option value="30">30th</option><option value="55">55th</option>
+        <option value="25">25th</option><option value="35">35th</option><option value="45">45th</option>
+        <option value="65">65th</option><option value="21">21st</option><option value="75">75th</option>
+        <option value="80">80th</option><option value="85">85th</option><option value="90">90th</option>
+        <option value="95">95th</option>
+      </select>
+      <select id="hgPipeFmt" onchange="hgRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Formats</option>
+        <option value="Custom">Custom</option>
+        <option value="Instant DL">Instant DL</option>
+      </select>
+      <select id="hgPipeStatus" onchange="hgRenderPipeline()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:10px;padding:4px 7px;">
+        <option value="">All Status</option>
+        <option value="not_started">Not Started</option>
+        <option value="in_progress">In Progress</option>
+        <option value="completed">Live ✓</option>
+      </select>
+      <div style="font-size:10px;color:var(--mid);margin-left:auto;" id="hgPipeCount"></div>
+    </div>
+
+    <!-- Table -->
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:11px;">
+        <thead>
+          <tr style="background:var(--ink3);color:var(--mid);font-size:9px;letter-spacing:1px;text-transform:uppercase;">
+            <th style="padding:6px 8px;text-align:left;">Age</th>
+            <th style="padding:6px 8px;text-align:left;">Edition</th>
+            <th style="padding:6px 4px;text-align:center;">Ver</th>
+            <th style="padding:6px 8px;text-align:left;">Format</th>
+            <th style="padding:6px 4px;text-align:center;" title="Research">📚</th>
+            <th style="padding:6px 4px;text-align:center;" title="Canva">🎨</th>
+            <th style="padding:6px 4px;text-align:center;" title="Hero">🖼️</th>
+            <th style="padding:6px 4px;text-align:center;" title="Mockup">📐</th>
+            <th style="padding:6px 4px;text-align:center;" title="Copy">✍️</th>
+            <th style="padding:6px 4px;text-align:center;" title="Live">🟢</th>
+            <th style="padding:6px 8px;text-align:center;">Status</th>
+          </tr>
+        </thead>
+        <tbody id="hgPipeBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ PROJECTIONS SUB ══ -->
+  <div id="hgSubProjections" style="display:none;">
+
+    <!-- Settings -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">⚙️ Projection Settings</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;">
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Daily Publish Rate</div>
+          <input type="number" id="hgProjDaily" value="5" oninput="hgSaveMisc();hgRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">RPL ($/listing/mo)</div>
+          <input type="number" id="hgProjRpl" value="7.81" step="0.01" oninput="hgSaveMisc();hgRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--mid);margin-bottom:3px;">Etsy Fee %</div>
+          <input type="number" id="hgProjFee" value="9.5" step="0.1" oninput="hgSaveMisc();hgRenderProjections()" style="background:var(--ink3);border:1px solid var(--border);border-radius:4px;color:var(--cream);font-size:13px;padding:5px 8px;width:100%;box-sizing:border-box;outline:none;">
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI boxes -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:12px;">
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--gold);"   id="hgProjDaysLeft">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Days to<br>Complete P1</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--teal);"   id="hgProjFullRev">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Full P1<br>Revenue</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--green3);" id="hgProjProfit">—</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Est. Profit<br>(after fees)</div>
+      </div>
+      <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;">
+        <div style="font-size:22px;font-weight:700;color:var(--rust2);"  id="hgProjRemain">400</div>
+        <div style="font-size:8px;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-top:2px;">Listings<br>Remaining</div>
+      </div>
+    </div>
+
+    <!-- Milestones -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;">🏆 Phase 1 Revenue Milestones</div>
+      <div id="hgMilestones"></div>
+    </div>
+
+    <!-- Version breakdown -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:10px;">📊 Progress by Version</div>
+      <div id="hgVerBreakdown"></div>
+    </div>
+
+    <!-- Edition breakdown -->
+    <div style="background:var(--ink2);border:1px solid var(--border);border-radius:8px;padding:12px;">
+      <div style="font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">📋 Progress by Edition (all 13)</div>
+      <div id="hgEdBreakdown"></div>
+    </div>
+  </div>
+
+</div>
+<!-- END HOMEGRIOT TAB -->
+
+
 <script>
 // ════════════════════════════════════════════
 // DATA DEFINITIONS
@@ -3322,11 +4187,128 @@ function loadState(){
   }catch(e){console.warn('Load misc:',e);}
 }
 
+// ── Sync from standalone tab back to main listings ──
+function syncToMain(edId, ageVal, format, stages){
+  if(typeof listings==='undefined') return;
+  var l = listings.find(function(x){
+    return x.edId===edId && x.ageVal===ageVal && x.format===format;
+  });
+  if(!l) return;
+  var changed = false;
+  Object.keys(stages).forEach(function(s){
+    if(s in l.stages && l.stages[s] !== stages[s]){
+      l.stages[s] = stages[s];
+      changed = true;
+    }
+  });
+  if(changed){
+    l.lastTouched = Date.now();
+    try{
+      var slim=listings.map(function(x){return{id:x.id,stages:x.stages,notes:x.notes,actualTimes:x.actualTimes||{},lastTouched:x.lastTouched||0};});
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(slim));
+    }catch(e){console.warn('syncToMain save:',e);}
+    var vToday=document.getElementById('v-today');
+    var vPipe=document.getElementById('v-pipeline');
+    if(vToday&&vToday.style.display!=='none'){renderTodayTasks();updateDashboard();updateBottomBar();}
+    if(vPipe&&vPipe.style.display!=='none'){renderTable();}
+  }
+}
+
+
+// ═══════════════════════════════════════════════════════════════════
+// MAIN → YAW / HG SYNC
+// When main pipeline changes, auto-mirror stage progress into
+// the YAW and HG standalone trackers (matching by edId+ageVal+format)
+// ═══════════════════════════════════════════════════════════════════
+
+function syncFromMain(){
+  // Build lookup: "edId|ageVal|format" → stages
+  var mainMap = {};
+  listings.forEach(function(l){
+    mainMap[l.edId+'|'+l.ageVal+'|'+l.format] = l.stages;
+  });
+
+  var yawChanged = false;
+  var hgChanged  = false;
+
+  // ── Sync YAW listings (all shop A editions) ──
+  if(typeof yawListings !== 'undefined'){
+    yawListings.forEach(function(yl){
+      var key = yl.edId+'|'+yl.ageVal+'|'+yl.format;
+      if(mainMap[key]){
+        var mainStages = mainMap[key];
+        var changed = false;
+        Object.keys(yl.stages).forEach(function(s){
+          if(mainStages[s] !== undefined && yl.stages[s] !== mainStages[s]){
+            yl.stages[s] = mainStages[s];
+            changed = true;
+          }
+        });
+        if(changed){
+          yl.lastTouched = Date.now();
+          yawChanged = true;
+        }
+      }
+    });
+    if(yawChanged){
+      // Persist YAW
+      try{
+        var yawSlim=yawListings.map(function(l){return{id:l.id,stages:l.stages,notes:l.notes,lastTouched:l.lastTouched||0};});
+        localStorage.setItem(YAW_KEY,JSON.stringify(yawSlim));
+      }catch(e){console.warn('YAW sync save:',e);}
+      // Re-render YAW if its tab is currently visible
+      var vYaw=document.getElementById('v-yaw');
+      if(vYaw && vYaw.style.display!=='none'){
+        yawRenderStats();
+        if(typeof yawMisc!=='undefined' && yawMisc.curSub==='projections') yawRenderProjections();
+        else if(typeof yawMisc!=='undefined' && yawMisc.curSub==='pipeline') yawRenderPipeline();
+        else yawRenderTasks();
+      }
+    }
+  }
+
+  // ── Sync HG listings (all shop B editions) ──
+  if(typeof hgListings !== 'undefined'){
+    hgListings.forEach(function(hl){
+      var key = hl.edId+'|'+hl.ageVal+'|'+hl.format;
+      if(mainMap[key]){
+        var mainStages = mainMap[key];
+        var changed = false;
+        Object.keys(hl.stages).forEach(function(s){
+          if(mainStages[s] !== undefined && hl.stages[s] !== mainStages[s]){
+            hl.stages[s] = mainStages[s];
+            changed = true;
+          }
+        });
+        if(changed){
+          hl.lastTouched = Date.now();
+          hgChanged = true;
+        }
+      }
+    });
+    if(hgChanged){
+      try{
+        var hgSlim=hgListings.map(function(l){return{id:l.id,stages:l.stages,notes:l.notes,lastTouched:l.lastTouched||0};});
+        localStorage.setItem(HG_KEY,JSON.stringify(hgSlim));
+      }catch(e){console.warn('HG sync save:',e);}
+      var vHg=document.getElementById('v-hg');
+      if(vHg && vHg.style.display!=='none'){
+        hgRenderStats();
+        if(typeof hgMisc!=='undefined' && hgMisc.curSub==='projections') hgRenderProjections();
+        else if(typeof hgMisc!=='undefined' && hgMisc.curSub==='pipeline') hgRenderPipeline();
+        else hgRenderTasks();
+      }
+    }
+  }
+}
+
+
 function saveListings(){
   try{
     var slim=listings.map(function(l){return{id:l.id,stages:l.stages,notes:l.notes,actualTimes:l.actualTimes||{},lastTouched:l.lastTouched||0};});
     localStorage.setItem(STORAGE_KEY,JSON.stringify(slim));
   }catch(e){console.warn('Save listings:',e);}
+  syncFromMain();
 }
 
 function saveMisc(){
@@ -3799,6 +4781,8 @@ function quickDoneStage(lid){
   checkStuckListings();
   renderScorecard();
   renderPaceCards();
+  renderVelocity();
+  renderTop3();
   renderConsistencyMsg();
 }
 
@@ -4351,7 +5335,9 @@ function toggleStage(lid,sid,cb){
   saveListings();
   renderTodayTasks();updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();renderPipDailyBanner();
   if(cb.checked&&sid==='live'&&!wasLive){recordPublishedToday(1);celebrateLive(l);}
-  else if(cb.checked&&l.stages.live){renderScorecard();renderPaceCards();}
+  else if(cb.checked&&l.stages.live){renderScorecard();renderPaceCards();
+  renderVelocity();
+  renderTop3();}
 }
 
 // ════════════════════════════════════════════
@@ -4398,7 +5384,9 @@ function toggleStageBtn(lid,sid,btn){
   renderDetailStages(l);
   renderTodayTasks();renderTable();updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();
   if(l.stages[sid]&&sid==='live'&&!wasLive){recordPublishedToday(1);celebrateLive(l);}
-  else if(l.stages.live&&!wasLive){renderScorecard();renderPaceCards();}
+  else if(l.stages.live&&!wasLive){renderScorecard();renderPaceCards();
+  renderVelocity();
+  renderTop3();}
 }
 
 function saveNote(){
@@ -4902,6 +5890,8 @@ function batchMarkStage(){
     recordPublishedToday(newLiveCount);
     showToast('🎉 '+newLiveCount+' listing'+(newLiveCount>1?'s':'')+' published live! Streak updated.');
     renderScorecard(); renderPaceCards();
+  renderVelocity();
+  renderTop3();
   } else {
     showToast('✓ "'+stageName+'" marked done for '+ids.length+' listing'+(ids.length>1?'s':''));
   }
@@ -6129,7 +7119,7 @@ function logFullRest(){
 // ════════════════════════════════════════════
 // VIEW SWITCHING
 // ════════════════════════════════════════════
-var VIEWS=['today','money','pipeline','projections','ideas','toolkit','seo','automation'];
+var VIEWS=['today','money','pipeline','projections','ideas','toolkit','seo','automation','lfp','yaw','hg'];
 
 function mobileNavSelect(btn){
   document.querySelectorAll('#mobileNav .mnav-btn').forEach(function(b){b.classList.remove('on');});
@@ -6166,6 +7156,9 @@ function showView(name,tabEl){
   if(name==='seo'){renderTagSets();}
   if(name==='ideas'){renderIdeaStats();renderIdeas();}
   if(name==='toolkit'){renderToolkit();}
+  if(name==='lfp'){lfpRenderAll();}
+  if(name==='yaw'){yawRenderAll();}
+  if(name==='hg'){hgRenderAll();}
   if(name==='automation'){renderAutomation();}
   if(name==='seo'){if(!window._seoReady){window._seoReady=true;seoInit();}else{seoRender();}}
 }
@@ -6734,7 +7727,9 @@ function canonSync(el, miscKey){
   // Cascade to all mirror inputs
   _syncCanonInputs();
   updateMissionStrip(); updateBottomBar(); updateDashboard();
-  renderProjections(); renderThisMonth(); renderScorecard(); renderPaceCards(); renderSprintPanel();
+  renderProjections(); renderThisMonth(); renderScorecard(); renderPaceCards();
+  renderVelocity();
+  renderTop3(); renderSprintPanel();
   // Update timestamp labels
   var ts = new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
   ['canonUpdatedToday'].forEach(function(id){
@@ -7330,6 +8325,95 @@ function renderPaceCards(){
   if(monthCard)monthCard.className='pace-card '+monthClass;
 }
 
+function renderVelocity(){
+  if(!misc.dailyPublished)return;
+
+  var now=new Date();
+
+  // This week (Mon-Sun)
+  var day=now.getDay();
+  var mon=new Date(now); mon.setDate(now.getDate()-(day===0?6:day-1)); mon.setHours(0,0,0,0);
+  var thisWeek=0;
+  Object.keys(misc.dailyPublished).forEach(function(d){
+    var dt=new Date(d);
+    if(dt>=mon&&dt<=now)thisWeek+=misc.dailyPublished[d];
+  });
+
+  // Last week (previous Mon-Sun)
+  var lastMon=new Date(mon); lastMon.setDate(mon.getDate()-7);
+  var lastSun=new Date(mon); lastSun.setDate(mon.getDate()-1); lastSun.setHours(23,59,59,999);
+  var lastWeek=0;
+  Object.keys(misc.dailyPublished).forEach(function(d){
+    var dt=new Date(d);
+    if(dt>=lastMon&&dt<=lastSun)lastWeek+=misc.dailyPublished[d];
+  });
+
+  // 7-day rolling average
+  var week7ago=new Date(now); week7ago.setDate(now.getDate()-6); week7ago.setHours(0,0,0,0);
+  var last7=0;
+  Object.keys(misc.dailyPublished).forEach(function(d){
+    var dt=new Date(d);
+    if(dt>=week7ago&&dt<=now)last7+=misc.dailyPublished[d];
+  });
+  var avg7=Math.round(last7/7*10)/10;
+
+  // Delta
+  var delta=thisWeek-lastWeek;
+  var deltaStr=delta>0?'▲ +'+delta+' vs last week':delta<0?'▼ '+delta+' vs last week':'→ Same as last week';
+  var deltaColor=delta>0?'var(--green3)':delta<0?'var(--rust2)':'var(--mid)';
+
+  // Bar: thisWeek as % of lastWeek (capped at 200%)
+  var barPct=lastWeek>0?Math.min(200,Math.round(thisWeek/lastWeek*100)):thisWeek>0?100:0;
+  var barColor=delta>=0?'var(--green3)':'var(--rust2)';
+
+  var g=function(id){return document.getElementById(id);};
+  if(g('velThisWeek')){g('velThisWeek').textContent=thisWeek; g('velThisWeek').style.color=deltaColor;}
+  if(g('velLastWeek'))g('velLastWeek').textContent=lastWeek;
+  if(g('velDelta')){g('velDelta').textContent=deltaStr; g('velDelta').style.color=deltaColor;}
+  if(g('vel7DayAvg'))g('vel7DayAvg').textContent='7-day avg: '+avg7+' listings/day';
+  if(g('velBar')){g('velBar').style.width=Math.max(2,barPct/2)+'%'; g('velBar').style.background=barColor;}
+}
+
+function renderTop3(){
+  var el=document.getElementById('top3List');
+  if(!el)return;
+
+  // Get top pending listings by score, filtered by current shop
+  var pool=listings.filter(function(l){
+    if(globalShop==='a'&&l.edShop!=='a')return false;
+    if(globalShop==='b'&&l.edShop!=='b')return false;
+    return getStatus(l)!=='completed';
+  });
+
+  pool.sort(function(a,b){return rScore(b)-rScore(a);});
+  var top=pool.slice(0,3);
+
+  if(!top.length){
+    el.innerHTML='<div style="font-size:10px;color:var(--green3);padding:4px 0;">🏆 All listings complete!</div>';
+    return;
+  }
+
+  el.innerHTML=top.map(function(l,i){
+    var st=getStatus(l);
+    var next=getNextStage(l);
+    var stageNames={facts:'Research',canva:'Canva',hero:'Hero',mockup:'Mockup',listing:'Copy',live:'Live'};
+    var nextLabel=next?stageNames[next]||next:'—';
+    var score=rScore(l);
+    var scoreColor=score>=85?'var(--green3)':score>=70?'var(--gold2)':'var(--gold)';
+    var rankColors=['var(--gold)','var(--teal)','var(--mid)'];
+    return '<div style="display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04);">'
+      +'<div style="font-size:11px;font-weight:700;color:'+rankColors[i]+';min-width:14px;">#'+(i+1)+'</div>'
+      +'<div style="flex:1;min-width:0;">'
+        +'<div style="font-size:11px;color:var(--cream);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'
+          +l.edFlag+' '+l.ageLabel+' · '+(l.edName||'')
+        +'</div>'
+        +'<div style="font-size:9px;color:var(--mid);">Next: '+nextLabel+' · Score: <span style="color:'+scoreColor+';">'+score+'</span></div>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+
 // ════════════════════════════════════════════
 // SESSION MODE
 // ════════════════════════════════════════════
@@ -7401,7 +8485,9 @@ function sessionComplete(){
 
   // Update all views
   updateDashboard();updateMissionStrip();updateBottomBar();checkStuckListings();
-  renderTodayTasks();renderScorecard();renderPaceCards();renderConsistencyMsg();
+  renderTodayTasks();renderScorecard();renderPaceCards();
+  renderVelocity();
+  renderTop3();renderConsistencyMsg();
 
   // Auto-offer next stage
   if(nextStage&&!isNowLive){
@@ -7462,6 +8548,8 @@ function celebrateLive(l){
     },4000);
   }
   renderScorecard();renderPaceCards();
+  renderVelocity();
+  renderTop3();
 }
 
 // ════════════════════════════════════════════
@@ -8004,6 +9092,10 @@ function init(){
   renderConsistencyMsg();
   renderScorecard();
   renderPaceCards();
+  renderVelocity();
+  renderTop3();
+  renderVelocity();
+  renderTop3();
   renderWins();
   restoreSession();
   populateFilters();
@@ -8024,6 +9116,1541 @@ function init(){
 
   // SEO initial render
   setInterval(timerTick,1000);
+  lfpInit();
+  yawInit();
+  hgInit();
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LEGACY FRONT PAGE — Standalone module (zero coupling to main app)
+// Storage key: lfp_v1   (separate from bhq_v5_*)
+// ═══════════════════════════════════════════════════════════════════
+
+var LFP_KEY = 'lfp_v1_listings';
+var LFP_MISC_KEY = 'lfp_v1_misc';
+
+// ── Editions ──
+var LFP_EDITIONS = [
+  {id:'lfp_usa_gen', name:'USA Generic',      flag:'🇺🇸', cat:'generic'},
+  {id:'lfp_uk_gen',  name:'UK Generic',       flag:'🇬🇧', cat:'generic'},
+  {id:'lfp_can_gen', name:'Canada Generic',   flag:'🇨🇦', cat:'generic'},
+  {id:'lfp_aus_gen', name:'Australia Generic',flag:'🇦🇺', cat:'generic'},
+  {id:'lfp_usa_blk', name:'USA Black',        flag:'🇺🇸', cat:'black'},
+  {id:'lfp_uk_blk',  name:'UK Black',         flag:'🇬🇧', cat:'black'},
+  {id:'lfp_can_blk', name:'Canada Black',     flag:'🇨🇦', cat:'black'}
+];
+
+// ── 17 Milestone ages ──
+var LFP_AGES = [
+  {age:1, label:'1st'},{age:16,label:'16th'},{age:18,label:'18th'},
+  {age:21,label:'21st'},{age:25,label:'25th'},{age:30,label:'30th'},
+  {age:35,label:'35th'},{age:40,label:'40th'},{age:45,label:'45th'},
+  {age:50,label:'50th'},{age:55,label:'55th'},{age:60,label:'60th'},
+  {age:65,label:'65th'},{age:70,label:'70th'},{age:75,label:'75th'},
+  {age:80,label:'80th'},{age:90,label:'90th'}
+];
+
+var LFP_FMTS = ['Custom','Instant DL'];
+
+// Priority order for tasks (highest revenue potential first)
+var LFP_AGE_PRIORITY = {50:1,40:2,60:3,30:4,21:5,25:6,70:7,35:8,45:9,80:10,55:11,65:12,75:13,18:14,90:15,16:16,1:17};
+var LFP_ED_PRIORITY  = {lfp_usa_gen:1,lfp_uk_gen:2,lfp_usa_blk:3,lfp_can_gen:4,lfp_uk_blk:5,lfp_aus_gen:6,lfp_can_blk:7};
+
+// ── State ──
+var lfpListings = [];
+var lfpMisc = {
+  revenue:0, visits:0, live:0, etsyLive:0, dailyTarget:3,
+  projDaily:3, projRpl:7.81, projSplit:50,
+  dailyPublished:{},
+  curSub:'tasks'
+};
+
+// ── Stages (same as main but standalone) ──
+var LFP_STAGES = ['facts','canva','hero','mockup','listing','live'];
+var LFP_STAGE_NAMES = {facts:'Research',canva:'Canva',hero:'Hero',mockup:'Mockup',listing:'Copy',live:'Live'};
+
+function lfpBlankStages(){
+  var s={};
+  LFP_STAGES.forEach(function(id){s[id]=false;});
+  return s;
+}
+
+function lfpGenerateListings(){
+  var out=[], n=1;
+  LFP_AGES.forEach(function(ag){
+    LFP_EDITIONS.forEach(function(ed){
+      LFP_FMTS.forEach(function(fmt){
+        var ap = LFP_AGE_PRIORITY[ag.age]||99;
+        var ep = LFP_ED_PRIORITY[ed.id]||99;
+        out.push({
+          id:'LFP'+lfpPad(n++,4),
+          ageVal:ag.age, ageLabel:ag.label,
+          edId:ed.id, edName:ed.name, edFlag:ed.flag, edCat:ed.cat,
+          format:fmt,
+          stages:lfpBlankStages(),
+          notes:'', lastTouched:0,
+          _pri: ap*10 + ep  // lower = higher priority
+        });
+      });
+    });
+  });
+  // Sort by priority
+  out.sort(function(a,b){return a._pri - b._pri;});
+  return out;
+}
+
+function lfpPad(n,l){var s=String(n);while(s.length<l)s='0'+s;return s;}
+
+// ── Load / Save ──
+function lfpLoadState(){
+  lfpListings = lfpGenerateListings();
+  try{
+    var saved = localStorage.getItem(LFP_KEY);
+    if(saved){
+      var arr = JSON.parse(saved);
+      var map = {};
+      arr.forEach(function(x){map[x.id]=x;});
+      lfpListings.forEach(function(l){
+        if(map[l.id]){
+          l.stages = map[l.id].stages || lfpBlankStages();
+          l.notes  = map[l.id].notes  || '';
+          l.lastTouched = map[l.id].lastTouched || 0;
+        }
+      });
+    }
+  }catch(e){console.warn('LFP load:',e);}
+  try{
+    var m = localStorage.getItem(LFP_MISC_KEY);
+    if(m){ var p=JSON.parse(m); Object.keys(lfpMisc).forEach(function(k){if(k in p)lfpMisc[k]=p[k];}); }
+  }catch(e){console.warn('LFP misc load:',e);}
+}
+
+function lfpSaveListings(){
+  try{
+    var slim = lfpListings.map(function(l){return{id:l.id,stages:l.stages,notes:l.notes,lastTouched:l.lastTouched||0};});
+    localStorage.setItem(LFP_KEY, JSON.stringify(slim));
+  }catch(e){console.warn('LFP save:',e);}
+}
+
+function lfpSaveMisc(){
+  // Read inputs into lfpMisc
+  var rv=document.getElementById('lfpRevInput');
+  var vi=document.getElementById('lfpVisitsInput');
+  var li=document.getElementById('lfpLiveInput');
+  var dt=document.getElementById('lfpDailyInput');
+  var pd=document.getElementById('lfpProjDaily');
+  var pr=document.getElementById('lfpProjRpl');
+  var ps=document.getElementById('lfpProjSplit');
+  if(rv&&rv.value!=='')lfpMisc.revenue=parseFloat(rv.value)||0;
+  if(vi&&vi.value!=='')lfpMisc.visits=parseFloat(vi.value)||0;
+  if(li&&li.value!=='')lfpMisc.etsyLive=parseFloat(li.value)||0;
+  if(dt&&dt.value!=='')lfpMisc.dailyTarget=parseFloat(dt.value)||3;
+  if(pd&&pd.value!=='')lfpMisc.projDaily=parseFloat(pd.value)||3;
+  if(pr&&pr.value!=='')lfpMisc.projRpl=parseFloat(pr.value)||7.81;
+  if(ps&&ps.value!=='')lfpMisc.projSplit=parseFloat(ps.value)||50;
+  try{localStorage.setItem(LFP_MISC_KEY,JSON.stringify(lfpMisc));}catch(e){}
+}
+
+// ── Helpers ──
+function lfpGetStatus(l){
+  if(l.stages.live) return 'completed';
+  var any = LFP_STAGES.some(function(s){return l.stages[s];});
+  return any ? 'in_progress' : 'not_started';
+}
+
+function lfpGetNextStage(l){
+  return LFP_STAGES.find(function(s){return !l.stages[s];});
+}
+
+function lfpTodayStr(){
+  var d=new Date();
+  return d.getFullYear()+'-'+lfpPad(d.getMonth()+1,2)+'-'+lfpPad(d.getDate(),2);
+}
+
+function lfpGetTodayPublished(){
+  var td=lfpTodayStr();
+  return (lfpMisc.dailyPublished&&lfpMisc.dailyPublished[td])||0;
+}
+
+function lfpMarkStage(listingId, stageId, val){
+  var l = lfpListings.find(function(x){return x.id===listingId;});
+  if(!l)return;
+  l.stages[stageId] = val;
+  l.lastTouched = Date.now();
+  // If marking live, record today's publish
+  if(stageId==='live' && val){
+    var td=lfpTodayStr();
+    if(!lfpMisc.dailyPublished)lfpMisc.dailyPublished={};
+    lfpMisc.dailyPublished[td]=(lfpMisc.dailyPublished[td]||0)+1;
+    lfpMisc.live = lfpListings.filter(function(x){return x.stages.live;}).length;
+    try{localStorage.setItem(LFP_MISC_KEY,JSON.stringify(lfpMisc));}catch(e){}
+  }
+  lfpSaveListings();
+  lfpRenderAll();
+}
+
+function lfpMarkAllStages(listingId){
+  var l = lfpListings.find(function(x){return x.id===listingId;});
+  if(!l)return;
+  var wasLive = l.stages.live;
+  LFP_STAGES.forEach(function(s){l.stages[s]=true;});
+  l.lastTouched=Date.now();
+  if(!wasLive){
+    var td=lfpTodayStr();
+    if(!lfpMisc.dailyPublished)lfpMisc.dailyPublished={};
+    lfpMisc.dailyPublished[td]=(lfpMisc.dailyPublished[td]||0)+1;
+    lfpMisc.live = lfpListings.filter(function(x){return x.stages.live;}).length;
+    try{localStorage.setItem(LFP_MISC_KEY,JSON.stringify(lfpMisc));}catch(e){}
+  }
+  lfpSaveListings();
+  lfpRenderAll();
+}
+
+// ── Sub-tab switching ──
+function lfpShowSub(name, btn){
+  ['tasks','pipeline','projections'].forEach(function(s){
+    var el=document.getElementById('lfpSub'+s.charAt(0).toUpperCase()+s.slice(1));
+    if(el)el.style.display=s===name?'':'none';
+  });
+  document.querySelectorAll('#v-lfp .btn').forEach(function(b){
+    if(b.id&&b.id.startsWith('lfpTab')){b.style.background='';b.style.borderColor='var(--border)';b.className='btn btn-mid';}
+  });
+  if(btn){btn.style.background='var(--rust2)';btn.style.borderColor='var(--rust2)';btn.className='btn';}
+  lfpMisc.curSub=name;
+  if(name==='pipeline')lfpRenderPipeline();
+  if(name==='projections')lfpRenderProjections();
+  if(name==='tasks')lfpRenderAll();
+}
+
+// ── Main render ──
+function lfpRenderAll(){
+  lfpRenderStats();
+  lfpRenderMission();
+  lfpRenderTasks();
+}
+
+function lfpRenderStats(){
+  var live = lfpListings.filter(function(l){return l.stages.live;}).length;
+  var total = lfpListings.length || 238;
+  var pct = Math.round(live/total*100);
+  var rpl = lfpMisc.projRpl||7.81;
+  var rev = Math.round(live * rpl);
+
+  var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
+  set('lfpStatLive', live);
+  set('lfpStatTotal', total);
+  set('lfpStatRev', '$'+rev.toLocaleString());
+  set('lfpStatRemain', total-live);
+  set('lfpProgPct', pct+'% complete ('+live+'/'+total+')');
+  var bar=document.getElementById('lfpProgBar');
+  if(bar)bar.style.width=Math.max(0,pct)+'%';
+}
+
+function lfpRenderMission(){
+  var tgt=Math.max(1,Math.round(lfpMisc.dailyTarget||3));
+  var done=lfpGetTodayPublished();
+  var rpl=lfpMisc.projRpl||7.81;
+  var added=done*rpl;
+  var remain=Math.max(0,tgt-done);
+
+  var set=function(id,v,c){var e=document.getElementById(id);if(e){e.textContent=v;if(c)e.style.color=c;}};
+  set('lfpDailyTgt',tgt);
+  set('lfpTodayDone',done, done>=tgt?'var(--green3)':done>0?'var(--teal)':'var(--rust2)');
+  set('lfpAddedToday','+$'+added.toFixed(added<10?2:0), done===0?'var(--mid)':done>=3?'var(--green3)':'var(--teal)');
+  set('lfpRemainToday',remain>0?remain+' more':'✓ Done!', remain===0?'var(--green3)':'var(--rust2)');
+
+  var d=new Date();
+  var dateEl=document.getElementById('lfpTodayDate');
+  if(dateEl)dateEl.textContent=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+
+  var msg='';
+  if(done>=tgt){
+    msg='🏆 <strong style="color:var(--green3);">Target smashed!</strong> '+done+'/'+tgt+' listings published today. Every listing compounds forever.';
+  } else if(done>0){
+    msg='⚡ <strong style="color:var(--teal);">'+done+' down, '+remain+' to go.</strong> Keep the momentum — next listing earns <strong style="color:var(--gold);">$'+rpl.toFixed(2)+'/mo</strong> forever.';
+  } else {
+    msg='🎯 Publish <strong style="color:var(--gold);">'+tgt+' listings</strong> today for LFP. Start with the top-priority task below.';
+  }
+  var msgEl=document.getElementById('lfpMissionMsg');
+  if(msgEl)msgEl.innerHTML=msg;
+
+  // Sync inputs
+  var syncInp=function(id,val){var e=document.getElementById(id);if(e&&document.activeElement!==e)e.value=val||'';};
+  syncInp('lfpRevInput',lfpMisc.revenue||'');
+  syncInp('lfpVisitsInput',lfpMisc.visits||'');
+  syncInp('lfpLiveInput',lfpMisc.etsyLive||'');
+  syncInp('lfpDailyInput',lfpMisc.dailyTarget||3);
+}
+
+function lfpRenderTasks(){
+  var el=document.getElementById('lfpTaskList');
+  if(!el)return;
+
+  var edF  =(document.getElementById('lfpFilterEd')||{}).value||'';
+  var catF =(document.getElementById('lfpFilterCat')||{}).value||'';
+  var fmtF =(document.getElementById('lfpFilterFmt')||{}).value||'';
+  var stF  =(document.getElementById('lfpFilterStatus')||{}).value||'pending';
+
+  var pool = lfpListings.filter(function(l){
+    if(edF  && l.edId!==edF)   return false;
+    if(catF && l.edCat!==catF) return false;
+    if(fmtF && l.format!==fmtF)return false;
+    var st=lfpGetStatus(l);
+    if(stF==='pending' && st==='completed') return false;
+    if(stF==='live'    && st!=='completed') return false;
+    return true;
+  });
+
+  pool.sort(function(a,b){
+    var sa=lfpGetStatus(a),sb=lfpGetStatus(b);
+    if(sa==='in_progress'&&sb!=='in_progress')return -1;
+    if(sb==='in_progress'&&sa!=='in_progress')return 1;
+    return a._pri-b._pri;
+  });
+
+  var show = pool.slice(0,15);
+  if(!show.length){
+    el.innerHTML='<div style="font-size:11px;color:var(--mid);padding:10px 0;">No listings match this filter.</div>';
+    return;
+  }
+
+  el.innerHTML = show.map(function(l){
+    var st=lfpGetStatus(l);
+    var next=lfpGetNextStage(l);
+    var isDone=st==='completed';
+    var isIP=st==='in_progress';
+    var catColor=l.edCat==='black'?'var(--teal)':'var(--gold2)';
+    var catLabel=l.edCat==='black'?'BLK':'GEN';
+    var fmtColor=l.format==='Custom'?'var(--rust2)':'var(--green3)';
+
+    var stagesDots = LFP_STAGES.map(function(s){
+      var done=l.stages[s];
+      var isNext=!isDone&&s===next;
+      return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(done?'var(--green3)':isNext?'var(--gold)':'var(--border)')
+        +';cursor:pointer;transition:transform .1s;" onclick="lfpMarkStage(\''+l.id+'\',\''+s+'\','+(!done)+')" title="'+(done?'✓ ':'')+LFP_STAGE_NAMES[s]+'">'
+        +'</span>';
+    }).join('');
+
+    var bg = isDone?'rgba(45,122,80,.08)':isIP?'rgba(201,151,58,.08)':'var(--ink2)';
+    var border = isDone?'#1a5c35':isIP?'#6a5020':'var(--border)';
+
+    return '<div style="background:'+bg+';border:1px solid '+border+';border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">'
+      +'<div style="min-width:36px;font-size:13px;font-weight:700;color:'+(isDone?'var(--green3)':'var(--cream)')+';">'+l.ageLabel+'</div>'
+      +'<div style="flex:1;min-width:100px;">'
+        +'<div style="font-size:11px;color:var(--cream2);">'+l.edFlag+' '+l.edName
+          +' <span style="font-size:9px;background:rgba(0,0,0,.3);padding:1px 5px;border-radius:3px;color:'+catColor+';">'+catLabel+'</span>'
+          +' <span style="font-size:9px;color:'+fmtColor+';">'+l.format+'</span>'
+        +'</div>'
+        +'<div style="display:flex;gap:3px;margin-top:4px;align-items:center;">'+stagesDots+'<span style="font-size:9px;color:var(--mid);margin-left:4px;">'+(isDone?'✓ Live':isIP?'In Progress':'Not Started')+'</span></div>'
+      +'</div>'
+      +(isDone?''
+        :'<button onclick="lfpMarkAllStages(\''+l.id+'\')" style="font-size:9px;padding:4px 10px;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;white-space:nowrap;">✓ Mark Live</button>')
+      +'</div>';
+  }).join('');
+}
+
+// ── Pipeline render ──
+function lfpRenderPipeline(){
+  var edF  =(document.getElementById('lfpPipeEd')||{}).value||'';
+  var fmtF =(document.getElementById('lfpPipeFmt')||{}).value||'';
+  var stF  =(document.getElementById('lfpPipeStatus')||{}).value||'';
+
+  var pool=lfpListings.filter(function(l){
+    if(edF  && l.edId!==edF)    return false;
+    if(fmtF && l.format!==fmtF) return false;
+    if(stF){var s=lfpGetStatus(l);if(s!==stF)return false;}
+    return true;
+  });
+
+  var cnt=document.getElementById('lfpPipeCount');
+  if(cnt)cnt.textContent=pool.length+' listings';
+
+  var tbody=document.getElementById('lfpPipeBody');
+  if(!tbody)return;
+
+  if(!pool.length){tbody.innerHTML='<tr><td colspan="10" style="padding:16px;text-align:center;color:var(--mid);font-size:11px;">No listings match filter.</td></tr>';return;}
+
+  tbody.innerHTML=pool.map(function(l){
+    var st=lfpGetStatus(l);
+    var isDone=st==='completed';
+    var isIP=st==='in_progress';
+    var rowBg=isDone?'rgba(45,122,80,.06)':isIP?'rgba(201,151,58,.06)':'';
+    var stageCells=LFP_STAGES.map(function(s){
+      var done=l.stages[s];
+      return '<td style="padding:4px;text-align:center;"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:'+(done?'var(--green3)':'var(--border)')
+        +';cursor:pointer;" onclick="lfpMarkStage(\''+l.id+'\',\''+s+'\','+(!done)+')" title="'+(done?'Undo ':'Mark ')+''+LFP_STAGE_NAMES[s]+'"></span></td>';
+    }).join('');
+    var stLabel=isDone?'<span style="color:var(--green3);font-size:9px;">✓ Live</span>'
+                      :isIP?'<span style="color:var(--gold);font-size:9px;">In Prog</span>'
+                           :'<span style="color:var(--mid);font-size:9px;">—</span>';
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid var(--border);">'
+      +'<td style="padding:5px 8px;font-weight:600;color:var(--cream);white-space:nowrap;">'+l.ageLabel+'</td>'
+      +'<td style="padding:5px 8px;white-space:nowrap;">'+l.edFlag+' <span style="font-size:10px;color:var(--cream2);">'+l.edName+'</span></td>'
+      +'<td style="padding:5px 8px;font-size:10px;color:'+(l.format==='Custom'?'var(--rust2)':'var(--green3)')+';">'+l.format+'</td>'
+      +stageCells
+      +'<td style="padding:5px 8px;text-align:center;">'+stLabel+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+// ── Projections render ──
+function lfpRenderProjections(){
+  var daily   = parseFloat((document.getElementById('lfpProjDaily')||{}).value)||3;
+  var rpl     = Math.max(0.01, parseFloat((document.getElementById('lfpProjRpl')||{}).value)||7.81);
+  var split   = parseFloat((document.getElementById('lfpProjSplit')||{}).value)||50;
+
+  lfpMisc.projDaily=daily; lfpMisc.projRpl=rpl; lfpMisc.projSplit=split;
+  try{localStorage.setItem(LFP_MISC_KEY,JSON.stringify(lfpMisc));}catch(e){}
+
+  var live    = lfpListings.filter(function(l){return l.stages.live;}).length;
+  var remain  = 238 - live;
+  var daysLeft= remain>0 ? Math.ceil(remain/daily) : 0;
+  var fullRev = Math.round(238 * rpl);
+  var yourCut = Math.round(fullRev * split/100);
+
+  var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
+  set('lfpProjDaysLeft', daysLeft>0?daysLeft+'d':'Done!');
+  set('lfpProjFullRev',  '$'+fullRev.toLocaleString()+'/mo');
+  set('lfpProjYourCut',  '$'+yourCut.toLocaleString()+'/mo');
+  set('lfpProjRemain',   remain);
+
+  // Milestones
+  var msEl=document.getElementById('lfpMilestones');
+  if(msEl){
+    var milestones=[
+      {label:'First 10 live',  count:10},
+      {label:'50 listings',    count:50},
+      {label:'100 listings',   count:100},
+      {label:'All 1 age complete (14 listings)', count:14},
+      {label:'All USA Generic (17 listings)',    count:17},
+      {label:'Half complete (119 listings)',     count:119},
+      {label:'Full scale (238 listings)',        count:238}
+    ];
+    msEl.innerHTML=milestones.map(function(ms){
+      var rev=Math.round(ms.count*rpl);
+      var yourRev=Math.round(rev*split/100);
+      var done=live>=ms.count;
+      var pct=Math.min(100,Math.round(live/ms.count*100));
+      return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);">'
+        +'<div style="font-size:16px;">'+(done?'✅':'⬜')+'</div>'
+        +'<div style="flex:1;">'
+          +'<div style="font-size:11px;color:'+(done?'var(--green3)':'var(--cream2)')+';">'+ms.label+'</div>'
+          +'<div style="height:3px;background:var(--border);border-radius:2px;margin-top:3px;overflow:hidden;"><div style="height:100%;width:'+pct+'%;background:'+(done?'var(--green3)':'var(--teal)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:90px;">'
+          +'<div style="font-size:12px;font-weight:700;color:var(--gold);">$'+rev.toLocaleString()+'/mo</div>'
+          +'<div style="font-size:9px;color:var(--mid);">Your share: $'+yourRev.toLocaleString()+'</div>'
+        +'</div>'
+        +'</div>';
+    }).join('');
+  }
+
+  // Edition breakdown
+  var edEl=document.getElementById('lfpEdBreakdown');
+  if(edEl){
+    edEl.innerHTML=LFP_EDITIONS.map(function(ed){
+      var edListings=lfpListings.filter(function(l){return l.edId===ed.id;});
+      var edLive=edListings.filter(function(l){return l.stages.live;}).length;
+      var edTotal=edListings.length; // 17 ages × 2 fmts = 34
+      var edPct=Math.round(edLive/edTotal*100);
+      var edRev=Math.round(edLive*rpl);
+      return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);">'
+        +'<div style="font-size:16px;">'+ed.flag+'</div>'
+        +'<div style="flex:1;">'
+          +'<div style="display:flex;justify-content:space-between;margin-bottom:2px;">'
+            +'<span style="font-size:10px;color:var(--cream2);">'+ed.name+' <span style="font-size:8px;color:'+(ed.cat==='black'?'var(--teal)':'var(--gold2)')+';">'+(ed.cat==='black'?'BLK':'GEN')+'</span></span>'
+            +'<span style="font-size:10px;color:var(--mid);">'+edLive+'/'+edTotal+'</span>'
+          +'</div>'
+          +'<div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div style="height:100%;width:'+edPct+'%;background:'+(edPct>=100?'var(--green3)':edPct>=50?'var(--teal)':'var(--gold)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:70px;">'
+          +'<div style="font-size:11px;font-weight:700;color:var(--gold);">$'+edRev+'</div>'
+          +'<div style="font-size:8px;color:var(--mid);">'+edPct+'%</div>'
+        +'</div>'
+        +'</div>';
+    }).join('');
+  }
+}
+
+// ── Batch mark ──
+function lfpBatchMark(){
+  var stage = (document.getElementById('lfpBatchStage')||{}).value||'';
+  var age   = (document.getElementById('lfpBatchAge')||{}).value||'';
+  var ed    = (document.getElementById('lfpBatchEd')||{}).value||'';
+  if(!stage){alert('Select a stage to mark.');return;}
+  if(!age&&!ed){alert('Select an age or edition to batch.');return;}
+
+  var count=0;
+  lfpListings.forEach(function(l){
+    if(age && String(l.ageVal)!==String(age)) return;
+    if(ed  && l.edId!==ed) return;
+    if(!l.stages[stage]){
+      l.stages[stage]=true;
+      l.lastTouched=Date.now();
+      if(stage==='live'){
+        // Batch = historical bulk mark — intentionally skip dailyPublished
+      }
+      count++;
+    }
+  });
+  if(stage==='live'){
+    lfpMisc.live=lfpListings.filter(function(l){return l.stages.live;}).length;
+    try{localStorage.setItem(LFP_MISC_KEY,JSON.stringify(lfpMisc));}catch(e){}
+  }
+  lfpSaveListings();
+  lfpRenderAll();
+  lfpRenderPipeline();
+  if(count) alert('Marked '+count+' listings: '+LFP_STAGE_NAMES[stage]+' ✓');
+}
+
+// ── Init (called from main init) ──
+function lfpInit(){
+  lfpLoadState();
+  // Set initial active sub-tab
+  setTimeout(function(){
+    var tasksBtn=document.getElementById('lfpTabTasks');
+    if(tasksBtn)lfpShowSub('tasks',tasksBtn);
+  },0);
+  // Sync projection inputs from saved misc
+  var syncV=function(id,val){var e=document.getElementById(id);if(e)e.value=val;};
+  syncV('lfpProjDaily',  lfpMisc.projDaily||3);
+  syncV('lfpProjRpl',    lfpMisc.projRpl||7.81);
+  syncV('lfpProjSplit',  lfpMisc.projSplit||50);
+  syncV('lfpDailyInput', lfpMisc.dailyTarget||3);
+  if(lfpMisc.revenue) syncV('lfpRevInput',    lfpMisc.revenue);
+  if(lfpMisc.visits)  syncV('lfpVisitsInput', lfpMisc.visits);
+  if(lfpMisc.etsyLive!==undefined) syncV('lfpLiveInput', lfpMisc.etsyLive);
+}
+
+
+
+// ═══════════════════════════════════════════════════════════════════
+// YOUARTWORTHY PHASE 1 — Standalone module (zero coupling to main app or LFP)
+// Storage key: yaw_v1   (separate from bhq_v5_* and lfp_v1_*)
+// 16 priority ages × 31 editions (V1/V2/V3) = 976 Phase 1 listings
+// ═══════════════════════════════════════════════════════════════════
+
+var YAW_KEY      = 'yaw_v1_listings';
+var YAW_MISC_KEY = 'yaw_v1_misc';
+
+// ── 31 Shop A editions with version info ──
+var YAW_EDITIONS = [
+  // Generic V1
+  {id:'a_usa_gen',   name:'USA Generic',          shortName:'USA Gen',    flag:'🇺🇸', cat:'generic', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_uk_gen',    name:'UK Generic',           shortName:'UK Gen',     flag:'🇬🇧', cat:'generic', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_can_gen',   name:'Canada Generic',       shortName:'CAN Gen',    flag:'🇨🇦', cat:'generic', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_aus_gen',   name:'Australia Generic',    shortName:'AUS Gen',    flag:'🇦🇺', cat:'generic', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_nz_gen',    name:'New Zealand Generic',  shortName:'NZ Gen',     flag:'🇳🇿', cat:'generic', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_ire_gen',   name:'Ireland Generic',      shortName:'IRE Gen',    flag:'🇮🇪', cat:'generic', ver:'v1', fmts:['Custom','Instant DL']},
+  // Generic V2
+  {id:'a_usa_gen_v2',name:'USA Generic V2',       shortName:'USA Gen V2', flag:'🇺🇸', cat:'generic', ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'a_uk_gen_v2', name:'UK Generic V2',        shortName:'UK Gen V2',  flag:'🇬🇧', cat:'generic', ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'a_can_gen_v2',name:'Canada Generic V2',    shortName:'CAN Gen V2', flag:'🇨🇦', cat:'generic', ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'a_aus_gen_v2',name:'Australia Generic V2', shortName:'AUS Gen V2', flag:'🇦🇺', cat:'generic', ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'a_nz_gen_v2', name:'New Zealand Generic V2',shortName:'NZ Gen V2', flag:'🇳🇿', cat:'generic', ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'a_ire_gen_v2',name:'Ireland Generic V2',   shortName:'IRE Gen V2', flag:'🇮🇪', cat:'generic', ver:'v2', fmts:['Custom','Instant DL']},
+  // Generic V3
+  {id:'a_usa_gen_v3',name:'USA Generic V3',       shortName:'USA Gen V3', flag:'🇺🇸', cat:'generic', ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'a_uk_gen_v3', name:'UK Generic V3',        shortName:'UK Gen V3',  flag:'🇬🇧', cat:'generic', ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'a_can_gen_v3',name:'Canada Generic V3',    shortName:'CAN Gen V3', flag:'🇨🇦', cat:'generic', ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'a_aus_gen_v3',name:'Australia Generic V3', shortName:'AUS Gen V3', flag:'🇦🇺', cat:'generic', ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'a_nz_gen_v3', name:'New Zealand Generic V3',shortName:'NZ Gen V3', flag:'🇳🇿', cat:'generic', ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'a_ire_gen_v3',name:'Ireland Generic V3',   shortName:'IRE Gen V3', flag:'🇮🇪', cat:'generic', ver:'v3', fmts:['Custom','Instant DL']},
+  // Black V1
+  {id:'a_glb_blk',   name:'Global Black',         shortName:'GLB Blk',    flag:'🌍',  cat:'black',   ver:'v1', fmts:['Instant DL']},
+  {id:'a_usa_blk',   name:'USA Black',            shortName:'USA Blk',    flag:'🇺🇸', cat:'black',   ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_uk_blk',    name:'UK Black',             shortName:'UK Blk',     flag:'🇬🇧', cat:'black',   ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_can_blk',   name:'Canada Black',         shortName:'CAN Blk',    flag:'🇨🇦', cat:'black',   ver:'v1', fmts:['Custom','Instant DL']},
+  // Black V2
+  {id:'a_usa_blk_v2',name:'USA Black V2',         shortName:'USA Blk V2', flag:'🇺🇸', cat:'black',   ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'a_uk_blk_v2', name:'UK Black V2',          shortName:'UK Blk V2',  flag:'🇬🇧', cat:'black',   ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'a_can_blk_v2',name:'Canada Black V2',      shortName:'CAN Blk V2', flag:'🇨🇦', cat:'black',   ver:'v2', fmts:['Custom','Instant DL']},
+  // Black V3
+  {id:'a_usa_blk_v3',name:'USA Black V3',         shortName:'USA Blk V3', flag:'🇺🇸', cat:'black',   ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'a_uk_blk_v3', name:'UK Black V3',          shortName:'UK Blk V3',  flag:'🇬🇧', cat:'black',   ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'a_can_blk_v3',name:'Canada Black V3',      shortName:'CAN Blk V3', flag:'🇨🇦', cat:'black',   ver:'v3', fmts:['Custom','Instant DL']},
+  // Diaspora Black V1
+  {id:'a_jam_blk',   name:'Jamaica Black',        shortName:'JAM Blk',    flag:'🇯🇲', cat:'black',   ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_tri_blk',   name:'Trinidad Black',       shortName:'TRI Blk',    flag:'🇹🇹', cat:'black',   ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'a_bar_blk',   name:'Barbados Black',       shortName:'BAR Blk',    flag:'🇧🇧', cat:'black',   ver:'v1', fmts:['Custom','Instant DL']}
+];
+
+// ── 16 Priority Ages (Phase 1 only) ──
+var YAW_AGES = [
+  {age:50,label:'50th',priOrder:0},
+  {age:60,label:'60th',priOrder:1},
+  {age:40,label:'40th',priOrder:2},
+  {age:70,label:'70th',priOrder:3},
+  {age:30,label:'30th',priOrder:4},
+  {age:55,label:'55th',priOrder:5},
+  {age:25,label:'25th',priOrder:6},
+  {age:35,label:'35th',priOrder:7},
+  {age:45,label:'45th',priOrder:8},
+  {age:65,label:'65th',priOrder:9},
+  {age:21,label:'21st',priOrder:10},
+  {age:75,label:'75th',priOrder:11},
+  {age:80,label:'80th',priOrder:12},
+  {age:85,label:'85th',priOrder:13},
+  {age:90,label:'90th',priOrder:14},
+  {age:95,label:'95th',priOrder:15}
+];
+
+// Edition priority scores (higher demand = lower number = rendered first)
+// Based on ED_D scores: USA=100, UK_blk=82, UK_gen=78, AUS=72, JAM=76, CAN=70...
+var YAW_ED_PRIORITY = {
+  a_usa_gen:1, a_uk_gen:2, a_usa_blk:3, a_can_gen:4, a_uk_blk:5,
+  a_aus_gen:6, a_jam_blk:7, a_can_blk:8, a_usa_gen_v2:9, a_uk_gen_v2:10,
+  a_usa_blk_v2:11, a_can_gen_v2:12, a_tri_blk:13, a_uk_blk_v2:14,
+  a_aus_gen_v2:15, a_bar_blk:16, a_usa_gen_v3:17, a_can_blk_v2:18,
+  a_uk_gen_v3:19, a_usa_blk_v3:20, a_can_gen_v3:21, a_uk_blk_v3:22,
+  a_aus_gen_v3:23, a_can_blk_v3:24, a_nz_gen:25, a_ire_gen:26,
+  a_nz_gen_v2:27, a_ire_gen_v2:28, a_nz_gen_v3:29, a_ire_gen_v3:30,
+  a_glb_blk:31
+};
+
+// ── State ──
+var yawListings = [];
+var yawMisc = {
+  revenue:0, visits:0, live:0, etsyLive:0, dailyTarget:7,
+  projDaily:7, projRpl:7.81, projFee:9.5,
+  dailyPublished:{},
+  curSub:'tasks'
+};
+
+// ── Stages ──
+var YAW_STAGES = ['facts','canva','hero','mockup','listing','live'];
+var YAW_STAGE_NAMES = {facts:'Research',canva:'Canva',hero:'Hero',mockup:'Mockup',listing:'Copy',live:'Live'};
+
+function yawBlankStages(){
+  var s={};
+  YAW_STAGES.forEach(function(id){s[id]=false;});
+  return s;
+}
+
+function yawPad(n,l){var s=String(n);while(s.length<l)s='0'+s;return s;}
+
+function yawGenerateListings(){
+  var out=[], n=1;
+  YAW_AGES.forEach(function(ag){
+    YAW_EDITIONS.forEach(function(ed){
+      ed.fmts.forEach(function(fmt){
+        var ep = YAW_ED_PRIORITY[ed.id]||99;
+        out.push({
+          id:'YAW'+yawPad(n++,4),
+          ageVal:ag.age, ageLabel:ag.label, agePri:ag.priOrder,
+          edId:ed.id, edName:ed.name, edShort:ed.shortName,
+          edFlag:ed.flag, edCat:ed.cat, edVer:ed.ver,
+          format:fmt,
+          stages:yawBlankStages(),
+          notes:'', lastTouched:0,
+          _pri: ag.priOrder*100 + ep
+        });
+      });
+    });
+  });
+  out.sort(function(a,b){return a._pri-b._pri;});
+  return out;
+}
+
+// ── Load / Save ──
+function yawLoadState(){
+  yawListings = yawGenerateListings();
+  try{
+    var saved=localStorage.getItem(YAW_KEY);
+    if(saved){
+      var arr=JSON.parse(saved);
+      var map={};
+      arr.forEach(function(x){map[x.id]=x;});
+      yawListings.forEach(function(l){
+        if(map[l.id]){
+          l.stages=map[l.id].stages||yawBlankStages();
+          l.notes=map[l.id].notes||'';
+          l.lastTouched=map[l.id].lastTouched||0;
+        }
+      });
+    }
+  }catch(e){console.warn('YAW load:',e);}
+  try{
+    var m=localStorage.getItem(YAW_MISC_KEY);
+    if(m){var p=JSON.parse(m);Object.keys(yawMisc).forEach(function(k){if(k in p)yawMisc[k]=p[k];});}
+  }catch(e){console.warn('YAW misc load:',e);}
+}
+
+function yawSaveListings(){
+  try{
+    var slim=yawListings.map(function(l){return{id:l.id,stages:l.stages,notes:l.notes,lastTouched:l.lastTouched||0};});
+    localStorage.setItem(YAW_KEY,JSON.stringify(slim));
+  }catch(e){console.warn('YAW save:',e);}
+}
+
+function yawSaveMisc(){
+  var g=function(id){return document.getElementById(id);};
+  var rv=g('yawRevInput'),vi=g('yawVisitsInput'),li=g('yawLiveInput'),dt=g('yawDailyInput');
+  var pd=g('yawProjDaily'),pr=g('yawProjRpl'),pf=g('yawProjFee');
+  if(rv&&rv.value!=='')yawMisc.revenue=parseFloat(rv.value)||0;
+  if(vi&&vi.value!=='')yawMisc.visits=parseFloat(vi.value)||0;
+  if(li&&li.value!=='')yawMisc.etsyLive=parseFloat(li.value)||0;
+  if(dt&&dt.value!=='')yawMisc.dailyTarget=parseFloat(dt.value)||7;
+  if(pd&&pd.value!=='')yawMisc.projDaily=parseFloat(pd.value)||7;
+  if(pr&&pr.value!=='')yawMisc.projRpl=parseFloat(pr.value)||7.81;
+  if(pf&&pf.value!=='')yawMisc.projFee=parseFloat(pf.value)||9.5;
+  try{localStorage.setItem(YAW_MISC_KEY,JSON.stringify(yawMisc));}catch(e){}
+}
+
+// ── Helpers ──
+function yawGetStatus(l){
+  if(l.stages.live)return 'completed';
+  var any=YAW_STAGES.some(function(s){return l.stages[s];});
+  return any?'in_progress':'not_started';
+}
+
+function yawGetNextStage(l){
+  return YAW_STAGES.find(function(s){return !l.stages[s];});
+}
+
+function yawTodayStr(){
+  var d=new Date();
+  return d.getFullYear()+'-'+yawPad(d.getMonth()+1,2)+'-'+yawPad(d.getDate(),2);
+}
+
+function yawGetTodayPublished(){
+  var td=yawTodayStr();
+  return (yawMisc.dailyPublished&&yawMisc.dailyPublished[td])||0;
+}
+
+// ── Mark stage / Mark all ──
+function yawMarkStage(listingId,stageId,val){
+  var l=yawListings.find(function(x){return x.id===listingId;});
+  if(!l)return;
+  l.stages[stageId]=val;
+  l.lastTouched=Date.now();
+  if(stageId==='live'&&val){
+    var td=yawTodayStr();
+    if(!yawMisc.dailyPublished)yawMisc.dailyPublished={};
+    yawMisc.dailyPublished[td]=(yawMisc.dailyPublished[td]||0)+1;
+    yawMisc.live=yawListings.filter(function(x){return x.stages.live;}).length;
+    try{localStorage.setItem(YAW_MISC_KEY,JSON.stringify(yawMisc));}catch(e){}
+  }
+  yawSaveListings();
+  yawRenderAll();
+  syncToMain(l.edId, l.ageVal, l.format, l.stages);
+}
+
+function yawMarkAllStages(listingId){
+  var l=yawListings.find(function(x){return x.id===listingId;});
+  if(!l)return;
+  var wasLive=l.stages.live;
+  YAW_STAGES.forEach(function(s){l.stages[s]=true;});
+  l.lastTouched=Date.now();
+  if(!wasLive){
+    var td=yawTodayStr();
+    if(!yawMisc.dailyPublished)yawMisc.dailyPublished={};
+    yawMisc.dailyPublished[td]=(yawMisc.dailyPublished[td]||0)+1;
+    yawMisc.live=yawListings.filter(function(x){return x.stages.live;}).length;
+    try{localStorage.setItem(YAW_MISC_KEY,JSON.stringify(yawMisc));}catch(e){}
+  }
+  yawSaveListings();
+  yawRenderAll();
+  syncToMain(l.edId, l.ageVal, l.format, l.stages);
+}
+
+// ── Sub-tab switching ──
+function yawShowSub(name,btn){
+  ['tasks','pipeline','projections'].forEach(function(s){
+    var el=document.getElementById('yawSub'+s.charAt(0).toUpperCase()+s.slice(1));
+    if(el)el.style.display=s===name?'':'none';
+  });
+  document.querySelectorAll('#v-yaw .btn').forEach(function(b){
+    if(b.id&&b.id.startsWith('yawTab')){b.style.background='';b.style.borderColor='var(--border)';b.className='btn btn-mid';}
+  });
+  if(btn){btn.style.background='var(--gold)';btn.style.borderColor='var(--gold)';btn.className='btn';}
+  yawMisc.curSub=name;
+  if(name==='pipeline')yawRenderPipeline();
+  if(name==='projections')yawRenderProjections();
+  if(name==='tasks')yawRenderAll();
+}
+
+// ── Main render ──
+function yawRenderAll(){
+  yawRenderStats();
+  yawRenderMission();
+  yawRenderTasks();
+}
+
+function yawRenderStats(){
+  var live=yawListings.filter(function(l){return l.stages.live;}).length;
+  var total=yawListings.length||976;
+  var pct=Math.round(live/total*100);
+  var rpl=yawMisc.projRpl||7.81;
+  var rev=Math.round(live*rpl);
+  var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
+  set('yawStatLive',live);
+  set('yawStatTotal',total);
+  set('yawStatRev','$'+rev.toLocaleString());
+  set('yawStatRemain',total-live);
+  set('yawProgPct',pct+'% complete ('+live+'/'+total+')');
+  var bar=document.getElementById('yawProgBar');
+  if(bar)bar.style.width=Math.max(0,pct)+'%';
+}
+
+function yawRenderMission(){
+  var tgt=Math.max(1,Math.round(yawMisc.dailyTarget||7));
+  var done=yawGetTodayPublished();
+  var rpl=yawMisc.projRpl||7.81;
+  var added=done*rpl;
+  var remain=Math.max(0,tgt-done);
+  var set=function(id,v,c){var e=document.getElementById(id);if(e){e.textContent=v;if(c)e.style.color=c;}};
+  set('yawDailyTgt',tgt);
+  set('yawTodayDone',done,done>=tgt?'var(--green3)':done>0?'var(--teal)':'var(--rust2)');
+  set('yawAddedToday','+$'+added.toFixed(added<10?2:0),done===0?'var(--mid)':done>=3?'var(--green3)':'var(--teal)');
+  set('yawRemainToday',remain>0?remain+' more':'✓ Done!',remain===0?'var(--green3)':'var(--rust2)');
+  var d=new Date();
+  var dateEl=document.getElementById('yawTodayDate');
+  if(dateEl)dateEl.textContent=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+  var msg='';
+  if(done>=tgt){
+    msg='🏆 <strong style="color:var(--green3);">Target smashed!</strong> '+done+'/'+tgt+' YAW listings published today. Each one compounds forever.';
+  }else if(done>0){
+    msg='⚡ <strong style="color:var(--teal);">'+done+' down, '+remain+' to go.</strong> Next listing earns <strong style="color:var(--gold);">$'+rpl.toFixed(2)+'/mo</strong> forever.';
+  }else{
+    msg='🎯 Publish <strong style="color:var(--gold);">'+tgt+' YAW listings</strong> today. Start with the top-priority task below — USA 50th first.';
+  }
+  var msgEl=document.getElementById('yawMissionMsg');
+  if(msgEl)msgEl.innerHTML=msg;
+  var si=function(id,val){var e=document.getElementById(id);if(e&&document.activeElement!==e)e.value=val||'';};
+  si('yawRevInput',yawMisc.revenue||'');
+  si('yawVisitsInput',yawMisc.visits||'');
+  si('yawLiveInput',yawMisc.etsyLive||'');
+  si('yawDailyInput',yawMisc.dailyTarget||7);
+}
+
+function yawRenderTasks(){
+  var el=document.getElementById('yawTaskList');
+  if(!el)return;
+  var catF =(document.getElementById('yawFilterCat')||{}).value||'';
+  var verF =(document.getElementById('yawFilterVer')||{}).value||'';
+  var fmtF =(document.getElementById('yawFilterFmt')||{}).value||'';
+  var ageF =(document.getElementById('yawFilterAge')||{}).value||'';
+  var stF  =(document.getElementById('yawFilterStatus')||{}).value||'pending';
+
+  var pool=yawListings.filter(function(l){
+    if(catF && l.edCat!==catF)   return false;
+    if(verF && l.edVer!==verF)   return false;
+    if(fmtF && l.format!==fmtF)  return false;
+    if(ageF && String(l.ageVal)!==ageF) return false;
+    var st=yawGetStatus(l);
+    if(stF==='pending'&&st==='completed')return false;
+    if(stF==='live'&&st!=='completed')return false;
+    return true;
+  });
+
+  pool.sort(function(a,b){
+    var sa=yawGetStatus(a),sb=yawGetStatus(b);
+    if(sa==='in_progress'&&sb!=='in_progress')return -1;
+    if(sb==='in_progress'&&sa!=='in_progress')return 1;
+    return a._pri-b._pri;
+  });
+
+  var show=pool.slice(0,20);
+  if(!show.length){
+    el.innerHTML='<div style="font-size:11px;color:var(--mid);padding:10px 0;">No listings match this filter.</div>';
+    return;
+  }
+
+  el.innerHTML=show.map(function(l){
+    var st=yawGetStatus(l);
+    var next=yawGetNextStage(l);
+    var isDone=st==='completed';
+    var isIP=st==='in_progress';
+    var catColor=l.edCat==='black'?'var(--teal)':'var(--gold2)';
+    var catLabel=l.edCat==='black'?'BLK':'GEN';
+    var fmtColor=l.format==='Custom'?'var(--rust2)':'var(--green3)';
+    var verColor=l.edVer==='v1'?'var(--gold)':l.edVer==='v2'?'var(--teal)':'var(--mid)';
+
+    var dots=YAW_STAGES.map(function(s){
+      var done=l.stages[s];
+      var isNext=!isDone&&s===next;
+      return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(done?'var(--green3)':isNext?'var(--gold)':'var(--border)')+';cursor:pointer;transition:transform .1s;" onclick="yawMarkStage(\''+l.id+'\',\''+s+'\','+(!done)+')" title="'+(done?'✓ ':'')+YAW_STAGE_NAMES[s]+'"></span>';
+    }).join('');
+
+    var bg=isDone?'rgba(45,122,80,.08)':isIP?'rgba(201,151,58,.08)':'var(--ink2)';
+    var border=isDone?'#1a5c35':isIP?'#6a5020':'var(--border)';
+
+    return '<div style="background:'+bg+';border:1px solid '+border+';border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">'
+      +'<div style="min-width:36px;font-size:13px;font-weight:700;color:'+(isDone?'var(--green3)':'var(--cream)')+';">'+l.ageLabel+'</div>'
+      +'<div style="flex:1;min-width:110px;">'
+        +'<div style="font-size:11px;color:var(--cream2);">'+l.edFlag+' '+l.edShort
+          +' <span style="font-size:9px;background:rgba(0,0,0,.3);padding:1px 4px;border-radius:3px;color:'+catColor+';">'+catLabel+'</span>'
+          +' <span style="font-size:9px;background:rgba(0,0,0,.3);padding:1px 4px;border-radius:3px;color:'+verColor+';">'+l.edVer.toUpperCase()+'</span>'
+          +' <span style="font-size:9px;color:'+fmtColor+';">'+l.format+'</span>'
+        +'</div>'
+        +'<div style="display:flex;gap:3px;margin-top:4px;align-items:center;">'+dots+'<span style="font-size:9px;color:var(--mid);margin-left:4px;">'+(isDone?'✓ Live':isIP?'In Progress':'Not Started')+'</span></div>'
+      +'</div>'
+      +(isDone?''
+        :'<button onclick="yawMarkAllStages(\''+l.id+'\')" style="font-size:9px;padding:4px 10px;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;white-space:nowrap;">✓ Mark Live</button>')
+      +'</div>';
+  }).join('');
+}
+
+// ── Pipeline ──
+function yawRenderPipeline(){
+  var catF=(document.getElementById('yawPipeCat')||{}).value||'';
+  var verF=(document.getElementById('yawPipeVer')||{}).value||'';
+  var ageF=(document.getElementById('yawPipeAge')||{}).value||'';
+  var fmtF=(document.getElementById('yawPipeFmt')||{}).value||'';
+  var stF =(document.getElementById('yawPipeStatus')||{}).value||'';
+
+  var pool=yawListings.filter(function(l){
+    if(catF && l.edCat!==catF) return false;
+    if(verF && l.edVer!==verF) return false;
+    if(ageF && String(l.ageVal)!==ageF) return false;
+    if(fmtF && l.format!==fmtF) return false;
+    if(stF){var s=yawGetStatus(l);if(s!==stF)return false;}
+    return true;
+  });
+
+  var cnt=document.getElementById('yawPipeCount');
+  if(cnt)cnt.textContent=pool.length+' listings';
+
+  var tbody=document.getElementById('yawPipeBody');
+  if(!tbody)return;
+  if(!pool.length){tbody.innerHTML='<tr><td colspan="11" style="padding:16px;text-align:center;color:var(--mid);font-size:11px;">No listings match filter.</td></tr>';return;}
+
+  tbody.innerHTML=pool.map(function(l){
+    var st=yawGetStatus(l);
+    var isDone=st==='completed';
+    var isIP=st==='in_progress';
+    var rowBg=isDone?'rgba(45,122,80,.06)':isIP?'rgba(201,151,58,.06)':'';
+    var verColor=l.edVer==='v1'?'var(--gold)':l.edVer==='v2'?'var(--teal)':'var(--mid)';
+    var stageCells=YAW_STAGES.map(function(s){
+      var done=l.stages[s];
+      return '<td style="padding:4px;text-align:center;"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:'+(done?'var(--green3)':'var(--border)')+';cursor:pointer;" onclick="yawMarkStage(\''+l.id+'\',\''+s+'\','+(!done)+')" title="'+(done?'Undo ':'Mark ')+YAW_STAGE_NAMES[s]+'"></span></td>';
+    }).join('');
+    var stLabel=isDone?'<span style="color:var(--green3);font-size:9px;">✓ Live</span>'
+                      :isIP?'<span style="color:var(--gold);font-size:9px;">In Prog</span>'
+                           :'<span style="color:var(--mid);font-size:9px;">—</span>';
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid var(--border);">'
+      +'<td style="padding:5px 8px;font-weight:600;color:var(--cream);white-space:nowrap;">'+l.ageLabel+'</td>'
+      +'<td style="padding:5px 8px;white-space:nowrap;">'+l.edFlag+' <span style="font-size:10px;color:var(--cream2);">'+l.edShort+'</span></td>'
+      +'<td style="padding:5px 4px;text-align:center;"><span style="font-size:9px;color:'+verColor+';">'+l.edVer.toUpperCase()+'</span></td>'
+      +'<td style="padding:5px 8px;font-size:10px;color:'+(l.format==='Custom'?'var(--rust2)':'var(--green3)')+';">'+l.format+'</td>'
+      +stageCells
+      +'<td style="padding:5px 8px;text-align:center;">'+stLabel+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+// ── Projections ──
+function yawRenderProjections(){
+  var daily=parseFloat((document.getElementById('yawProjDaily')||{}).value)||7;
+  var rpl  =Math.max(0.01,parseFloat((document.getElementById('yawProjRpl')||{}).value)||7.81);
+  var fee  =parseFloat((document.getElementById('yawProjFee')||{}).value)||9.5;
+
+  yawMisc.projDaily=daily; yawMisc.projRpl=rpl; yawMisc.projFee=fee;
+  try{localStorage.setItem(YAW_MISC_KEY,JSON.stringify(yawMisc));}catch(e){}
+
+  var total=yawListings.length||976;
+  var live =yawListings.filter(function(l){return l.stages.live;}).length;
+  var remain=total-live;
+  var daysLeft=remain>0?Math.ceil(remain/daily):0;
+  var fullRev=Math.round(total*rpl);
+  var profit =Math.round(fullRev*(1-fee/100));
+
+  var set=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
+  set('yawProjDaysLeft',daysLeft>0?daysLeft+'d':'✓ Done!');
+  set('yawProjFullRev','$'+fullRev.toLocaleString()+'/mo');
+  set('yawProjProfit','$'+profit.toLocaleString()+'/mo');
+  set('yawProjRemain',remain);
+
+  // ── Milestones ──
+  var msEl=document.getElementById('yawMilestones');
+  if(msEl){
+    var milestones=[
+      {label:'First 10 live',                        count:10},
+      {label:'First 50 listings',                    count:50},
+      {label:'100 listings',                         count:100},
+      {label:'All USA Generic (3 versions × 2 fmts = 6)', count:6},
+      {label:'One full age complete (61 listings)',  count:61},
+      {label:'All V1 (41 listings × 16 ages = 656)',count:656},
+      {label:'Quarter complete (244)',               count:244},
+      {label:'Half complete (488)',                  count:488},
+      {label:'Full Phase 1 (976)',                   count:976}
+    ];
+    msEl.innerHTML=milestones.map(function(ms){
+      var rev=Math.round(ms.count*rpl);
+      var pft=Math.round(rev*(1-fee/100));
+      var done=live>=ms.count;
+      var pct=Math.min(100,Math.round(live/ms.count*100));
+      return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);">'
+        +'<div style="font-size:16px;">'+(done?'✅':'⬜')+'</div>'
+        +'<div style="flex:1;">'
+          +'<div style="font-size:11px;color:'+(done?'var(--green3)':'var(--cream2)')+';">'+ms.label+'</div>'
+          +'<div style="height:3px;background:var(--border);border-radius:2px;margin-top:3px;overflow:hidden;"><div style="height:100%;width:'+pct+'%;background:'+(done?'var(--green3)':'var(--teal)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:100px;">'
+          +'<div style="font-size:12px;font-weight:700;color:var(--gold);">$'+rev.toLocaleString()+'/mo</div>'
+          +'<div style="font-size:9px;color:var(--mid);">profit: $'+pft.toLocaleString()+'</div>'
+        +'</div>'
+        +'</div>';
+    }).join('');
+  }
+
+  // ── Category / Version breakdown ──
+  var catEl=document.getElementById('yawCatBreakdown');
+  if(catEl){
+    var groups=[
+      {label:'Generic V1',  filter:function(l){return l.edCat==='generic'&&l.edVer==='v1';}},
+      {label:'Generic V2',  filter:function(l){return l.edCat==='generic'&&l.edVer==='v2';}},
+      {label:'Generic V3',  filter:function(l){return l.edCat==='generic'&&l.edVer==='v3';}},
+      {label:'Black V1',    filter:function(l){return l.edCat==='black'&&l.edVer==='v1';}},
+      {label:'Black V2',    filter:function(l){return l.edCat==='black'&&l.edVer==='v2';}},
+      {label:'Black V3',    filter:function(l){return l.edCat==='black'&&l.edVer==='v3';}}
+    ];
+    catEl.innerHTML=groups.map(function(g){
+      var sub=yawListings.filter(g.filter);
+      var subLive=sub.filter(function(l){return l.stages.live;}).length;
+      var subTotal=sub.length;
+      var subPct=subTotal?Math.round(subLive/subTotal*100):0;
+      var subRev=Math.round(subLive*rpl);
+      var isGen=g.label.indexOf('Generic')>=0;
+      var gColor=isGen?'var(--gold2)':'var(--teal)';
+      return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);">'
+        +'<div style="min-width:90px;font-size:11px;color:'+gColor+';font-weight:600;">'+g.label+'</div>'
+        +'<div style="flex:1;">'
+          +'<div style="display:flex;justify-content:space-between;font-size:9px;color:var(--mid);margin-bottom:2px;"><span>'+subLive+'/'+subTotal+'</span><span>'+subPct+'%</span></div>'
+          +'<div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div style="height:100%;width:'+subPct+'%;background:'+(subPct>=100?'var(--green3)':subPct>=50?'var(--teal)':'var(--gold)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:70px;font-size:11px;font-weight:700;color:var(--gold);">$'+subRev.toLocaleString()+'</div>'
+        +'</div>';
+    }).join('');
+  }
+
+  // ── Edition breakdown ──
+  var edEl=document.getElementById('yawEdBreakdown');
+  if(edEl){
+    edEl.innerHTML=YAW_EDITIONS.map(function(ed){
+      var edL=yawListings.filter(function(l){return l.edId===ed.id;});
+      var edLive=edL.filter(function(l){return l.stages.live;}).length;
+      var edTotal=edL.length;
+      var edPct=edTotal?Math.round(edLive/edTotal*100):0;
+      var edRev=Math.round(edLive*rpl);
+      var verColor=ed.ver==='v1'?'var(--gold)':ed.ver==='v2'?'var(--teal)':'var(--mid)';
+      var catColor=ed.cat==='black'?'var(--teal)':'var(--gold2)';
+      return '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);">'
+        +'<div style="font-size:14px;">'+ed.flag+'</div>'
+        +'<div style="flex:1;">'
+          +'<div style="display:flex;justify-content:space-between;margin-bottom:2px;">'
+            +'<span style="font-size:10px;color:var(--cream2);">'+ed.shortName
+              +' <span style="font-size:8px;color:'+catColor+';">'+(ed.cat==='black'?'BLK':'GEN')+'</span>'
+              +' <span style="font-size:8px;color:'+verColor+';">'+ed.ver.toUpperCase()+'</span>'
+            +'</span>'
+            +'<span style="font-size:9px;color:var(--mid);">'+edLive+'/'+edTotal+'</span>'
+          +'</div>'
+          +'<div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div style="height:100%;width:'+edPct+'%;background:'+(edPct>=100?'var(--green3)':edPct>=50?'var(--teal)':'var(--gold)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:55px;">'
+          +'<div style="font-size:11px;font-weight:700;color:var(--gold);">$'+edRev+'</div>'
+          +'<div style="font-size:8px;color:var(--mid);">'+edPct+'%</div>'
+        +'</div>'
+        +'</div>';
+    }).join('');
+  }
+}
+
+// ── Batch mark ──
+function yawBatchMark(){
+  var stage=(document.getElementById('yawBatchStage')||{}).value||'';
+  var age  =(document.getElementById('yawBatchAge')||{}).value||'';
+  var cat  =(document.getElementById('yawBatchCat')||{}).value||'';
+  var ver  =(document.getElementById('yawBatchVer')||{}).value||'';
+  if(!stage){alert('Select a stage to mark.');return;}
+  if(!age&&!cat&&!ver){alert('Select at least one filter (age, type, or version).');return;}
+  var count=0;
+  yawListings.forEach(function(l){
+    if(age && String(l.ageVal)!==String(age)) return;
+    if(cat && l.edCat!==cat) return;
+    if(ver && l.edVer!==ver) return;
+    if(!l.stages[stage]){
+      l.stages[stage]=true;
+      l.lastTouched=Date.now();
+      // Batch = historical bulk mark — skip dailyPublished
+      count++;
+    }
+  });
+  if(stage==='live'){
+    yawMisc.live=yawListings.filter(function(l){return l.stages.live;}).length;
+    try{localStorage.setItem(YAW_MISC_KEY,JSON.stringify(yawMisc));}catch(e){}
+  }
+  yawSaveListings();
+  yawRenderAll();
+  yawRenderPipeline();
+  if(count)alert('Marked '+count+' listings: '+YAW_STAGE_NAMES[stage]+' ✓');
+}
+
+// ── Init ──
+function yawInit(){
+  yawLoadState();
+  setTimeout(function(){
+    var btn=document.getElementById('yawTabTasks');
+    if(btn)yawShowSub('tasks',btn);
+  },0);
+  var sv=function(id,val){var e=document.getElementById(id);if(e)e.value=val;};
+  sv('yawProjDaily', yawMisc.projDaily||7);
+  sv('yawProjRpl',   yawMisc.projRpl||7.81);
+  sv('yawProjFee',   yawMisc.projFee||9.5);
+  sv('yawDailyInput',yawMisc.dailyTarget||7);
+  if(yawMisc.revenue)sv('yawRevInput',yawMisc.revenue);
+  if(yawMisc.visits) sv('yawVisitsInput',yawMisc.visits);
+  if(yawMisc.etsyLive!==undefined)sv('yawLiveInput',yawMisc.etsyLive);
+  if(typeof listings!=='undefined'&&listings.length)syncFromMain();
+}
+
+
+// ═══════════════════════════════════════════════════════════════════
+// HOMEGRIOT PHASE 1 — Standalone module (zero coupling to other modules)
+// Storage key: hg_v1   (separate from bhq_v5_*, lfp_v1_*, yaw_v1_*)
+// 16 priority ages × 13 editions (V1/V2/V3, Black only) = 400 Phase 1 listings
+// ═══════════════════════════════════════════════════════════════════
+
+var HG_KEY      = 'hg_v1_listings';
+var HG_MISC_KEY = 'hg_v1_misc';
+
+// ── 13 Shop B editions ──
+var HG_EDITIONS = [
+  // Black V1
+  {id:'b_glb_blk',   name:'Global Black',     shortName:'GLB Blk',    flag:'🌍',  cat:'black', ver:'v1', fmts:['Instant DL']},
+  {id:'b_usa_blk',   name:'USA Black',         shortName:'USA Blk',    flag:'🇺🇸', cat:'black', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'b_uk_blk',    name:'UK Black',          shortName:'UK Blk',     flag:'🇬🇧', cat:'black', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'b_can_blk',   name:'Canada Black',      shortName:'CAN Blk',    flag:'🇨🇦', cat:'black', ver:'v1', fmts:['Custom','Instant DL']},
+  // Black V2
+  {id:'b_usa_blk_v2',name:'USA Black V2',      shortName:'USA Blk V2', flag:'🇺🇸', cat:'black', ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'b_uk_blk_v2', name:'UK Black V2',       shortName:'UK Blk V2',  flag:'🇬🇧', cat:'black', ver:'v2', fmts:['Custom','Instant DL']},
+  {id:'b_can_blk_v2',name:'Canada Black V2',   shortName:'CAN Blk V2', flag:'🇨🇦', cat:'black', ver:'v2', fmts:['Custom','Instant DL']},
+  // Black V3
+  {id:'b_usa_blk_v3',name:'USA Black V3',      shortName:'USA Blk V3', flag:'🇺🇸', cat:'black', ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'b_uk_blk_v3', name:'UK Black V3',       shortName:'UK Blk V3',  flag:'🇬🇧', cat:'black', ver:'v3', fmts:['Custom','Instant DL']},
+  {id:'b_can_blk_v3',name:'Canada Black V3',   shortName:'CAN Blk V3', flag:'🇨🇦', cat:'black', ver:'v3', fmts:['Custom','Instant DL']},
+  // Diaspora V1
+  {id:'b_jam_blk',   name:'Jamaica Black',     shortName:'JAM Blk',    flag:'🇯🇲', cat:'black', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'b_tri_blk',   name:'Trinidad Black',    shortName:'TRI Blk',    flag:'🇹🇹', cat:'black', ver:'v1', fmts:['Custom','Instant DL']},
+  {id:'b_bar_blk',   name:'Barbados Black',    shortName:'BAR Blk',    flag:'🇧🇧', cat:'black', ver:'v1', fmts:['Custom','Instant DL']}
+];
+
+// ── 16 Priority Ages ──
+var HG_AGES = [
+  {age:50,label:'50th',priOrder:0}, {age:60,label:'60th',priOrder:1},
+  {age:40,label:'40th',priOrder:2}, {age:70,label:'70th',priOrder:3},
+  {age:30,label:'30th',priOrder:4}, {age:55,label:'55th',priOrder:5},
+  {age:25,label:'25th',priOrder:6}, {age:35,label:'35th',priOrder:7},
+  {age:45,label:'45th',priOrder:8}, {age:65,label:'65th',priOrder:9},
+  {age:21,label:'21st',priOrder:10},{age:75,label:'75th',priOrder:11},
+  {age:80,label:'80th',priOrder:12},{age:85,label:'85th',priOrder:13},
+  {age:90,label:'90th',priOrder:14},{age:95,label:'95th',priOrder:15}
+];
+
+// Edition priority (demand-based)
+var HG_ED_PRIORITY = {
+  b_usa_blk:1, b_uk_blk:2, b_jam_blk:3, b_can_blk:4,
+  b_usa_blk_v2:5, b_uk_blk_v2:6, b_tri_blk:7, b_can_blk_v2:8,
+  b_bar_blk:9, b_usa_blk_v3:10, b_uk_blk_v3:11, b_can_blk_v3:12,
+  b_glb_blk:13
+};
+
+// ── State ──
+var hgListings = [];
+var hgMisc = {
+  revenue:0, visits:0, live:0, etsyLive:0, dailyTarget:5,
+  projDaily:5, projRpl:7.81, projFee:9.5,
+  dailyPublished:{},
+  curSub:'tasks'
+};
+
+// ── Stages ──
+var HG_STAGES = ['facts','canva','hero','mockup','listing','live'];
+var HG_STAGE_NAMES = {facts:'Research',canva:'Canva',hero:'Hero',mockup:'Mockup',listing:'Copy',live:'Live'};
+
+function hgBlankStages(){var s={};HG_STAGES.forEach(function(id){s[id]=false;});return s;}
+function hgPad(n,l){var s=String(n);while(s.length<l)s='0'+s;return s;}
+
+function hgGenerateListings(){
+  var out=[],n=1;
+  HG_AGES.forEach(function(ag){
+    HG_EDITIONS.forEach(function(ed){
+      ed.fmts.forEach(function(fmt){
+        var ep=HG_ED_PRIORITY[ed.id]||99;
+        out.push({
+          id:'HG'+hgPad(n++,4),
+          ageVal:ag.age, ageLabel:ag.label, agePri:ag.priOrder,
+          edId:ed.id, edName:ed.name, edShort:ed.shortName,
+          edFlag:ed.flag, edCat:ed.cat, edVer:ed.ver,
+          format:fmt,
+          stages:hgBlankStages(),
+          notes:'', lastTouched:0,
+          _pri: ag.priOrder*100 + ep
+        });
+      });
+    });
+  });
+  out.sort(function(a,b){return a._pri-b._pri;});
+  return out;
+}
+
+// ── Load / Save ──
+function hgLoadState(){
+  hgListings=hgGenerateListings();
+  try{
+    var saved=localStorage.getItem(HG_KEY);
+    if(saved){
+      var arr=JSON.parse(saved),map={};
+      arr.forEach(function(x){map[x.id]=x;});
+      hgListings.forEach(function(l){
+        if(map[l.id]){l.stages=map[l.id].stages||hgBlankStages();l.notes=map[l.id].notes||'';l.lastTouched=map[l.id].lastTouched||0;}
+      });
+    }
+  }catch(e){console.warn('HG load:',e);}
+  try{
+    var m=localStorage.getItem(HG_MISC_KEY);
+    if(m){var p=JSON.parse(m);Object.keys(hgMisc).forEach(function(k){if(k in p)hgMisc[k]=p[k];});}
+  }catch(e){console.warn('HG misc load:',e);}
+}
+
+function hgSaveListings(){
+  try{
+    var slim=hgListings.map(function(l){return{id:l.id,stages:l.stages,notes:l.notes,lastTouched:l.lastTouched||0};});
+    localStorage.setItem(HG_KEY,JSON.stringify(slim));
+  }catch(e){console.warn('HG save:',e);}
+}
+
+function hgSaveMisc(){
+  var g=function(id){return document.getElementById(id);};
+  var rv=g('hgRevInput'),vi=g('hgVisitsInput'),li=g('hgLiveInput'),dt=g('hgDailyInput');
+  var pd=g('hgProjDaily'),pr=g('hgProjRpl'),pf=g('hgProjFee');
+  if(rv&&rv.value!=='')hgMisc.revenue=parseFloat(rv.value)||0;
+  if(vi&&vi.value!=='')hgMisc.visits=parseFloat(vi.value)||0;
+  if(li&&li.value!=='')hgMisc.etsyLive=parseFloat(li.value)||0;
+  if(dt&&dt.value!=='')hgMisc.dailyTarget=parseFloat(dt.value)||5;
+  if(pd&&pd.value!=='')hgMisc.projDaily=parseFloat(pd.value)||5;
+  if(pr&&pr.value!=='')hgMisc.projRpl=parseFloat(pr.value)||7.81;
+  if(pf&&pf.value!=='')hgMisc.projFee=parseFloat(pf.value)||9.5;
+  try{localStorage.setItem(HG_MISC_KEY,JSON.stringify(hgMisc));}catch(e){}
+}
+
+// ── Helpers ──
+function hgGetStatus(l){
+  if(l.stages.live)return 'completed';
+  var any=HG_STAGES.some(function(s){return l.stages[s];});
+  return any?'in_progress':'not_started';
+}
+function hgGetNextStage(l){return HG_STAGES.find(function(s){return !l.stages[s];});}
+function hgTodayStr(){var d=new Date();return d.getFullYear()+'-'+hgPad(d.getMonth()+1,2)+'-'+hgPad(d.getDate(),2);}
+function hgGetTodayPublished(){var td=hgTodayStr();return (hgMisc.dailyPublished&&hgMisc.dailyPublished[td])||0;}
+
+// ── Mark stage / all ──
+function hgMarkStage(id,stageId,val){
+  var l=hgListings.find(function(x){return x.id===id;});
+  if(!l)return;
+  l.stages[stageId]=val; l.lastTouched=Date.now();
+  if(stageId==='live'&&val){
+    var td=hgTodayStr();
+    if(!hgMisc.dailyPublished)hgMisc.dailyPublished={};
+    hgMisc.dailyPublished[td]=(hgMisc.dailyPublished[td]||0)+1;
+    hgMisc.live=hgListings.filter(function(x){return x.stages.live;}).length;
+    try{localStorage.setItem(HG_MISC_KEY,JSON.stringify(hgMisc));}catch(e){}
+  }
+  hgSaveListings(); hgRenderAll();
+  syncToMain(l.edId, l.ageVal, l.format, l.stages);
+}
+
+function hgMarkAllStages(id){
+  var l=hgListings.find(function(x){return x.id===id;});
+  if(!l)return;
+  var wasLive=l.stages.live;
+  HG_STAGES.forEach(function(s){l.stages[s]=true;}); l.lastTouched=Date.now();
+  if(!wasLive){
+    var td=hgTodayStr();
+    if(!hgMisc.dailyPublished)hgMisc.dailyPublished={};
+    hgMisc.dailyPublished[td]=(hgMisc.dailyPublished[td]||0)+1;
+    hgMisc.live=hgListings.filter(function(x){return x.stages.live;}).length;
+    try{localStorage.setItem(HG_MISC_KEY,JSON.stringify(hgMisc));}catch(e){}
+  }
+  hgSaveListings(); hgRenderAll();
+  syncToMain(l.edId, l.ageVal, l.format, l.stages);
+}
+
+// ── Sub-tab switching ──
+function hgShowSub(name,btn){
+  ['tasks','pipeline','projections'].forEach(function(s){
+    var el=document.getElementById('hgSub'+s.charAt(0).toUpperCase()+s.slice(1));
+    if(el)el.style.display=s===name?'':'none';
+  });
+  document.querySelectorAll('#v-hg .btn').forEach(function(b){
+    if(b.id&&b.id.startsWith('hgTab')){b.style.background='';b.style.borderColor='var(--border)';b.className='btn btn-mid';}
+  });
+  if(btn){btn.style.background='var(--teal)';btn.style.borderColor='var(--teal)';btn.className='btn';}
+  hgMisc.curSub=name;
+  if(name==='pipeline')hgRenderPipeline();
+  if(name==='projections')hgRenderProjections();
+  if(name==='tasks')hgRenderAll();
+}
+
+// ── Render ──
+function hgRenderAll(){hgRenderStats();hgRenderMission();hgRenderTasks();}
+
+function hgRenderStats(){
+  var live=hgListings.filter(function(l){return l.stages.live;}).length;
+  var total=hgListings.length||400;
+  var pct=Math.round(live/total*100);
+  var rpl=hgMisc.projRpl||7.81;
+  var rev=Math.round(live*rpl);
+  var s=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
+  s('hgStatLive',live); s('hgStatTotal',total);
+  s('hgStatRev','$'+rev.toLocaleString()); s('hgStatRemain',total-live);
+  s('hgProgPct',pct+'% complete ('+live+'/'+total+')');
+  var bar=document.getElementById('hgProgBar');
+  if(bar)bar.style.width=Math.max(0,pct)+'%';
+}
+
+function hgRenderMission(){
+  var tgt=Math.max(1,Math.round(hgMisc.dailyTarget||5));
+  var done=hgGetTodayPublished();
+  var rpl=hgMisc.projRpl||7.81;
+  var added=done*rpl;
+  var remain=Math.max(0,tgt-done);
+  var s=function(id,v,c){var e=document.getElementById(id);if(e){e.textContent=v;if(c)e.style.color=c;}};
+  s('hgDailyTgt',tgt); s('hgTodayDone',done,done>=tgt?'var(--green3)':done>0?'var(--teal)':'var(--rust2)');
+  s('hgAddedToday','+$'+added.toFixed(added<10?2:0),done===0?'var(--mid)':done>=3?'var(--green3)':'var(--teal)');
+  s('hgRemainToday',remain>0?remain+' more':'✓ Done!',remain===0?'var(--green3)':'var(--rust2)');
+  var d=new Date();
+  var de=document.getElementById('hgTodayDate');
+  if(de)de.textContent=d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+  var msg='';
+  if(done>=tgt) msg='🏆 <strong style="color:var(--green3);">Target hit!</strong> '+done+'/'+tgt+' HomeGriot listings live today.';
+  else if(done>0) msg='⚡ <strong style="color:var(--teal);">'+done+' live, '+remain+' to go.</strong> Each earns <strong style="color:var(--gold);">$'+rpl.toFixed(2)+'/mo</strong> forever.';
+  else msg='🎯 Publish <strong style="color:var(--gold);">'+tgt+' HomeGriot listings</strong> today. USA Black 50th first.';
+  var me=document.getElementById('hgMissionMsg'); if(me)me.innerHTML=msg;
+  var si=function(id,val){var e=document.getElementById(id);if(e&&document.activeElement!==e)e.value=val||'';};
+  si('hgRevInput',hgMisc.revenue||''); si('hgVisitsInput',hgMisc.visits||'');
+  si('hgLiveInput',hgMisc.etsyLive||''); si('hgDailyInput',hgMisc.dailyTarget||5);
+}
+
+function hgRenderTasks(){
+  var el=document.getElementById('hgTaskList'); if(!el)return;
+  var verF=(document.getElementById('hgFilterVer')||{}).value||'';
+  var fmtF=(document.getElementById('hgFilterFmt')||{}).value||'';
+  var ageF=(document.getElementById('hgFilterAge')||{}).value||'';
+  var stF =(document.getElementById('hgFilterStatus')||{}).value||'pending';
+
+  var pool=hgListings.filter(function(l){
+    if(verF && l.edVer!==verF) return false;
+    if(fmtF && l.format!==fmtF) return false;
+    if(ageF && String(l.ageVal)!==ageF) return false;
+    var st=hgGetStatus(l);
+    if(stF==='pending'&&st==='completed')return false;
+    if(stF==='live'&&st!=='completed')return false;
+    return true;
+  });
+
+  pool.sort(function(a,b){
+    var sa=hgGetStatus(a),sb=hgGetStatus(b);
+    if(sa==='in_progress'&&sb!=='in_progress')return -1;
+    if(sb==='in_progress'&&sa!=='in_progress')return 1;
+    return a._pri-b._pri;
+  });
+
+  var show=pool.slice(0,20);
+  if(!show.length){el.innerHTML='<div style="font-size:11px;color:var(--mid);padding:10px 0;">No listings match this filter.</div>';return;}
+
+  el.innerHTML=show.map(function(l){
+    var st=hgGetStatus(l),next=hgGetNextStage(l);
+    var isDone=st==='completed',isIP=st==='in_progress';
+    var fmtColor=l.format==='Custom'?'var(--rust2)':'var(--green3)';
+    var verColor=l.edVer==='v1'?'var(--gold)':l.edVer==='v2'?'var(--teal)':'var(--mid)';
+    var dots=HG_STAGES.map(function(s){
+      var done=l.stages[s],isNext=!isDone&&s===next;
+      return '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+(done?'var(--green3)':isNext?'var(--teal)':'var(--border)')+';cursor:pointer;" onclick="hgMarkStage(\''+l.id+'\',\''+s+'\','+(!done)+')" title="'+(done?'✓ ':'')+HG_STAGE_NAMES[s]+'"></span>';
+    }).join('');
+    var bg=isDone?'rgba(45,122,80,.08)':isIP?'rgba(20,180,180,.06)':'var(--ink2)';
+    var border=isDone?'#1a5c35':isIP?'#1a5c5c':'var(--border)';
+    return '<div style="background:'+bg+';border:1px solid '+border+';border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">'
+      +'<div style="min-width:36px;font-size:13px;font-weight:700;color:'+(isDone?'var(--green3)':'var(--cream)')+';">'+l.ageLabel+'</div>'
+      +'<div style="flex:1;min-width:110px;">'
+        +'<div style="font-size:11px;color:var(--cream2);">'+l.edFlag+' '+l.edShort
+          +' <span style="font-size:9px;background:rgba(0,0,0,.3);padding:1px 4px;border-radius:3px;color:var(--teal);">BLK</span>'
+          +' <span style="font-size:9px;background:rgba(0,0,0,.3);padding:1px 4px;border-radius:3px;color:'+verColor+';">'+l.edVer.toUpperCase()+'</span>'
+          +' <span style="font-size:9px;color:'+fmtColor+';">'+l.format+'</span>'
+        +'</div>'
+        +'<div style="display:flex;gap:3px;margin-top:4px;align-items:center;">'+dots+'<span style="font-size:9px;color:var(--mid);margin-left:4px;">'+(isDone?'✓ Live':isIP?'In Progress':'Not Started')+'</span></div>'
+      +'</div>'
+      +(isDone?''
+        :'<button onclick="hgMarkAllStages(\''+l.id+'\')" style="font-size:9px;padding:4px 10px;background:var(--teal);border:none;border-radius:4px;color:#fff;cursor:pointer;white-space:nowrap;">✓ Mark Live</button>')
+      +'</div>';
+  }).join('');
+}
+
+function hgRenderPipeline(){
+  var verF=(document.getElementById('hgPipeVer')||{}).value||'';
+  var ageF=(document.getElementById('hgPipeAge')||{}).value||'';
+  var fmtF=(document.getElementById('hgPipeFmt')||{}).value||'';
+  var stF =(document.getElementById('hgPipeStatus')||{}).value||'';
+
+  var pool=hgListings.filter(function(l){
+    if(verF && l.edVer!==verF) return false;
+    if(ageF && String(l.ageVal)!==ageF) return false;
+    if(fmtF && l.format!==fmtF) return false;
+    if(stF){var s=hgGetStatus(l);if(s!==stF)return false;}
+    return true;
+  });
+
+  var cnt=document.getElementById('hgPipeCount');
+  if(cnt)cnt.textContent=pool.length+' listings';
+  var tbody=document.getElementById('hgPipeBody'); if(!tbody)return;
+  if(!pool.length){tbody.innerHTML='<tr><td colspan="11" style="padding:16px;text-align:center;color:var(--mid);font-size:11px;">No listings match filter.</td></tr>';return;}
+
+  tbody.innerHTML=pool.map(function(l){
+    var st=hgGetStatus(l),isDone=st==='completed',isIP=st==='in_progress';
+    var rowBg=isDone?'rgba(45,122,80,.06)':isIP?'rgba(20,180,180,.04)':'';
+    var verColor=l.edVer==='v1'?'var(--gold)':l.edVer==='v2'?'var(--teal)':'var(--mid)';
+    var cells=HG_STAGES.map(function(s){
+      var done=l.stages[s];
+      return '<td style="padding:4px;text-align:center;"><span style="display:inline-block;width:14px;height:14px;border-radius:3px;background:'+(done?'var(--teal)':'var(--border)')+';cursor:pointer;" onclick="hgMarkStage(\''+l.id+'\',\''+s+'\','+(!done)+')" title="'+(done?'Undo ':'Mark ')+HG_STAGE_NAMES[s]+'"></span></td>';
+    }).join('');
+    var stLabel=isDone?'<span style="color:var(--green3);font-size:9px;">✓ Live</span>'
+                      :isIP?'<span style="color:var(--teal);font-size:9px;">In Prog</span>'
+                           :'<span style="color:var(--mid);font-size:9px;">—</span>';
+    return '<tr style="background:'+rowBg+';border-bottom:1px solid var(--border);">'
+      +'<td style="padding:5px 8px;font-weight:600;color:var(--cream);">'+l.ageLabel+'</td>'
+      +'<td style="padding:5px 8px;white-space:nowrap;">'+l.edFlag+' <span style="font-size:10px;color:var(--cream2);">'+l.edShort+'</span></td>'
+      +'<td style="padding:5px 4px;text-align:center;"><span style="font-size:9px;color:'+verColor+';">'+l.edVer.toUpperCase()+'</span></td>'
+      +'<td style="padding:5px 8px;font-size:10px;color:'+(l.format==='Custom'?'var(--rust2)':'var(--green3)')+';">'+l.format+'</td>'
+      +cells
+      +'<td style="padding:5px 8px;text-align:center;">'+stLabel+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+function hgRenderProjections(){
+  var daily=parseFloat((document.getElementById('hgProjDaily')||{}).value)||5;
+  var rpl  =Math.max(0.01,parseFloat((document.getElementById('hgProjRpl')||{}).value)||7.81);
+  var fee  =parseFloat((document.getElementById('hgProjFee')||{}).value)||9.5;
+  hgMisc.projDaily=daily; hgMisc.projRpl=rpl; hgMisc.projFee=fee;
+  try{localStorage.setItem(HG_MISC_KEY,JSON.stringify(hgMisc));}catch(e){}
+
+  var total=hgListings.length||400;
+  var live=hgListings.filter(function(l){return l.stages.live;}).length;
+  var remain=total-live;
+  var daysLeft=remain>0?Math.ceil(remain/daily):0;
+  var fullRev=Math.round(total*rpl);
+  var profit=Math.round(fullRev*(1-fee/100));
+
+  var s=function(id,v){var e=document.getElementById(id);if(e)e.textContent=v;};
+  s('hgProjDaysLeft',daysLeft>0?daysLeft+'d':'✓ Done!');
+  s('hgProjFullRev','$'+fullRev.toLocaleString()+'/mo');
+  s('hgProjProfit','$'+profit.toLocaleString()+'/mo');
+  s('hgProjRemain',remain);
+
+  // Milestones
+  var msEl=document.getElementById('hgMilestones');
+  if(msEl){
+    var ms=[
+      {label:'First 10 live',count:10},
+      {label:'First 50 live',count:50},
+      {label:'One full age (25 listings)',count:25},
+      {label:'All V1 (52 listings × 16 ages)',count:52},
+      {label:'Quarter complete (100)',count:100},
+      {label:'Half complete (200)',count:200},
+      {label:'Full Phase 1 (400)',count:400}
+    ];
+    msEl.innerHTML=ms.map(function(m){
+      var rev=Math.round(m.count*rpl),pft=Math.round(rev*(1-fee/100));
+      var done=live>=m.count,pct=Math.min(100,Math.round(live/m.count*100));
+      return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);">'
+        +'<div style="font-size:16px;">'+(done?'✅':'⬜')+'</div>'
+        +'<div style="flex:1;"><div style="font-size:11px;color:'+(done?'var(--green3)':'var(--cream2)')+';">'+m.label+'</div>'
+          +'<div style="height:3px;background:var(--border);border-radius:2px;margin-top:3px;overflow:hidden;"><div style="height:100%;width:'+pct+'%;background:'+(done?'var(--green3)':'var(--teal)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:100px;"><div style="font-size:12px;font-weight:700;color:var(--gold);">$'+rev.toLocaleString()+'/mo</div>'
+          +'<div style="font-size:9px;color:var(--mid);">profit: $'+pft.toLocaleString()+'</div>'
+        +'</div></div>';
+    }).join('');
+  }
+
+  // Version breakdown
+  var vbEl=document.getElementById('hgVerBreakdown');
+  if(vbEl){
+    var groups=[
+      {label:'V1 Black', filter:function(l){return l.edVer==='v1';}},
+      {label:'V2 Black', filter:function(l){return l.edVer==='v2';}},
+      {label:'V3 Black', filter:function(l){return l.edVer==='v3';}}
+    ];
+    vbEl.innerHTML=groups.map(function(g){
+      var sub=hgListings.filter(g.filter);
+      var subLive=sub.filter(function(l){return l.stages.live;}).length;
+      var subTotal=sub.length,subPct=subTotal?Math.round(subLive/subTotal*100):0;
+      var subRev=Math.round(subLive*rpl);
+      return '<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);">'
+        +'<div style="min-width:70px;font-size:11px;color:var(--teal);font-weight:600;">'+g.label+'</div>'
+        +'<div style="flex:1;"><div style="display:flex;justify-content:space-between;font-size:9px;color:var(--mid);margin-bottom:2px;"><span>'+subLive+'/'+subTotal+'</span><span>'+subPct+'%</span></div>'
+          +'<div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div style="height:100%;width:'+subPct+'%;background:'+(subPct>=100?'var(--green3)':subPct>=50?'var(--teal)':'var(--gold)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:60px;font-size:11px;font-weight:700;color:var(--gold);">$'+subRev.toLocaleString()+'</div>'
+        +'</div>';
+    }).join('');
+  }
+
+  // Edition breakdown
+  var edEl=document.getElementById('hgEdBreakdown');
+  if(edEl){
+    edEl.innerHTML=HG_EDITIONS.map(function(ed){
+      var edL=hgListings.filter(function(l){return l.edId===ed.id;});
+      var edLive=edL.filter(function(l){return l.stages.live;}).length;
+      var edTotal=edL.length,edPct=edTotal?Math.round(edLive/edTotal*100):0;
+      var edRev=Math.round(edLive*rpl);
+      var verColor=ed.ver==='v1'?'var(--gold)':ed.ver==='v2'?'var(--teal)':'var(--mid)';
+      return '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);">'
+        +'<div style="font-size:14px;">'+ed.flag+'</div>'
+        +'<div style="flex:1;"><div style="display:flex;justify-content:space-between;margin-bottom:2px;">'
+            +'<span style="font-size:10px;color:var(--cream2);">'+ed.shortName+' <span style="font-size:8px;color:'+verColor+';">'+ed.ver.toUpperCase()+'</span></span>'
+            +'<span style="font-size:9px;color:var(--mid);">'+edLive+'/'+edTotal+'</span>'
+          +'</div>'
+          +'<div style="height:4px;background:var(--border);border-radius:2px;overflow:hidden;"><div style="height:100%;width:'+edPct+'%;background:'+(edPct>=100?'var(--green3)':edPct>=50?'var(--teal)':'var(--gold)')+'"></div></div>'
+        +'</div>'
+        +'<div style="text-align:right;min-width:55px;"><div style="font-size:11px;font-weight:700;color:var(--gold);">$'+edRev+'</div>'
+          +'<div style="font-size:8px;color:var(--mid);">'+edPct+'%</div>'
+        +'</div></div>';
+    }).join('');
+  }
+}
+
+function hgBatchMark(){
+  var stage=(document.getElementById('hgBatchStage')||{}).value||'';
+  var age  =(document.getElementById('hgBatchAge')||{}).value||'';
+  var ver  =(document.getElementById('hgBatchVer')||{}).value||'';
+  if(!stage){alert('Select a stage to mark.');return;}
+  if(!age&&!ver){alert('Select at least an age or version.');return;}
+  var count=0;
+  hgListings.forEach(function(l){
+    if(age && String(l.ageVal)!==String(age)) return;
+    if(ver && l.edVer!==ver) return;
+    if(!l.stages[stage]){l.stages[stage]=true;l.lastTouched=Date.now();count++;}
+  });
+  if(stage==='live'){
+    hgMisc.live=hgListings.filter(function(l){return l.stages.live;}).length;
+    try{localStorage.setItem(HG_MISC_KEY,JSON.stringify(hgMisc));}catch(e){}
+  }
+  hgSaveListings(); hgRenderAll(); hgRenderPipeline();
+  if(count)alert('Marked '+count+' listings: '+HG_STAGE_NAMES[stage]+' ✓');
+}
+
+function hgInit(){
+  hgLoadState();
+  setTimeout(function(){var btn=document.getElementById('hgTabTasks');if(btn)hgShowSub('tasks',btn);},0);
+  var sv=function(id,val){var e=document.getElementById(id);if(e)e.value=val;};
+  sv('hgProjDaily',hgMisc.projDaily||5); sv('hgProjRpl',hgMisc.projRpl||7.81);
+  sv('hgProjFee',hgMisc.projFee||9.5); sv('hgDailyInput',hgMisc.dailyTarget||5);
+  if(hgMisc.revenue)sv('hgRevInput',hgMisc.revenue);
+  if(hgMisc.visits) sv('hgVisitsInput',hgMisc.visits);
+  if(hgMisc.etsyLive!==undefined)sv('hgLiveInput',hgMisc.etsyLive);
+  if(typeof listings!=='undefined'&&listings.length)syncFromMain();
 }
 
 init();
